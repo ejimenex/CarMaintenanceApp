@@ -1,0 +1,176 @@
+<ion-content class="register-content">
+  <div class="register-container">
+    <!-- Background gradient -->
+    <div class="background-gradient"></div>
+    
+    <!-- Logo and welcome section -->
+    <div class="welcome-section">
+      <div class="logo-container">
+        <ion-icon name="car-sport" class="logo-icon"></ion-icon>
+        <h1 class="app-title">Maintenance</h1>
+        <p class="app-subtitle">Vehicle Management System</p>
+      </div>
+    </div>
+
+    <!-- Register form card -->
+    <div class="register-card">
+      <div class="card-header">
+        <h2>Create Account</h2>
+        <p>Join us to manage your vehicles</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="register-form">
+        <!-- Display Name field -->
+        <div class="form-group">
+          <ion-item class="form-item" [class.error]="name?.invalid && name?.touched">
+            <ion-icon name="person-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="Full name"
+              formControlName="name"
+              class="form-input"
+              [clearInput]="true">
+            </ion-input>
+          </ion-item>
+          @if (name?.invalid && name?.touched) {
+            <div class="error-message">
+              @if (name?.errors?.['required']) {
+                <span>Full name is required</span>
+              }
+              @if (name?.errors?.['minlength']) {
+                <span>Name must be at least 2 characters</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+          <ion-item class="form-item" [class.error]="username?.invalid && username?.touched">
+            <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              type="email"
+              placeholder="Email address"
+              formControlName="username"
+              class="form-input"
+              [clearInput]="true">
+            </ion-input>
+          </ion-item>
+          @if (username?.invalid && username?.touched) {
+            <div class="error-message">
+              @if (username?.errors?.['required']) {
+                <span>Email is required</span>
+              }
+              @if (username?.errors?.['email']) {
+                <span>Please enter a valid email</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+          <ion-item class="form-item" [class.error]="password?.invalid && password?.touched">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Password"
+              formControlName="password"
+              class="form-input">
+            </ion-input>
+            <ion-button
+              fill="clear"
+              slot="end"
+              (click)="togglePasswordVisibility()"
+              class="password-toggle">
+              <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </ion-item>
+          @if (password?.invalid && password?.touched) {
+            <div class="error-message">
+              @if (password?.errors?.['required']) {
+                <span>Password is required</span>
+              }
+              @if (password?.errors?.['minlength']) {
+                <span>Password must be at least 6 characters</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Confirm Password field -->
+        <div class="form-group">
+          <ion-item class="form-item" [class.error]="confirmPassword?.invalid && confirmPassword?.touched">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              placeholder="Confirm password"
+              formControlName="confirmPassword"
+              class="form-input">
+            </ion-input>
+            <ion-button
+              fill="clear"
+              slot="end"
+              (click)="toggleConfirmPasswordVisibility()"
+              class="password-toggle">
+              <ion-icon [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </ion-item>
+          @if (confirmPassword?.invalid && confirmPassword?.touched) {
+            <div class="error-message">
+              @if (confirmPassword?.errors?.['required']) {
+                <span>Please confirm your password</span>
+              }
+              @if (confirmPassword?.errors?.['passwordMismatch']) {
+                <span>Passwords do not match</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Register button -->
+        <ion-button
+          type="submit"
+          expand="block"
+          class="register-button"
+          [disabled]="registerForm.invalid || isLoading">
+          @if (isLoading) {
+            <ion-spinner name="crescent"></ion-spinner>
+          }
+          @if (!isLoading) {
+            <span>Create Account</span>
+          }
+        </ion-button>
+
+        <!-- Divider -->
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <!-- Google register button -->
+        <ion-button
+          expand="block"
+          fill="outline"
+          class="google-button"
+          (click)="onGoogleRegister()"
+          [disabled]="isLoading">
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          @if (isLoading) {
+            <ion-spinner name="crescent"></ion-spinner>
+          }
+          @if (!isLoading) {
+            <span>Continue with Google</span>
+          }
+        </ion-button>
+
+        <!-- Login link -->
+        <div class="login-section">
+          <p>Already have an account?</p>
+          <ion-button fill="clear" routerLink="/login" class="login-link">
+            Sign in
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content> 

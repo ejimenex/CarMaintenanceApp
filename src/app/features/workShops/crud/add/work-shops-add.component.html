@@ -1,0 +1,147 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/workshops"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'workshops.add.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="modern-form-content">
+    <!-- Form Header -->
+    <div class="form-header">
+      <ion-icon name="construct" class="header-icon"></ion-icon>
+      <h2>{{ 'workshops.add.header.title' | translate }}</h2>
+      <p>{{ 'workshops.add.header.subtitle' | translate }}</p>
+    </div>
+
+    <!-- Form Fields -->
+    <div class="form-fields">
+      <form [formGroup]="workshopForm" (ngSubmit)="saveWorkshop()">
+        
+        <!-- Workshop Name -->
+        <div class="field-group">
+          <label class="field-label">
+            <ion-icon name="construct" class="field-icon"></ion-icon>
+            {{ 'workshops.form.name.label' | translate }}
+          </label>
+          <ion-input
+            formControlName="name"
+            [placeholder]="'workshops.form.name.placeholder' | translate"
+            class="modern-input"
+            [class.error]="workshopForm.get('name')?.invalid && workshopForm.get('name')?.touched">
+          </ion-input>
+          @if (workshopForm.get('name')?.invalid && workshopForm.get('name')?.touched) {
+            <div class="error-message">
+              {{ getFieldError('name') }}
+            </div>
+          }
+        </div>
+   <!-- Workshop Type -->
+   <div class="field-group">
+    <label class="field-label">
+      <ion-icon name="business" class="field-icon"></ion-icon>
+      {{ 'workshops.form.workShopType.label' | translate }}
+    </label>
+    <ion-select
+      formControlName="worksShopTypeId"
+      [placeholder]="'workshops.form.workShopType.placeholder' | translate"
+      class="modern-input"
+      [class.error]="workshopForm.get('worksShopTypeId')?.invalid && workshopForm.get('worksShopTypeId')?.touched">
+      @for (type of workShopTypes; track type.id) {
+        <ion-select-option [value]="type.id">{{ type.name | translate }}</ion-select-option>
+      }
+    </ion-select>
+    @if (workshopForm.get('worksShopTypeId')?.invalid && workshopForm.get('worksShopTypeId')?.touched) {
+      <div class="error-message">
+        {{ getFieldError('worksShopTypeId') }}
+      </div>
+    }
+  </div>
+        <!-- Address -->
+        <div class="field-group">
+          <label class="field-label">
+            <ion-icon name="location" class="field-icon"></ion-icon>
+            {{ 'workshops.form.address.label' | translate }}
+          </label>
+          <ion-input
+            formControlName="address"
+            [placeholder]="'workshops.form.address.placeholder' | translate"
+            class="modern-input"
+            [class.error]="workshopForm.get('address')?.invalid && workshopForm.get('address')?.touched">
+          </ion-input>
+          @if (workshopForm.get('address')?.invalid && workshopForm.get('address')?.touched) {
+            <div class="error-message">
+              {{ getFieldError('address') }}
+            </div>
+          }
+        </div>
+
+        <!-- Phone -->
+        <div class="field-group">
+          <label class="field-label">
+            <ion-icon name="call" class="field-icon"></ion-icon>
+            {{ 'workshops.form.phone.label' | translate }}
+          </label>
+          <ion-input
+            formControlName="phone"
+            type="tel"
+            [placeholder]="'workshops.form.phone.placeholder' | translate"
+            class="modern-input"
+            [class.error]="workshopForm.get('phone')?.invalid && workshopForm.get('phone')?.touched">
+          </ion-input>
+          @if (workshopForm.get('phone')?.invalid && workshopForm.get('phone')?.touched) {
+            <div class="error-message">
+              {{ getFieldError('phone') }}
+            </div>
+          }
+        </div>
+
+     
+
+
+        <!-- Loading Overlay -->
+        @if (loading) {
+          <div class="loading-overlay">
+            <div class="loading-content">
+              <ion-spinner name="crescent"></ion-spinner>
+              <p>{{ 'workshops.add.saving' | translate }}</p>
+            </div>
+          </div>
+        }
+
+      </form>
+    </div>
+
+    <!-- Form Footer -->
+    <ion-footer class="form-footer">
+      <ion-toolbar>
+        <div class="footer-buttons">
+          <ion-button 
+            fill="solid" 
+            class="footer-btn cancel-btn"
+            (click)="cancelForm()">
+            <ion-icon name="close" slot="icon-only"></ion-icon>
+          </ion-button>
+          
+          <ion-button 
+            type="submit"
+            fill="solid" 
+            class="footer-btn save-btn"
+            [disabled]="workshopForm.invalid || loading"
+            (click)="saveWorkshop()">
+            <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+          </ion-button>
+          
+          <ion-button 
+            fill="solid" 
+            class="footer-btn exit-btn"
+            (click)="exitScreen()">
+            <ion-icon name="exit" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+</ion-content>

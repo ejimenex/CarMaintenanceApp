@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Verificación en Dos Pasos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="two-factor-auth-container">
+    
+    <ion-card class="info-card">
+      <ion-card-content>
+        <p class="info-text">
+          La verificación en dos pasos añade una capa adicional de seguridad a tu cuenta.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="auth-card">
+      <ion-card-header>
+        <ion-card-title>Estado de 2FA</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item class="status-item">
+          <ion-icon 
+            name="lockClosed" 
+            slot="start" 
+            class="status-icon">
+          </ion-icon>
+          <ion-label class="status-content">
+            <h3 class="status-title">Verificación en Dos Pasos</h3>
+            <p class="status-description">
+              {{ twoFactorEnabled ? 'Activada' : 'Desactivada' }}
+            </p>
+          </ion-label>
+          <ion-toggle
+            [checked]="twoFactorEnabled"
+            (ionChange)="toggleTwoFactor()"
+            [disabled]="isLoading"
+            slot="end">
+          </ion-toggle>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="setup-card" *ngIf="twoFactorEnabled">
+      <ion-card-content>
+        <p class="setup-text">
+          Para completar la configuración, escanea el código QR con tu aplicación de autenticación.
+        </p>
+        <ion-button 
+          expand="block"
+          fill="outline"
+          (click)="setupTwoFactor()">
+          <ion-icon name="qrCode" slot="start"></ion-icon>
+          Configurar 2FA
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

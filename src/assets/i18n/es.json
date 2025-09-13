@@ -1,0 +1,316 @@
+{
+  "Invalid Ids": "Los IDs proporcionados no son válidos",
+  "UserNotExist": "El Usuario no existe",
+  "UserBlocked": "El Usuario está bloqueado",
+  "EmailNotConfirmed":"El Email no está confirmado",
+  "InvalidPassword":"La contraseña es incorrecta",
+  "InvalidEmail":"El Email no es válido",
+  "UserLoggedSuccesfully":"Usuario logueado exitosamente",
+  "RequiredName":"El nombre del usuario es requerido",
+  "RequiredAddress":"La dirección es requerida",
+  "RequiredPhone":"El teléfono es requerido",
+  "RequiredEmail":"El Email del usuario es requerido",
+  "EmailAlreadyExist":"El email ya existe",
+  "PasswordPolicy":"La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial",
+  "RequiredPassword":"La contraseña es requerida",
+  "RequiredNewPassword":"La nueva contraseña es requerida",
+  "RequiredConfirmPassword":"La confirmación de contraseña es requerida",
+  "AddVehicle":"Vehículo agregado exitosamente",
+  "UpdateVehicle":"Vehículo actualizado exitosamente",
+  "LOGIN":"Login exitoso",
+  "CHANGEPASSWORD":"Contraseña actualizada exitosamente",
+  "DELETEUSER":"Usuario eliminado exitosamente",
+  "ADDEQUIPMENT":"Equipo agregado",
+  "UPDATEEQUIPMENT":"Equipo actualizado",
+  "ADDTALLER":"Nuevo taller agregado",
+  "UPDATETALLER":"Se modifico el taller",
+  "AddWorkshop":"Nuevo taller agregado",
+  "Electric": "Taller Electrico", 
+  "Mecanic": "Taller Mecanico",
+  "Weels": "Centro de Gomas",
+  "AutoAire": "Auto Aire",
+  "AllService": "Todos los Servicios",
+  "dashboard": {
+    "title": "Panel de Control",
+    "welcome": {
+      "title": "¡Bienvenido, {{userName}}!",
+      "subtitle": "Gestiona tus vehículos y talleres"
+    },
+    "menu": {
+      "header": {
+        "title": "Mantenimiento",
+        "subtitle": "Gestión de Vehículos y Talleres"
+      },
+      "navigation": {
+        "title": "Navegación Principal",
+        "vehicles": "Vehículos",
+        "workshops": "Talleres",
+        "myServices": "Mis Servicios",
+        "userPreferences": "Preferencias de Usuario",
+        "settings": "Configuración"
+      },
+      "quickActions": {
+        "title": "Acciones Rápidas",
+        "addVehicle": "Agregar Vehículo",
+        "addWorkshop": "Agregar Taller"
+      },
+      "footer": {
+        "settings": "Configuración",
+        "helpSupport": "Ayuda y Soporte",
+        "logout": "Cerrar Sesión"
+      },
+      "stats": {
+        "lastAccess": "Último acceso:",
+        "totalAccess": "Total de accesos:",
+        "loading": "Cargando estadísticas..."
+      },
+      "notifications": {
+        "title": "Notificaciones"
+      }
+    },
+    "quickActions": {
+      "vehicles": {
+        "title": "Vehículos",
+        "description": "Gestiona tu flota de vehículos"
+      },
+      "workshops": {
+        "title": "Talleres",
+        "description": "Gestiona talleres y mantenimiento"
+      }
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "refresh": "Actualizar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "exit": "Salir",
+    "yes": "Sí",
+    "no": "No",
+    "confirm": "Confirmar",
+    "actions": "Acciones",
+    "never": "Nunca",
+    "lessThanHour": "Hace menos de 1 hora",
+    "hourAgo": "Hace {{hours}} hora",
+    "hoursAgo": "Hace {{hours}} horas",
+    "dayAgo": "Hace {{days}} día",
+    "daysAgo": "Hace {{days}} días"
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español",
+    "pt": "Portugués"
+  },
+  "vehicles": {
+    "title": "Vehículos",
+    "addVehicle": "Agregar Vehículo",
+    "editVehicle": "Editar Vehículo",
+    "deleteVehicle": "Eliminar Vehículo",
+    "viewVehicle": "Ver Vehículo",
+    "list": {
+      "title": "Tus Vehículos ({{count}})",
+      "empty": {
+        "title": "No Se Encontraron Vehículos",
+        "description": "Comienza agregando tu primer vehículo para rastrear mantenimiento y servicios",
+        "button": "Agregar Tu Primer Vehículo"
+      },
+      "search": {
+        "placeholder": "Buscar vehículos por nombre, placa o marca..."
+      },
+      "loading": "Cargando vehículos...",
+      "loadingMore": "Cargando más vehículos...",
+      "error": "Ocurrió un error al cargar los vehículos",
+      "retry": "Reintentar"
+    },
+    "form": {
+      "name": "Nombre del Vehículo",
+      "plateNumber": "Placa de Licencia",
+      "brand": "Marca",
+      "model": "Modelo",
+      "color": "Color",
+      "year": "Año",
+      "mileage": "Kilometraje",
+      "vehicleType": "Tipo de Vehículo",
+      "image": "Imagen del Vehículo",
+      "required": "Este campo es obligatorio",
+      "minLength": "{{field}} debe tener al menos {{length}} caracteres",
+      "invalidPlate": "Formato de placa inválido",
+      "invalidYear": "El año debe estar entre 1900 y el año actual",
+      "invalidMileage": "El kilometraje debe ser un número positivo",
+      "enterName": "Ingresa el nombre del vehículo",
+      "enterPlate": "Ingresa el número de placa",
+      "selectBrand": "Selecciona la marca",
+      "selectVehicleType": "Selecciona el tipo de vehículo",
+      "enterModel": "Ingresa el modelo (opcional)",
+      "selectColor": "Selecciona el color",
+      "enterYear": "Ingresa el año (opcional)",
+      "enterMileage": "Ingresa el kilometraje (opcional)",
+      "cancelConfirm": "¿Estás seguro de que quieres cancelar? Se perderán todos los cambios.",
+      "exitConfirm": "¿Estás seguro de que quieres salir? Se perderán todos los cambios."
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar Vehículo",
+      "update": "Actualizar Vehículo"
+    },
+    "view": {
+      "error": "Error al cargar los detalles del vehículo"
+    },
+    "edit": {
+      "description": "Actualiza la información de tu vehículo",
+      "error": {
+        "noId": "ID del vehículo no proporcionado",
+        "load": "Error al cargar los datos del vehículo",
+        "update": "Error al actualizar el vehículo"
+      },
+      "success": "Vehículo actualizado exitosamente"
+    },
+    "delete": {
+      "confirm": "Eliminar Vehículo",
+      "message": "¿Estás seguro de que quieres eliminar {{vehicleName}}? Esta acción no se puede deshacer.",
+      "success": "Vehículo eliminado exitosamente",
+      "error": "Error al eliminar el vehículo. Por favor, inténtalo de nuevo."
+    },
+    "success": {
+      "created": "Vehículo creado exitosamente",
+      "updated": "Vehículo actualizado exitosamente"
+    }
+  },
+  "userPreferences": {
+    "title": "Preferencias de Usuario",
+    "subtitle": "Personaliza la configuración de tu aplicación",
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar idioma",
+    "country": "País",
+    "selectCountry": "Seleccionar país",
+    "currency": "Moneda",
+    "selectCurrency": "Seleccionar moneda",
+    "saving": "Guardando preferencias",
+    "errors": {
+      "languageRequired": "Por favor selecciona un idioma",
+      "countryRequired": "Por favor selecciona un país",
+      "currencyRequired": "Por favor selecciona una moneda"
+    }
+  },
+  "settings": {
+    "activityHistory": {
+      "title": "Historial de Actividad",
+      "description": "Aquí puedes ver el historial de todas tus actividades en la aplicación.",
+      "loading": "Cargando historial de actividad...",
+      "loadingMore": "Cargando más actividades...",
+      "retry": "Reintentar",
+      "recentActivity": "Actividad Reciente",
+      "at": "a las",
+      "empty": "No hay actividad registrada aún.",
+      "error": "Error al cargar el historial de actividad. Por favor, inténtalo de nuevo."
+    }
+  },
+  "workshops": {
+    "title": "Talleres",
+    "list": {
+      "title": "Lista de Talleres: ",
+      "search": {
+        "placeholder": "Buscar talleres..."
+      },
+      "loading": "Cargando talleres...",
+      "loadingMore": "Cargando más talleres...",
+      "retry": "Reintentar",
+      "error": "Error al cargar los talleres",
+      "empty": {
+        "title": "No hay talleres",
+        "description": "No se encontraron talleres. Agrega tu primer taller para comenzar.",
+        "button": "Agregar Taller"
+      }
+    },
+    "add": {
+      "title": "Agregar Taller",
+      "header": {
+        "title": "Nuevo Taller",
+        "subtitle": "Completa la información del taller"
+      },
+      "saving": "Guardando taller...",
+      "success": "Taller agregado exitosamente",
+      "error": "Error al agregar el taller",
+      "cancelConfirm": "¿Estás seguro de que quieres cancelar? Se perderán los cambios no guardados.",
+      "exitConfirm": "¿Estás seguro de que quieres salir? Se perderán los cambios no guardados."
+    },
+    "edit": {
+      "title": "Editar Taller",
+      "header": {
+        "title": "Editar Taller",
+        "subtitle": "Modifica la información del taller"
+      },
+      "saving": "Guardando cambios...",
+      "success": "Taller actualizado exitosamente",
+      "error": {
+        "load": "Error al cargar el taller",
+        "update": "Error al actualizar el taller",
+        "invalidId": "ID de taller inválido"
+      },
+      "cancelConfirm": "¿Estás seguro de que quieres cancelar? Se perderán los cambios no guardados.",
+      "exitConfirm": "¿Estás seguro de que quieres salir? Se perderán los cambios no guardados."
+    },
+    "view": {
+      "title": "Detalles del Taller",
+      "error": "Error al cargar los detalles del taller"
+    },
+    "form": {
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Ingresa el nombre del taller"
+      },
+      "address": {
+        "label": "Dirección",
+        "placeholder": "Ingresa la dirección del taller"
+      },
+      "phone": {
+        "label": "Teléfono",
+        "placeholder": "Ingresa el número de teléfono"
+      },
+      "note": {
+        "label": "Notas",
+        "placeholder": "Agrega notas adicionales sobre el taller"
+      },
+      "workShopType": {
+        "label": "Tipo de Taller",
+        "placeholder": "Selecciona el tipo de taller"
+      },
+      "errors": {
+        "required": "El campo {field} es requerido",
+        "minLength": "El campo {field} debe tener al menos {min} caracteres",
+        "maxLength": "El campo {field} no puede tener más de {max} caracteres",
+        "pattern": "El formato del campo {field} no es válido",
+        "invalid": "El campo {field} no es válido",
+        "invalidForm": "Por favor, corrige los errores en el formulario",
+        "loadTypes": "Error al cargar los tipos de taller"
+      }
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "delete": {
+      "confirm": "Eliminar Taller",
+      "message": "¿Estás seguro de que quieres eliminar el taller {workshopName}? Esta acción no se puede deshacer.",
+      "success": "Taller eliminado exitosamente",
+      "error": "Error al eliminar el taller"
+    }
+  }
+
+}

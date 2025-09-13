@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cerrar Sesión en Otros Dispositivos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="logout-all-devices-container">
+    
+    <ion-card class="warning-card">
+      <ion-card-content>
+        <p class="warning-text">
+          <ion-icon name="warning" class="warning-icon"></ion-icon>
+          Esta acción cerrará tu sesión en todos los dispositivos excepto este.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="devices-card">
+      <ion-card-header>
+        <ion-card-title>Dispositivos Activos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (device of activeDevices; track device.id) {
+            <ion-item class="device-item">
+              <ion-icon 
+                name="phonePortrait" 
+                slot="start" 
+                class="device-icon">
+              </ion-icon>
+              <ion-label class="device-content">
+                <h3 class="device-name">
+                  {{ device.name }}
+                  <span class="current-badge" *ngIf="device.current">(Actual)</span>
+                </h3>
+                <p class="device-location">{{ device.location }}</p>
+                <p class="device-last-active">{{ device.lastActive }}</p>
+              </ion-label>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="action-card">
+      <ion-card-content>
+        <p class="action-text">
+          Al confirmar, se cerrará la sesión en {{ activeDevices.length - 1 }} dispositivos.
+        </p>
+        <ion-button 
+          expand="block"
+          color="danger"
+          [disabled]="isLoading"
+          (click)="logoutAllDevices()">
+          <ion-icon name="logOut" slot="start"></ion-icon>
+          {{ isLoading ? 'Cerrando...' : 'Cerrar Sesión en Otros Dispositivos' }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

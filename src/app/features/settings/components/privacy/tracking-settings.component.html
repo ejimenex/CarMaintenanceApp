@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Limitar Seguimiento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="tracking-settings-container">
+    
+    <ion-card class="info-card">
+      <ion-card-content>
+        <p class="info-text">
+          Controla qué tipo de seguimiento y análisis permitimos en la aplicación.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="tracking-card">
+      <ion-card-header>
+        <ion-card-title>Configuración de Seguimiento</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (setting of trackingSettings; track setting.id) {
+            <ion-item class="tracking-item">
+              <ion-icon 
+                [name]="setting.icon" 
+                slot="start" 
+                class="tracking-icon">
+              </ion-icon>
+              <ion-label class="tracking-content">
+                <h3 class="tracking-title">{{ setting.title }}</h3>
+                <p class="tracking-description">{{ setting.description }}</p>
+              </ion-label>
+              <ion-toggle
+                [checked]="setting.enabled"
+                (ionChange)="toggleTracking(setting)"
+                slot="end">
+              </ion-toggle>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

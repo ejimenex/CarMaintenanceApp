@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Eliminar Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="delete-account-container">
+    
+    <!-- Warning Card -->
+    <ion-card class="warning-card">
+      <ion-card-header>
+        <ion-card-title class="warning-title">
+          <ion-icon name="warning" class="warning-icon"></ion-icon>
+          ¡Atención!
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="warning-text">
+          Esta acción es <strong>irreversible</strong>. Al eliminar tu cuenta:
+        </p>
+        <ul class="warning-list">
+          <li>Todos tus datos serán eliminados permanentemente</li>
+          <li>No podrás recuperar tu información</li>
+          <li>Perderás acceso a todos los servicios</li>
+          <li>Se cancelarán todas las suscripciones activas</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Delete Form -->
+    <ion-card class="form-card">
+      <ion-card-header>
+        <ion-card-title>Confirmar Eliminación</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="deleteForm" (ngSubmit)="confirmDelete()">
+          
+          <ion-item class="form-item">
+            <ion-label position="stacked">Motivo de eliminación</ion-label>
+            <ion-input 
+              formControlName="reason"
+              placeholder="Cuéntanos por qué quieres eliminar tu cuenta"
+              type="text">
+            </ion-input>
+          </ion-item>
+          
+          <ion-item class="form-item">
+            <ion-label position="stacked">
+              Escribe "ELIMINAR" para confirmar
+            </ion-label>
+            <ion-input 
+              formControlName="confirmation"
+              placeholder="ELIMINAR"
+              type="text">
+            </ion-input>
+          </ion-item>
+
+          <div class="form-actions">
+            <ion-button 
+              type="submit" 
+              expand="block"
+              color="danger"
+              [disabled]="deleteForm.invalid || isLoading">
+              <ion-icon name="trash" slot="start"></ion-icon>
+              {{ isLoading ? 'Eliminando...' : 'Eliminar Cuenta' }}
+            </ion-button>
+          </div>
+
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>
+
+<!-- Confirmation Alert -->
+<ion-alert
+  [isOpen]="showConfirmation"
+  header="Confirmar Eliminación"
+  message="¿Estás completamente seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer."
+  [buttons]="alertButtons">
+</ion-alert>

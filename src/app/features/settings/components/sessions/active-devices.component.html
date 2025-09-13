@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Dispositivos Activos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="active-devices-container">
+    
+    <ion-card class="info-card">
+      <ion-card-content>
+        <p class="info-text">
+          Aquí puedes ver todos los dispositivos donde tienes sesión activa.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="devices-card">
+      <ion-card-header>
+        <ion-card-title>Sesiones Activas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (device of activeDevices; track device.id) {
+            <ion-item class="device-item">
+              <ion-icon 
+                name="phonePortrait" 
+                slot="start" 
+                class="device-icon">
+              </ion-icon>
+              <ion-label class="device-content">
+                <h3 class="device-name">
+                  {{ device.name }}
+                  <span class="current-badge" *ngIf="device.current">(Actual)</span>
+                </h3>
+                <p class="device-location">
+                  <ion-icon name="location" class="location-icon"></ion-icon>
+                  {{ device.location }}
+                </p>
+                <p class="device-last-active">
+                  <ion-icon name="time" class="time-icon"></ion-icon>
+                  {{ device.lastActive }}
+                </p>
+                <p class="device-ip">IP: {{ device.ipAddress }}</p>
+              </ion-label>
+              <ion-button 
+                fill="clear" 
+                size="small"
+                color="danger"
+                (click)="revokeSession(device.id)"
+                *ngIf="!device.current">
+                Revocar
+              </ion-button>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

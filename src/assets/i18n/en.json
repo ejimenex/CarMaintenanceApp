@@ -1,0 +1,310 @@
+{
+  "Invalid Ids": "The provided IDs are not valid",
+  "UserNotExist": "User does not exist",
+  "UserBlocked": "User is blocked",
+  "EmailNotConfirmed": "Email is not confirmed",
+  "InvalidPassword": "Password is incorrect",
+  "InvalidEmail": "Email is not valid",
+  "UserLoggedSuccesfully": "User logged in successfully",
+  "RequiredName": "User name is required",
+  "RequiredEmail": "User email is required",
+  "EmailAlreadyExist": "Email already exists",
+  "PasswordPolicy": "Password must have at least 8 characters, one uppercase, one lowercase, one number and one special character",
+  "RequiredPassword": "Password is required",
+  "RequiredNewPassword": "New password is required",
+  "RequiredConfirmPassword": "Password confirmation is required",
+  "AddVehicle": "Vehicle added successfully",
+  "UpdateVehicle": "Vehicle updated successfully",
+  "LOGIN": "Login successful",
+  "CHANGEPASSWORD": "Password updated successfully",
+  "DELETEUSER": "User deleted successfully",
+  "ADDEQUIPMENT": "Equipment added",
+  "UPDATEEQUIPMENT": "Equipment updated",
+  "Electric": "Electric Workshop", 
+  "Mecanic": "Mechanic Workshop",
+  "Weels": "Tire Center",
+  "AutoAire": "Auto Air",
+  "AllService": "All Services",
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": {
+      "title": "Welcome, {{userName}}!",
+      "subtitle": "Manage your vehicles and workshops"
+    },
+    "menu": {
+      "header": {
+        "title": "Maintenance",
+        "subtitle": "Vehicle & Workshop Management"
+      },
+      "navigation": {
+        "title": "Main Navigation",
+        "vehicles": "Vehicles",
+        "workshops": "Workshops",
+        "myServices": "My Services",
+        "userPreferences": "User Preferences",
+        "settings": "Settings"
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "addVehicle": "Add Vehicle",
+        "addWorkshop": "Add Workshop"
+      },
+      "footer": {
+        "settings": "Settings",
+        "helpSupport": "Help & Support",
+        "logout": "Sign Out"
+      },
+      "stats": {
+        "lastAccess": "Last access:",
+        "totalAccess": "Total access:",
+        "loading": "Loading statistics..."
+      },
+      "notifications": {
+        "title": "Notifications"
+      }
+    },
+    "quickActions": {
+      "vehicles": {
+        "title": "Vehicles",
+        "description": "Manage your vehicle fleet"
+      },
+      "workshops": {
+        "title": "Workshops",
+        "description": "Manage workshops and maintenance"
+      }
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "open": "Open",
+    "exit": "Exit",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "actions": "Actions",
+    "never": "Never",
+    "lessThanHour": "Less than 1 hour ago",
+    "hourAgo": "{{hours}} hour ago",
+    "hoursAgo": "{{hours}} hours ago",
+    "dayAgo": "{{days}} day ago",
+    "daysAgo": "{{days}} days ago"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Spanish",
+    "pt": "Portuguese"
+  },
+  "vehicles": {
+    "title": "Vehicles",
+    "addVehicle": "Add Vehicle",
+    "editVehicle": "Edit Vehicle",
+    "deleteVehicle": "Delete Vehicle",
+    "viewVehicle": "View Vehicle",
+    "list": {
+      "title": "Your Vehicles ({{count}})",
+      "empty": {
+        "title": "No Vehicles Found",
+        "description": "Get started by adding your first vehicle to track maintenance and services",
+        "button": "Add Your First Vehicle"
+      },
+      "search": {
+        "placeholder": "Search vehicles by name, plate, or brand..."
+      },
+      "loading": "Loading vehicles...",
+      "loadingMore": "Loading more vehicles...",
+      "error": "An error occurred while loading vehicles",
+      "retry": "Retry"
+    },
+    "form": {
+      "name": "Vehicle Name",
+      "plateNumber": "License Plate",
+      "brand": "Brand",
+      "model": "Model",
+      "color": "Color",
+      "year": "Year",
+      "mileage": "Mileage",
+      "vehicleType": "Vehicle Type",
+      "image": "Vehicle Image",
+      "required": "This field is required",
+      "minLength": "{{field}} must be at least {{length}} characters",
+      "invalidPlate": "Invalid license plate format",
+      "invalidYear": "Year must be between 1900 and current year",
+      "invalidMileage": "Mileage must be a positive number",
+      "enterName": "Enter vehicle name",
+      "enterPlate": "Enter plate number",
+      "selectBrand": "Select brand",
+      "selectVehicleType": "Select vehicle type",
+      "enterModel": "Enter model (optional)",
+      "selectColor": "Select color",
+      "enterYear": "Enter year (optional)",
+      "enterMileage": "Enter mileage (optional)",
+      "cancelConfirm": "Are you sure you want to cancel? All changes will be lost.",
+      "exitConfirm": "Are you sure you want to exit? All changes will be lost."
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save Vehicle",
+      "update": "Update Vehicle"
+    },
+    "view": {
+      "error": "Error loading vehicle details"
+    },
+    "edit": {
+      "description": "Update your vehicle information",
+      "error": {
+        "noId": "Vehicle ID not provided",
+        "load": "Error loading vehicle data",
+        "update": "Error updating vehicle"
+      },
+      "success": "Vehicle updated successfully"
+    },
+    "delete": {
+      "confirm": "Delete Vehicle",
+      "message": "Are you sure you want to delete {{vehicleName}}? This action cannot be undone.",
+      "success": "Vehicle deleted successfully",
+      "error": "Failed to delete vehicle. Please try again."
+    },
+    "success": {
+      "created": "Vehicle created successfully",
+      "updated": "Vehicle updated successfully"
+    }
+  },
+  "userPreferences": {
+    "title": "User Preferences",
+    "subtitle": "Customize your application settings",
+    "language": "Language",
+    "selectLanguage": "Select language",
+    "country": "Country",
+    "selectCountry": "Select country",
+    "currency": "Currency",
+    "selectCurrency": "Select currency",
+    "saving": "Saving preferences",
+    "errors": {
+      "languageRequired": "Please select a language",
+      "countryRequired": "Please select a country",
+      "currencyRequired": "Please select a currency"
+    }
+  },
+  "settings": {
+    "activityHistory": {
+      "title": "Activity History",
+      "description": "Here you can see the history of all your activities in the application.",
+      "loading": "Loading activity history...",
+      "loadingMore": "Loading more activities...",
+      "retry": "Retry",
+      "recentActivity": "Recent Activity",
+      "at": "at",
+      "empty": "No activity recorded yet.",
+      "error": "Error loading activity history. Please try again."
+    }
+  },
+  "workshops": {
+    "title": "Workshops",
+    "list": {
+      "title": "Workshops List ({count})",
+      "search": {
+        "placeholder": "Search workshops..."
+      },
+      "loading": "Loading workshops...",
+      "loadingMore": "Loading more workshops...",
+      "retry": "Retry",
+      "error": "Error loading workshops",
+      "empty": {
+        "title": "No workshops",
+        "description": "No workshops found. Add your first workshop to get started.",
+        "button": "Add Workshop"
+      }
+    },
+    "add": {
+      "title": "Add Workshop",
+      "header": {
+        "title": "New Workshop",
+        "subtitle": "Complete the workshop information"
+      },
+      "saving": "Saving workshop...",
+      "success": "Workshop added successfully",
+      "error": "Error adding workshop",
+      "cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+      "exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost."
+    },
+    "edit": {
+      "title": "Edit Workshop",
+      "header": {
+        "title": "Edit Workshop",
+        "subtitle": "Modify the workshop information"
+      },
+      "saving": "Saving changes...",
+      "success": "Workshop updated successfully",
+      "error": {
+        "load": "Error loading workshop",
+        "update": "Error updating workshop",
+        "invalidId": "Invalid workshop ID"
+      },
+      "cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+      "exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost."
+    },
+    "view": {
+      "title": "Workshop Details",
+      "error": "Error loading workshop details"
+    },
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter workshop name"
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Enter workshop address"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "Enter phone number"
+      },
+      "note": {
+        "label": "Notes",
+        "placeholder": "Add additional notes about the workshop"
+      },
+      "workShopType": {
+        "label": "Workshop Type",
+        "placeholder": "Select workshop type"
+      },
+      "errors": {
+        "required": "The {field} field is required",
+        "minLength": "The {field} field must have at least {min} characters",
+        "maxLength": "The {field} field cannot have more than {max} characters",
+        "pattern": "The {field} field format is not valid",
+        "invalid": "The {field} field is not valid",
+        "invalidForm": "Please correct the errors in the form",
+        "loadTypes": "Error loading workshop types"
+      }
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "delete": {
+      "confirm": "Delete Workshop",
+      "message": "Are you sure you want to delete the workshop {workshopName}? This action cannot be undone.",
+      "success": "Workshop deleted successfully",
+      "error": "Error deleting workshop"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'workshops.view.title' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="workshop-view-content">
+  @if (workshop) {
+    <div class="workshop-details">
+      <!-- Workshop Header -->
+      <div class="workshop-header">
+        <div class="workshop-image-container">
+          <ion-icon name="construct" class="workshop-icon"></ion-icon>
+        </div>
+        <h1 class="workshop-name">{{ workshop.name }}</h1>
+      </div>
+
+      <!-- Workshop Information -->
+      <div class="workshop-info">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <div class="info-section">
+              <div class="info-item">
+                <ion-icon name="location" class="info-icon"></ion-icon>
+                <div class="info-content">
+                  <h3>{{ 'workshops.form.address.label' | translate }}</h3>
+                  <p>{{ workshop.address }}</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <ion-icon name="call" class="info-icon"></ion-icon>
+                <div class="info-content">
+                  <h3>{{ 'workshops.form.phone.label' | translate }}</h3>
+                  <p>{{ workshop.phone }}</p>
+                </div>
+              </div>
+
+           
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <ion-button 
+          expand="block" 
+          fill="outline" 
+          class="action-btn edit-btn"
+          (click)="editWorkshop()">
+          <ion-icon name="create" slot="start"></ion-icon>
+          {{ 'workshops.actions.edit' | translate }}
+        </ion-button>
+
+        <ion-button 
+          expand="block" 
+          fill="solid" 
+          color="danger"
+          class="action-btn delete-btn"
+          (click)="deleteWorkshop()">
+          <ion-icon name="trash" slot="start"></ion-icon>
+          {{ 'workshops.actions.delete' | translate }}
+        </ion-button>
+      </div>
+    </div>
+  }
+</ion-content>

@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="car" slot="start" class="header-icon"></ion-icon>
+      {{ 'vehicles.viewVehicle' | translate }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()" fill="clear">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="vehicle-view-content">
+  <!-- Debug Info -->
+
+
+  @if (vehicle) {
+    <div class="vehicle-details-container">
+    
+    <!-- Vehicle Image Section -->
+    <div class="vehicle-image-section">
+      <div class="vehicle-image-container">
+        @if (!vehicle.image || vehicle.image === '') {
+          <ion-icon name="car" class="vehicle-placeholder-icon"></ion-icon>
+        }
+        @if (vehicle.image && vehicle.image !== '') {
+          <ion-img [src]="vehicle.image" alt="Vehicle image" class="vehicle-image"></ion-img>
+        }
+      </div>
+    </div>
+
+    <!-- Vehicle Information Card -->
+    <ion-card class="vehicle-info-card">
+      <ion-card-header>
+        <ion-card-title class="vehicle-name">
+          <ion-icon name="car" class="title-icon"></ion-icon>
+          {{ vehicle.name }}
+        </ion-card-title>
+        <ion-card-subtitle class="vehicle-plate">
+          <ion-icon name="card" class="subtitle-icon"></ion-icon>
+          {{ vehicle.plateNumber }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="info-grid">
+          
+          <!-- Brand -->
+          <div class="info-item">
+            <div class="info-label">
+              <ion-icon name="business" class="info-icon"></ion-icon>
+              {{ 'vehicles.form.brand' | translate }}
+            </div>
+            <div class="info-value">{{ vehicle.brand || 'N/A' }}</div>
+          </div>
+
+          <!-- Model -->
+          <div class="info-item">
+            <div class="info-label">
+              <ion-icon name="car-sport" class="info-icon"></ion-icon>
+              {{ 'vehicles.form.model' | translate }}
+            </div>
+            <div class="info-value">{{ vehicle.model || 'N/A' }}</div>
+          </div>
+
+          <!-- Vehicle Type -->
+          <div class="info-item">
+            <div class="info-label">
+              <ion-icon name="car-outline" class="info-icon"></ion-icon>
+              {{ 'vehicles.form.vehicleType' | translate }}
+            </div>
+            <div class="info-value">{{ vehicle.vehicleType || 'N/A' }}</div>
+          </div>
+
+          <!-- Color -->
+          <div class="info-item">
+            <div class="info-label">
+              <ion-icon name="color-palette" class="info-icon"></ion-icon>
+              {{ 'vehicles.form.color' | translate }}
+            </div>
+            <div class="info-value">
+              <span class="color-indicator" [style.background-color]="vehicle.color"></span>
+              {{ vehicle.color || 'N/A' }}
+            </div>
+          </div>
+
+          <!-- Year -->
+          @if (vehicle.year) {
+            <div class="info-item">
+              <div class="info-label">
+                <ion-icon name="calendar" class="info-icon"></ion-icon>
+                {{ 'vehicles.form.year' | translate }}
+              </div>
+              <div class="info-value">{{ vehicle.year }}</div>
+            </div>
+          }
+
+          <!-- Mileage -->
+          @if (vehicle.mileage) {
+            <div class="info-item">
+              <div class="info-label">
+                <ion-icon name="speedometer" class="info-icon"></ion-icon>
+                {{ 'vehicles.form.mileage' | translate }}
+              </div>
+              <div class="info-value">{{ vehicle.mileage | number }} km</div>
+            </div>
+          }
+
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    </div>
+  }
+
+  <!-- Loading State -->
+  @if (!vehicle) {
+    <div class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>{{ 'common.loading' | translate }}...</p>
+    </div>
+  }
+</ion-content>
+

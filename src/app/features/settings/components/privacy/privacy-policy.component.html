@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Política de Privacidad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="privacy-policy-container">
+    
+    <!-- Header Section -->
+    <div class="policy-header">
+      <h1>Política de Privacidad</h1>
+      <p class="last-updated">Última actualización: {{ getCurrentDate() }}</p>
+    </div>
+
+    <!-- Introduction -->
+    <ion-card class="intro-card">
+      <ion-card-content>
+        <p class="intro-text">
+          En Maintenance, nos tomamos muy en serio la privacidad de nuestros usuarios. 
+          Esta política describe cómo recopilamos, usamos y protegemos tu información personal.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Privacy Sections -->
+    @for (section of privacySections; track section.title) {
+      <ion-card class="policy-section">
+        <ion-card-header>
+          <ion-card-title class="section-title">
+            <ion-icon [name]="section.icon" class="section-icon"></ion-icon>
+            {{ section.title }}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ul class="section-list">
+            @for (item of section.content; track item) {
+              <li class="list-item">{{ item }}</li>
+            }
+          </ul>
+        </ion-card-content>
+      </ion-card>
+    }
+
+    <!-- Contact Information -->
+    <ion-card class="contact-card">
+      <ion-card-header>
+        <ion-card-title>Contacto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Si tienes preguntas sobre esta política de privacidad, contáctanos:</p>
+        <div class="contact-info">
+          <p><strong>Email:</strong> privacy@maintenance.com</p>
+          <p><strong>Teléfono:</strong> +1 (555) 123-4567</p>
+          <p><strong>Dirección:</strong> 123 Privacy Street, Data City, DC 12345</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

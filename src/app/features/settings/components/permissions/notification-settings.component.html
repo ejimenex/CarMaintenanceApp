@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notificaciones Push</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="notification-settings-container">
+    
+    <ion-card class="info-card">
+      <ion-card-content>
+        <p class="info-text">
+          Configura qué tipos de notificaciones quieres recibir en tu dispositivo.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="notifications-card">
+      <ion-card-header>
+        <ion-card-title>Tipos de Notificaciones</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (setting of notificationSettings; track setting.id) {
+            <ion-item class="notification-item">
+              <ion-icon 
+                [name]="setting.icon" 
+                slot="start" 
+                class="notification-icon">
+              </ion-icon>
+              <ion-label class="notification-content">
+                <h3 class="notification-title">{{ setting.title }}</h3>
+                <p class="notification-description">{{ setting.description }}</p>
+              </ion-label>
+              <ion-toggle
+                [checked]="setting.enabled"
+                (ionChange)="toggleNotification(setting)"
+                slot="end">
+              </ion-toggle>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

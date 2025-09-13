@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cerrar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="logout-container">
+    
+    <ion-card class="logout-card">
+      <ion-card-header>
+        <ion-card-title class="logout-title">
+          <ion-icon name="logOut" class="logout-icon"></ion-icon>
+          Cerrar Sesión
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="logout-text">
+          ¿Estás seguro de que quieres cerrar tu sesión? 
+          Tendrás que volver a iniciar sesión para acceder a la aplicación.
+        </p>
+        
+        <div class="logout-actions">
+          <ion-button 
+            expand="block"
+            color="primary"
+            [disabled]="isLoading"
+            (click)="logout()">
+            <ion-icon name="logOut" slot="start"></ion-icon>
+            {{ isLoading ? 'Cerrando...' : 'Cerrar Sesión' }}
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

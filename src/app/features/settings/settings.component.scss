@@ -1,0 +1,138 @@
+.settings-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.settings-category {
+  margin-bottom: 32px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ion-color-primary-tint);
+  
+  .category-icon {
+    margin-right: 12px;
+    font-size: 20px;
+    color: var(--ion-color-primary);
+  }
+}
+
+.settings-list {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  
+  ion-item {
+    --background: var(--ion-color-light);
+    --border-radius: 12px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    margin-bottom: 8px;
+    border: 1px solid var(--ion-color-light-shade);
+    transition: all 0.2s ease;
+    
+    &:hover {
+      --background: var(--ion-color-light-tint);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.settings-item {
+  .item-icon {
+    font-size: 20px;
+    color: var(--ion-color-primary);
+    margin-right: 16px;
+  }
+  
+  .item-content {
+    flex: 1;
+    
+    .item-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ion-color-dark);
+      margin: 0 0 4px 0;
+    }
+    
+    .item-description {
+      font-size: 14px;
+      color: var(--ion-color-medium);
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+  
+  .chevron-icon {
+    color: var(--ion-color-medium);
+    font-size: 16px;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 12px;
+  }
+  
+  .category-title {
+    font-size: 16px;
+    
+    .category-icon {
+      font-size: 18px;
+    }
+  }
+  
+  .settings-item {
+    .item-content {
+      .item-title {
+        font-size: 15px;
+      }
+      
+      .item-description {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .settings-item {
+    --background: var(--ion-color-dark);
+    border-color: var(--ion-color-dark-shade);
+    
+    &:hover {
+      --background: var(--ion-color-dark-tint);
+    }
+    
+    .item-content {
+      .item-title {
+        color: var(--ion-color-light);
+      }
+      
+      .item-description {
+        color: var(--ion-color-light-shade);
+      }
+    }
+  }
+}

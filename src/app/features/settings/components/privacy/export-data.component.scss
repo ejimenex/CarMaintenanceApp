@@ -1,0 +1,145 @@
+.export-data-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.info-card {
+  --background: var(--ion-color-primary-tint);
+  border: 1px solid var(--ion-color-primary);
+  margin-bottom: 24px;
+  
+  .info-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ion-color-primary-contrast);
+    margin: 0;
+  }
+}
+
+.selection-card {
+  margin-bottom: 24px;
+  border: 1px solid var(--ion-color-light-shade);
+}
+
+.selection-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  
+  ion-button {
+    --color: var(--ion-color-primary);
+    font-size: 14px;
+  }
+}
+
+.data-type-item {
+  --background: transparent;
+  --border-color: var(--ion-color-light-shade);
+  margin-bottom: 8px;
+  border-radius: 8px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  ion-checkbox {
+    margin-right: 12px;
+  }
+}
+
+.data-type-icon {
+  font-size: 20px;
+  color: var(--ion-color-primary);
+  margin-right: 12px;
+}
+
+.data-type-content {
+  flex: 1;
+  
+  .data-type-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ion-color-dark);
+    margin: 0 0 4px 0;
+  }
+  
+  .data-type-description {
+    font-size: 14px;
+    color: var(--ion-color-medium);
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+.export-actions {
+  margin-bottom: 16px;
+  
+  ion-button {
+    --border-radius: 8px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    font-weight: 600;
+    
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.selected-count {
+  text-align: center;
+  
+  p {
+    font-size: 14px;
+    color: var(--ion-color-medium);
+    margin: 0;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .export-data-container {
+    padding: 12px;
+  }
+  
+  .info-text {
+    font-size: 14px;
+  }
+  
+  .data-type-content {
+    .data-type-name {
+      font-size: 15px;
+    }
+    
+    .data-type-description {
+      font-size: 13px;
+    }
+  }
+  
+  .selection-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .selection-card {
+    border-color: var(--ion-color-dark-shade);
+  }
+  
+  .data-type-item {
+    border-color: var(--ion-color-dark-shade);
+    
+    .data-type-content {
+      .data-type-name {
+        color: var(--ion-color-light);
+      }
+      
+      .data-type-description {
+        color: var(--ion-color-light-shade);
+      }
+    }
+  }
+}

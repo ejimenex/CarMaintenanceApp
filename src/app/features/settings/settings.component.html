@@ -1,0 +1,48 @@
+<ion-header class="uniform-header">
+  <ion-toolbar>
+            <ion-buttons slot="start">
+          <ion-menu-button menu="main-menu" style="--color: white; font-size: 24px;"></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="settings-container">
+    
+    @for (category of settingsCategories; track category.title) {
+      <div class="settings-category">
+        <h2 class="category-title">
+          <ion-icon [name]="category.icon" class="category-icon"></ion-icon>
+          {{ category.title }}
+        </h2>
+        
+        <ion-list class="settings-list">
+          @for (item of category.items; track item.title) {
+            <ion-item 
+              [routerLink]="item.route" 
+              routerDirection="forward"
+              class="settings-item"
+              detail="true">
+              <ion-icon 
+                [name]="item.icon" 
+                slot="start" 
+                class="item-icon">
+              </ion-icon>
+              <ion-label class="item-content">
+                <h3 class="item-title">{{ item.title }}</h3>
+                <p class="item-description">{{ item.description }}</p>
+              </ion-label>
+              <ion-icon 
+                name="chevronForward" 
+                slot="end" 
+                class="chevron-icon">
+              </ion-icon>
+            </ion-item>
+          }
+        </ion-list>
+      </div>
+    }
+
+  </div>
+</ion-content>

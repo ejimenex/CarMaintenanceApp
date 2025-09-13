@@ -1,0 +1,128 @@
+.delete-account-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.warning-card {
+  --background: var(--ion-color-warning-tint);
+  --color: var(--ion-color-warning-contrast);
+  border: 2px solid var(--ion-color-warning);
+  margin-bottom: 24px;
+  
+  ion-card-header {
+    --background: var(--ion-color-warning);
+    --color: var(--ion-color-warning-contrast);
+  }
+}
+
+.warning-title {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  
+  .warning-icon {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+}
+
+.warning-text {
+  font-size: 16px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.warning-list {
+  margin: 0;
+  padding-left: 20px;
+  
+  li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.form-card {
+  --background: var(--ion-color-light);
+  border: 1px solid var(--ion-color-light-shade);
+}
+
+.form-item {
+  --background: transparent;
+  --border-color: var(--ion-color-medium);
+  margin-bottom: 16px;
+  
+  ion-label {
+    font-weight: 500;
+    color: var(--ion-color-dark);
+  }
+  
+  ion-input {
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    border: 1px solid var(--ion-color-medium);
+    border-radius: 8px;
+    margin-top: 8px;
+  }
+}
+
+.form-actions {
+  margin-top: 24px;
+  
+  ion-button {
+    --border-radius: 8px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    font-weight: 600;
+    
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .delete-account-container {
+    padding: 12px;
+  }
+  
+  .warning-title {
+    font-size: 16px;
+  }
+  
+  .warning-text {
+    font-size: 14px;
+  }
+  
+  .warning-list li {
+    font-size: 14px;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .form-card {
+    --background: var(--ion-color-dark);
+    border-color: var(--ion-color-dark-shade);
+  }
+  
+  .form-item {
+    ion-label {
+      color: var(--ion-color-light);
+    }
+    
+    ion-input {
+      --background: var(--ion-color-dark-tint);
+      border-color: var(--ion-color-medium);
+    }
+  }
+}

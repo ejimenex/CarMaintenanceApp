@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Permisos de Ubicación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="location-permissions-container">
+    
+    <ion-card class="info-card">
+      <ion-card-content>
+        <p class="info-text">
+          Gestiona los permisos de ubicación para encontrar talleres cercanos y servicios.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="permissions-card">
+      <ion-card-header>
+        <ion-card-title>Configuración de Ubicación</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (setting of locationSettings; track setting.id) {
+            <ion-item class="permission-item">
+              <ion-icon 
+                [name]="setting.icon" 
+                slot="start" 
+                class="permission-icon">
+              </ion-icon>
+              <ion-label class="permission-content">
+                <h3 class="permission-title">{{ setting.title }}</h3>
+                <p class="permission-description">{{ setting.description }}</p>
+              </ion-label>
+              <ion-toggle
+                [checked]="setting.enabled"
+                (ionChange)="toggleLocation(setting)"
+                slot="end">
+              </ion-toggle>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="settings-card">
+      <ion-card-content>
+        <p class="settings-text">
+          Si los permisos no funcionan correctamente, puedes configurarlos manualmente en la configuración del sistema.
+        </p>
+        <ion-button 
+          expand="block"
+          fill="outline"
+          (click)="openSettings()">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          Abrir Configuración del Sistema
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

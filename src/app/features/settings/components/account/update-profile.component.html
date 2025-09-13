@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Actualizar Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="update-profile-container">
+    
+    <ion-card class="profile-card">
+      <ion-card-header>
+        <ion-card-title class="profile-title">
+          <ion-icon name="person" class="profile-icon"></ion-icon>
+          Información Personal
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+          
+          <ion-item class="form-item">
+            <ion-label position="stacked">Nombre Completo</ion-label>
+            <ion-input 
+              formControlName="name"
+              placeholder="Ingresa tu nombre completo">
+            </ion-input>
+          </ion-item>
+          
+          <ion-item class="form-item">
+            <ion-label position="stacked">Correo Electrónico</ion-label>
+            <ion-input 
+              formControlName="email"
+              type="email"
+              placeholder="Ingresa tu correo electrónico">
+            </ion-input>
+          </ion-item>
+          
+          <ion-item class="form-item">
+            <ion-label position="stacked">Teléfono</ion-label>
+            <ion-input 
+              formControlName="phone"
+              type="tel"
+              placeholder="Ingresa tu número de teléfono">
+            </ion-input>
+          </ion-item>
+
+          <div class="form-actions">
+            <ion-button 
+              type="submit" 
+              expand="block"
+              color="primary"
+              [disabled]="profileForm.invalid || isLoading">
+              <ion-icon name="person" slot="start"></ion-icon>
+              {{ isLoading ? 'Actualizando...' : 'Actualizar Perfil' }}
+            </ion-button>
+          </div>
+
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

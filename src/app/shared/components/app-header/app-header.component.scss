@@ -1,0 +1,14 @@
+.uniform-header {
+  --background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  --color: white;
+}
+
+ion-menu-button {
+  --color: white;
+  font-size: 24px;
+}
+
+ion-title {
+  color: white;
+  font-weight: 600;
+}

@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Exportar Mis Datos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="export-data-container">
+    
+    <!-- Information Card -->
+    <ion-card class="info-card">
+      <ion-card-header>
+        <ion-card-title>Exportar Datos Personales</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="info-text">
+          Puedes descargar una copia de todos los datos que tenemos sobre ti. 
+          Selecciona qué tipos de información quieres incluir en la exportación.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Data Type Selection -->
+    <ion-card class="selection-card">
+      <ion-card-header>
+        <ion-card-title>Tipos de Datos</ion-card-title>
+        <div class="selection-actions">
+          <ion-button 
+            fill="clear" 
+            size="small" 
+            (click)="selectAll()">
+            Seleccionar Todo
+          </ion-button>
+          <ion-button 
+            fill="clear" 
+            size="small" 
+            (click)="deselectAll()">
+            Deseleccionar Todo
+          </ion-button>
+        </div>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (dataType of dataTypes; track dataType.id) {
+            <ion-item class="data-type-item">
+              <ion-checkbox
+                [checked]="selectedTypes.includes(dataType.id)"
+                (ionChange)="toggleDataType(dataType.id)"
+                slot="start">
+              </ion-checkbox>
+              <ion-icon 
+                [name]="dataType.icon" 
+                slot="start" 
+                class="data-type-icon">
+              </ion-icon>
+              <ion-label class="data-type-content">
+                <h3 class="data-type-name">{{ dataType.name }}</h3>
+                <p class="data-type-description">{{ dataType.description }}</p>
+              </ion-label>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Export Button -->
+    <div class="export-actions">
+      <ion-button 
+        expand="block"
+        color="primary"
+        [disabled]="selectedTypes.length === 0 || isLoading"
+        (click)="exportData()">
+        <ion-icon name="download" slot="start"></ion-icon>
+        {{ isLoading ? 'Exportando...' : 'Exportar Datos' }}
+      </ion-button>
+    </div>
+
+    <!-- Selected Count -->
+    <div class="selected-count">
+      <p>{{ selectedTypes.length }} de {{ dataTypes.length }} tipos seleccionados</p>
+    </div>
+
+  </div>
+</ion-content>
