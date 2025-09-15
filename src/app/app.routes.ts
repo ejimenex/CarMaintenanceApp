@@ -4,7 +4,12 @@ import { AuthGuard } from './features/auth/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'vehicles',
+    pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
+    redirectTo: 'vehicles',
     pathMatch: 'full',
   },
   {
@@ -52,5 +57,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     loadComponent: () =>
       import('./features/help/help.component').then((m) => m.HelpComponent),
+  },
+  {
+    path: 'notifications',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./features/notifications/notifications.routes').then((m) => m.notificationsRoutes),
   },
 ];

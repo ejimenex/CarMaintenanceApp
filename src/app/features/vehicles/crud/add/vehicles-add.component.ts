@@ -32,6 +32,7 @@ export class VehiclesAddComponent implements OnInit {
   brands: Catalog[] = [];
   vehicleTypes: Catalog[] = [];
   colors: Catalog[] = [];
+  vehicleMotorTypes: Catalog[] = [];
 
   constructor(
     private vehicleService: VehicleService,
@@ -55,6 +56,7 @@ export class VehiclesAddComponent implements OnInit {
       vehicleTypeId: ['', Validators.required],
       model: [''],
       color: ['', Validators.required],
+      vehicleMotorTypeId: ['', Validators.required],
       year: [null],
       mileage: [null]
     });
@@ -94,6 +96,18 @@ export class VehiclesAddComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error loading colors:', error);
+      }
+    });
+
+    // Load vehicleTypesMotor
+    this.catalogService.getVehicleMotorType().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.vehicleMotorTypes = response.data || [];
+        }
+      },
+      error: (error) => {
+        console.error('Error loading vehicle motor types:', error);
       }
     });
   }

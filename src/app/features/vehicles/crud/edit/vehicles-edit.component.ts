@@ -32,6 +32,7 @@ export class VehiclesEditComponent implements OnInit {
   brands: any[] = [];
   colors: any[] = [];
   vehicleTypes: any[] = [];
+  vehicleMotorTypes: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,6 +63,7 @@ export class VehiclesEditComponent implements OnInit {
       plateNumber: ['', [Validators.required, Validators.minLength(3)]],
       brandCode: ['', Validators.required],
       vehicleTypeId: ['', Validators.required],
+      vehicleMotorTypeId: ['', Validators.required],
       model: [''],
       color: ['', Validators.required],
       year: [null, [Validators.min(1900), Validators.max(new Date().getFullYear() + 1)]],
@@ -100,6 +102,7 @@ export class VehiclesEditComponent implements OnInit {
       plateNumber: vehicle.plateNumber,
       brandCode: vehicle.brandCode,
       vehicleTypeId: vehicle.vehicleTypeId,
+      vehicleMotorTypeId: vehicle.vehicleMotorTypeId,
       model: vehicle.model || '',
       color: vehicle.color,
       year: vehicle.year,
@@ -143,6 +146,18 @@ export class VehiclesEditComponent implements OnInit {
         console.error('Error loading vehicle types:', error);
       }
     });
+
+    // Load vehicle motor types
+    this.catalogService.getVehicleMotorType().subscribe({
+      next: (response: any) => {
+        if (response && response.success) {
+          this.vehicleMotorTypes = response.data || [];
+        }
+      },
+      error: (error: any) => {
+        console.error('Error loading vehicle motor types:', error);
+      }
+    });
   }
 
   updateVehicle() {
@@ -160,6 +175,7 @@ export class VehiclesEditComponent implements OnInit {
       plateNumber: formData.plateNumber,
       brandCode: formData.brandCode,
       vehicleTypeId: formData.vehicleTypeId,
+      vehicleMotorTypeId: formData.vehicleMotorTypeId,
       model: formData.model || null,
       color: formData.color,
       year: formData.year || null,

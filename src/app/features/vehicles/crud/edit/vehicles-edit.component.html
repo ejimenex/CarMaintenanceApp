@@ -102,6 +102,27 @@
           }
         </div>
 
+        <!-- Vehicle Motor Type Field -->
+        <div class="field-group">
+          <label class="field-label">{{ 'vehicles.form.vehicleMotorType' | translate }} *</label>
+          <ion-select 
+            formControlName="vehicleMotorTypeId" 
+            [placeholder]="'vehicles.form.selectVehicleMotorType' | translate" 
+            class="modern-select"
+            fill="outline">
+            @for (vehicleMotorType of vehicleMotorTypes; track vehicleMotorType.id) {
+              <ion-select-option [value]="vehicleMotorType.id">
+                {{ vehicleMotorType.name }}
+              </ion-select-option>
+            }
+          </ion-select>
+          @if (form.get('vehicleMotorTypeId')?.invalid && form.get('vehicleMotorTypeId')?.touched) {
+            <div class="error-message">
+              {{ getFieldError('vehicleMotorTypeId') }}
+            </div>
+          }
+        </div>
+
         <!-- Model Field -->
         <div class="field-group">
           <label class="field-label">{{ 'vehicles.form.model' | translate }}</label>

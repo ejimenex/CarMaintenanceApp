@@ -1,4 +1,5 @@
 {
+  "TallerAllreadRegistrered": "Oficina já registrada",
   "Invalid Ids": "Os IDs fornecidos não são válidos",
   "UserNotExist": "O usuário não existe",
   "UserBlocked": "O usuário está bloqueado",
@@ -7,6 +8,8 @@
   "InvalidEmail": "O email não é válido",
   "UserLoggedSuccesfully": "Usuário logado com sucesso",
   "RequiredName": "O nome do usuário é obrigatório",
+  "RequiredAddress": "O endereço é obrigatório",
+  "RequiredPhone": "O telefone é obrigatório",
   "RequiredEmail": "O email do usuário é obrigatório",
   "EmailAlreadyExist": "O email já existe",
   "PasswordPolicy": "A senha deve ter pelo menos 8 caracteres, uma maiúscula, uma minúscula, um número e um caractere especial",
@@ -20,11 +23,27 @@
   "DELETEUSER": "Usuário excluído com sucesso",
   "ADDEQUIPMENT": "Equipamento adicionado",
   "UPDATEEQUIPMENT": "Equipamento atualizado",
+  "ADDTALLER": "Nova oficina adicionada",
+  "UPDATETALLER": "Oficina modificada",
+  "AddWorkshop": "Nova oficina adicionada",
   "Electric": "Oficina Elétrica", 
   "Mecanic": "Oficina Mecânica",
   "Weels": "Centro de Pneus",
   "AutoAire": "Auto Ar",
   "AllService": "Todos os Serviços",
+  "black": "Preto",
+  "white": "Branco",
+  "red": "Vermelho",
+  "blue": "Azul",
+  "green": "Verde",
+  "yellow": "Amarelo",
+  "purple": "Roxo",
+  "orange": "Laranja",
+  "brown": "Marrom",
+  "gray": "Cinza",
+  "pink": "Rosa",
+  "lime": "Lima",
+  "teal": "Turquesa",
   "dashboard": {
     "title": "Painel de Controle",
     "welcome": {
@@ -72,6 +91,31 @@
         "title": "Oficinas",
         "description": "Gerencie oficinas e manutenção"
       }
+    }
+  },
+  "notifications": {
+    "title": "Notificações",
+    "total": "Total",
+    "unread": "Não lidas",
+    "accept": "Aceitar",
+    "accepted": "Aceita",
+    "delete": "Excluir",
+    "deleteConfirm": "Tem certeza de que deseja excluir esta notificação?",
+    "deleted": "Notificação excluída",
+    "allMarkedRead": "Todas as notificações marcadas como lidas",
+    "justNow": "Agora mesmo",
+    "minutesAgo": "{{minutes}} min atrás",
+    "hoursAgo": "{{hours}} h atrás",
+    "daysAgo": "{{days}} dias atrás",
+    "empty": {
+      "title": "Nenhuma notificação",
+      "message": "Quando você tiver novas notificações, elas aparecerão aqui"
+    },
+    "categories": {
+      "maintenance": "Manutenção",
+      "reminder": "Lembrete",
+      "system": "Sistema",
+      "message": "Mensagem"
     }
   },
   "common": {
@@ -139,6 +183,8 @@
       "year": "Ano",
       "mileage": "Quilometragem",
       "vehicleType": "Tipo de Veículo",
+      "vehicleMotorType": "Tipo de Motor",
+      "selectVehicleMotorType": "Selecionar tipo de motor",
       "image": "Imagem do Veículo",
       "required": "Este campo é obrigatório",
       "minLength": "{{field}} deve ter pelo menos {{length}} caracteres",

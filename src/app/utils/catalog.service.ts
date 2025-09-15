@@ -7,6 +7,7 @@ export interface Catalog {
   id?: string;
   name: string;
   code: string;  
+  translateValue: string;
 }
 
 @Injectable({
@@ -21,10 +22,16 @@ export class CatalogService {
   private vehicleTypeService: CrudService<Catalog>;
   private colorService: CrudService<Catalog>;
   private brandService: CrudService<Catalog>;
+  private vehicleMotorTypeService: CrudService<Catalog>;
+
   constructor(private apiService: ApiService) {
     // Initialize CRUD services for different entities
     this.workShopTypeService = this.apiService.createCrudService<Catalog>({
       endpoint: 'workShopType',
+      retryAttempts: 3
+    });
+    this.vehicleMotorTypeService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'vehicleMotorType',
       retryAttempts: 3
     });
     this.languageService = this.apiService.createCrudService<Catalog>({
@@ -57,6 +64,9 @@ export class CatalogService {
   // User CRUD operations
   getworkShopType(): Observable<ApiResponse<Catalog[]>> {
     return this.workShopTypeService.getAllWithoutParams();
+  }
+  getVehicleMotorType(): Observable<ApiResponse<Catalog[]>> {
+    return this.vehicleMotorTypeService.getAllWithoutParams();
   }
   getLanguage(): Observable<ApiResponse<Catalog[]>> {
     return this.languageService.getAllWithoutParams();

@@ -1,4 +1,5 @@
 {
+  "TallerAllreadRegistrered": "Workshop already registered",
   "Invalid Ids": "The provided IDs are not valid",
   "UserNotExist": "User does not exist",
   "UserBlocked": "User is blocked",
@@ -7,6 +8,8 @@
   "InvalidEmail": "Email is not valid",
   "UserLoggedSuccesfully": "User logged in successfully",
   "RequiredName": "User name is required",
+  "RequiredAddress": "Address is required",
+  "RequiredPhone": "Phone is required",
   "RequiredEmail": "User email is required",
   "EmailAlreadyExist": "Email already exists",
   "PasswordPolicy": "Password must have at least 8 characters, one uppercase, one lowercase, one number and one special character",
@@ -20,11 +23,27 @@
   "DELETEUSER": "User deleted successfully",
   "ADDEQUIPMENT": "Equipment added",
   "UPDATEEQUIPMENT": "Equipment updated",
+  "ADDTALLER": "New workshop added",
+  "UPDATETALLER": "Workshop modified",
+  "AddWorkshop": "New workshop added",
   "Electric": "Electric Workshop", 
   "Mecanic": "Mechanic Workshop",
   "Weels": "Tire Center",
   "AutoAire": "Auto Air",
   "AllService": "All Services",
+  "black": "Black",
+  "white": "White",
+  "red": "Red",
+  "blue": "Blue",
+  "green": "Green",
+  "yellow": "Yellow",
+  "purple": "Purple",
+  "orange": "Orange",
+  "brown": "Brown",
+  "gray": "Gray",
+  "pink": "Pink",
+  "lime": "Lime",
+  "teal": "Teal",
   "dashboard": {
     "title": "Dashboard",
     "welcome": {
@@ -72,6 +91,31 @@
         "title": "Workshops",
         "description": "Manage workshops and maintenance"
       }
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "total": "Total",
+    "unread": "Unread",
+    "accept": "Accept",
+    "accepted": "Accepted",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this notification?",
+    "deleted": "Notification deleted",
+    "allMarkedRead": "All notifications marked as read",
+    "justNow": "Just now",
+    "minutesAgo": "{{minutes}} min ago",
+    "hoursAgo": "{{hours}} h ago",
+    "daysAgo": "{{days}} days ago",
+    "empty": {
+      "title": "No notifications",
+      "message": "When you have new notifications, they will appear here"
+    },
+    "categories": {
+      "maintenance": "Maintenance",
+      "reminder": "Reminder",
+      "system": "System",
+      "message": "Message"
     }
   },
   "common": {
@@ -139,6 +183,8 @@
       "year": "Year",
       "mileage": "Mileage",
       "vehicleType": "Vehicle Type",
+      "vehicleMotorType": "Motor Type",
+      "selectVehicleMotorType": "Select motor type",
       "image": "Vehicle Image",
       "required": "This field is required",
       "minLength": "{{field}} must be at least {{length}} characters",

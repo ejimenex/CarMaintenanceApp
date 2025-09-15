@@ -9,6 +9,7 @@ export interface VehicleCreateRequest
   color: string;           // Guid as string
   brandCode: string;       // Guid as string
   vehicleTypeId: string;   // Guid as string
+  vehicleMotorTypeId: string; // Guid as string
   model?: string;          // optional (nullable in C#)
   mileage?: number;        // decimal → number
   plateNumber: string;     // required
@@ -24,9 +25,11 @@ export interface VehicleGetRequest {
   color: string;
   brand: string;
   vehicleType: string;
+  vehicleMotorType: string;
   name: string;        
   brandCode: string;       
-  vehicleTypeId: string;   
+  vehicleTypeId: string;
+  vehicleMotorTypeId: string;
   model?: string;
   mileage?: number;
   plateNumber: string;

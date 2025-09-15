@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
     { titleKey: 'dashboard.menu.navigation.vehicles', url: '/vehicles', icon: 'car' },
     { titleKey: 'dashboard.menu.navigation.workshops', url: '/workshops', icon: 'construct' },
     { titleKey: 'dashboard.menu.navigation.myServices', url: '/workshops', icon: 'construct' },
+    { titleKey: 'notifications.title', url: '/notifications', icon: 'notifications' },
     { titleKey: 'dashboard.menu.navigation.userPreferences', url: '/user-preference', icon: 'person' },
     { titleKey: 'dashboard.menu.navigation.settings', url: '/settings', icon: 'settings' },
   ];

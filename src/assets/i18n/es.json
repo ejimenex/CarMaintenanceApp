@@ -1,4 +1,5 @@
 {
+  "TallerAllreadRegistrered":"Taller ya registrado",
   "Invalid Ids": "Los IDs proporcionados no son válidos",
   "UserNotExist": "El Usuario no existe",
   "UserBlocked": "El Usuario está bloqueado",
@@ -30,6 +31,19 @@
   "Weels": "Centro de Gomas",
   "AutoAire": "Auto Aire",
   "AllService": "Todos los Servicios",
+  "black":"Negro",
+  "white":"Blanco",
+  "red":"Rojo",
+  "blue":"Azul",
+  "green":"Verde",
+  "yellow":"Amarillo",
+  "purple":"Morado",
+  "orange":"Naranja",
+  "brown":"Marrón",
+  "gray":"Gris",
+  "pink":"Rosa",
+  "lime":"Lima",
+  "teal":"Turquesa",
   "dashboard": {
     "title": "Panel de Control",
     "welcome": {
@@ -77,6 +91,31 @@
         "title": "Talleres",
         "description": "Gestiona talleres y mantenimiento"
       }
+    }
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "total": "Total",
+    "unread": "Sin leer",
+    "accept": "Aceptar",
+    "accepted": "Aceptada",
+    "delete": "Eliminar",
+    "deleteConfirm": "¿Estás seguro de que deseas eliminar esta notificación?",
+    "deleted": "Notificación eliminada",
+    "allMarkedRead": "Todas las notificaciones marcadas como leídas",
+    "justNow": "Ahora mismo",
+    "minutesAgo": "Hace {{minutes}} min",
+    "hoursAgo": "Hace {{hours}} h",
+    "daysAgo": "Hace {{days}} días",
+    "empty": {
+      "title": "No hay notificaciones",
+      "message": "Cuando tengas nuevas notificaciones, aparecerán aquí"
+    },
+    "categories": {
+      "maintenance": "Mantenimiento",
+      "reminder": "Recordatorio",
+      "system": "Sistema",
+      "message": "Mensaje"
     }
   },
   "common": {
@@ -144,6 +183,8 @@
       "year": "Año",
       "mileage": "Kilometraje",
       "vehicleType": "Tipo de Vehículo",
+      "vehicleMotorType": "Tipo de Motor",
+      "selectVehicleMotorType": "Seleccionar tipo de motor",
       "image": "Imagen del Vehículo",
       "required": "Este campo es obligatorio",
       "minLength": "{{field}} debe tener al menos {{length}} caracteres",

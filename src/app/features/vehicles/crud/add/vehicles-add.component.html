@@ -101,6 +101,26 @@
             </div>
           }
         </div>
+    <!-- Brand Field -->
+    <div class="field-group">
+      <label class="field-label">{{ 'vehicles.form.vehicleMotorType' | translate }} *</label>
+      <ion-select 
+        formControlName="vehicleMotorTypeId" 
+        [placeholder]="'vehicles.form.vehicleMotorType' | translate" 
+        class="modern-select"
+        fill="outline">
+        @for (vehicleMotorType of vehicleMotorTypes; track vehicleMotorType.id) {
+          <ion-select-option [value]="vehicleMotorType.id">
+            {{ vehicleMotorType.name }}
+          </ion-select-option>
+        }
+      </ion-select>
+      @if (form.get('vehicleMotorTypeId')?.invalid && form.get('vehicleMotorTypeId')?.touched) {
+        <div class="error-message">
+          {{ getFieldError('vehicleMotorTypeId') }}
+        </div>
+      }
+    </div>
 
         <!-- Model Field -->
         <div class="field-group">
@@ -128,7 +148,7 @@
             fill="outline">
             @for (color of colors; track color.id) {
               <ion-select-option [value]="color.id">
-                {{ color.name }}
+                {{ color.translateValue  | translate}}
               </ion-select-option>
             }
           </ion-select>

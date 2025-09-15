@@ -99,6 +99,10 @@
                   <ion-icon name="business" class="vehicle-brand-icon"></ion-icon>
                   {{ vehicle.brand }} - {{ vehicle.model || 'N/A' }}
                 </p>
+                <p class="vehicle-motor-type">
+                  <ion-icon name="settings" class="vehicle-motor-type-icon"></ion-icon>
+                  {{ vehicle.vehicleMotorType || 'N/A' }}
+                </p>
                 @if (vehicle.year) {
                   <p class="vehicle-year">
                     <ion-icon name="calendar" class="vehicle-year-icon"></ion-icon>
