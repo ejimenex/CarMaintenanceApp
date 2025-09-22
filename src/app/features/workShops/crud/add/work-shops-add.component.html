@@ -12,7 +12,7 @@
     <!-- Form Header -->
     <div class="form-header">
       <ion-icon name="construct" class="header-icon"></ion-icon>
-      <h2>{{ 'workshops.add.header.title' | translate }}</h2>
+      <h2>{{ 'trades' | translate }}</h2>
       <p>{{ 'workshops.add.header.subtitle' | translate }}</p>
     </div>
 
@@ -56,6 +56,27 @@
     @if (workshopForm.get('worksShopTypeId')?.invalid && workshopForm.get('worksShopTypeId')?.touched) {
       <div class="error-message">
         {{ getFieldError('worksShopTypeId') }}
+      </div>
+    }
+  </div>
+   <!-- Trade Type -->
+   <div class="field-group">
+    <label class="field-label">
+      <ion-icon name="storefront" class="field-icon"></ion-icon>
+      {{ 'workshops.form.tradeType.label' | translate }}
+    </label>
+    <ion-select
+      formControlName="tradeTypeId"
+      [placeholder]="'workshops.form.tradeType.placeholder' | translate"
+      class="modern-input"
+      [class.error]="workshopForm.get('tradeTypeId')?.invalid && workshopForm.get('tradeTypeId')?.touched">
+      @for (type of tradeTypes; track type.id) {
+        <ion-select-option [value]="type.id">{{ type.name | translate }}</ion-select-option>
+      }
+    </ion-select>
+    @if (workshopForm.get('tradeTypeId')?.invalid && workshopForm.get('tradeTypeId')?.touched) {
+      <div class="error-message">
+        {{ getFieldError('tradeTypeId') }}
       </div>
     }
   </div>

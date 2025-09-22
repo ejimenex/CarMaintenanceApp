@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { 
   IonHeader, 
   IonToolbar, 
@@ -31,6 +32,7 @@ import { UserService } from '../../../../../utils/user.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
     IonHeader,
     IonToolbar,
     IonButtons,
@@ -55,25 +57,15 @@ export class DeleteAccountComponent {
   deleteForm: FormGroup;
   showConfirmation = false;
   isLoading = false;
-  
-  alertButtons = [
-    {
-      text: 'Cancelar',
-      role: 'cancel',
-      handler: () => this.cancelDelete()
-    },
-    {
-      text: 'Eliminar',
-      role: 'destructive',
-      handler: () => this.deleteAccount()
-    }
-  ];
+  consequences: string[] = [];
+  alertButtons: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private alertService: AlertService,
-    private userService: UserService
+    private userService: UserService,
+    private translateService: TranslateService
   ) {
     this.deleteForm = this.formBuilder.group({
       confirmation: ['', [Validators.required, Validators.pattern(/^ELIMINAR$/)]],
@@ -83,6 +75,27 @@ export class DeleteAccountComponent {
 
   ngOnInit() {
     addIcons({ trash, warning, checkmarkCircle });
+    this.loadConsequences();
+    this.setupAlertButtons();
+  }
+
+  private loadConsequences() {
+    this.consequences = this.translateService.instant('settings.account.deleteAccount.consequences');
+  }
+
+  private setupAlertButtons() {
+    this.alertButtons = [
+      {
+        text: this.translateService.instant('common.cancel'),
+        role: 'cancel',
+        handler: () => this.cancelDelete()
+      },
+      {
+        text: this.translateService.instant('settings.account.deleteAccount.button'),
+        role: 'destructive',
+        handler: () => this.deleteAccount()
+      }
+    ];
   }
 
   async confirmDelete() {

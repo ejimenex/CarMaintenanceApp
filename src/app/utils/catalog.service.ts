@@ -23,6 +23,7 @@ export class CatalogService {
   private colorService: CrudService<Catalog>;
   private brandService: CrudService<Catalog>;
   private vehicleMotorTypeService: CrudService<Catalog>;
+  private tradeTypeService: CrudService<Catalog>;
 
   constructor(private apiService: ApiService) {
     // Initialize CRUD services for different entities
@@ -55,8 +56,12 @@ export class CatalogService {
       endpoint: 'color',
       retryAttempts: 3
     });
-    this.brandService = this.apiService.createCrudService<Catalog>({
-      endpoint: 'brand',
+        this.brandService = this.apiService.createCrudService<Catalog>({
+          endpoint: 'brand',
+          retryAttempts: 3
+        });
+    this.tradeTypeService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'tradeType',
       retryAttempts: 3
     });
   }
@@ -87,4 +92,7 @@ export class CatalogService {
   getBrand(): Observable<ApiResponse<Catalog[]>> {
     return this.brandService.getAllWithoutParams();
   }
-}
+  getTradeType(): Observable<ApiResponse<Catalog[]>> {
+    return this.tradeTypeService.getAllWithoutParams();
+  }
+  }

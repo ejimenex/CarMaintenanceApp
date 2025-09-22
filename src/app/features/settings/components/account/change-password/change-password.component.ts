@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { 
   IonHeader,
   IonToolbar,
@@ -37,6 +38,7 @@ import { UserService } from '../../../../../utils/user.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
     IonHeader,
     IonToolbar,
     IonButtons,
@@ -60,11 +62,13 @@ export class ChangePasswordComponent {
   showNewPassword = false;
   showConfirmPassword = false;
   isLoading = false;
+  securityTips: string[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private alertService: AlertService,
-    private userService: UserService
+    private userService: UserService,
+    private translateService: TranslateService
   ) {
     this.passwordForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
@@ -85,6 +89,11 @@ export class ChangePasswordComponent {
       alertCircle, 
       bulb 
     });
+    this.loadSecurityTips();
+  }
+
+  private loadSecurityTips() {
+    this.securityTips = this.translateService.instant('settings.account.changePassword.tips');
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -115,7 +124,7 @@ export class ChangePasswordComponent {
               this.alertService.showError(response.message || response.errors?.join(', ') || 'Error desconocido');
               return;
             }
-            this.alertService.showSuccess('Contraseña actualizada exitosamente');
+            this.alertService.showSuccess(this.translateService.instant('settings.account.changePassword.button') + ' exitosamente');
             this.passwordForm.reset();
           },
           error: (error) => {

@@ -32,6 +32,7 @@ export class WorkShopsEditComponent implements OnInit {
   loading = false;
   workshopId: string | null = null;
   workShopTypes: Catalog[] = [];
+  tradeTypes: Catalog[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +49,7 @@ export class WorkShopsEditComponent implements OnInit {
   ngOnInit() {
     this.workshopId = this.route.snapshot.paramMap.get('id');
     this.loadWorkShopTypes();
+    this.loadTradeTypes();
     if (this.workshopId) {
       this.loadWorkshop();
     } else {
@@ -61,7 +63,8 @@ export class WorkShopsEditComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       address: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
       phone: ['', [Validators.required, Validators.pattern(/^[\+]?[0-9\s\-\(\)]{7,15}$/)]],
-      worksShopTypeId: ['', [Validators.required]]
+      worksShopTypeId: ['', [Validators.required]],
+      tradeTypeId: ['', [Validators.required]]
     });
   }
 
@@ -87,7 +90,8 @@ export class WorkShopsEditComponent implements OnInit {
             name: workshop.name || '',
             address: workshop.address || '',
             phone: workshop.phone || '',
-            worksShopTypeId: workshop.worksShopTypeId || ''
+            worksShopTypeId: workshop.worksShopTypeId || '',
+            tradeTypeId: workshop.tradeTypeId || ''
           });
         } else {
           this.alertService.showError(response?.message || this.translateService.instant('workshops.edit.error.load'));
@@ -174,6 +178,24 @@ export class WorkShopsEditComponent implements OnInit {
           this.workShopTypes = response.data || [];
         } else {
           this.alertService.showError(response?.message || this.translateService.instant('workshops.form.errors.loadTypes'));
+        }
+      }
+    });
+  }
+
+  private loadTradeTypes() {
+    this.catalogService.getTradeType().pipe(
+      catchError(error => {
+        console.error('Error loading trade types:', error);
+        this.alertService.showError(this.translateService.instant('workshops.form.errors.loadTradeTypes'));
+        return of(null);
+      })
+    ).subscribe({
+      next: (response: any) => {
+        if (response && response.success) {
+          this.tradeTypes = response.data || [];
+        } else {
+          this.alertService.showError(response?.message || this.translateService.instant('workshops.form.errors.loadTradeTypes'));
         }
       }
     });

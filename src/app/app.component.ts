@@ -184,7 +184,8 @@ export class AppComponent implements OnInit {
 
   loadNotifications() {
     this.notificationService.getUnreadCount().subscribe(count => {
-      this.unreadNotifications = count;
+      this.unreadNotifications = count.data;
+     
     });
   }
 

@@ -38,7 +38,27 @@
             </div>
           }
         </div>
-
+ <!-- Trade Type -->
+ <div class="field-group">
+  <label class="field-label">
+    <ion-icon name="storefront" class="field-icon"></ion-icon>
+    {{ 'workshops.form.tradeType.label' | translate }}
+  </label>
+  <ion-select
+    formControlName="tradeTypeId"
+    [placeholder]="'workshops.form.tradeType.placeholder' | translate"
+    class="modern-input"
+    [class.error]="workshopForm.get('tradeTypeId')?.invalid && workshopForm.get('tradeTypeId')?.touched">
+    @for (tradeType of tradeTypes; track tradeType.id) {
+      <ion-select-option [value]="tradeType.id">{{ tradeType.name | translate}}</ion-select-option>
+    }
+  </ion-select>
+  @if (workshopForm.get('tradeTypeId')?.invalid && workshopForm.get('tradeTypeId')?.touched) {
+    <div class="error-message">
+      {{ getFieldError('tradeTypeId') }}
+    </div>
+  }
+</div>
         <!-- Address -->
         <div class="field-group">
           <label class="field-label">
@@ -90,7 +110,7 @@
             class="modern-input"
             [class.error]="workshopForm.get('worksShopTypeId')?.invalid && workshopForm.get('worksShopTypeId')?.touched">
             @for (type of workShopTypes; track type.id) {
-              <ion-select-option [value]="type.id">{{ type.name }}</ion-select-option>
+              <ion-select-option [value]="type.id">{{ type.name  | translate}}</ion-select-option>
             }
           </ion-select>
           @if (workshopForm.get('worksShopTypeId')?.invalid && workshopForm.get('worksShopTypeId')?.touched) {
@@ -99,6 +119,8 @@
             </div>
           }
         </div>
+
+       
 
 
         <!-- Loading Overlay -->

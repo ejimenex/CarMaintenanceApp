@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/settings"></ion-back-button>
     </ion-buttons>
-    <ion-title>Notificaciones Push</ion-title>
+    <ion-title>{{ 'settings.permissions.notifications.header' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,14 +13,14 @@
     <ion-card class="info-card">
       <ion-card-content>
         <p class="info-text">
-          Configura qué tipos de notificaciones quieres recibir en tu dispositivo.
+          {{ 'settings.permissions.notifications.info' | translate }}
         </p>
       </ion-card-content>
     </ion-card>
 
     <ion-card class="notifications-card">
       <ion-card-header>
-        <ion-card-title>Tipos de Notificaciones</ion-card-title>
+        <ion-card-title>{{ 'settings.permissions.notifications.typesTitle' | translate }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-list>
@@ -32,8 +32,8 @@
                 class="notification-icon">
               </ion-icon>
               <ion-label class="notification-content">
-                <h3 class="notification-title">{{ setting.title }}</h3>
-                <p class="notification-description">{{ setting.description }}</p>
+                <h3 class="notification-title">{{ setting.titleKey | translate }}</h3>
+                <p class="notification-description">{{ setting.descriptionKey }}</p>
               </ion-label>
               <ion-toggle
                 [checked]="setting.enabled"

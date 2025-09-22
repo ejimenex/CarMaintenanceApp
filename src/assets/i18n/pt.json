@@ -44,6 +44,8 @@
   "pink": "Rosa",
   "lime": "Lima",
   "teal": "Turquesa",
+  "tradeType": "Tipo de Negócio",
+  "trades": "Negócios",
   "dashboard": {
     "title": "Painel de Controle",
     "welcome": {
@@ -151,7 +153,8 @@
   "languages": {
     "en": "Inglês",
     "es": "Espanhol",
-    "pt": "Português"
+    "pt": "Português",
+    "ru": "Russo"
   },
   "vehicles": {
     "title": "Veículos",
@@ -249,9 +252,127 @@
     }
   },
   "settings": {
+    "title": "Configurações",
+    "categories": {
+      "account": "Conta",
+      "privacy": "Privacidade e Dados",
+      "permissions": "Permissões e Segurança",
+      "sessions": "Sessão e Dispositivos",
+      "history": "Histórico e Atividade"
+    },
+    "account": {
+      "deleteAccount": {
+        "title": "Excluir conta e dados",
+        "description": "Excluir permanentemente sua conta e todos os dados associados",
+        "header": "Excluir Conta",
+        "warning": "Atenção!",
+        "warningText": "Esta ação é irreversível. Ao excluir sua conta:",
+        "consequences": [
+          "Todos os seus dados serão excluídos permanentemente",
+          "Você não poderá recuperar suas informações",
+          "Perderá acesso a todos os serviços",
+          "Todas as assinaturas ativas serão canceladas"
+        ],
+        "confirmTitle": "Confirmar Exclusão",
+        "reason": "Motivo da exclusão",
+        "reasonPlaceholder": "Conte-nos por que você quer excluir sua conta",
+        "confirmation": "Digite \"EXCLUIR\" para confirmar",
+        "confirmationPlaceholder": "EXCLUIR",
+        "button": "Excluir Conta",
+        "buttonLoading": "Excluindo...",
+        "alertTitle": "Confirmar Exclusão",
+        "alertMessage": "Tem certeza absoluta de que quer excluir sua conta? Esta ação não pode ser desfeita."
+      },
+      "logout": {
+        "title": "Sair",
+        "description": "Encerrar sessão atual"
+      },
+      "changePassword": {
+        "title": "Alterar senha",
+        "description": "Atualizar sua senha",
+        "header": "Alterar Senha",
+        "subtitle": "Mantenha sua conta segura com uma senha forte",
+        "currentPassword": "Senha Atual",
+        "currentPasswordPlaceholder": "Digite sua senha atual",
+        "newPassword": "Nova Senha",
+        "newPasswordPlaceholder": "Digite sua nova senha",
+        "confirmPassword": "Confirmar Nova Senha",
+        "confirmPasswordPlaceholder": "Confirme sua nova senha",
+        "button": "Atualizar Senha",
+        "buttonLoading": "Atualizando...",
+        "requirements": "Requisitos da Senha",
+        "minLength": "Mínimo 8 caracteres",
+        "passwordsMatch": "As senhas coincidem",
+        "securityTips": "Dicas de Segurança",
+        "tips": [
+          "Use uma combinação de letras, números e símbolos",
+          "Evite informações pessoais como datas de nascimento",
+          "Não reutilize senhas de outras contas",
+          "Considere usar um gerenciador de senhas"
+        ],
+        "errors": {
+          "currentRequired": "A senha atual é obrigatória",
+          "newRequired": "A nova senha é obrigatória",
+          "minLength": "A senha deve ter pelo menos 8 caracteres",
+          "confirmRequired": "A confirmação da senha é obrigatória",
+          "passwordMismatch": "As senhas não coincidem"
+        }
+      },
+      "updateProfile": {
+        "title": "Atualizar perfil",
+        "description": "Editar informações pessoais"
+      }
+    },
+    "privacy": {
+      "policy": {
+        "title": "Política de privacidade",
+        "description": "Ver política de privacidade"
+      },
+      "exportData": {
+        "title": "Exportar meus dados",
+        "description": "Baixar todos os seus dados"
+      },
+      "consent": {
+        "title": "Gestão de consentimento",
+        "description": "Revisar permissões de rastreamento"
+      },
+      "tracking": {
+        "title": "Limitar rastreamento",
+        "description": "Opt-out de estatísticas"
+      }
+    },
+    "permissions": {
+      "location": {
+        "title": "Permissões de localização",
+        "description": "Gerenciar permissões de localização"
+      },
+      "notifications": {
+        "title": "Notificações push",
+        "description": "Configurar notificações",
+        "header": "Notificações Push",
+        "info": "Configure que tipos de notificações você quer receber no seu dispositivo.",
+        "typesTitle": "Tipos de Notificações"
+      },
+      "twoFactor": {
+        "title": "Verificação em duas etapas",
+        "description": "Configurar 2FA"
+      }
+    },
+    "sessions": {
+      "logoutAll": {
+        "title": "Sair de outros dispositivos",
+        "description": "Encerrar sessões em outros dispositivos"
+      },
+      "devices": {
+        "title": "Dispositivos ativos",
+        "description": "Ver dispositivos com sessão ativa"
+      }
+    },
     "activityHistory": {
-      "title": "Histórico de Atividade",
-      "description": "Aqui você pode ver o histórico de todas as suas atividades na aplicação.",
+      "title": "Histórico de atividade",
+      "description": "Ver histórico de atividades",
+      "header": "Histórico de Atividade",
+      "subtitle": "Aqui você pode ver o histórico de todas as suas atividades na aplicação.",
       "loading": "Carregando histórico de atividade...",
       "loadingMore": "Carregando mais atividades...",
       "retry": "Tentar novamente",
@@ -331,6 +452,10 @@
         "label": "Tipo de Oficina",
         "placeholder": "Selecione o tipo de oficina"
       },
+      "tradeType": {
+        "label": "Tipo de Negócio",
+        "placeholder": "Selecione o tipo de negócio"
+      },
       "errors": {
         "required": "O campo {field} é obrigatório",
         "minLength": "O campo {field} deve ter pelo menos {min} caracteres",
@@ -338,7 +463,8 @@
         "pattern": "O formato do campo {field} não é válido",
         "invalid": "O campo {field} não é válido",
         "invalidForm": "Por favor, corrija os erros no formulário",
-        "loadTypes": "Erro ao carregar os tipos de oficina"
+        "loadTypes": "Erro ao carregar os tipos de oficina",
+        "loadTradeTypes": "Erro ao carregar os tipos de negócio"
       }
     },
     "actions": {

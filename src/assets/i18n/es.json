@@ -23,9 +23,9 @@
   "DELETEUSER":"Usuario eliminado exitosamente",
   "ADDEQUIPMENT":"Equipo agregado",
   "UPDATEEQUIPMENT":"Equipo actualizado",
-  "ADDTALLER":"Nuevo taller agregado",
+  "ADDTALLER":"Nuevo comercio agregado",
   "UPDATETALLER":"Se modifico el taller",
-  "AddWorkshop":"Nuevo taller agregado",
+  "AddWorkshop":"Nuevo comercio agregado",
   "Electric": "Taller Electrico", 
   "Mecanic": "Taller Mecanico",
   "Weels": "Centro de Gomas",
@@ -44,6 +44,18 @@
   "pink":"Rosa",
   "lime":"Lima",
   "teal":"Turquesa",
+  "seeNotification":"Ver Notificación",
+  "acceptNotification":"Aceptar Notificación",
+  "alertNotification":"Alertar Notificación",
+  "alertNotificationPaid":"Notificación de Proximo Consumo",
+  "alertNotificationMaintenance":"Notificación de Mantenimiento",
+  "markAsUnread":"Marcar como no leída",
+  "deleteNotification":"Eliminar Notificación",
+  "tradeType":"Tipo de Comercio",
+  "Taller":"Taller",
+  "StorePart":"Tienda de Repuestos",
+  "TallerYStorePart":"Taller y Tienda de Repuestos",
+  "trades":"Comercios",
   "dashboard": {
     "title": "Panel de Control",
     "welcome": {
@@ -58,7 +70,7 @@
       "navigation": {
         "title": "Navegación Principal",
         "vehicles": "Vehículos",
-        "workshops": "Talleres",
+        "workshops": "Comercios",
         "myServices": "Mis Servicios",
         "userPreferences": "Preferencias de Usuario",
         "settings": "Configuración"
@@ -66,7 +78,7 @@
       "quickActions": {
         "title": "Acciones Rápidas",
         "addVehicle": "Agregar Vehículo",
-        "addWorkshop": "Agregar Taller"
+        "addWorkshop": "Agregar Comercio"
       },
       "footer": {
         "settings": "Configuración",
@@ -99,6 +111,9 @@
     "unread": "Sin leer",
     "accept": "Aceptar",
     "accepted": "Aceptada",
+    "markRead": "Marcar como leída",
+    "markUnread": "Marcar como no leída",
+    "markedUnread": "Notificación marcada como no leída",
     "delete": "Eliminar",
     "deleteConfirm": "¿Estás seguro de que deseas eliminar esta notificación?",
     "deleted": "Notificación eliminada",
@@ -116,6 +131,18 @@
       "reminder": "Recordatorio",
       "system": "Sistema",
       "message": "Mensaje"
+    },
+    "priorities": {
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta",
+      "urgent": "Urgente"
+    },
+    "types": {
+      "success": "Éxito",
+      "warning": "Advertencia",
+      "error": "Error",
+      "info": "Información"
     }
   },
   "common": {
@@ -151,7 +178,8 @@
   "languages": {
     "en": "Inglés",
     "es": "Español",
-    "pt": "Portugués"
+    "pt": "Portugués",
+    "ru": "Ruso"
   },
   "vehicles": {
     "title": "Vehículos",
@@ -249,9 +277,127 @@
     }
   },
   "settings": {
+    "title": "Configuración",
+    "categories": {
+      "account": "Cuenta",
+      "privacy": "Privacidad y Datos",
+      "permissions": "Permisos y Seguridad",
+      "sessions": "Sesión y Dispositivos",
+      "history": "Historial y Actividad"
+    },
+    "account": {
+      "deleteAccount": {
+        "title": "Eliminar cuenta y datos",
+        "description": "Eliminar permanentemente tu cuenta y todos los datos asociados",
+        "header": "Eliminar Cuenta",
+        "warning": "¡Atención!",
+        "warningText": "Esta acción es irreversible. Al eliminar tu cuenta:",
+        "consequences": [
+          "Todos tus datos serán eliminados permanentemente",
+          "No podrás recuperar tu información",
+          "Perderás acceso a todos los servicios",
+          "Se cancelarán todas las suscripciones activas"
+        ],
+        "confirmTitle": "Confirmar Eliminación",
+        "reason": "Motivo de eliminación",
+        "reasonPlaceholder": "Cuéntanos por qué quieres eliminar tu cuenta",
+        "confirmation": "Escribe \"ELIMINAR\" para confirmar",
+        "confirmationPlaceholder": "ELIMINAR",
+        "button": "Eliminar Cuenta",
+        "buttonLoading": "Eliminando...",
+        "alertTitle": "Confirmar Eliminación",
+        "alertMessage": "¿Estás completamente seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer."
+      },
+      "logout": {
+        "title": "Cerrar sesión",
+        "description": "Terminar sesión actual"
+      },
+      "changePassword": {
+        "title": "Cambiar contraseña",
+        "description": "Actualizar tu contraseña",
+        "header": "Cambiar Contraseña",
+        "subtitle": "Mantén tu cuenta segura con una contraseña fuerte",
+        "currentPassword": "Contraseña Actual",
+        "currentPasswordPlaceholder": "Ingresa tu contraseña actual",
+        "newPassword": "Nueva Contraseña",
+        "newPasswordPlaceholder": "Ingresa tu nueva contraseña",
+        "confirmPassword": "Confirmar Nueva Contraseña",
+        "confirmPasswordPlaceholder": "Confirma tu nueva contraseña",
+        "button": "Actualizar Contraseña",
+        "buttonLoading": "Actualizando...",
+        "requirements": "Requisitos de Contraseña",
+        "minLength": "Mínimo 8 caracteres",
+        "passwordsMatch": "Las contraseñas coinciden",
+        "securityTips": "Consejos de Seguridad",
+        "tips": [
+          "Usa una combinación de letras, números y símbolos",
+          "Evita información personal como fechas de nacimiento",
+          "No reutilices contraseñas de otras cuentas",
+          "Considera usar un gestor de contraseñas"
+        ],
+        "errors": {
+          "currentRequired": "La contraseña actual es requerida",
+          "newRequired": "La nueva contraseña es requerida",
+          "minLength": "La contraseña debe tener al menos 8 caracteres",
+          "confirmRequired": "La confirmación de contraseña es requerida",
+          "passwordMismatch": "Las contraseñas no coinciden"
+        }
+      },
+      "updateProfile": {
+        "title": "Actualizar perfil",
+        "description": "Editar información personal"
+      }
+    },
+    "privacy": {
+      "policy": {
+        "title": "Política de privacidad",
+        "description": "Ver política de privacidad"
+      },
+      "exportData": {
+        "title": "Exportar mis datos",
+        "description": "Descargar todos tus datos"
+      },
+      "consent": {
+        "title": "Gestión de consentimiento",
+        "description": "Revisar permisos de tracking"
+      },
+      "tracking": {
+        "title": "Limitar seguimiento",
+        "description": "Opt-out de estadísticas"
+      }
+    },
+    "permissions": {
+      "location": {
+        "title": "Permisos de ubicación",
+        "description": "Gestionar permisos de ubicación"
+      },
+      "notifications": {
+        "title": "Notificaciones push",
+        "description": "Configurar notificaciones",
+        "header": "Notificaciones Push",
+        "info": "Configura qué tipos de notificaciones quieres recibir en tu dispositivo.",
+        "typesTitle": "Tipos de Notificaciones"
+      },
+      "twoFactor": {
+        "title": "Verificación en dos pasos",
+        "description": "Configurar 2FA"
+      }
+    },
+    "sessions": {
+      "logoutAll": {
+        "title": "Cerrar sesión en otros dispositivos",
+        "description": "Terminar sesiones en otros dispositivos"
+      },
+      "devices": {
+        "title": "Dispositivos activos",
+        "description": "Ver dispositivos con sesión activa"
+      }
+    },
     "activityHistory": {
-      "title": "Historial de Actividad",
-      "description": "Aquí puedes ver el historial de todas tus actividades en la aplicación.",
+      "title": "Historial de actividad",
+      "description": "Ver historial de actividades",
+      "header": "Historial de Actividad",
+      "subtitle": "Aquí puedes ver el historial de todas tus actividades en la aplicación.",
       "loading": "Cargando historial de actividad...",
       "loadingMore": "Cargando más actividades...",
       "retry": "Reintentar",
@@ -282,7 +428,7 @@
       "title": "Agregar Taller",
       "header": {
         "title": "Nuevo Taller",
-        "subtitle": "Completa la información del taller"
+        "subtitle": "Completa la información del comercio"
       },
       "saving": "Guardando taller...",
       "success": "Taller agregado exitosamente",
@@ -308,16 +454,16 @@
     },
     "view": {
       "title": "Detalles del Taller",
-      "error": "Error al cargar los detalles del taller"
+      "error": "Error al cargar los detalles del comercio"
     },
     "form": {
       "name": {
         "label": "Nombre",
-        "placeholder": "Ingresa el nombre del taller"
+        "placeholder": "Ingresa el nombre del comercio"
       },
       "address": {
         "label": "Dirección",
-        "placeholder": "Ingresa la dirección del taller"
+        "placeholder": "Ingresa la dirección del comercio"
       },
       "phone": {
         "label": "Teléfono",
@@ -325,11 +471,15 @@
       },
       "note": {
         "label": "Notas",
-        "placeholder": "Agrega notas adicionales sobre el taller"
+        "placeholder": "Agrega notas adicionales sobre el comercio"
       },
       "workShopType": {
         "label": "Tipo de Taller",
-        "placeholder": "Selecciona el tipo de taller"
+        "placeholder": "Selecciona el tipo de comercio"
+      },
+      "tradeType": {
+        "label": "Tipo de Comercio",
+        "placeholder": "Selecciona el tipo de comercio"
       },
       "errors": {
         "required": "El campo {field} es requerido",
@@ -338,7 +488,8 @@
         "pattern": "El formato del campo {field} no es válido",
         "invalid": "El campo {field} no es válido",
         "invalidForm": "Por favor, corrige los errores en el formulario",
-        "loadTypes": "Error al cargar los tipos de taller"
+        "loadTypes": "Error al cargar los tipos de taller",
+        "loadTradeTypes": "Error al cargar los tipos de comercio"
       }
     },
     "actions": {
@@ -348,7 +499,7 @@
     },
     "delete": {
       "confirm": "Eliminar Taller",
-      "message": "¿Estás seguro de que quieres eliminar el taller {workshopName}? Esta acción no se puede deshacer.",
+      "message": "¿Estás seguro de que quieres eliminar el comercio {workshopName}? Esta acción no se puede deshacer.",
       "success": "Taller eliminado exitosamente",
       "error": "Error al eliminar el taller"
     }

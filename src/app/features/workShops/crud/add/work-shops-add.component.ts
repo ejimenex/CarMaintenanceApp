@@ -31,6 +31,7 @@ export class WorkShopsAddComponent implements OnInit {
   workshopForm: FormGroup;
   loading = false;
   workShopTypes: Catalog[] = [];
+  tradeTypes: Catalog[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,6 +46,7 @@ export class WorkShopsAddComponent implements OnInit {
 
   ngOnInit() {
     this.loadWorkShopTypes();
+    this.loadTradeType();
   }
 
   private createForm(): FormGroup {
@@ -54,7 +56,8 @@ export class WorkShopsAddComponent implements OnInit {
       name: [''],
       address: [''],
       phone: ['', [ Validators.pattern(/^[\+]?[0-9\s\-\(\)]{7,15}$/)]],
-      worksShopTypeId: ['', [Validators.required]]
+      worksShopTypeId: ['', [Validators.required]],
+      tradeTypeId: ['', [Validators.required]]
     });
   }
 
@@ -140,7 +143,23 @@ export class WorkShopsAddComponent implements OnInit {
       }
     });
   }
-
+  private loadTradeType() {
+    this.catalogService.getTradeType().pipe(
+      catchError(error => {
+        console.error('Error loading workshop types:', error);
+        this.alertService.showError(this.translateService.instant('workshops.form.errors.loadTypes'));
+        return of(null);
+      })
+    ).subscribe({
+      next: (response: any) => {
+        if (response && response.success) {
+          this.tradeTypes = response.data || [];
+        } else {
+          this.alertService.showError(response?.message || this.translateService.instant('workshops.form.errors.loadTypes'));
+        }
+      }
+    });
+  }
   private markFormGroupTouched() {
     Object.keys(this.workshopForm.controls).forEach(key => {
       const control = this.workshopForm.get(key);

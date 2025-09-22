@@ -100,19 +100,42 @@ export class NotificationsListComponent implements OnInit {
     this.loadNotifications();
     this.loadUnreadCount();
   }
+markAllAsRead(
 
+) {
+
+}
+onNotificationClick(notification: Notification) {
+ 
+}
+acceptNotification(notification: Notification) {
+  this.notificationService.markAsRead(notification.id).subscribe({
+    next: (notifications) => {
+      this.loadNotifications();
+    },
+    error: (error) => {
+      console.error('Error loading notifications:', error);
+    }
+  });
+}
+markAsUnread(notification: Notification) {
+  alert('markAsUnread');
+}
+deleteNotification(notification: Notification) {
+  alert('deleteNotification');
+}
   loadNotifications() {
-    this.loading = true;
-    this.notificationService.notifications$.subscribe({
+    // Subscribe to reactive notifications
+    this.notificationService.getNotificationByUser().subscribe({
       next: (notifications) => {
-        this.notifications = notifications;
-        this.loading = false;
+        this.notifications = notifications.data || [];
       },
       error: (error) => {
         console.error('Error loading notifications:', error);
-        this.loading = false;
       }
     });
+
+    
   }
 
   loadUnreadCount() {
@@ -120,74 +143,7 @@ export class NotificationsListComponent implements OnInit {
       this.unreadCount = count;
     });
   }
-
-  acceptNotification(notification: Notification) {
-    this.notificationService.markAsRead(notification.id);
-    this.alertService.showSuccess(
-      this.translateService.instant('notifications.accepted')
-    );
-  }
-
-  deleteNotification(notification: Notification) {
-    this.alertService.showConfirm({
-      message: this.translateService.instant('notifications.deleteConfirm'),
-      confirmText: this.translateService.instant('common.delete'),
-      cancelText: this.translateService.instant('common.cancel'),
-      cssClass: 'alert-button-cancel'
-    }).then((result) => {
-      if (result) {
-        this.notificationService.removeNotification(notification.id);
-        this.alertService.showSuccess(
-          this.translateService.instant('notifications.deleted')
-        );
-      }
-    });
-  }
-
-  markAllAsRead() {
-    if (this.unreadCount > 0) {
-      this.notificationService.markAllAsRead();
-      this.alertService.showSuccess(
-        this.translateService.instant('notifications.allMarkedRead')
-      );
-    }
-  }
-
-  doRefresh(event: any) {
-    setTimeout(() => {
-      this.loadNotifications();
-      event.target.complete();
-    }, 1000);
-  }
-
-  getNotificationIcon(notification: Notification): string {
-    switch (notification.category) {
-      case 'maintenance':
-        return 'car';
-      case 'reminder':
-        return 'time';
-      case 'system':
-        return 'shield';
-      case 'message':
-        return 'informationCircle';
-      default:
-        return 'notifications';
-    }
-  }
-
-  getNotificationColor(notification: Notification): string {
-    switch (notification.type) {
-      case 'success':
-        return 'success';
-      case 'warning':
-        return 'warning';
-      case 'error':
-        return 'danger';
-      default:
-        return 'primary';
-    }
-  }
-
+  
   formatTimestamp(timestamp: Date): string {
     const now = new Date();
     const diff = now.getTime() - new Date(timestamp).getTime();

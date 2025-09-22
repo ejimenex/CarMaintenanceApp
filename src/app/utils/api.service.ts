@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, retry, tap, map } from 'rxjs/operators';
+import { catchError, retry, tap, map, timeout } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 export interface ApiResponse<T> {
@@ -139,6 +139,7 @@ export class CrudService<T> {
     return this.http.get<ApiResponse<T[]>>(url, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -157,6 +158,7 @@ export class CrudService<T> {
       params: httpParams,
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -173,6 +175,7 @@ export class CrudService<T> {
     return this.http.get<ApiResponse<T>>(url, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -186,6 +189,7 @@ export class CrudService<T> {
     return this.http.get<ApiResponse<T>>(url, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -203,6 +207,28 @@ export class CrudService<T> {
    return this.http.post<ApiResponse<T>>(url, item, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
+      retry(this.retryAttempts),
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Create new item without authorization header (for login, register, etc.)
+   */
+  createWithoutAuth(item: Partial<T>): Observable<ApiResponse<T>> {
+    const url = `${this.baseUrl}/${this.endpoint}`;
+    
+    // Headers básicos sin Authorization
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    
+    return this.http.post<ApiResponse<T>>(url, item, {
+      headers: headers
+    }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -219,11 +245,24 @@ export class CrudService<T> {
     return this.http.put<ApiResponse<T>>(url, item, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
   }
-
+  updateWithoutBody(id: string | number): Observable<ApiResponse<T>> {
+    const url = `${this.baseUrl}/${this.endpoint}/${id}`;
+    const token = JSON.parse(localStorage.getItem('currentUser') || '{}').token;
+    if(token){
+    this.defaultHeaders = this.defaultHeaders.set('Authorization', `Bearer ${token}`);}
+    return this.http.put<ApiResponse<T>>(url, {}, {
+      headers: this.defaultHeaders
+    }).pipe(
+      timeout(this.timeout),
+      retry(this.retryAttempts),
+      catchError(this.handleError)
+    );
+  }
   /**
    * Patch item by ID (partial update)
    */
@@ -235,6 +274,7 @@ export class CrudService<T> {
     return this.http.patch<ApiResponse<T>>(url, item, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -250,6 +290,7 @@ export class CrudService<T> {
     return this.http.patch<ApiResponse<T>>(url, item, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -263,6 +304,7 @@ export class CrudService<T> {
     return this.http.delete<ApiResponse<void>>(url, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -277,6 +319,7 @@ export class CrudService<T> {
     return this.http.post<ApiResponse<void>>(url, { ids }, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -304,6 +347,7 @@ export class CrudService<T> {
       params: httpParams,
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -318,6 +362,7 @@ export class CrudService<T> {
     return this.http.post<ApiResponse<T>>(url, data, {
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -334,6 +379,7 @@ export class CrudService<T> {
     return this.http.post<ApiResponse<T>>(url, formData, {
       headers: new HttpHeaders() // Let browser set Content-Type for FormData
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );
@@ -349,6 +395,7 @@ export class CrudService<T> {
       responseType: 'blob',
       headers: this.defaultHeaders
     }).pipe(
+      timeout(this.timeout),
       retry(this.retryAttempts),
       catchError(this.handleError)
     );

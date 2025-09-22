@@ -8,7 +8,8 @@ export interface WorkshopCreateRequest
   name: string;            // required
   address: string;           // Guid as string
   phone: string;       // Guid as string
-  workshopTypeId: string;   // Guid as string
+  workshopTypeId: string; 
+  tradeTypeId: string;  // Guid as string
 }
 export interface WorkshopEditRequest extends WorkshopCreateRequest
 {
@@ -22,6 +23,8 @@ export interface WorkshopGetRequest {
   phone: string;       // Guid as string
   workshopTypeId: string; 
   worksShopTypeName: string;
+  tradeTypeName: string;
+  tradeTypeId: string;
 }
 
 @Injectable({
@@ -34,15 +37,15 @@ export class WorkshopService {
   constructor(private apiService: ApiService) {
     // Initialize CRUD services for different entities
         this.workShopCreateService = this.apiService.createCrudService<WorkshopCreateRequest>({
-          endpoint: 'worksShop',
+          endpoint: 'trade',
           retryAttempts: 3
         });
         this.workshopEditService = this.apiService.createCrudService<WorkshopEditRequest>({
-          endpoint: 'worksShop',
+          endpoint: 'trade',
           retryAttempts: 3
         });
         this.workshopGetService = this.apiService.createCrudService<WorkshopGetRequest>({
-          endpoint: 'worksShop',
+          endpoint: 'trade',
           retryAttempts: 3
         });
  

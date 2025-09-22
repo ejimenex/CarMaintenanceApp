@@ -18,7 +18,7 @@
         </div>
         
         <!-- Notification Indicator -->
-        <div class="notification-section">
+        <div *ngIf="unreadNotifications > 0" class="notification-section">
           <ion-item 
             lines="none" 
             class="notification-item" 

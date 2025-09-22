@@ -93,9 +93,13 @@
                   <ion-icon name="call" class="workshop-phone-icon"></ion-icon>
                   {{ workshop.phone }}
                 </p>
-                <p class="workshop-phone">
-                  <ion-icon name="settings" class="workshop-phone-icon"></ion-icon>
+                <p class="workshop-type">
+                  <ion-icon name="settings" class="workshop-type-icon"></ion-icon>
                   {{ workshop.worksShopTypeName }}
+                </p>
+                <p class="workshop-trade-type">
+                  <ion-icon name="business" class="workshop-trade-type-icon"></ion-icon>
+                  {{ workshop.tradeTypeName | translate}}
                 </p>
               </ion-label>
               

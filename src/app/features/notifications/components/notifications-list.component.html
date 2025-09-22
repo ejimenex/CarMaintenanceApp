@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="loadNotifications()">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -69,72 +69,88 @@
     <ion-card 
       *ngFor="let notification of notifications; trackBy: trackByNotificationId" 
       class="notification-card"
-      [class.unread]="!notification.read"
-      [class.read]="notification.read">
+      [class.unread]="!notification.isRead"
+      [class.read]="notification.isRead"
+      (click)="onNotificationClick(notification)">
       
       <ion-card-content>
         <div class="notification-content">
           <!-- Icon and Badge -->
           <div class="notification-icon-container">
-            <ion-avatar class="notification-avatar" [ngClass]="'avatar-' + getNotificationColor(notification)">
-              <ion-icon [name]="getNotificationIcon(notification)"></ion-icon>
+            <ion-avatar class="notification-avatar" [ngClass]="'avatar-' + notification.color">
+              <ion-icon [name]="notification.icon"></ion-icon>
             </ion-avatar>
             <ion-badge 
-              *ngIf="!notification.read" 
+              *ngIf="!notification.isRead" 
               color="primary" 
               class="unread-badge">
             </ion-badge>
+            <!-- Priority indicator -->
+          
           </div>
 
           <!-- Content -->
           <div class="notification-body">
             <div class="notification-header">
               <h3 class="notification-title">{{ notification.title }}</h3>
-              <span class="notification-time">{{ formatTimestamp(notification.timestamp) }}</span>
+              <span class="notification-time">{{ formatTimestamp(notification.createdDate) }}</span>
             </div>
             
-            <p class="notification-message">{{ notification.message }}</p>
+            <p class="notification-message">{{ notification.message  }}</p>
             
-            <div class="notification-category">
+            <div class="notification-meta">
               <ion-badge 
-                [color]="getNotificationColor(notification)" 
+                [color]="notification.color" 
                 class="category-badge">
-                {{ 'notifications.categories.' + notification.category | translate }}
+                {{  notification.notificationTypeName | translate }}
               </ion-badge>
+              
+              <!-- Action button if there's an actionUrl -->
+              <ion-button 
+              
+                fill="clear" 
+                size="small" 
+                [color]="notification.color"
+                class="action-link">
+                {{  'seeNotification' | translate }}
+                <ion-icon name="arrow-forward" slot="end"></ion-icon>
+              </ion-button>
             </div>
           </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="notification-actions">
+          <!-- Mark as read/unread button -->
           <ion-button 
-            *ngIf="!notification.read"
+            *ngIf="notification.isRead"
             fill="solid" 
             size="small" 
             color="primary"
-            class="accept-button"
-            (click)="acceptNotification(notification)">
+            class="read-button"
+            (click)="acceptNotification(notification); $event.stopPropagation()">
             <ion-icon name="checkmark-circle" slot="start"></ion-icon>
-            {{ 'notifications.accept' | translate }}
+            {{ 'notifications.markRead' | translate }}
           </ion-button>
           
           <ion-button 
-            *ngIf="notification.read"
+            *ngIf="!notification.isRead"
             fill="outline" 
             size="small" 
             color="medium"
-            class="accepted-button"
-            disabled>
-            <ion-icon name="checkmark-circle" slot="start"></ion-icon>
-            {{ 'notifications.accepted' | translate }}
+            class="unread-button"
+            (click)="markAsUnread(notification); $event.stopPropagation()">
+            <ion-icon name="mail" slot="start"></ion-icon>
+            {{ 'notifications.markUnread' | translate }}
           </ion-button>
 
+          <!-- Delete button -->
           <ion-button 
             fill="clear" 
             size="small" 
             color="danger"
             class="delete-button"
-            (click)="deleteNotification(notification)">
+            (click)="deleteNotification(notification); $event.stopPropagation()">
             <ion-icon name="trash" slot="icon-only"></ion-icon>
           </ion-button>
         </div>
@@ -144,7 +160,7 @@
 
   <!-- Floating Action Button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="primary" (click)="markAllAsRead()" [disabled]="unreadCount === 0">
+    <ion-fab-button color="primary"  [disabled]="unreadCount === 0">
       <ion-icon name="checkmark-done"></ion-icon>
     </ion-fab-button>
   </ion-fab>

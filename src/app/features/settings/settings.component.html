@@ -3,22 +3,22 @@
             <ion-buttons slot="start">
           <ion-menu-button menu="main-menu" style="--color: white; font-size: 24px;"></ion-menu-button>
         </ion-buttons>
-    <ion-title>Configuración</ion-title>
+    <ion-title>{{ 'settings.title' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="settings-container">
     
-    @for (category of settingsCategories; track category.title) {
+    @for (category of settingsCategories; track category.titleKey) {
       <div class="settings-category">
         <h2 class="category-title">
           <ion-icon [name]="category.icon" class="category-icon"></ion-icon>
-          {{ category.title }}
+          {{ category.titleKey | translate }}
         </h2>
         
         <ion-list class="settings-list">
-          @for (item of category.items; track item.title) {
+          @for (item of category.items; track item.titleKey) {
             <ion-item 
               [routerLink]="item.route" 
               routerDirection="forward"
@@ -30,8 +30,8 @@
                 class="item-icon">
               </ion-icon>
               <ion-label class="item-content">
-                <h3 class="item-title">{{ item.title }}</h3>
-                <p class="item-description">{{ item.description }}</p>
+                <h3 class="item-title">{{ item.titleKey | translate }}</h3>
+                <p class="item-description">{{ item.descriptionKey | translate }}</p>
               </ion-label>
               <ion-icon 
                 name="chevronForward" 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { 
   IonHeader, 
   IonToolbar, 
@@ -26,6 +27,7 @@ import { AlertService } from '../../../../utils/alert.service';
   standalone: true,
   imports: [
     CommonModule,
+    TranslateModule,
     IonHeader,
     IonToolbar,
     IonButtons,
@@ -47,43 +49,53 @@ import { AlertService } from '../../../../utils/alert.service';
 })
 export class NotificationSettingsComponent {
   
-  notificationSettings = [
-    {
-      id: 'maintenance',
-      title: 'Recordatorios de Mantenimiento',
-      description: 'Notificaciones sobre servicios programados',
-      icon: 'checkmarkCircle',
-      enabled: true
-    },
-    {
-      id: 'workshop',
-      title: 'Ofertas de Talleres',
-      description: 'Promociones y ofertas especiales',
-      icon: 'notifications',
-      enabled: true
-    },
-    {
-      id: 'alerts',
-      title: 'Alertas de Seguridad',
-      description: 'Notificaciones importantes sobre tu vehículo',
-      icon: 'warning',
-      enabled: true
-    },
-    {
-      id: 'updates',
-      title: 'Actualizaciones de la App',
-      description: 'Nuevas funciones y mejoras',
-      icon: 'notifications',
-      enabled: false
-    }
-  ];
+  notificationSettings: any[] = [];
 
-  constructor(private alertService: AlertService) {
+  constructor(
+    private alertService: AlertService,
+    private translateService: TranslateService
+  ) {
     addIcons({ notifications, warning, checkmarkCircle });
+    this.initializeNotificationSettings();
+  }
+
+  private initializeNotificationSettings() {
+    this.notificationSettings = [
+      {
+        id: 'maintenance',
+        titleKey: 'notifications.categories.maintenance',
+        descriptionKey: 'Notificaciones sobre servicios programados',
+        icon: 'checkmarkCircle',
+        enabled: true
+      },
+      {
+        id: 'workshop',
+        titleKey: 'Ofertas de Talleres',
+        descriptionKey: 'Promociones y ofertas especiales',
+        icon: 'notifications',
+        enabled: true
+      },
+      {
+        id: 'alerts',
+        titleKey: 'Alertas de Seguridad',
+        descriptionKey: 'Notificaciones importantes sobre tu vehículo',
+        icon: 'warning',
+        enabled: true
+      },
+      {
+        id: 'updates',
+        titleKey: 'Actualizaciones de la App',
+        descriptionKey: 'Nuevas funciones y mejoras',
+        icon: 'notifications',
+        enabled: false
+      }
+    ];
   }
 
   toggleNotification(setting: any) {
     setting.enabled = !setting.enabled;
-    this.alertService.showSuccess(`Notificación ${setting.enabled ? 'activada' : 'desactivada'}: ${setting.title}`);
+    const status = setting.enabled ? 'activada' : 'desactivada';
+    const title = this.translateService.instant(setting.titleKey);
+    this.alertService.showSuccess(`Notificación ${status}: ${title}`);
   }
 }

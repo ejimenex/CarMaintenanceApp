@@ -100,35 +100,40 @@ export class AuthService {
   }
 
   async signInWithEmail(email: string, password: string): Promise<void> {
+    console.log('🔑 AuthService: signInWithEmail called');
+    console.log('🌐 API URL:', this.apiUrl);
+    console.log('📡 Login endpoint:', 'auth/login');
     
-    const loading = await this.loadingController.create({
-      message: 'Signing in...'
-    });
-    await loading.present();
-
     try {
+      console.log('📤 Sending login request to API...');
       // TODO: Replace with actual API call
       const data = await firstValueFrom(
-        this.authService.create({ username: email, password : password })
+        this.authService.createWithoutAuth({ username: email, password : password })
       );
+      
+      console.log('📥 API Response received:', data);
+      
       if(!data.success){
+        console.log('❌ Login failed - API returned success: false');
         await this.showErrorAlert('Sign In Error', data.message || 'Failed to sign in');
         return;
       }
    
-             // Use actual API response
-       const userData: UserData = {
-         token: data.data as any
-       };
+      console.log('✅ Login successful, processing user data...');
+      // Use actual API response
+      const userData: UserData = {
+        token: data.data as any
+      };
       
+      console.log('💾 Storing user data and navigating...');
       this.userSubject.next(userData);
       this.storeUser(userData);
       await this.router.navigate(['/user-preference']);
+      console.log('🎯 Navigation completed');
     } catch (error: any) {
-  
+      console.error('💥 AuthService error:', error);
       await this.showErrorAlert('Sign In Error', error.message || 'Failed to sign in');
-    } finally {
-      await loading.dismiss();
+      throw error; // Re-throw para que el componente pueda manejar el error
     }
   }
 
@@ -146,7 +151,7 @@ export class AuthService {
       // TODO: Replace with actual API call
    
       const response = await firstValueFrom(
-        this.userService.create({
+        this.userService.createWithoutAuth({
           userEmail:username,
           password:password,
           name:name
