@@ -17,6 +17,7 @@ export class CatalogService {
   private languageService: CrudService<Catalog>;
   private countryService: CrudService<Catalog>;
   private currencyService: CrudService<Catalog>;
+  private unitOfMeasureService: CrudService<Catalog>;
   private vehicleTypeService: CrudService<Catalog>;
   private colorService: CrudService<Catalog>;
   private brandService: CrudService<Catalog>;
@@ -34,7 +35,10 @@ export class CatalogService {
       endpoint: 'currency',
       retryAttempts: 3
     });
-
+    this.unitOfMeasureService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'unitOfMeasure',
+      retryAttempts: 3
+    });
     this.countryService = this.apiService.createCrudService<Catalog>({
       endpoint: 'AvalaibleCountry',
       retryAttempts: 3
@@ -68,6 +72,9 @@ export class CatalogService {
   }
   getBrand(): Observable<ApiResponse<Catalog[]>> {
     return this.brandService.getAllWithoutParams();
+  }
+  getUnitOfMeasure(): Observable<ApiResponse<Catalog[]>> {
+    return this.unitOfMeasureService.getAllWithoutParams();
   }
 }
 

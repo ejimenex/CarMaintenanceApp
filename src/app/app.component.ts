@@ -23,7 +23,7 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 
 import { addIcons } from 'ionicons';
-import { car, construct, settings, helpCircle, addCircle, personCircle, logOut, person, time, logIn, notifications, notificationsOutline } from 'ionicons/icons';
+import { car, construct, build, settings, helpCircle, addCircle, personCircle, logOut, person, time, logIn, notifications, notificationsOutline } from 'ionicons/icons';
 import { AuthService } from './features/auth/services/auth.service';
 import { logUserService, LogUserStats } from './utils/logUser.service';
 import { I18nService } from './i18n/i18n.service';
@@ -57,6 +57,7 @@ export class AppComponent implements OnInit {
   public appPages = [
     { titleKey: 'dashboard.menu.navigation.vehicles', url: '/vehicles', icon: 'car' },
     { titleKey: 'dashboard.menu.navigation.workshops', url: '/workshops', icon: 'construct' },
+    { titleKey: 'dashboard.menu.navigation.maintenance', url: '/maintenance', icon: 'build' },
     { titleKey: 'dashboard.menu.navigation.myServices', url: '/workshops', icon: 'construct' },
     { titleKey: 'notifications.title', url: '/notifications', icon: 'notifications' },
     { titleKey: 'dashboard.menu.navigation.userPreferences', url: '/user-preference', icon: 'person' },
@@ -77,7 +78,7 @@ export class AppComponent implements OnInit {
     private menu: MenuController,
     private notificationService: NotificationService
   ) {
-    addIcons({ car, construct, settings, helpCircle, addCircle, personCircle, logOut, person, time, logIn, notifications, notificationsOutline });
+    addIcons({ car, construct, build, settings, helpCircle, addCircle, personCircle, logOut, person, time, logIn, notifications, notificationsOutline });
     this.loadUserName();
   }
 

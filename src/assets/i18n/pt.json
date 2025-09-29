@@ -46,6 +46,7 @@
   "teal": "Turquesa",
   "tradeType": "Tipo de Negócio",
   "trades": "Negócios",
+  "amount":"Valor",
   "dashboard": {
     "title": "Painel de Controle",
     "welcome": {
@@ -477,6 +478,15 @@
       "message": "Tem certeza de que deseja excluir a oficina {workshopName}? Esta ação não pode ser desfeita.",
       "success": "Oficina excluída com sucesso",
       "error": "Erro ao excluir oficina"
+    }
+  },
+  "maintenance": {
+    "title": "Manutenção",
+    "processTypes": {
+      "FUEL": "Combustível",
+      "PART": "Peças",
+      "TALL": "Oficina",
+      "INSU": "Seguros"
     }
   }
 }

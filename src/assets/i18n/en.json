@@ -46,6 +46,7 @@
   "teal": "Teal",
   "tradeType": "Trade Type",
   "trades": "Businesses",
+  "amount":"Amount",
   "Taller":"WorksShop",
   "StorePart":"Store Part",
   "TallerYStorePart":"Workshop and Store Part",
@@ -495,6 +496,289 @@
       "message": "Are you sure you want to delete the workshop {workshopName}? This action cannot be undone.",
       "success": "Workshop deleted successfully",
       "error": "Error deleting workshop"
+    }
+  },
+  "maintenance": {
+    "title": "Maintenance",
+    "addMaintenance": "Add Maintenance",
+    "editMaintenance": "Edit Maintenance",
+    "deleteMaintenance": "Delete Maintenance",
+    "viewMaintenance": "View Maintenance",
+    "list": {
+      "title": "Maintenance ({{count}})",
+      "empty": {
+        "title": "No maintenance records",
+        "description": "No maintenance records found. Start by adding your first maintenance record.",
+        "button": "Add First Maintenance"
+      },
+      "search": {
+        "placeholder": "Search maintenance..."
+      },
+      "loading": "Loading maintenance...",
+      "loadingMore": "Loading more maintenance...",
+      "error": "Error loading maintenance records",
+      "retry": "Retry",
+      "noResults": {
+        "title": "No results",
+        "description": "No maintenance records found matching your search."
+      }
+    },
+    "add": {
+      "title": "New Maintenance",
+      "header": {
+        "title": "Maintenance Registration",
+        "subtitle": "Complete the vehicle maintenance information"
+      },
+      "saving": "Saving maintenance...",
+      "success": "Maintenance created successfully",
+      "error": "Error creating maintenance",
+      "cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+      "exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost."
+    },
+    "edit": {
+      "title": "Edit Maintenance",
+      "header": {
+        "title": "Edit Maintenance",
+        "subtitle": "Modify the maintenance information"
+      },
+      "saving": "Saving changes...",
+      "loadingData": "Loading maintenance data...",
+      "success": "Maintenance updated successfully",
+      "error": {
+        "load": "Error loading maintenance",
+        "update": "Error updating maintenance",
+        "invalidId": "Invalid maintenance ID"
+      }
+    },
+    "view": {
+      "title": "Maintenance Details",
+      "error": "Error loading maintenance details"
+    },
+    "form": {
+      "name": {
+        "label": "Maintenance Name",
+        "placeholder": "e.g.: Oil change, General inspection..."
+      },
+      "vehicle": {
+        "label": "Vehicle",
+        "placeholder": "Select a vehicle"
+      },
+      "workshop": {
+        "label": "Workshop",
+        "placeholder": "Select a workshop"
+      },
+      "processType": {
+        "label": "Process Type",
+        "placeholder": "Select process type",
+        "options": {
+          "FUEL": "Fuel",
+          "PART": "Parts",
+          "TALL": "Workshop",
+          "INSU": "Insurance"
+        }
+      },
+      "startDate": {
+        "label": "Start Date",
+        "placeholder": "Select start date"
+      },
+      "endDate": {
+        "label": "End Date",
+        "placeholder": "Select end date"
+      },
+      "notes": {
+        "label": "Notes",
+        "placeholder": "Additional notes about the maintenance"
+      },
+      "errors": {
+        "required": "This field is required",
+        "minLength": "Must be at least {{min}} characters",
+        "invalidForm": "Please complete all required fields",
+        "loadVehicles": "Error loading vehicles",
+        "loadWorkshops": "Error loading workshops"
+      }
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "exit": "Exit",
+      "addDetail": "Add Detail"
+    },
+    "delete": {
+      "confirm": "Confirm deletion",
+      "message": "Are you sure you want to delete the maintenance for {{vehicleName}}?",
+      "success": "Maintenance deleted successfully",
+      "error": "Error deleting maintenance"
+    },
+    "processTypes": {
+      "FUEL": "Fuel",
+      "PART": "Parts",
+      "TALL": "Workshop",
+      "INSU": "Insurance"
+    }
+  },
+  "fuel": {
+    "title": "Fuel Details",
+    "list": {
+      "title": "Fuel Details",
+      "detailsTitle": "Fuel Details ({{count}})",
+      "empty": {
+        "title": "No fuel details",
+        "description": "No fuel details found for this maintenance. Add the first detail.",
+        "button": "Add First Detail"
+      },
+      "loading": "Loading fuel details...",
+      "loadingMore": "Loading more details...",
+      "error": "Error loading fuel details",
+      "retry": "Retry"
+    },
+    "add": {
+      "title": "Add Fuel Detail",
+      "header": {
+        "title": "New Fuel Detail",
+        "subtitle": "Complete the fuel information used"
+      },
+      "saving": "Saving detail...",
+      "loadingCatalogs": "Loading catalogs...",
+      "success": "Fuel detail added successfully",
+      "error": "Error adding fuel detail",
+      "invalidMaintenanceId": "Invalid maintenance ID"
+    },
+    "form": {
+      "fuelType": {
+        "label": "Fuel Type",
+        "placeholder": "Select fuel type",
+        "options": {
+          "GASOLINE": "Gasoline",
+          "DIESEL": "Diesel",
+          "LPG": "LPG",
+          "ELECTRIC": "Electric"
+        }
+      },
+      "unitOfMeasure": {
+        "label": "Unit of Measure",
+        "placeholder": "Select unit of measure"
+      },
+      "fuelAmount": {
+        "label": "Fuel Amount",
+        "placeholder": "Enter amount"
+      },
+      "fuelPrice": {
+        "label": "Price per Unit (Optional)",
+        "placeholder": "Enter price per unit"
+      },
+      "totalCost": {
+        "label": "Calculated Total Cost"
+      },
+      "notes": {
+        "label": "Notes (Optional)",
+        "placeholder": "Additional notes about the fuel"
+      },
+      "errors": {
+        "required": "This field is required",
+        "minValue": "Minimum value is {{min}}",
+        "invalidForm": "Please complete all required fields",
+        "loadUnitMeasures": "Error loading units of measure"
+      }
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save"
+    },
+    "delete": {
+      "confirm": "Confirm deletion",
+      "message": "Are you sure you want to delete the {{fuelType}} detail?",
+      "success": "Fuel detail deleted successfully",
+      "error": "Error deleting fuel detail"
+    },
+    "error": {
+      "invalidMaintenanceId": "Invalid maintenance ID"
+    }
+  },
+  "insurance": {
+    "title": "Insurance Details",
+    "list": {
+      "title": "Insurance Details",
+      "detailsTitle": "Insurance Details ({{count}})",
+      "empty": {
+        "title": "No insurance details",
+        "description": "No insurance details found for this maintenance. Add the first detail.",
+        "button": "Add First Detail"
+      },
+      "loading": "Loading insurance details...",
+      "loadingMore": "Loading more details...",
+      "error": "Error loading insurance details",
+      "retry": "Retry"
+    },
+    "add": {
+      "title": "Add Insurance Detail",
+      "header": {
+        "title": "New Insurance Detail",
+        "subtitle": "Complete the insurance information used"
+      },
+      "saving": "Saving detail...",
+      "loadingCatalogs": "Loading catalogs...",
+      "success": "Insurance detail added successfully",
+      "error": "Error adding insurance detail",
+      "invalidMaintenanceId": "Invalid maintenance ID"
+    },
+    "form": {
+      "policyNumber": {
+        "label": "Policy Number",
+        "placeholder": "Enter policy number"
+      },
+      "insuranceAmount": {
+        "label": "Insurance Amount",
+        "placeholder": "Enter insurance amount"
+      },
+      "additionalAmount": {
+        "label": "Additional Amount (Optional)",
+        "placeholder": "Enter additional amount if applicable"
+      },
+      "currency": {
+        "label": "Currency",
+        "placeholder": "Select currency"
+      },
+      "coverageStartDate": {
+        "label": "Coverage Start Date",
+        "placeholder": "Select start date"
+      },
+      "coverageEndDate": {
+        "label": "Coverage End Date",
+        "placeholder": "Select end date"
+      },
+      "coverageDuration": {
+        "label": "Coverage Duration",
+        "days": "days"
+      },
+      "totalCoverage": {
+        "label": "Total Coverage"
+      },
+      "errors": {
+        "required": "This field is required",
+        "minValue": "Minimum value is {{min}}",
+        "invalidForm": "Please complete all required fields",
+        "loadCurrencies": "Error loading currencies"
+      }
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save"
+    },
+    "delete": {
+      "confirm": "Confirm deletion",
+      "message": "Are you sure you want to delete the {{policy}} policy detail?",
+      "success": "Insurance detail deleted successfully",
+      "error": "Error deleting insurance detail"
+    },
+    "error": {
+      "invalidMaintenanceId": "Invalid maintenance ID"
     }
   }
 }

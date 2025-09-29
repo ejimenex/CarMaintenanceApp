@@ -16,6 +16,10 @@ export interface WorkshopEditRequest extends WorkshopCreateRequest
   id: string;
   
 }
+export interface LabelValueDto{
+  label: string;
+  value: string;
+}
 export interface WorkshopGetRequest {
   id: string;              
   name: string;            // required
@@ -34,6 +38,7 @@ export class WorkshopService {
   private workshopEditService: CrudService<WorkshopEditRequest>;
   private workShopCreateService: CrudService<WorkshopCreateRequest>;
   private workshopGetService: CrudService<WorkshopGetRequest>;
+  private labelValueDtoService: CrudService<LabelValueDto>;
   constructor(private apiService: ApiService) {
     // Initialize CRUD services for different entities
         this.workShopCreateService = this.apiService.createCrudService<WorkshopCreateRequest>({
@@ -46,6 +51,10 @@ export class WorkshopService {
         });
         this.workshopGetService = this.apiService.createCrudService<WorkshopGetRequest>({
           endpoint: 'trade',
+          retryAttempts: 3
+        });
+        this.labelValueDtoService = this.apiService.createCrudService<LabelValueDto>({
+          endpoint: 'trade/getall',
           retryAttempts: 3
         });
  
@@ -78,6 +87,8 @@ return this.workShopCreateService.create(data)
 deleteWorksShop(id: string): Observable<ApiResponse<any>> {
   return this.workShopCreateService.delete(id);
 }
-
+getAll(): Observable<ApiResponse<LabelValueDto[]>> {
+  return this.labelValueDtoService.getAllWithoutParams();
+}
 }
 

@@ -56,6 +56,25 @@
   "StorePart":"Tienda de Repuestos",
   "TallerYStorePart":"Taller y Tienda de Repuestos",
   "trades":"Comercios",
+  "PremiumFuel":"Gasolina Premium",
+  "RegularFuel":"Gasolina Regular",
+  "Diésel":"Diésel",
+  "GasLP":"Gas LP",
+  "ElectricFuel":"Electric",
+  "UnitOfMeasureIdRequired":"La unidad de medida es requerida",
+  "RequiredFuelType":"El tipo de combustible es requerido",
+  "RequiredPolicyNumber":"El número de poliza es requerido",
+  "RequiredInsuranceCompany":"El nombre de la aseguradora es requerido",
+  "RequiredAmountInsurance":"El monto del seguro es requerido",
+  "ADDINSURANCEDETAIL":"Pago de Seguro agregado",
+  "ADDFUEL":"Pago de Combustible agregado",
+  "UPDATEPROCESS":"Mantenimiento actualizado",
+  "ADDPROCCESS":"Mantenimiento agregado",
+  "AddFuelSucessfully":"Pago de Combustible agregado correctamente",
+  "AddInsuranceSucessfully":"Pago de Seguro agregado correctamente",
+  "AddProcessSuccessfully":"Mantenimiento agregado correctamente",
+  "amount":"Monto",
+  
   "dashboard": {
     "title": "Panel de Control",
     "welcome": {
@@ -71,6 +90,7 @@
         "title": "Navegación Principal",
         "vehicles": "Vehículos",
         "workshops": "Comercios",
+        "maintenance": "Mantenimientos",
         "myServices": "Mis Servicios",
         "userPreferences": "Preferencias de Usuario",
         "settings": "Configuración"
@@ -78,7 +98,8 @@
       "quickActions": {
         "title": "Acciones Rápidas",
         "addVehicle": "Agregar Vehículo",
-        "addWorkshop": "Agregar Comercio"
+        "addWorkshop": "Agregar Comercio",
+        "addMaintenance": "Agregar Mantenimiento"
       },
       "footer": {
         "settings": "Configuración",
@@ -502,6 +523,289 @@
       "message": "¿Estás seguro de que quieres eliminar el comercio {workshopName}? Esta acción no se puede deshacer.",
       "success": "Taller eliminado exitosamente",
       "error": "Error al eliminar el taller"
+    }
+  },
+  "maintenance": {
+    "title": "Mantenimientos",
+    "addMaintenance": "Agregar Mantenimiento",
+    "editMaintenance": "Editar Mantenimiento",
+    "deleteMaintenance": "Eliminar Mantenimiento",
+    "viewMaintenance": "Ver Mantenimiento",
+    "list": {
+      "title": "Mantenimientos ({{count}})",
+      "empty": {
+        "title": "No hay mantenimientos",
+        "description": "No se encontraron mantenimientos registrados. Comienza agregando tu primer mantenimiento.",
+        "button": "Agregar Primer Mantenimiento"
+      },
+      "search": {
+        "placeholder": "Buscar mantenimientos..."
+      },
+      "loading": "Cargando mantenimientos...",
+      "loadingMore": "Cargando más mantenimientos...",
+      "error": "Error al cargar los mantenimientos",
+      "retry": "Reintentar",
+      "noResults": {
+        "title": "Sin resultados",
+        "description": "No se encontraron mantenimientos que coincidan con tu búsqueda."
+      }
+    },
+    "add": {
+      "title": "Nuevo Mantenimiento",
+      "header": {
+        "title": "Registro de Mantenimiento",
+        "subtitle": "Complete la información del mantenimiento del vehículo"
+      },
+      "saving": "Guardando mantenimiento...",
+      "success": "Mantenimiento creado exitosamente",
+      "error": "Error al crear el mantenimiento",
+      "cancelConfirm": "¿Estás seguro de que quieres cancelar? Se perderán los cambios no guardados.",
+      "exitConfirm": "¿Estás seguro de que quieres salir? Se perderán los cambios no guardados."
+    },
+    "edit": {
+      "title": "Editar Mantenimiento",
+      "header": {
+        "title": "Editar Mantenimiento",
+        "subtitle": "Modifica la información del mantenimiento"
+      },
+      "saving": "Guardando cambios...",
+      "loadingData": "Cargando datos del mantenimiento...",
+      "success": "Mantenimiento actualizado exitosamente",
+      "error": {
+        "load": "Error al cargar el mantenimiento",
+        "update": "Error al actualizar el mantenimiento",
+        "invalidId": "ID de mantenimiento inválido"
+      }
+    },
+    "view": {
+      "title": "Detalles del Mantenimiento",
+      "error": "Error al cargar los detalles del mantenimiento"
+    },
+    "form": {
+      "name": {
+        "label": "Nombre del Mantenimiento",
+        "placeholder": "Ej: Cambio de aceite, Revisión general..."
+      },
+      "vehicle": {
+        "label": "Vehículo",
+        "placeholder": "Seleccione un vehículo"
+      },
+      "workshop": {
+        "label": "Taller",
+        "placeholder": "Seleccione un taller"
+      },
+      "processType": {
+        "label": "Tipo de Proceso",
+        "placeholder": "Seleccione el tipo de proceso",
+        "options": {
+          "FUEL": "Combustible",
+          "PART": "Repuestos",
+          "TALL": "Taller",
+          "INSU": "Seguros"
+        }
+      },
+      "startDate": {
+        "label": "Fecha de Inicio",
+        "placeholder": "Seleccione la fecha de inicio"
+      },
+      "endDate": {
+        "label": "Fecha de Fin",
+        "placeholder": "Seleccione la fecha de fin"
+      },
+      "notes": {
+        "label": "Notas",
+        "placeholder": "Notas adicionales sobre el mantenimiento"
+      },
+      "errors": {
+        "required": "Este campo es requerido",
+        "minLength": "Debe tener al menos {{min}} caracteres",
+        "invalidForm": "Por favor, complete todos los campos requeridos",
+        "loadVehicles": "Error al cargar los vehículos",
+        "loadWorkshops": "Error al cargar los talleres"
+      }
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "exit": "Salir",
+      "addDetail": "Agregar Detalle"
+    },
+    "delete": {
+      "confirm": "Confirmar eliminación",
+      "message": "¿Está seguro de que desea eliminar el mantenimiento de {{vehicleName}}?",
+      "success": "Mantenimiento eliminado exitosamente",
+      "error": "Error al eliminar el mantenimiento"
+    },
+    "processTypes": {
+      "FUEL": "Combustible",
+      "PART": "Repuestos", 
+      "TALL": "Taller",
+      "INSU": "Seguros"
+    }
+  },
+  "fuel": {
+    "title": "Detalles de Combustible",
+    "list": {
+      "title": "Detalles de Combustible",
+      "detailsTitle": "Detalles de Combustible ({{count}})",
+      "empty": {
+        "title": "No hay detalles de combustible",
+        "description": "No se encontraron detalles de combustible para este mantenimiento. Agrega el primer detalle.",
+        "button": "Agregar Primer Detalle"
+      },
+      "loading": "Cargando detalles de combustible...",
+      "loadingMore": "Cargando más detalles...",
+      "error": "Error al cargar los detalles de combustible",
+      "retry": "Reintentar"
+    },
+    "add": {
+      "title": "Agregar Detalle de Combustible",
+      "header": {
+        "title": "Nuevo Detalle de Combustible",
+        "subtitle": "Complete la información del combustible utilizado"
+      },
+      "saving": "Guardando detalle...",
+      "loadingCatalogs": "Cargando catálogos...",
+      "success": "Detalle de combustible agregado exitosamente",
+      "error": "Error al agregar el detalle de combustible",
+      "invalidMaintenanceId": "ID de mantenimiento inválido"
+    },
+    "form": {
+      "fuelType": {
+        "label": "Tipo de Combustible",
+        "placeholder": "Seleccione el tipo de combustible",
+        "options": {
+          "GASOLINE": "Gasolina",
+          "DIESEL": "Diésel",
+          "LPG": "Gas LP",
+          "ELECTRIC": "Eléctrico"
+        }
+      },
+      "unitOfMeasure": {
+        "label": "Unidad de Medida",
+        "placeholder": "Seleccione la unidad de medida"
+      },
+      "fuelAmount": {
+        "label": "Cantidad de Combustible",
+        "placeholder": "Ingrese la cantidad"
+      },
+      "fuelPrice": {
+        "label": "Precio por Unidad (Opcional)",
+        "placeholder": "Ingrese el precio por unidad"
+      },
+      "totalCost": {
+        "label": "Costo Total Calculado"
+      },
+      "notes": {
+        "label": "Notas (Opcional)",
+        "placeholder": "Notas adicionales sobre el combustible"
+      },
+      "errors": {
+        "required": "Este campo es requerido",
+        "minValue": "El valor mínimo es {{min}}",
+        "invalidForm": "Por favor, complete todos los campos requeridos",
+        "loadUnitMeasures": "Error al cargar las unidades de medida"
+      }
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar"
+    },
+    "delete": {
+      "confirm": "Confirmar eliminación",
+      "message": "¿Está seguro de que desea eliminar el detalle de {{fuelType}}?",
+      "success": "Detalle de combustible eliminado exitosamente",
+      "error": "Error al eliminar el detalle de combustible"
+    },
+    "error": {
+      "invalidMaintenanceId": "ID de mantenimiento inválido"
+    }
+  },
+  "insurance": {
+    "title": "Detalles de Seguros",
+    "list": {
+      "title": "Detalles de Seguros",
+      "detailsTitle": "Detalles de Seguros ({{count}})",
+      "empty": {
+        "title": "No hay detalles de seguros",
+        "description": "No se encontraron detalles de seguros para este mantenimiento. Agrega el primer detalle.",
+        "button": "Agregar Primer Detalle"
+      },
+      "loading": "Cargando detalles de seguros...",
+      "loadingMore": "Cargando más detalles...",
+      "error": "Error al cargar los detalles de seguros",
+      "retry": "Reintentar"
+    },
+    "add": {
+      "title": "Agregar Detalle de Seguro",
+      "header": {
+        "title": "Nuevo Detalle de Seguro",
+        "subtitle": "Complete la información del seguro utilizado"
+      },
+      "saving": "Guardando detalle...",
+      "loadingCatalogs": "Cargando catálogos...",
+      "success": "Detalle de seguro agregado exitosamente",
+      "error": "Error al agregar el detalle de seguro",
+      "invalidMaintenanceId": "ID de mantenimiento inválido"
+    },
+    "form": {
+      "policyNumber": {
+        "label": "Número de Póliza",
+        "placeholder": "Ingrese el número de póliza"
+      },
+      "insuranceAmount": {
+        "label": "Monto del Seguro",
+        "placeholder": "Ingrese el monto del seguro"
+      },
+      "additionalAmount": {
+        "label": "Monto Adicional (Opcional)",
+        "placeholder": "Ingrese monto adicional si aplica"
+      },
+      "currency": {
+        "label": "Moneda",
+        "placeholder": "Seleccione la moneda"
+      },
+      "coverageStartDate": {
+        "label": "Fecha de Inicio de Cobertura",
+        "placeholder": "Seleccione la fecha de inicio"
+      },
+      "coverageEndDate": {
+        "label": "Fecha de Fin de Cobertura",
+        "placeholder": "Seleccione la fecha de fin"
+      },
+      "coverageDuration": {
+        "label": "Duración de Cobertura",
+        "days": "días"
+      },
+      "totalCoverage": {
+        "label": "Cobertura Total"
+      },
+      "errors": {
+        "required": "Este campo es requerido",
+        "minValue": "El valor mínimo es {{min}}",
+        "invalidForm": "Por favor, complete todos los campos requeridos",
+        "loadCurrencies": "Error al cargar las monedas"
+      }
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar"
+    },
+    "delete": {
+      "confirm": "Confirmar eliminación",
+      "message": "¿Está seguro de que desea eliminar el detalle de la póliza {{policy}}?",
+      "success": "Detalle de seguro eliminado exitosamente",
+      "error": "Error al eliminar el detalle de seguro"
+    },
+    "error": {
+      "invalidMaintenanceId": "ID de mantenimiento inválido"
     }
   }
 

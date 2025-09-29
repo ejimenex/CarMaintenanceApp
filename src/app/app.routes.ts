@@ -41,6 +41,12 @@ export const routes: Routes = [
       import('./features/vehicles/vehicles.routes').then((m) => m.VEHICLES_ROUTES),
   },
   {
+    path: 'maintenance',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./features/maintenance/maintenance.routes').then((m) => m.maintenanceRoutes),
+  },
+  {
     path: 'user-preference',
     canActivate: [AuthGuard],
     loadComponent: () =>

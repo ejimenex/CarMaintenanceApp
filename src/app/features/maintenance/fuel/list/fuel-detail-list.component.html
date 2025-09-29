@@ -1,0 +1,181 @@
+<ion-header class="uniform-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu" class="menu-button"></ion-menu-button>
+      <ion-back-button defaultHref="/maintenance"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <ion-icon name="car-sport" slot="start" class="header-icon"></ion-icon>
+      {{ 'fuel.list.title' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="fade-in">
+    <!-- Loading Spinner -->
+    @if (loading && fuelDetails.length === 0) {
+      <div class="uniform-loading">
+        <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
+        <div class="loading-text">
+          <ion-icon name="hourglass" class="loading-icon"></ion-icon>
+          {{ 'fuel.list.loading' | translate }}
+        </div>
+      </div>
+    }
+
+    <!-- Error Message -->
+    @if (errorMessage) {
+      <div class="uniform-alert danger">
+        <div class="alert-header">
+          <ion-icon name="alert-circle" class="alert-icon"></ion-icon>
+          <h4>{{ 'common.error' | translate }}</h4>
+        </div>
+        <div class="alert-message">{{ errorMessage }}</div>
+        <ion-button (click)="loadFuelDetails()" fill="outline" class="retry-button">
+          <ion-icon name="refresh" slot="start"></ion-icon>
+          {{ 'fuel.list.retry' | translate }}
+        </ion-button>
+      </div>
+    }
+
+    <!-- Fuel Details List -->
+    @if (!loading && fuelDetails.length > 0) {
+      <div class="fuel-details-container">
+        <div class="list-header">
+          <h3 class="list-title">{{ 'fuel.list.detailsTitle' | translate: { count: fuelDetails.length } }}</h3>
+        </div>
+
+        <div class="uniform-list">
+          @for (fuelDetail of fuelDetails; track fuelDetail.processHeaderId; let i = $index) {
+            <ion-item class="fuel-detail-item">
+              <!-- Sequential Number -->
+              <div slot="start" class="fuel-number">
+                <span class="number-badge">{{ i + 1 }}</span>
+              </div>
+
+              <!-- Fuel Icon -->
+              <ion-avatar slot="start" class="fuel-image">
+                <ion-icon name="car-sport" class="fuel-icon"></ion-icon>
+              </ion-avatar>
+
+              <!-- Fuel Details -->
+              <ion-label class="fuel-details">
+                <h2 class="fuel-type">
+                  <ion-icon name="flash" class="fuel-type-icon"></ion-icon>
+                  {{ getFuelTypeLabel(fuelDetail.fuelType) }}
+                </h2>
+                <p class="fuel-amount">
+                  <ion-icon name="speedometer" class="fuel-amount-icon"></ion-icon>
+                  {{ fuelDetail.fuelAmount }} {{ fuelDetail.unitOfMeasureName }}
+                </p>
+                @if (fuelDetail.fuelPrice) {
+                  <p class="fuel-price">
+                    <ion-icon name="cash" class="fuel-price-icon"></ion-icon>
+                    ${{ fuelDetail.fuelPrice | number:'1.2-2' }} / {{ fuelDetail.unitOfMeasureName }}
+                  </p>
+                }
+                @if (fuelDetail.totalCost) {
+                  <p class="fuel-total">
+                    <ion-icon name="calculator" class="fuel-total-icon"></ion-icon>
+                    Total: ${{ fuelDetail.totalCost | number:'1.2-2' }}
+                  </p>
+                } @else if (fuelDetail.fuelPrice) {
+                  <p class="fuel-total calculated">
+                    <ion-icon name="calculator" class="fuel-total-icon"></ion-icon>
+                    Total: ${{ calculateTotalCost(fuelDetail.fuelAmount, fuelDetail.fuelPrice) | number:'1.2-2' }}
+                  </p>
+                }
+                @if (fuelDetail.notes) {
+                  <p class="fuel-notes">
+                    <ion-icon name="document-text" class="fuel-notes-icon"></ion-icon>
+                    {{ fuelDetail.notes }}
+                  </p>
+                }
+              </ion-label>
+
+              <!-- Dropdown Menu -->
+              <ion-button
+                slot="end"
+                fill="clear"
+                class="menu-button"
+                (click)="toggleMenu($event, fuelDetail.processHeaderId)">
+                <ion-icon name="ellipsis-vertical" class="menu-icon"></ion-icon>
+              </ion-button>
+
+              <!-- Dropdown Menu Popover -->
+              <ion-popover
+                [isOpen]="openMenuId === fuelDetail.processHeaderId"
+                (didDismiss)="closeMenu()"
+                [event]="menuEvent">
+                <ng-template>
+                  <ion-content class="menu-content">
+                    <ion-list class="menu-list">
+                      <ion-item button (click)="viewFuelDetail(fuelDetail.processHeaderId); closeMenu()" class="menu-item">
+                        <ion-icon name="eye" slot="start" color="primary"></ion-icon>
+                        <ion-label>{{ 'fuel.actions.view' | translate }}</ion-label>
+                      </ion-item>
+
+                      <ion-item button (click)="editFuelDetail(fuelDetail.processHeaderId); closeMenu()" class="menu-item">
+                        <ion-icon name="create" slot="start" color="warning"></ion-icon>
+                        <ion-label>{{ 'fuel.actions.edit' | translate }}</ion-label>
+                      </ion-item>
+
+                      <ion-item button (click)="confirmDelete(fuelDetail); closeMenu()" class="menu-item">
+                        <ion-icon name="trash" slot="start" color="danger"></ion-icon>
+                        <ion-label>{{ 'fuel.actions.delete' | translate }}</ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+            </ion-item>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (!loading && fuelDetails.length === 0 && !errorMessage) {
+      <div class="uniform-empty">
+        <div class="empty-icon">
+          <ion-icon name="car-sport-outline"></ion-icon>
+        </div>
+        <h3 class="empty-title">{{ 'fuel.list.empty.title' | translate }}</h3>
+        <p class="empty-description">{{ 'fuel.list.empty.description' | translate }}</p>
+        <ion-button (click)="addFuelDetail()" class="add-fuel-btn" fill="solid" size="large">
+          <ion-icon name="add-circle" slot="start"></ion-icon>
+          {{ 'fuel.list.empty.button' | translate }}
+        </ion-button>
+      </div>
+    }
+
+    <!-- Loading More Indicator -->
+    @if (loading && fuelDetails.length > 0) {
+      <div class="loading-more">
+        <ion-spinner name="bubbles" class="loading-more-spinner"></ion-spinner>
+        <div class="loading-more-text">
+          <ion-icon name="sync" class="loading-more-icon"></ion-icon>
+          {{ 'fuel.list.loadingMore' | translate }}
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addFuelDetail()" class="add-fuel-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<!-- Delete Confirmation Alert -->
+<ion-alert
+  [isOpen]="showDeleteAlert"
+  [header]="'fuel.delete.confirm' | translate"
+  [message]="('fuel.delete.message' | translate: { fuelType: fuelDetailToDelete?.fuelType || 'este detalle' })"
+  [buttons]="deleteAlertButtons"
+  (didDismiss)="onDeleteAlertDismiss()">
+</ion-alert>

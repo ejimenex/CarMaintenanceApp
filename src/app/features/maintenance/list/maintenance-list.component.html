@@ -1,0 +1,227 @@
+<ion-header class="uniform-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu" class="menu-button"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <ion-icon name="build" slot="start" class="header-icon"></ion-icon>
+      {{ 'maintenance.title' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="fade-in">
+    <!-- Search Bar -->
+    <div class="search-container">
+      <ion-searchbar
+        [(ngModel)]="globalSearch"
+        [placeholder]="'maintenance.list.search.placeholder' | translate"
+        (ionInput)="onSearch($event)"
+        (ionClear)="onClearSearch()"
+        class="search-bar">
+        <ion-icon name="search" slot="start"></ion-icon>
+      </ion-searchbar>
+      <ion-button 
+        fill="solid" 
+        class="search-button"
+        (click)="performSearch()">
+        <ion-icon name="search" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Loading Spinner -->
+    @if (loading && maintenances.length === 0) {
+      <div class="uniform-loading">
+        <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
+        <div class="loading-text">
+          <ion-icon name="hourglass" class="loading-icon"></ion-icon>
+          {{ 'maintenance.list.loading' | translate }}
+        </div>
+      </div>
+    }
+
+    <!-- Error Message -->
+    @if (errorMessage) {
+      <div class="uniform-alert danger">
+        <div class="alert-header">
+          <ion-icon name="alert-circle" class="alert-icon"></ion-icon>
+          <h4>{{ 'common.error' | translate }}</h4>
+        </div>
+        <div class="alert-message">{{ errorMessage }}</div>
+        <ion-button (click)="loadMaintenances()" fill="outline" class="retry-button">
+          <ion-icon name="refresh" slot="start"></ion-icon>
+          {{ 'maintenance.list.retry' | translate }}
+        </ion-button>
+      </div>
+    }
+
+    <!-- Maintenances List -->
+    @if (!loading && maintenances.length > 0) {
+      <div class="maintenances-container">
+        <div class="list-header">
+          <h3 class="list-title">{{ 'maintenance.list.title' | translate: { count: totalItems } }}</h3>
+        </div>
+        
+        <div class="uniform-list">
+          @for (maintenance of maintenances; track maintenance.id; let i = $index) {
+            <ion-item class="maintenance-item">
+              <!-- Sequential Number -->
+              <div slot="start" class="maintenance-number">
+                <span class="number-badge">{{ i + 1 }}</span>
+              </div>
+              
+              <!-- Maintenance Icon -->
+              <!-- <ion-avatar slot="start" class="maintenance-image">
+                <ion-icon name="build" class="maintenance-icon"></ion-icon>
+              </ion-avatar>
+              -->
+              <!-- Maintenance Details -->
+              <ion-label class="maintenance-details">
+                <p class="maintenance-name">
+                  <ion-icon name="car" class="maintenance-name-icon"></ion-icon>
+                  {{ maintenance.name  }}
+                 
+                </p>
+                <h2 class="maintenance-name">
+                  <ion-icon name="car" class="maintenance-name-icon"></ion-icon>
+                  {{ maintenance.vehicleName }}
+                </h2>
+                <p class="maintenance-process">
+                  <ion-icon name="document-text" class="maintenance-process-icon"></ion-icon>
+                  {{ maintenance.processNumber }}
+                </p>
+                <p class="maintenance-type">
+                  <ion-chip [color]="getProcessTypeColor(maintenance.processType)" class="type-chip">
+                    {{ getProcessTypeLabel(maintenance.processType) }}
+                  </ion-chip>
+                </p>
+               
+                <p class="maintenance-date">
+                  <ion-icon name="calendar" class="maintenance-date-icon"></ion-icon>
+                  {{ maintenance.startDate | date:'dd/MM/yyyy' }}
+                  @if (maintenance.endDate) {
+                    - {{ maintenance.endDate | date:'dd/MM/yyyy' }}
+                  }
+                </p>
+                @if (maintenance.tradeName) {
+                  <p class="maintenance-trade">
+                    <ion-icon name="business" class="maintenance-trade-icon"></ion-icon>
+                    {{ maintenance.tradeName }}
+                  </p>
+                }
+                @if (maintenance.totalAmount) {
+                  <p class="maintenance-amount">
+                    <ion-icon name="cash" class="maintenance-amount-icon"></ion-icon>
+                    ${{ maintenance.totalAmount | number:'1.2-2' }}
+                  </p>
+                }
+              </ion-label>
+              
+              <!-- Dropdown Menu -->
+              <ion-button 
+                slot="end" 
+                fill="clear" 
+                class="menu-button"
+                (click)="toggleMenu($event, maintenance.id)">
+                <ion-icon name="ellipsis-vertical" class="menu-icon"></ion-icon>
+              </ion-button>
+              
+              <!-- Dropdown Menu Popover -->
+              <ion-popover 
+                [isOpen]="openMenuId === maintenance.id" 
+                (didDismiss)="closeMenu()"
+                [event]="menuEvent">
+                <ng-template>
+                  <ion-content class="menu-content">
+                    <ion-list class="menu-list">
+                      <ion-item button (click)="viewMaintenance(maintenance.id); closeMenu()" class="menu-item">
+                        <ion-icon name="eye" slot="start" color="primary"></ion-icon>
+                        <ion-label>{{ 'maintenance.actions.view' | translate }}</ion-label>
+                      </ion-item>
+                      
+                      <ion-item button (click)="editMaintenance(maintenance.id); closeMenu()" class="menu-item">
+                        <ion-icon name="create" slot="start" color="warning"></ion-icon>
+                        <ion-label>{{ 'maintenance.actions.edit' | translate }}</ion-label>
+                      </ion-item>
+                      
+                      <ion-item button (click)="addFuelDetail(maintenance); closeMenu()" class="menu-item">
+                        <ion-icon name="car-sport" slot="start" color="tertiary"></ion-icon>
+                        <ion-label>{{ 'maintenance.actions.addDetail' | translate }}</ion-label>
+                      </ion-item>
+                      
+                      <ion-item button (click)="confirmDelete(maintenance); closeMenu()" class="menu-item">
+                        <ion-icon name="trash" slot="start" color="danger"></ion-icon>
+                        <ion-label>{{ 'maintenance.actions.delete' | translate }}</ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+            </ion-item>
+          }
+        </div>
+
+        <!-- Infinite Scroll -->
+        <ion-infinite-scroll (ionInfinite)="loadMore($event)" [disabled]="!hasMoreData || loading">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            [loadingText]="'maintenance.list.loadingMore' | translate">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (!loading && maintenances.length === 0 && globalSearch === '' && !errorMessage) {
+      <div class="uniform-empty">
+        <div class="empty-icon">
+          <ion-icon name="build-outline"></ion-icon>
+        </div>
+        <h3 class="empty-title">{{ 'maintenance.list.empty.title' | translate }}</h3>
+        <p class="empty-description">{{ 'maintenance.list.empty.description' | translate }}</p>
+        <ion-button (click)="addMaintenance()" class="add-maintenance-btn" fill="solid" size="large">
+          <ion-icon name="add-circle" slot="start"></ion-icon>
+          {{ 'maintenance.list.empty.button' | translate }}
+        </ion-button>
+      </div>
+    }
+    @if (!loading && maintenances.length === 0 && globalSearch != '' && !errorMessage) {
+      <div class="uniform-empty">
+        <div class="empty-icon">
+          <ion-icon name="build-outline"></ion-icon>
+        </div>
+        <h3 class="empty-title">{{ 'maintenance.list.noResults.title' | translate }}</h3>
+        <p class="empty-description">{{ 'maintenance.list.noResults.description' | translate }}</p>
+      </div>
+    }
+    
+    <!-- Loading More Indicator -->
+    @if (loading && maintenances.length > 0) {
+      <div class="loading-more">
+        <ion-spinner name="bubbles" class="loading-more-spinner"></ion-spinner>
+        <div class="loading-more-text">
+          <ion-icon name="sync" class="loading-more-icon"></ion-icon>
+          {{ 'maintenance.list.loadingMore' | translate }}
+        </div>
+      </div>
+    }
+  </div>
+  
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addMaintenance()" class="add-maintenance-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<!-- Delete Confirmation Alert -->
+<ion-alert
+  [isOpen]="showDeleteAlert"
+  [header]="'maintenance.delete.confirm' | translate"
+  [message]="('maintenance.delete.message' | translate: { vehicleName: maintenanceToDelete?.vehicleName || 'este vehículo' })"
+  [buttons]="deleteAlertButtons"
+  (didDismiss)="onDeleteAlertDismiss()">
+</ion-alert>

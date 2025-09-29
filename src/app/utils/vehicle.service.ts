@@ -20,6 +20,10 @@ export interface VehicleEditRequest extends VehicleCreateRequest
   id: string;
   
 }
+export interface LabelValueDto{
+  label: string;
+  value: string;
+}
 export interface VehicleGetRequest {
   id: string;              
   color: string;
@@ -44,6 +48,7 @@ export class VehicleService {
   private vehicleEditService: CrudService<VehicleEditRequest>;
   private vehicleService: CrudService<VehicleCreateRequest>;
   private vehicleGetService: CrudService<VehicleGetRequest>;
+  private labelValueDtoService: CrudService<LabelValueDto>;
   constructor(private apiService: ApiService) {
     // Initialize CRUD services for different entities
         this.vehicleService = this.apiService.createCrudService<VehicleCreateRequest>({
@@ -58,7 +63,10 @@ export class VehicleService {
           endpoint: 'vehicle',
           retryAttempts: 3
         });
- 
+        this.labelValueDtoService = this.apiService.createCrudService<LabelValueDto>({
+          endpoint: 'vehicle/getall',
+          retryAttempts: 3
+        });
   }
 
   // User CRUD operations
@@ -87,6 +95,9 @@ return this.vehicleService.create(data)
 
 deleteVehicle(id: string): Observable<ApiResponse<any>> {
   return this.vehicleService.delete(id);
+}
+getAll(): Observable<ApiResponse<LabelValueDto[]>> {
+  return this.labelValueDtoService.getAllWithoutParams();
 }
 
 }

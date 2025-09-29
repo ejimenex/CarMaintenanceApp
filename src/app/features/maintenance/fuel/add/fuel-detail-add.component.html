@@ -1,0 +1,205 @@
+<ion-header class="uniform-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-back-button [defaultHref]="'/maintenance/fuel/list/' + maintenanceId"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'fuel.add.title' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveFuelDetail()" [disabled]="!fuelDetailForm.valid || loading || loadingCatalogs" fill="solid" color="primary">
+        @if (!loading) {
+          <ion-icon name="checkmark" slot="start"></ion-icon>
+        }
+        {{ loading ? ('fuel.add.saving' | translate) : ('fuel.actions.save' | translate) }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="modern-form-content">
+  <div class="form-container">
+    
+    <!-- Loading Catalogs Indicator -->
+    @if (loadingCatalogs) {
+      <div class="loading-overlay">
+        <div class="loading-content">
+          <ion-spinner name="crescent"></ion-spinner>
+          <p>{{ 'fuel.add.loadingCatalogs' | translate }}</p>
+        </div>
+      </div>
+    }
+
+    @if (!loadingCatalogs) {
+      <form [formGroup]="fuelDetailForm" (ngSubmit)="saveFuelDetail()">
+        
+        <!-- Header Section -->
+        <div class="form-header">
+          <ion-icon name="car-sport" class="header-icon"></ion-icon>
+          <h2>{{ 'fuel.add.header.title' | translate }}</h2>
+          <p>{{ 'fuel.add.header.subtitle' | translate }}</p>
+        </div>
+
+        <!-- Form Fields -->
+        <div class="form-fields">
+          
+          <!-- Fuel Type Field -->
+          <div class="field-group">
+            <label class="field-label">{{ 'fuel.form.fuelType.label' | translate }} *</label>
+            <ion-select 
+              formControlName="fuelType" 
+              [placeholder]="'fuel.form.fuelType.placeholder' | translate" 
+              class="modern-select"
+              fill="outline">
+              @for (type of fuelTypes; track type.value) {
+                <ion-select-option [value]="type.value">
+                  {{ type.label | translate }}
+                </ion-select-option>
+              }
+            </ion-select>
+            @if (fuelDetailForm.get('fuelType')?.invalid && fuelDetailForm.get('fuelType')?.touched) {
+              <div class="error-message">
+                {{ getFieldError('fuelType') }}
+              </div>
+            }
+          </div>
+
+          <!-- Unit of Measure Field -->
+          <div class="field-group">
+            <label class="field-label">{{ 'fuel.form.unitOfMeasure.label' | translate }} *</label>
+            <ion-select 
+              formControlName="unitOfMeasureId" 
+              [placeholder]="'fuel.form.unitOfMeasure.placeholder' | translate" 
+              class="modern-select"
+              fill="outline">
+              @for (unit of unitOfMeasures; track unit.id) {
+                <ion-select-option [value]="unit.id">
+                  {{ unit.name }}
+                </ion-select-option>
+              }
+            </ion-select>
+            @if (fuelDetailForm.get('unitOfMeasureId')?.invalid && fuelDetailForm.get('unitOfMeasureId')?.touched) {
+              <div class="error-message">
+                {{ getFieldError('unitOfMeasureId') }}
+              </div>
+            }
+          </div>
+
+          <!-- Fuel Amount Field -->
+          <div class="field-group">
+            <label class="field-label">{{ 'fuel.form.fuelAmount.label' | translate }} *</label>
+            <ion-input 
+              formControlName="fuelAmount" 
+              type="number"
+              step="0.01"
+              min="0.01"
+              [placeholder]="'fuel.form.fuelAmount.placeholder' | translate"
+              class="modern-input"
+              fill="outline">
+            </ion-input>
+            @if (fuelDetailForm.get('fuelAmount')?.invalid && fuelDetailForm.get('fuelAmount')?.touched) {
+              <div class="error-message">
+                {{ getFieldError('fuelAmount') }}
+              </div>
+            }
+          </div>
+
+          <!-- Fuel Price Field (Optional) -->
+          <div class="field-group">
+            <label class="field-label">{{ 'fuel.form.fuelPrice.label' | translate }}</label>
+            <ion-input 
+              formControlName="fuelPrice" 
+              type="number"
+              step="0.01"
+              min="0"
+              [placeholder]="'fuel.form.fuelPrice.placeholder' | translate"
+              class="modern-input"
+              fill="outline">
+            </ion-input>
+            @if (fuelDetailForm.get('fuelPrice')?.invalid && fuelDetailForm.get('fuelPrice')?.touched) {
+              <div class="error-message">
+                {{ getFieldError('fuelPrice') }}
+              </div>
+            }
+          </div>
+
+          <!-- Total Cost Display -->
+          @if (calculateTotalCost() > 0) {
+            <div class="field-group">
+              <label class="field-label">{{ 'fuel.form.totalCost.label' | translate }}</label>
+              <div class="cost-display">
+                <ion-icon name="calculator"></ion-icon>
+                <span class="cost-amount">${{ calculateTotalCost() | number:'1.2-2' }}</span>
+              </div>
+            </div>
+          }
+
+          <!-- Notes Field -->
+          <div class="field-group">
+            <label class="field-label">{{ 'fuel.form.notes.label' | translate }}</label>
+            <ion-textarea 
+              formControlName="notes" 
+              [placeholder]="'fuel.form.notes.placeholder' | translate"
+              rows="3"
+              class="modern-input"
+              fill="outline">
+            </ion-textarea>
+            @if (fuelDetailForm.get('notes')?.invalid && fuelDetailForm.get('notes')?.touched) {
+              <div class="error-message">
+                {{ getFieldError('notes') }}
+              </div>
+            }
+          </div>
+
+        </div>
+
+      </form>
+    }
+
+    <!-- Loading Spinner for Save -->
+    @if (loading) {
+      <div class="loading-overlay">
+        <div class="loading-content">
+          <ion-spinner name="crescent"></ion-spinner>
+          <p>{{ 'fuel.add.saving' | translate }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</ion-content>
+
+<!-- Footer with Action Buttons -->
+<ion-footer class="form-footer">
+  <ion-toolbar>
+    <div class="footer-buttons">
+      <!-- Cancel Button -->
+      <ion-button 
+        (click)="cancelForm()" 
+        fill="solid" 
+        color="medium" 
+        class="footer-btn cancel-btn"
+        [disabled]="loading || loadingCatalogs">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <!-- Save Button -->
+      <ion-button 
+        (click)="saveFuelDetail()" 
+        [disabled]="!fuelDetailForm.valid || loading || loadingCatalogs"
+        fill="solid" 
+        color="primary" 
+        class="footer-btn save-btn">
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <!-- Exit Button -->
+      <ion-button 
+        (click)="exitScreen()" 
+        fill="solid" 
+        color="danger" 
+        class="footer-btn exit-btn"
+        [disabled]="loading || loadingCatalogs">
+        <ion-icon name="home" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
