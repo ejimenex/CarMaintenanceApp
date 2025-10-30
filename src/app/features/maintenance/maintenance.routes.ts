@@ -33,5 +33,17 @@ export const maintenanceRoutes: Routes = [
   {
     path: 'insurance/add/:id',
     loadComponent: () => import('./insurance/add/insurance-detail-add.component').then(m => m.InsuranceDetailAddComponent)
+  },
+  {
+    path: 'detail/list/:id',
+    loadComponent: () => import('./detail/list/maintenance-detail-list.component').then(m => m.MaintenanceDetailListComponent)
+  },
+  {
+    path: 'detail/add/:id',
+    loadComponent: () => import('./detail/add/maintenance-detail-add.component').then(m => m.MaintenanceDetailAddComponent)
+  },
+  {
+    path: 'detail/edit/:id',
+    loadComponent: () => import('./detail/edit/maintenance-detail-edit.component').then(m => m.MaintenanceDetailEditComponent)
   }
 ];

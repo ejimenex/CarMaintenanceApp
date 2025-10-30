@@ -59,7 +59,6 @@ import { AlertService } from '../../../utils/alert.service';
     IonCardContent,
     IonList,
     IonItem,
-    IonLabel,
     IonButton,
     IonIcon,
     IonBadge,

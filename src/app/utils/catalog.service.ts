@@ -7,7 +7,7 @@ export interface Catalog {
   id?: string;
   name: string;
   code: string;  
-  translateValue: string;
+  translateValue?: string;
 }
 
 @Injectable({
@@ -15,20 +15,34 @@ export interface Catalog {
 })
 export class CatalogService {
 
-  private workShopTypeService: CrudService<Catalog>;
   private languageService: CrudService<Catalog>;
   private countryService: CrudService<Catalog>;
   private currencyService: CrudService<Catalog>;
+  private unitOfMeasureService: CrudService<Catalog>;
   private vehicleTypeService: CrudService<Catalog>;
   private colorService: CrudService<Catalog>;
   private brandService: CrudService<Catalog>;
+  private maintenanceTypeService: CrudService<Catalog>;
   private vehicleMotorTypeService: CrudService<Catalog>;
   private tradeTypeService: CrudService<Catalog>;
-  private unitOfMeasureService: CrudService<Catalog>;
+  private workShopTypeService: CrudService<Catalog>;
   constructor(private apiService: ApiService) {
     // Initialize CRUD services for different entities
-    this.workShopTypeService = this.apiService.createCrudService<Catalog>({
-      endpoint: 'workShopType',
+      this.languageService = this.apiService.createCrudService<Catalog>({
+        endpoint: 'language',
+        retryAttempts: 3
+      });
+      
+    this.maintenanceTypeService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'maintenanceType',
+      retryAttempts: 3
+    });
+    this.vehicleTypeService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'vehicleType',
+      retryAttempts: 3
+    });
+    this.tradeTypeService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'tradeType',
       retryAttempts: 3
     });
     this.unitOfMeasureService = this.apiService.createCrudService<Catalog>({
@@ -39,19 +53,14 @@ export class CatalogService {
       endpoint: 'vehicleMotorType',
       retryAttempts: 3
     });
-    this.languageService = this.apiService.createCrudService<Catalog>({
-      endpoint: 'language',
-      retryAttempts: 3
-    });
-    this.vehicleTypeService = this.apiService.createCrudService<Catalog>({
-      endpoint: 'vehicleType',
-      retryAttempts: 3
-    });
     this.currencyService = this.apiService.createCrudService<Catalog>({
       endpoint: 'currency',
       retryAttempts: 3
     });
-
+    this.unitOfMeasureService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'unitOfMeasure',
+      retryAttempts: 3
+    });
     this.countryService = this.apiService.createCrudService<Catalog>({
       endpoint: 'AvalaibleCountry',
       retryAttempts: 3
@@ -60,12 +69,12 @@ export class CatalogService {
       endpoint: 'color',
       retryAttempts: 3
     });
-        this.brandService = this.apiService.createCrudService<Catalog>({
-          endpoint: 'brand',
-          retryAttempts: 3
-        });
-    this.tradeTypeService = this.apiService.createCrudService<Catalog>({
-      endpoint: 'tradeType',
+    this.brandService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'brand',
+      retryAttempts: 3
+    });
+    this.workShopTypeService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'workShopType',
       retryAttempts: 3
     });
   }
@@ -74,6 +83,10 @@ export class CatalogService {
   getworkShopType(): Observable<ApiResponse<Catalog[]>> {
     return this.workShopTypeService.getAllWithoutParams();
   }
+  getTradeType(): Observable<ApiResponse<Catalog[]>> {
+    return this.tradeTypeService.getAllWithoutParams();
+  }
+ 
   getVehicleMotorType(): Observable<ApiResponse<Catalog[]>> {
     return this.vehicleMotorTypeService.getAllWithoutParams();
   }
@@ -83,7 +96,9 @@ export class CatalogService {
   getVehicleType(): Observable<ApiResponse<Catalog[]>> {
     return this.vehicleTypeService.getAllWithoutParams();
   }
-
+  getMaintenanceType(): Observable<ApiResponse<Catalog[]>> {
+    return this.maintenanceTypeService.getAllWithoutParams();
+  }
   getCountry(): Observable<ApiResponse<Catalog[]>> {
     return this.countryService.getAllWithoutParams();
   }
@@ -96,10 +111,8 @@ export class CatalogService {
   getBrand(): Observable<ApiResponse<Catalog[]>> {
     return this.brandService.getAllWithoutParams();
   }
-  getTradeType(): Observable<ApiResponse<Catalog[]>> {
-    return this.tradeTypeService.getAllWithoutParams();
-  }
   getUnitOfMeasure(): Observable<ApiResponse<Catalog[]>> {
     return this.unitOfMeasureService.getAllWithoutParams();
   }
-  }
+}
+

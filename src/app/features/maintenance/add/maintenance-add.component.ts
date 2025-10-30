@@ -47,7 +47,8 @@ export class MaintenanceAddComponent implements OnInit {
     { value: 'FUEL', label: 'Combustible' },
     { value: 'PART', label: 'Repuestos' },
     { value: 'TALL', label: 'Taller' },
-    { value: 'INSU', label: 'Seguros' }
+    { value: 'INSU', label: 'Seguros' },
+    { value: 'RETA', label: 'Taller & Repuestos' },
   ];
 
   constructor(
@@ -189,12 +190,15 @@ export class MaintenanceAddComponent implements OnInit {
     this.router.navigate(['/maintenance']);
   }
 goToDetail(maintenanceId: string) {
-  let fuelType=this.maintenanceForm.get('processType')?.value;
+  let processType=this.maintenanceForm.get('processType')?.value;
   debugger;
-  if(fuelType === 'FUEL') {
+  if(processType === 'FUEL') {
     this.router.navigate([`/maintenance/fuel/add`, maintenanceId]);}
-    if(fuelType=== 'INSU') {
+    if(processType=== 'INSU') {
       this.router.navigate([`/maintenance/insurance/add`, maintenanceId]);
+    }
+    if(processType === 'RETA') {
+      this.router.navigate([`/maintenance/detail/list`, maintenanceId]);
     }
 }
   exitScreen() {

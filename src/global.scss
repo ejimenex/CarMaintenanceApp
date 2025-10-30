@@ -636,6 +636,51 @@ ion-menu-button {
   }
 }
 
+/* Landscape Orientation Support */
+@media (orientation: landscape) and (max-height: 600px) {
+  // Reduce padding and margins in landscape mode
+  .uniform-form {
+    padding: var(--spacing-md);
+    max-width: 100%;
+    margin: var(--spacing-sm);
+  }
+
+  .form-header {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    
+    h2 {
+      font-size: 1.25rem;
+      margin: 0.25rem 0;
+    }
+    
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  ion-item {
+    --padding-top: var(--spacing-xs);
+    --padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .form-actions {
+    margin-top: var(--spacing-md);
+  }
+
+  // Adjust content padding
+  .uniform-content {
+    padding: var(--spacing-sm);
+  }
+
+  // Make forms scrollable
+  ion-content {
+    --padding-top: 0;
+    --padding-bottom: 0;
+  }
+}
+
 /* Animation Classes */
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;

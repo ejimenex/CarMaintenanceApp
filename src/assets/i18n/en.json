@@ -26,7 +26,7 @@
   "ADDTALLER": "New workshop added",
   "UPDATETALLER": "Workshop modified",
   "AddWorkshop": "New workshop added",
-  "Electric": "Electric Workshop", 
+  "Electric": "Electric Workshop",
   "Mecanic": "Mechanic Workshop",
   "Weels": "Tire Center",
   "AutoAire": "Auto Air",
@@ -46,10 +46,14 @@
   "teal": "Teal",
   "tradeType": "Trade Type",
   "trades": "Businesses",
-  "amount":"Amount",
-  "Taller":"WorksShop",
-  "StorePart":"Store Part",
-  "TallerYStorePart":"Workshop and Store Part",
+  "amount": "Amount",
+  "Taller": "WorksShop",
+  "StorePart": "Store Part",
+  "TallerYStorePart": "Workshop and Store Part",
+  "Pending": "Pending",
+  "InProgress": "In Progress",
+  "Finished": "Finished",
+  "New": "Pending",
   "dashboard": {
     "title": "Dashboard",
     "welcome": {
@@ -147,6 +151,7 @@
     "save": "Save",
     "edit": "Edit",
     "delete": "Delete",
+    "view": "View",
     "add": "Add",
     "search": "Search",
     "filter": "Filter",
@@ -504,25 +509,6 @@
     "editMaintenance": "Edit Maintenance",
     "deleteMaintenance": "Delete Maintenance",
     "viewMaintenance": "View Maintenance",
-    "list": {
-      "title": "Maintenance ({{count}})",
-      "empty": {
-        "title": "No maintenance records",
-        "description": "No maintenance records found. Start by adding your first maintenance record.",
-        "button": "Add First Maintenance"
-      },
-      "search": {
-        "placeholder": "Search maintenance..."
-      },
-      "loading": "Loading maintenance...",
-      "loadingMore": "Loading more maintenance...",
-      "error": "Error loading maintenance records",
-      "retry": "Retry",
-      "noResults": {
-        "title": "No results",
-        "description": "No maintenance records found matching your search."
-      }
-    },
     "add": {
       "title": "New Maintenance",
       "header": {
@@ -548,6 +534,25 @@
         "load": "Error loading maintenance",
         "update": "Error updating maintenance",
         "invalidId": "Invalid maintenance ID"
+      }
+    },
+    "list": {
+      "title": "Maintenance ({{count}})",
+      "empty": {
+        "title": "No maintenance records",
+        "description": "No maintenance records found. Start by adding your first maintenance record.",
+        "button": "Add First Maintenance"
+      },
+      "search": {
+        "placeholder": "Search maintenance..."
+      },
+      "loading": "Loading maintenance...",
+      "loadingMore": "Loading more maintenance...",
+      "error": "Error loading maintenance records",
+      "retry": "Retry",
+      "noResults": {
+        "title": "No results",
+        "description": "No maintenance records found matching your search."
       }
     },
     "view": {
@@ -617,6 +622,101 @@
       "PART": "Parts",
       "TALL": "Workshop",
       "INSU": "Insurance"
+    },
+    "detail": {
+      "add": {
+        "title": "Add Maintenance Detail",
+        "form": {
+          "description": "Complete the maintenance detail information",
+          "name": "Name",
+          "name.placeholder": "Enter detail name",
+          "descriptionLabel": "Description",
+          "description.placeholder": "Enter detail description",
+          "diagnosis": "Diagnosis",
+          "diagnosis.placeholder": "Enter problem diagnosis",
+          "mileage": "Mileage",
+          "mileage.placeholder": "Enter mileage",
+          "cost": "Cost",
+          "cost.placeholder": "Enter cost",
+          "technician": "Technician",
+          "technician.placeholder": "Enter technician name",
+          "maintenanceType": "Maintenance Type",
+          "maintenanceType.placeholder": "Select maintenance type",
+          "nextMaintenanceDate": "Next Maintenance Date",
+          "nextMaintenanceDate.placeholder": "Select next date"
+        }
+      },
+      "edit": {
+        "title": "Edit Maintenance Detail",
+        "form": {
+          "description": "Modify the maintenance detail information",
+          "name": "Name",
+          "name.placeholder": "Enter detail name",
+          "descriptionLabel": "Description",
+          "description.placeholder": "Enter detail description",
+          "diagnosis": "Diagnosis",
+          "diagnosis.placeholder": "Enter problem diagnosis",
+          "mileage": "Mileage",
+          "mileage.placeholder": "Enter mileage",
+          "cost": "Cost",
+          "cost.placeholder": "Enter cost",
+          "technician": "Technician",
+          "technician.placeholder": "Enter technician name",
+          "maintenanceType": "Maintenance Type",
+          "maintenanceType.placeholder": "Select maintenance type",
+          "nextMaintenanceDate": "Next Maintenance Date",
+          "nextMaintenanceDate.placeholder": "Select next date"
+        }
+      },
+      "list": {
+        "title": "Maintenance Details",
+        "search": {
+          "placeholder": "Search details..."
+        },
+        "empty": {
+          "title": "No maintenance details",
+          "message": "No maintenance details found for this maintenance.",
+          "action": "Add Detail"
+        },
+        "cost": "Cost",
+        "error": "Error loading maintenance details"
+      },
+      "delete": {
+        "confirm": {
+          "title": "Confirm Deletion",
+          "message": "Are you sure you want to delete this maintenance detail?"
+        },
+        "success": "Maintenance detail deleted successfully",
+        "error": "Error deleting maintenance detail"
+      }
+    },
+    "parts": {
+      "title": "Parts",
+      "empty": "No parts added",
+      "add": {
+        "title": "Add Part",
+        "form": {
+          "name": {
+            "label": "Part Name",
+            "placeholder": "Enter part name"
+          },
+          "quantity": {
+            "label": "Quantity",
+            "placeholder": "Enter quantity"
+          },
+          "cost": {
+            "label": "Unit Cost",
+            "placeholder": "Enter unit cost"
+          },
+          "unitOfMeasure": {
+            "label": "Unit of Measure",
+            "placeholder": "Select unit of measure"
+          },
+          "totalCost": {
+            "label": "Total Cost"
+          }
+        }
+      }
     }
   },
   "fuel": {
@@ -779,6 +879,101 @@
     },
     "error": {
       "invalidMaintenanceId": "Invalid maintenance ID"
+    },
+    "detail": {
+      "add": {
+        "title": "Add Maintenance Detail",
+        "form": {
+          "description": "Complete the maintenance detail information",
+          "name": "Name",
+          "name.placeholder": "Enter detail name",
+          "descriptionLabel": "Description",
+          "description.placeholder": "Enter detail description",
+          "diagnosis": "Diagnosis",
+          "diagnosis.placeholder": "Enter problem diagnosis",
+          "mileage": "Mileage",
+          "mileage.placeholder": "Enter mileage",
+          "cost": "Cost",
+          "cost.placeholder": "Enter cost",
+          "technician": "Technician",
+          "technician.placeholder": "Enter technician name",
+          "maintenanceType": "Maintenance Type",
+          "maintenanceType.placeholder": "Select maintenance type",
+          "nextMaintenanceDate": "Next Maintenance Date",
+          "nextMaintenanceDate.placeholder": "Select next date"
+        }
+      },
+      "edit": {
+        "title": "Edit Maintenance Detail",
+        "form": {
+          "description": "Modify the maintenance detail information",
+          "name": "Name",
+          "name.placeholder": "Enter detail name",
+          "descriptionLabel": "Description",
+          "description.placeholder": "Enter detail description",
+          "diagnosis": "Diagnosis",
+          "diagnosis.placeholder": "Enter problem diagnosis",
+          "mileage": "Mileage",
+          "mileage.placeholder": "Enter mileage",
+          "cost": "Cost",
+          "cost.placeholder": "Enter cost",
+          "technician": "Technician",
+          "technician.placeholder": "Enter technician name",
+          "maintenanceType": "Maintenance Type",
+          "maintenanceType.placeholder": "Select maintenance type",
+          "nextMaintenanceDate": "Next Maintenance Date",
+          "nextMaintenanceDate.placeholder": "Select next date"
+        }
+      },
+      "list": {
+        "title": "Maintenance Details",
+        "search": {
+          "placeholder": "Search details..."
+        },
+        "empty": {
+          "title": "No maintenance details",
+          "message": "No maintenance details found for this maintenance.",
+          "action": "Add Detail"
+        },
+        "cost": "Cost",
+        "error": "Error loading maintenance details"
+      },
+      "delete": {
+        "confirm": {
+          "title": "Confirm Deletion",
+          "message": "Are you sure you want to delete this maintenance detail?"
+        },
+        "success": "Maintenance detail deleted successfully",
+        "error": "Error deleting maintenance detail"
+      }
+    },
+    "parts": {
+      "title": "Parts",
+      "empty": "No parts added",
+      "add": {
+        "title": "Add Part",
+        "form": {
+          "name": {
+            "label": "Part Name",
+            "placeholder": "Enter part name"
+          },
+          "quantity": {
+            "label": "Quantity",
+            "placeholder": "Enter quantity"
+          },
+          "cost": {
+            "label": "Unit Cost",
+            "placeholder": "Enter unit cost"
+          },
+          "unitOfMeasure": {
+            "label": "Unit of Measure",
+            "placeholder": "Select unit of measure"
+          },
+          "totalCost": {
+            "label": "Total Cost"
+          }
+        }
+      }
     }
   }
 }

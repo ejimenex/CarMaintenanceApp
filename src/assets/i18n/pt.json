@@ -1,36 +1,36 @@
 {
-  "TallerAllreadRegistrered": "Oficina já registrada",
-  "Invalid Ids": "Os IDs fornecidos não são válidos",
-  "UserNotExist": "O usuário não existe",
-  "UserBlocked": "O usuário está bloqueado",
-  "EmailNotConfirmed": "O email não está confirmado",
-  "InvalidPassword": "A senha está incorreta",
-  "InvalidEmail": "O email não é válido",
-  "UserLoggedSuccesfully": "Usuário logado com sucesso",
-  "RequiredName": "O nome do usuário é obrigatório",
-  "RequiredAddress": "O endereço é obrigatório",
-  "RequiredPhone": "O telefone é obrigatório",
-  "RequiredEmail": "O email do usuário é obrigatório",
-  "EmailAlreadyExist": "O email já existe",
-  "PasswordPolicy": "A senha deve ter pelo menos 8 caracteres, uma maiúscula, uma minúscula, um número e um caractere especial",
-  "RequiredPassword": "A senha é obrigatória",
-  "RequiredNewPassword": "A nova senha é obrigatória",
-  "RequiredConfirmPassword": "A confirmação da senha é obrigatória",
-  "AddVehicle": "Veículo adicionado com sucesso",
-  "UpdateVehicle": "Veículo atualizado com sucesso",
+  "TallerAllreadRegistrered": "Oficina jÃ¡ registrada",
+  "Invalid Ids": "Os IDs fornecidos nÃ£o sÃ£o vÃ¡lidos",
+  "UserNotExist": "O usuÃ¡rio nÃ£o existe",
+  "UserBlocked": "O usuÃ¡rio estÃ¡ bloqueado",
+  "EmailNotConfirmed": "O email nÃ£o estÃ¡ confirmado",
+  "InvalidPassword": "A senha estÃ¡ incorreta",
+  "InvalidEmail": "O email nÃ£o Ã© vÃ¡lido",
+  "UserLoggedSuccesfully": "UsuÃ¡rio logado com sucesso",
+  "RequiredName": "O nome do usuÃ¡rio Ã© obrigatÃ³rio",
+  "RequiredAddress": "O endereÃ§o Ã© obrigatÃ³rio",
+  "RequiredPhone": "O telefone Ã© obrigatÃ³rio",
+  "RequiredEmail": "O email do usuÃ¡rio Ã© obrigatÃ³rio",
+  "EmailAlreadyExist": "O email jÃ¡ existe",
+  "PasswordPolicy": "A senha deve ter pelo menos 8 caracteres, uma maiÃºscula, uma minÃºscula, um nÃºmero e um caractere especial",
+  "RequiredPassword": "A senha Ã© obrigatÃ³ria",
+  "RequiredNewPassword": "A nova senha Ã© obrigatÃ³ria",
+  "RequiredConfirmPassword": "A confirmaÃ§Ã£o da senha Ã© obrigatÃ³ria",
+  "AddVehicle": "VeÃ­culo adicionado com sucesso",
+  "UpdateVehicle": "VeÃ­culo atualizado com sucesso",
   "LOGIN": "Login realizado com sucesso",
   "CHANGEPASSWORD": "Senha atualizada com sucesso",
-  "DELETEUSER": "Usuário excluído com sucesso",
+  "DELETEUSER": "UsuÃ¡rio excluÃ­do com sucesso",
   "ADDEQUIPMENT": "Equipamento adicionado",
   "UPDATEEQUIPMENT": "Equipamento atualizado",
   "ADDTALLER": "Nova oficina adicionada",
   "UPDATETALLER": "Oficina modificada",
   "AddWorkshop": "Nova oficina adicionada",
-  "Electric": "Oficina Elétrica", 
-  "Mecanic": "Oficina Mecânica",
+  "Electric": "Oficina ElÃ©trica",
+  "Mecanic": "Oficina MecÃ¢nica",
   "Weels": "Centro de Pneus",
   "AutoAire": "Auto Ar",
-  "AllService": "Todos os Serviços",
+  "AllService": "Todos os ServiÃ§os",
   "black": "Preto",
   "white": "Branco",
   "red": "Vermelho",
@@ -44,78 +44,78 @@
   "pink": "Rosa",
   "lime": "Lima",
   "teal": "Turquesa",
-  "tradeType": "Tipo de Negócio",
-  "trades": "Negócios",
-  "amount":"Valor",
+  "tradeType": "Tipo de NegÃ³cio",
+  "trades": "NegÃ³cios",
+  "amount": "Valor",
   "dashboard": {
     "title": "Painel de Controle",
     "welcome": {
       "title": "Bem-vindo, {{userName}}!",
-      "subtitle": "Gerencie seus veículos e oficinas"
+      "subtitle": "Gerencie seus veÃ­culos e oficinas"
     },
     "menu": {
       "header": {
-        "title": "Manutenção",
-        "subtitle": "Gestão de Veículos e Oficinas"
+        "title": "ManutenÃ§Ã£o",
+        "subtitle": "GestÃ£o de VeÃ­culos e Oficinas"
       },
       "navigation": {
-        "title": "Navegação Principal",
-        "vehicles": "Veículos",
+        "title": "NavegaÃ§Ã£o Principal",
+        "vehicles": "VeÃ­culos",
         "workshops": "Oficinas",
-        "myServices": "Meus Serviços",
-        "userPreferences": "Preferências do Usuário",
-        "settings": "Configurações"
+        "myServices": "Meus ServiÃ§os",
+        "userPreferences": "PreferÃªncias do UsuÃ¡rio",
+        "settings": "ConfiguraÃ§Ãµes"
       },
       "quickActions": {
-        "title": "Ações Rápidas",
-        "addVehicle": "Adicionar Veículo",
+        "title": "AÃ§Ãµes RÃ¡pidas",
+        "addVehicle": "Adicionar VeÃ­culo",
         "addWorkshop": "Adicionar Oficina"
       },
       "footer": {
-        "settings": "Configurações",
+        "settings": "ConfiguraÃ§Ãµes",
         "helpSupport": "Ajuda e Suporte",
         "logout": "Sair"
       },
       "stats": {
-        "lastAccess": "Último acesso:",
+        "lastAccess": "Ãšltimo acesso:",
         "totalAccess": "Total de acessos:",
-        "loading": "Carregando estatísticas..."
+        "loading": "Carregando estatÃ­sticas..."
       },
       "notifications": {
-        "title": "Notificações"
+        "title": "NotificaÃ§Ãµes"
       }
     },
     "quickActions": {
       "vehicles": {
-        "title": "Veículos",
-        "description": "Gerencie sua frota de veículos"
+        "title": "VeÃ­culos",
+        "description": "Gerencie sua frota de veÃ­culos"
       },
       "workshops": {
         "title": "Oficinas",
-        "description": "Gerencie oficinas e manutenção"
+        "description": "Gerencie oficinas e manutenÃ§Ã£o"
       }
     }
   },
   "notifications": {
-    "title": "Notificações",
+    "title": "NotificaÃ§Ãµes",
     "total": "Total",
-    "unread": "Não lidas",
+    "unread": "NÃ£o lidas",
     "accept": "Aceitar",
     "accepted": "Aceita",
     "delete": "Excluir",
-    "deleteConfirm": "Tem certeza de que deseja excluir esta notificação?",
-    "deleted": "Notificação excluída",
-    "allMarkedRead": "Todas as notificações marcadas como lidas",
+    "deleteConfirm": "Tem certeza de que deseja excluir esta notificaÃ§Ã£o?",
+    "deleted": "NotificaÃ§Ã£o excluÃ­da",
+    "allMarkedRead": "Todas as notificaÃ§Ãµes marcadas como lidas",
     "justNow": "Agora mesmo",
-    "minutesAgo": "{{minutes}} min atrás",
-    "hoursAgo": "{{hours}} h atrás",
-    "daysAgo": "{{days}} dias atrás",
+    "minutesAgo": "{{minutes}} min atrÃ¡s",
+    "hoursAgo": "{{hours}} h atrÃ¡s",
+    "daysAgo": "{{days}} dias atrÃ¡s",
     "empty": {
-      "title": "Nenhuma notificação",
-      "message": "Quando você tiver novas notificações, elas aparecerão aqui"
+      "title": "Nenhuma notificaÃ§Ã£o",
+      "message": "Quando vocÃª tiver novas notificaÃ§Ãµes, elas aparecerÃ£o aqui"
     },
     "categories": {
-      "maintenance": "Manutenção",
+      "maintenance": "ManutenÃ§Ã£o",
       "reminder": "Lembrete",
       "system": "Sistema",
       "message": "Mensagem"
@@ -129,164 +129,165 @@
     "save": "Salvar",
     "edit": "Editar",
     "delete": "Excluir",
+    "view": "Ver",
     "add": "Adicionar",
     "search": "Pesquisar",
     "filter": "Filtrar",
     "sort": "Ordenar",
     "refresh": "Atualizar",
     "back": "Voltar",
-    "next": "Próximo",
+    "next": "PrÃ³ximo",
     "previous": "Anterior",
     "close": "Fechar",
     "open": "Abrir",
     "exit": "Sair",
     "yes": "Sim",
-    "no": "Não",
+    "no": "NÃ£o",
     "confirm": "Confirmar",
-    "actions": "Ações",
+    "actions": "AÃ§Ãµes",
     "never": "Nunca",
-    "lessThanHour": "Menos de 1 hora atrás",
-    "hourAgo": "{{hours}} hora atrás",
-    "hoursAgo": "{{hours}} horas atrás",
-    "dayAgo": "{{days}} dia atrás",
-    "daysAgo": "{{days}} dias atrás"
+    "lessThanHour": "Menos de 1 hora atrÃ¡s",
+    "hourAgo": "{{hours}} hora atrÃ¡s",
+    "hoursAgo": "{{hours}} horas atrÃ¡s",
+    "dayAgo": "{{days}} dia atrÃ¡s",
+    "daysAgo": "{{days}} dias atrÃ¡s"
   },
   "languages": {
-    "en": "Inglês",
+    "en": "InglÃªs",
     "es": "Espanhol",
-    "pt": "Português",
+    "pt": "PortuguÃªs",
     "ru": "Russo"
   },
   "vehicles": {
-    "title": "Veículos",
-    "addVehicle": "Adicionar Veículo",
-    "editVehicle": "Editar Veículo",
-    "deleteVehicle": "Excluir Veículo",
-    "viewVehicle": "Ver Veículo",
+    "title": "VeÃ­culos",
+    "addVehicle": "Adicionar VeÃ­culo",
+    "editVehicle": "Editar VeÃ­culo",
+    "deleteVehicle": "Excluir VeÃ­culo",
+    "viewVehicle": "Ver VeÃ­culo",
     "list": {
-      "title": "Seus Veículos ({{count}})",
+      "title": "Seus VeÃ­culos ({{count}})",
       "empty": {
-        "title": "Nenhum Veículo Encontrado",
-        "description": "Comece adicionando seu primeiro veículo para rastrear manutenção e serviços",
-        "button": "Adicionar Seu Primeiro Veículo"
+        "title": "Nenhum VeÃ­culo Encontrado",
+        "description": "Comece adicionando seu primeiro veÃ­culo para rastrear manutenÃ§Ã£o e serviÃ§os",
+        "button": "Adicionar Seu Primeiro VeÃ­culo"
       },
       "search": {
-        "placeholder": "Pesquisar veículos por nome, placa ou marca..."
+        "placeholder": "Pesquisar veÃ­culos por nome, placa ou marca..."
       },
-      "loading": "Carregando veículos...",
-      "loadingMore": "Carregando mais veículos...",
-      "error": "Ocorreu um erro ao carregar os veículos",
+      "loading": "Carregando veÃ­culos...",
+      "loadingMore": "Carregando mais veÃ­culos...",
+      "error": "Ocorreu um erro ao carregar os veÃ­culos",
       "retry": "Tentar novamente"
     },
     "form": {
-      "name": "Nome do Veículo",
-      "plateNumber": "Placa de Licença",
+      "name": "Nome do VeÃ­culo",
+      "plateNumber": "Placa de LicenÃ§a",
       "brand": "Marca",
       "model": "Modelo",
       "color": "Cor",
       "year": "Ano",
       "mileage": "Quilometragem",
-      "vehicleType": "Tipo de Veículo",
+      "vehicleType": "Tipo de VeÃ­culo",
       "vehicleMotorType": "Tipo de Motor",
       "selectVehicleMotorType": "Selecionar tipo de motor",
-      "image": "Imagem do Veículo",
-      "required": "Este campo é obrigatório",
+      "image": "Imagem do VeÃ­culo",
+      "required": "Este campo Ã© obrigatÃ³rio",
       "minLength": "{{field}} deve ter pelo menos {{length}} caracteres",
-      "invalidPlate": "Formato de placa inválido",
+      "invalidPlate": "Formato de placa invÃ¡lido",
       "invalidYear": "O ano deve estar entre 1900 e o ano atual",
-      "invalidMileage": "A quilometragem deve ser um número positivo",
-      "enterName": "Digite o nome do veículo",
-      "enterPlate": "Digite o número da placa",
+      "invalidMileage": "A quilometragem deve ser um nÃºmero positivo",
+      "enterName": "Digite o nome do veÃ­culo",
+      "enterPlate": "Digite o nÃºmero da placa",
       "selectBrand": "Selecione a marca",
-      "selectVehicleType": "Selecione o tipo de veículo",
+      "selectVehicleType": "Selecione o tipo de veÃ­culo",
       "enterModel": "Digite o modelo (opcional)",
       "selectColor": "Selecione a cor",
       "enterYear": "Digite o ano (opcional)",
       "enterMileage": "Digite a quilometragem (opcional)",
-      "cancelConfirm": "Tem certeza de que deseja cancelar? Todas as alterações serão perdidas.",
-      "exitConfirm": "Tem certeza de que deseja sair? Todas as alterações serão perdidas."
+      "cancelConfirm": "Tem certeza de que deseja cancelar? Todas as alteraÃ§Ãµes serÃ£o perdidas.",
+      "exitConfirm": "Tem certeza de que deseja sair? Todas as alteraÃ§Ãµes serÃ£o perdidas."
     },
     "actions": {
       "view": "Ver",
       "edit": "Editar",
       "delete": "Excluir",
-      "save": "Salvar Veículo",
-      "update": "Atualizar Veículo"
+      "save": "Salvar VeÃ­culo",
+      "update": "Atualizar VeÃ­culo"
     },
     "view": {
-      "error": "Erro ao carregar detalhes do veículo"
+      "error": "Erro ao carregar detalhes do veÃ­culo"
     },
     "edit": {
-      "description": "Atualize as informações do seu veículo",
+      "description": "Atualize as informaÃ§Ãµes do seu veÃ­culo",
       "error": {
-        "noId": "ID do veículo não fornecido",
-        "load": "Erro ao carregar dados do veículo",
-        "update": "Erro ao atualizar veículo"
+        "noId": "ID do veÃ­culo nÃ£o fornecido",
+        "load": "Erro ao carregar dados do veÃ­culo",
+        "update": "Erro ao atualizar veÃ­culo"
       },
-      "success": "Veículo atualizado com sucesso"
+      "success": "VeÃ­culo atualizado com sucesso"
     },
     "delete": {
-      "confirm": "Excluir Veículo",
-      "message": "Tem certeza de que deseja excluir {{vehicleName}}? Esta ação não pode ser desfeita.",
-      "success": "Veículo excluído com sucesso",
-      "error": "Erro ao excluir o veículo. Por favor, tente novamente."
+      "confirm": "Excluir VeÃ­culo",
+      "message": "Tem certeza de que deseja excluir {{vehicleName}}? Esta aÃ§Ã£o nÃ£o pode ser desfeita.",
+      "success": "VeÃ­culo excluÃ­do com sucesso",
+      "error": "Erro ao excluir o veÃ­culo. Por favor, tente novamente."
     },
     "success": {
-      "created": "Veículo criado com sucesso",
-      "updated": "Veículo atualizado com sucesso"
+      "created": "VeÃ­culo criado com sucesso",
+      "updated": "VeÃ­culo atualizado com sucesso"
     }
   },
   "userPreferences": {
-    "title": "Preferências do Usuário",
-    "subtitle": "Personalize as configurações do seu aplicativo",
+    "title": "PreferÃªncias do UsuÃ¡rio",
+    "subtitle": "Personalize as configuraÃ§Ãµes do seu aplicativo",
     "language": "Idioma",
     "selectLanguage": "Selecionar idioma",
-    "country": "País",
-    "selectCountry": "Selecionar país",
+    "country": "PaÃ­s",
+    "selectCountry": "Selecionar paÃ­s",
     "currency": "Moeda",
     "selectCurrency": "Selecionar moeda",
-    "saving": "Salvando preferências",
+    "saving": "Salvando preferÃªncias",
     "errors": {
       "languageRequired": "Por favor selecione um idioma",
-      "countryRequired": "Por favor selecione um país",
+      "countryRequired": "Por favor selecione um paÃ­s",
       "currencyRequired": "Por favor selecione uma moeda"
     }
   },
   "settings": {
-    "title": "Configurações",
+    "title": "ConfiguraÃ§Ãµes",
     "categories": {
       "account": "Conta",
       "privacy": "Privacidade e Dados",
-      "permissions": "Permissões e Segurança",
-      "sessions": "Sessão e Dispositivos",
-      "history": "Histórico e Atividade"
+      "permissions": "PermissÃµes e SeguranÃ§a",
+      "sessions": "SessÃ£o e Dispositivos",
+      "history": "HistÃ³rico e Atividade"
     },
     "account": {
       "deleteAccount": {
         "title": "Excluir conta e dados",
         "description": "Excluir permanentemente sua conta e todos os dados associados",
         "header": "Excluir Conta",
-        "warning": "Atenção!",
-        "warningText": "Esta ação é irreversível. Ao excluir sua conta:",
+        "warning": "AtenÃ§Ã£o!",
+        "warningText": "Esta aÃ§Ã£o Ã© irreversÃ­vel. Ao excluir sua conta:",
         "consequences": [
-          "Todos os seus dados serão excluídos permanentemente",
-          "Você não poderá recuperar suas informações",
-          "Perderá acesso a todos os serviços",
-          "Todas as assinaturas ativas serão canceladas"
+          "Todos os seus dados serÃ£o excluÃ­dos permanentemente",
+          "VocÃª nÃ£o poderÃ¡ recuperar suas informaÃ§Ãµes",
+          "PerderÃ¡ acesso a todos os serviÃ§os",
+          "Todas as assinaturas ativas serÃ£o canceladas"
         ],
-        "confirmTitle": "Confirmar Exclusão",
-        "reason": "Motivo da exclusão",
-        "reasonPlaceholder": "Conte-nos por que você quer excluir sua conta",
+        "confirmTitle": "Confirmar ExclusÃ£o",
+        "reason": "Motivo da exclusÃ£o",
+        "reasonPlaceholder": "Conte-nos por que vocÃª quer excluir sua conta",
         "confirmation": "Digite \"EXCLUIR\" para confirmar",
         "confirmationPlaceholder": "EXCLUIR",
         "button": "Excluir Conta",
         "buttonLoading": "Excluindo...",
-        "alertTitle": "Confirmar Exclusão",
-        "alertMessage": "Tem certeza absoluta de que quer excluir sua conta? Esta ação não pode ser desfeita."
+        "alertTitle": "Confirmar ExclusÃ£o",
+        "alertMessage": "Tem certeza absoluta de que quer excluir sua conta? Esta aÃ§Ã£o nÃ£o pode ser desfeita."
       },
       "logout": {
         "title": "Sair",
-        "description": "Encerrar sessão atual"
+        "description": "Encerrar sessÃ£o atual"
       },
       "changePassword": {
         "title": "Alterar senha",
@@ -302,85 +303,85 @@
         "button": "Atualizar Senha",
         "buttonLoading": "Atualizando...",
         "requirements": "Requisitos da Senha",
-        "minLength": "Mínimo 8 caracteres",
+        "minLength": "MÃ­nimo 8 caracteres",
         "passwordsMatch": "As senhas coincidem",
-        "securityTips": "Dicas de Segurança",
+        "securityTips": "Dicas de SeguranÃ§a",
         "tips": [
-          "Use uma combinação de letras, números e símbolos",
-          "Evite informações pessoais como datas de nascimento",
-          "Não reutilize senhas de outras contas",
+          "Use uma combinaÃ§Ã£o de letras, nÃºmeros e sÃ­mbolos",
+          "Evite informaÃ§Ãµes pessoais como datas de nascimento",
+          "NÃ£o reutilize senhas de outras contas",
           "Considere usar um gerenciador de senhas"
         ],
         "errors": {
-          "currentRequired": "A senha atual é obrigatória",
-          "newRequired": "A nova senha é obrigatória",
+          "currentRequired": "A senha atual Ã© obrigatÃ³ria",
+          "newRequired": "A nova senha Ã© obrigatÃ³ria",
           "minLength": "A senha deve ter pelo menos 8 caracteres",
-          "confirmRequired": "A confirmação da senha é obrigatória",
-          "passwordMismatch": "As senhas não coincidem"
+          "confirmRequired": "A confirmaÃ§Ã£o da senha Ã© obrigatÃ³ria",
+          "passwordMismatch": "As senhas nÃ£o coincidem"
         }
       },
       "updateProfile": {
         "title": "Atualizar perfil",
-        "description": "Editar informações pessoais"
+        "description": "Editar informaÃ§Ãµes pessoais"
       }
     },
     "privacy": {
       "policy": {
-        "title": "Política de privacidade",
-        "description": "Ver política de privacidade"
+        "title": "PolÃ­tica de privacidade",
+        "description": "Ver polÃ­tica de privacidade"
       },
       "exportData": {
         "title": "Exportar meus dados",
         "description": "Baixar todos os seus dados"
       },
       "consent": {
-        "title": "Gestão de consentimento",
-        "description": "Revisar permissões de rastreamento"
+        "title": "GestÃ£o de consentimento",
+        "description": "Revisar permissÃµes de rastreamento"
       },
       "tracking": {
         "title": "Limitar rastreamento",
-        "description": "Opt-out de estatísticas"
+        "description": "Opt-out de estatÃ­sticas"
       }
     },
     "permissions": {
       "location": {
-        "title": "Permissões de localização",
-        "description": "Gerenciar permissões de localização"
+        "title": "PermissÃµes de localizaÃ§Ã£o",
+        "description": "Gerenciar permissÃµes de localizaÃ§Ã£o"
       },
       "notifications": {
-        "title": "Notificações push",
-        "description": "Configurar notificações",
-        "header": "Notificações Push",
-        "info": "Configure que tipos de notificações você quer receber no seu dispositivo.",
-        "typesTitle": "Tipos de Notificações"
+        "title": "NotificaÃ§Ãµes push",
+        "description": "Configurar notificaÃ§Ãµes",
+        "header": "NotificaÃ§Ãµes Push",
+        "info": "Configure que tipos de notificaÃ§Ãµes vocÃª quer receber no seu dispositivo.",
+        "typesTitle": "Tipos de NotificaÃ§Ãµes"
       },
       "twoFactor": {
-        "title": "Verificação em duas etapas",
+        "title": "VerificaÃ§Ã£o em duas etapas",
         "description": "Configurar 2FA"
       }
     },
     "sessions": {
       "logoutAll": {
         "title": "Sair de outros dispositivos",
-        "description": "Encerrar sessões em outros dispositivos"
+        "description": "Encerrar sessÃµes em outros dispositivos"
       },
       "devices": {
         "title": "Dispositivos ativos",
-        "description": "Ver dispositivos com sessão ativa"
+        "description": "Ver dispositivos com sessÃ£o ativa"
       }
     },
     "activityHistory": {
-      "title": "Histórico de atividade",
-      "description": "Ver histórico de atividades",
-      "header": "Histórico de Atividade",
-      "subtitle": "Aqui você pode ver o histórico de todas as suas atividades na aplicação.",
-      "loading": "Carregando histórico de atividade...",
+      "title": "HistÃ³rico de atividade",
+      "description": "Ver histÃ³rico de atividades",
+      "header": "HistÃ³rico de Atividade",
+      "subtitle": "Aqui vocÃª pode ver o histÃ³rico de todas as suas atividades na aplicaÃ§Ã£o.",
+      "loading": "Carregando histÃ³rico de atividade...",
       "loadingMore": "Carregando mais atividades...",
       "retry": "Tentar novamente",
       "recentActivity": "Atividade Recente",
-      "at": "às",
+      "at": "Ã s",
       "empty": "Nenhuma atividade registrada ainda.",
-      "error": "Erro ao carregar o histórico de atividade. Por favor, tente novamente."
+      "error": "Erro ao carregar o histÃ³rico de atividade. Por favor, tente novamente."
     }
   },
   "workshops": {
@@ -396,7 +397,7 @@
       "error": "Erro ao carregar as oficinas",
       "empty": {
         "title": "Nenhuma oficina",
-        "description": "Nenhuma oficina encontrada. Adicione sua primeira oficina para começar.",
+        "description": "Nenhuma oficina encontrada. Adicione sua primeira oficina para comeÃ§ar.",
         "button": "Adicionar Oficina"
       }
     },
@@ -404,29 +405,29 @@
       "title": "Adicionar Oficina",
       "header": {
         "title": "Nova Oficina",
-        "subtitle": "Complete as informações da oficina"
+        "subtitle": "Complete as informaÃ§Ãµes da oficina"
       },
       "saving": "Salvando oficina...",
       "success": "Oficina adicionada com sucesso",
       "error": "Erro ao adicionar oficina",
-      "cancelConfirm": "Tem certeza de que deseja cancelar? As alterações não salvas serão perdidas.",
-      "exitConfirm": "Tem certeza de que deseja sair? As alterações não salvas serão perdidas."
+      "cancelConfirm": "Tem certeza de que deseja cancelar? As alteraÃ§Ãµes nÃ£o salvas serÃ£o perdidas.",
+      "exitConfirm": "Tem certeza de que deseja sair? As alteraÃ§Ãµes nÃ£o salvas serÃ£o perdidas."
     },
     "edit": {
       "title": "Editar Oficina",
       "header": {
         "title": "Editar Oficina",
-        "subtitle": "Modifique as informações da oficina"
+        "subtitle": "Modifique as informaÃ§Ãµes da oficina"
       },
-      "saving": "Salvando alterações...",
+      "saving": "Salvando alteraÃ§Ãµes...",
       "success": "Oficina atualizada com sucesso",
       "error": {
         "load": "Erro ao carregar oficina",
         "update": "Erro ao atualizar oficina",
-        "invalidId": "ID de oficina inválido"
+        "invalidId": "ID de oficina invÃ¡lido"
       },
-      "cancelConfirm": "Tem certeza de que deseja cancelar? As alterações não salvas serão perdidas.",
-      "exitConfirm": "Tem certeza de que deseja sair? As alterações não salvas serão perdidas."
+      "cancelConfirm": "Tem certeza de que deseja cancelar? As alteraÃ§Ãµes nÃ£o salvas serÃ£o perdidas.",
+      "exitConfirm": "Tem certeza de que deseja sair? As alteraÃ§Ãµes nÃ£o salvas serÃ£o perdidas."
     },
     "view": {
       "title": "Detalhes da Oficina",
@@ -438,12 +439,12 @@
         "placeholder": "Digite o nome da oficina"
       },
       "address": {
-        "label": "Endereço",
-        "placeholder": "Digite o endereço da oficina"
+        "label": "EndereÃ§o",
+        "placeholder": "Digite o endereÃ§o da oficina"
       },
       "phone": {
         "label": "Telefone",
-        "placeholder": "Digite o número de telefone"
+        "placeholder": "Digite o nÃºmero de telefone"
       },
       "note": {
         "label": "Notas",
@@ -454,18 +455,18 @@
         "placeholder": "Selecione o tipo de oficina"
       },
       "tradeType": {
-        "label": "Tipo de Negócio",
-        "placeholder": "Selecione o tipo de negócio"
+        "label": "Tipo de NegÃ³cio",
+        "placeholder": "Selecione o tipo de negÃ³cio"
       },
       "errors": {
-        "required": "O campo {field} é obrigatório",
+        "required": "O campo {field} Ã© obrigatÃ³rio",
         "minLength": "O campo {field} deve ter pelo menos {min} caracteres",
-        "maxLength": "O campo {field} não pode ter mais de {max} caracteres",
-        "pattern": "O formato do campo {field} não é válido",
-        "invalid": "O campo {field} não é válido",
-        "invalidForm": "Por favor, corrija os erros no formulário",
+        "maxLength": "O campo {field} nÃ£o pode ter mais de {max} caracteres",
+        "pattern": "O formato do campo {field} nÃ£o Ã© vÃ¡lido",
+        "invalid": "O campo {field} nÃ£o Ã© vÃ¡lido",
+        "invalidForm": "Por favor, corrija os erros no formulÃ¡rio",
         "loadTypes": "Erro ao carregar os tipos de oficina",
-        "loadTradeTypes": "Erro ao carregar os tipos de negócio"
+        "loadTradeTypes": "Erro ao carregar os tipos de negÃ³cio"
       }
     },
     "actions": {
@@ -475,18 +476,269 @@
     },
     "delete": {
       "confirm": "Excluir Oficina",
-      "message": "Tem certeza de que deseja excluir a oficina {workshopName}? Esta ação não pode ser desfeita.",
-      "success": "Oficina excluída com sucesso",
+      "message": "Tem certeza de que deseja excluir a oficina {workshopName}? Esta aÃ§Ã£o nÃ£o pode ser desfeita.",
+      "success": "Oficina excluÃ­da com sucesso",
       "error": "Erro ao excluir oficina"
     }
   },
   "maintenance": {
-    "title": "Manutenção",
-    "processTypes": {
-      "FUEL": "Combustível",
-      "PART": "Peças",
-      "TALL": "Oficina",
-      "INSU": "Seguros"
+    "title": "ManutenÃ§Ã£o",
+    "addMaintenance": "Adicionar ManutenÃ§Ã£o",
+    "editMaintenance": "Editar ManutenÃ§Ã£o",
+    "deleteMaintenance": "Excluir ManutenÃ§Ã£o",
+    "viewMaintenance": "Ver ManutenÃ§Ã£o",
+    "add": {
+      "title": "Nova ManutenÃ§Ã£o",
+      "header": {
+        "title": "Registro de ManutenÃ§Ã£o",
+        "subtitle": "Complete as informaÃ§Ãµes da manutenÃ§Ã£o do veÃ­culo"
+      },
+      "saving": "Salvando manutenÃ§Ã£o...",
+      "success": "ManutenÃ§Ã£o criada com sucesso",
+      "error": "Erro ao criar manutenÃ§Ã£o",
+      "cancelConfirm": "Tem certeza de que deseja cancelar? As alteraÃ§Ãµes nÃ£o salvas serÃ£o perdidas.",
+      "exitConfirm": "Tem certeza de que deseja sair? As alteraÃ§Ãµes nÃ£o salvas serÃ£o perdidas."
+    },
+    "edit": {
+      "title": "Editar ManutenÃ§Ã£o",
+      "header": {
+        "title": "Editar ManutenÃ§Ã£o",
+        "subtitle": "Modifique as informaÃ§Ãµes da manutenÃ§Ã£o"
+      },
+      "saving": "Salvando alteraÃ§Ãµes...",
+      "loadingData": "Carregando dados da manutenÃ§Ã£o...",
+      "success": "ManutenÃ§Ã£o atualizada com sucesso",
+      "error": {
+        "load": "Erro ao carregar manutenÃ§Ã£o",
+        "update": "Erro ao atualizar manutenÃ§Ã£o",
+        "invalidId": "ID de manutenÃ§Ã£o invÃ¡lido"
+      }
+    },
+    "form": {
+      "name": {
+        "label": "Nome da ManutenÃ§Ã£o",
+        "placeholder": "Digite o nome da manutenÃ§Ã£o"
+      },
+      "vehicle": {
+        "label": "VeÃ­culo",
+        "placeholder": "Selecione um veÃ­culo"
+      },
+      "workshop": {
+        "label": "Oficina",
+        "placeholder": "Selecione uma oficina"
+      },
+      "processType": {
+        "label": "Tipo de Processo",
+        "placeholder": "Selecione o tipo de processo"
+      },
+      "startDate": {
+        "label": "Data de InÃ­cio",
+        "placeholder": "dd/mm/aaaa"
+      },
+      "endDate": {
+        "label": "Data de Fim",
+        "placeholder": "dd/mm/aaaa"
+      },
+      "note": {
+        "label": "Notas",
+        "placeholder": "Digite notas adicionais"
+      }
+    },
+    "detail": {
+      "add": {
+        "title": "Adicionar Detalhe de ManutenÃ§Ã£o",
+        "form": {
+          "description": "Complete as informaÃ§Ãµes do detalhe de manutenÃ§Ã£o",
+          "name": "Nome",
+          "name.placeholder": "Digite o nome do detalhe",
+          "descriptionLabel": "DescriÃ§Ã£o",
+          "description.placeholder": "Digite uma descriÃ§Ã£o do detalhe",
+          "diagnosis": "DiagnÃ³stico",
+          "diagnosis.placeholder": "Digite o diagnÃ³stico do problema",
+          "mileage": "Quilometragem",
+          "mileage.placeholder": "Digite a quilometragem",
+          "cost": "Custo",
+          "cost.placeholder": "Digite o custo",
+          "technician": "TÃ©cnico",
+          "technician.placeholder": "Digite o nome do tÃ©cnico",
+          "maintenanceType": "Tipo de ManutenÃ§Ã£o",
+          "maintenanceType.placeholder": "Selecione o tipo de manutenÃ§Ã£o",
+          "nextMaintenanceDate": "PrÃ³xima Data de ManutenÃ§Ã£o",
+          "nextMaintenanceDate.placeholder": "Selecione a prÃ³xima data"
+        }
+      },
+      "edit": {
+        "title": "Editar Detalhe de ManutenÃ§Ã£o",
+        "form": {
+          "description": "Modifique as informaÃ§Ãµes do detalhe de manutenÃ§Ã£o",
+          "name": "Nome",
+          "name.placeholder": "Digite o nome do detalhe",
+          "descriptionLabel": "DescriÃ§Ã£o",
+          "description.placeholder": "Digite uma descriÃ§Ã£o do detalhe",
+          "diagnosis": "DiagnÃ³stico",
+          "diagnosis.placeholder": "Digite o diagnÃ³stico do problema",
+          "mileage": "Quilometragem",
+          "mileage.placeholder": "Digite a quilometragem",
+          "cost": "Custo",
+          "cost.placeholder": "Digite o custo",
+          "technician": "TÃ©cnico",
+          "technician.placeholder": "Digite o nome do tÃ©cnico",
+          "maintenanceType": "Tipo de ManutenÃ§Ã£o",
+          "maintenanceType.placeholder": "Selecione o tipo de manutenÃ§Ã£o",
+          "nextMaintenanceDate": "PrÃ³xima Data de ManutenÃ§Ã£o",
+          "nextMaintenanceDate.placeholder": "Selecione a prÃ³xima data"
+        }
+      },
+      "list": {
+        "title": "Detalhes de ManutenÃ§Ã£o",
+        "search": {
+          "placeholder": "Buscar detalhes..."
+        },
+        "empty": {
+          "title": "Nenhum detalhe de manutenÃ§Ã£o",
+          "message": "Nenhum detalhe de manutenÃ§Ã£o encontrado para esta manutenÃ§Ã£o.",
+          "action": "Adicionar Detalhe"
+        },
+        "cost": "Custo",
+        "error": "Erro ao carregar detalhes de manutenÃ§Ã£o"
+      },
+      "delete": {
+        "confirm": {
+          "title": "Confirmar ExclusÃ£o",
+          "message": "Tem certeza de que deseja excluir este detalhe de manutenÃ§Ã£o?"
+        },
+        "success": "Detalhe de manutenÃ§Ã£o excluÃ­do com sucesso",
+        "error": "Erro ao excluir detalhe de manutenÃ§Ã£o"
+      }
+    },
+    "parts": {
+      "title": "PeÃ§as",
+      "empty": "Nenhuma peÃ§a adicionada",
+      "add": {
+        "title": "Adicionar PeÃ§a",
+        "form": {
+          "name": {
+            "label": "Nome da PeÃ§a",
+            "placeholder": "Digite o nome da peÃ§a"
+          },
+          "quantity": {
+            "label": "Quantidade",
+            "placeholder": "Digite a quantidade"
+          },
+          "cost": {
+            "label": "Custo UnitÃ¡rio",
+            "placeholder": "Digite o custo unitÃ¡rio"
+          },
+          "unitOfMeasure": {
+            "label": "Unidade de Medida",
+            "placeholder": "Selecione a unidade de medida"
+          },
+          "totalCost": {
+            "label": "Custo Total"
+          }
+        }
+      }
+    }
+  },
+  "processTypes": {
+    "FUEL": "CombustÃ­vel",
+    "PART": "PeÃ§as",
+    "TALL": "Oficina",
+    "INSU": "Seguros"
+  },
+  "detail": {
+    "add": {
+      "title": "Adicionar Detalhe de ManutenÃ§Ã£o",
+      "form": {
+        "description": "Complete as informaÃ§Ãµes do detalhe de manutenÃ§Ã£o",
+        "name": "Nome",
+        "name.placeholder": "Digite o nome do detalhe",
+        "descriptionLabel": "DescriÃ§Ã£o",
+        "description.placeholder": "Digite uma descriÃ§Ã£o do detalhe",
+        "diagnosis": "DiagnÃ³stico",
+        "diagnosis.placeholder": "Digite o diagnÃ³stico do problema",
+        "mileage": "Quilometragem",
+        "mileage.placeholder": "Digite a quilometragem",
+        "cost": "Custo",
+        "cost.placeholder": "Digite o custo",
+        "technician": "TÃ©cnico",
+        "technician.placeholder": "Digite o nome do tÃ©cnico",
+        "maintenanceType": "Tipo de ManutenÃ§Ã£o",
+        "maintenanceType.placeholder": "Selecione o tipo de manutenÃ§Ã£o",
+        "nextMaintenanceDate": "PrÃ³xima Data de ManutenÃ§Ã£o",
+        "nextMaintenanceDate.placeholder": "Selecione a prÃ³xima data"
+      }
+    },
+    "edit": {
+      "title": "Editar Detalhe de ManutenÃ§Ã£o",
+      "form": {
+        "description": "Modifique as informaÃ§Ãµes do detalhe de manutenÃ§Ã£o",
+        "name": "Nome",
+        "name.placeholder": "Digite o nome do detalhe",
+        "descriptionLabel": "DescriÃ§Ã£o",
+        "description.placeholder": "Digite uma descriÃ§Ã£o do detalhe",
+        "diagnosis": "DiagnÃ³stico",
+        "diagnosis.placeholder": "Digite o diagnÃ³stico do problema",
+        "mileage": "Quilometragem",
+        "mileage.placeholder": "Digite a quilometragem",
+        "cost": "Custo",
+        "cost.placeholder": "Digite o custo",
+        "technician": "TÃ©cnico",
+        "technician.placeholder": "Digite o nome do tÃ©cnico",
+        "maintenanceType": "Tipo de ManutenÃ§Ã£o",
+        "maintenanceType.placeholder": "Selecione o tipo de manutenÃ§Ã£o",
+        "nextMaintenanceDate": "PrÃ³xima Data de ManutenÃ§Ã£o",
+        "nextMaintenanceDate.placeholder": "Selecione a prÃ³xima data"
+      }
+    },
+    "list": {
+      "title": "Detalhes de ManutenÃ§Ã£o",
+      "search": {
+        "placeholder": "Buscar detalhes..."
+      },
+      "empty": {
+        "title": "Nenhum detalhe de manutenÃ§Ã£o",
+        "message": "Nenhum detalhe de manutenÃ§Ã£o encontrado para esta manutenÃ§Ã£o.",
+        "action": "Adicionar Detalhe"
+      },
+      "cost": "Custo",
+      "error": "Erro ao carregar detalhes de manutenÃ§Ã£o"
+    },
+    "delete": {
+      "confirm": {
+        "title": "Confirmar ExclusÃ£o",
+        "message": "Tem certeza de que deseja excluir este detalhe de manutenÃ§Ã£o?"
+      },
+      "success": "Detalhe de manutenÃ§Ã£o excluÃ­do com sucesso",
+      "error": "Erro ao excluir detalhe de manutenÃ§Ã£o"
+    }
+  },
+  "parts": {
+    "title": "PeÃ§as",
+    "empty": "Nenhuma peÃ§a adicionada",
+    "add": {
+      "title": "Adicionar PeÃ§a",
+      "form": {
+        "name": {
+          "label": "Nome da PeÃ§a",
+          "placeholder": "Digite o nome da peÃ§a"
+        },
+        "quantity": {
+          "label": "Quantidade",
+          "placeholder": "Digite a quantidade"
+        },
+        "cost": {
+          "label": "Custo UnitÃ¡rio",
+          "placeholder": "Digite o custo unitÃ¡rio"
+        },
+        "unitOfMeasure": {
+          "label": "Unidade de Medida",
+          "placeholder": "Selecione a unidade de medida"
+        },
+        "totalCost": {
+          "label": "Custo Total"
+        }
+      }
     }
   }
 }

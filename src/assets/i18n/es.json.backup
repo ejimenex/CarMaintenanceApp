@@ -1,87 +1,88 @@
-{
-  "TallerAllreadRegistrered": "Taller ya registrado",
+﻿{
+  "TallerAllreadRegistrered":"Taller ya registrado",
   "Invalid Ids": "Los IDs proporcionados no son vÃ¡lidos",
   "UserNotExist": "El Usuario no existe",
   "UserBlocked": "El Usuario estÃ¡ bloqueado",
-  "EmailNotConfirmed": "El Email no estÃ¡ confirmado",
-  "InvalidPassword": "La contraseÃ±a es incorrecta",
-  "InvalidEmail": "El Email no es vÃ¡lido",
-  "UserLoggedSuccesfully": "Usuario logueado exitosamente",
-  "RequiredName": "El nombre del usuario es requerido",
-  "RequiredAddress": "La direcciÃ³n es requerida",
-  "RequiredPhone": "El telÃ©fono es requerido",
-  "RequiredEmail": "El Email del usuario es requerido",
-  "EmailAlreadyExist": "El email ya existe",
-  "PasswordPolicy": "La contraseÃ±a debe tener al menos 8 caracteres, una mayÃºscula, una minÃºscula, un nÃºmero y un carÃ¡cter especial",
-  "RequiredPassword": "La contraseÃ±a es requerida",
-  "RequiredNewPassword": "La nueva contraseÃ±a es requerida",
-  "RequiredConfirmPassword": "La confirmaciÃ³n de contraseÃ±a es requerida",
-  "AddVehicle": "VehÃ­culo agregado exitosamente",
-  "UpdateVehicle": "VehÃ­culo actualizado exitosamente",
-  "LOGIN": "Login exitoso",
-  "CHANGEPASSWORD": "ContraseÃ±a actualizada exitosamente",
-  "DELETEUSER": "Usuario eliminado exitosamente",
-  "ADDEQUIPMENT": "Equipo agregado",
-  "UPDATEEQUIPMENT": "Equipo actualizado",
-  "ADDTALLER": "Nuevo comercio agregado",
-  "UPDATETALLER": "Se modifico el taller",
-  "AddWorkshop": "Nuevo comercio agregado",
-  "Electric": "Taller Electrico",
+  "EmailNotConfirmed":"El Email no estÃ¡ confirmado",
+  "InvalidPassword":"La contraseÃ±a es incorrecta",
+  "InvalidEmail":"El Email no es vÃ¡lido",
+  "UserLoggedSuccesfully":"Usuario logueado exitosamente",
+  "RequiredName":"El nombre del usuario es requerido",
+  "RequiredAddress":"La direcciÃ³n es requerida",
+  "RequiredPhone":"El telÃ©fono es requerido",
+  "RequiredEmail":"El Email del usuario es requerido",
+  "EmailAlreadyExist":"El email ya existe",
+  "PasswordPolicy":"La contraseÃ±a debe tener al menos 8 caracteres, una mayÃºscula, una minÃºscula, un nÃºmero y un carÃ¡cter especial",
+  "RequiredPassword":"La contraseÃ±a es requerida",
+  "RequiredNewPassword":"La nueva contraseÃ±a es requerida",
+  "RequiredConfirmPassword":"La confirmaciÃ³n de contraseÃ±a es requerida",
+  "AddVehicle":"VehÃ­culo agregado exitosamente",
+  "UpdateVehicle":"VehÃ­culo actualizado exitosamente",
+  "LOGIN":"Login exitoso",
+  "CHANGEPASSWORD":"ContraseÃ±a actualizada exitosamente",
+  "DELETEUSER":"Usuario eliminado exitosamente",
+  "ADDEQUIPMENT":"Equipo agregado",
+  "UPDATEEQUIPMENT":"Equipo actualizado",
+  "ADDTALLER":"Nuevo comercio agregado",
+  "UPDATETALLER":"Se modifico el taller",
+  "AddWorkshop":"Nuevo comercio agregado",
+  "Electric": "Taller Electrico", 
   "Mecanic": "Taller Mecanico",
   "Weels": "Centro de Gomas",
   "AutoAire": "Auto Aire",
   "AllService": "Todos los Servicios",
-  "black": "Negro",
-  "white": "Blanco",
-  "red": "Rojo",
-  "blue": "Azul",
-  "green": "Verde",
-  "yellow": "Amarillo",
-  "purple": "Morado",
-  "orange": "Naranja",
-  "brown": "MarrÃ³n",
-  "gray": "Gris",
-  "pink": "Rosa",
-  "lime": "Lima",
-  "teal": "Turquesa",
-  "seeNotification": "Ver NotificaciÃ³n",
-  "acceptNotification": "Aceptar NotificaciÃ³n",
-  "alertNotification": "Alertar NotificaciÃ³n",
-  "alertNotificationPaid": "NotificaciÃ³n de Proximo Consumo",
-  "alertNotificationMaintenance": "NotificaciÃ³n de Mantenimiento",
-  "markAsUnread": "Marcar como no leÃ­da",
-  "deleteNotification": "Eliminar NotificaciÃ³n",
-  "tradeType": "Tipo de Comercio",
-  "Taller": "Taller",
-  "StorePart": "Tienda de Repuestos",
-  "TallerYStorePart": "Taller y Tienda de Repuestos",
-  "trades": "Comercios",
-  "PremiumFuel": "Gasolina Premium",
-  "RegularFuel": "Gasolina Regular",
-  "DiÃ©sel": "DiÃ©sel",
-  "GasLP": "Gas LP",
-  "ElectricFuel": "Electric",
-  "UnitOfMeasureIdRequired": "La unidad de medida es requerida",
-  "RequiredFuelType": "El tipo de combustible es requerido",
-  "RequiredPolicyNumber": "El nÃºmero de poliza es requerido",
-  "RequiredInsuranceCompany": "El nombre de la aseguradora es requerido",
-  "RequiredAmountInsurance": "El monto del seguro es requerido",
-  "ADDINSURANCEDETAIL": "Pago de Seguro agregado",
-  "ADDFUEL": "Pago de Combustible agregado",
-  "UPDATEPROCESS": "Mantenimiento actualizado",
-  "ADDPROCCESS": "Mantenimiento agregado",
-  "AddFuelSucessfully": "Pago de Combustible agregado correctamente",
-  "AddInsuranceSucessfully": "Pago de Seguro agregado correctamente",
-  "AddProcessSuccessfully": "Mantenimiento agregado correctamente",
-  "Pending": "Pendiente",
-  "InProgress": "En Proceso",
-  "Finished": "Finalizado",
-  "New": "Pendiente",
-  "amount": "Monto",
-  "ADDMAINTENANCEDETAIL": "Detalle de Mantenimiento agregado",
-  "EDITMAINTENANCEDETAIL": "Detalle de Mantenimiento editado",
-  "AddMaintenanceDetailSuccessfully": "Detalle de Mantenimiento agregado correctamente",
-  "UpdateMaintenanceDetail": "Detalle de Mantenimiento actualizado correctamente",
+  "black":"Negro",
+  "white":"Blanco",
+  "red":"Rojo",
+  "blue":"Azul",
+  "green":"Verde",
+  "yellow":"Amarillo",
+  "purple":"Morado",
+  "orange":"Naranja",
+  "brown":"MarrÃ³n",
+  "gray":"Gris",
+  "pink":"Rosa",
+  "lime":"Lima",
+  "teal":"Turquesa",
+  "seeNotification":"Ver NotificaciÃ³n",
+  "acceptNotification":"Aceptar NotificaciÃ³n",
+  "alertNotification":"Alertar NotificaciÃ³n",
+  "alertNotificationPaid":"NotificaciÃ³n de Proximo Consumo",
+  "alertNotificationMaintenance":"NotificaciÃ³n de Mantenimiento",
+  "markAsUnread":"Marcar como no leÃ­da",
+  "deleteNotification":"Eliminar NotificaciÃ³n",
+  "tradeType":"Tipo de Comercio",
+  "Taller":"Taller",
+  "StorePart":"Tienda de Repuestos",
+  "TallerYStorePart":"Taller y Tienda de Repuestos",
+  "trades":"Comercios",
+  "PremiumFuel":"Gasolina Premium",
+  "RegularFuel":"Gasolina Regular",
+  "DiÃ©sel":"DiÃ©sel",
+  "GasLP":"Gas LP",
+  "ElectricFuel":"Electric",
+  "UnitOfMeasureIdRequired":"La unidad de medida es requerida",
+  "RequiredFuelType":"El tipo de combustible es requerido",
+  "RequiredPolicyNumber":"El nÃºmero de poliza es requerido",
+  "RequiredInsuranceCompany":"El nombre de la aseguradora es requerido",
+  "RequiredAmountInsurance":"El monto del seguro es requerido",
+  "ADDINSURANCEDETAIL":"Pago de Seguro agregado",
+  "ADDFUEL":"Pago de Combustible agregado",
+  "UPDATEPROCESS":"Mantenimiento actualizado",
+  "ADDPROCCESS":"Mantenimiento agregado",
+  "AddFuelSucessfully":"Pago de Combustible agregado correctamente",
+  "AddInsuranceSucessfully":"Pago de Seguro agregado correctamente",
+  "AddProcessSuccessfully":"Mantenimiento agregado correctamente",
+  "Pending":"Pendiente",
+  "InProgress":"En Proceso",
+  "Finished":"Finalizado",
+  "New":"Pendiente",
+  "amount":"Monto",
+  "ADDMAINTENANCEDETAIL":"Detalle de Mantenimiento agregado",
+  "EDITMAINTENANCEDETAIL":"Detalle de Mantenimiento editado",
+  "AddMaintenanceDetailSuccessfully":"Detalle de Mantenimiento agregado correctamente",
+  "UpdateMaintenanceDetail":"Detalle de Mantenimiento actualizado correctamente",
+  
   "dashboard": {
     "title": "Panel de Control",
     "welcome": {
@@ -603,11 +604,11 @@
         "placeholder": "Seleccione un taller"
       },
       "processType": {
-        "INSU": "Seguros",
-        "TALL": "Taller",
-        "PART": "Repuestos",
-        "FUEL": "Combustible",
-        "RETA": "Taller & Repuestos",
+        "INSU":"Seguros",
+        "TALL":"Taller",
+        "PART":"Repuestos",
+        "FUEL":"Combustible",
+        "RETA":"Taller & Repuestos",
         "label": "Tipo de Proceso",
         "placeholder": "Seleccione el tipo de proceso",
         "options": {
@@ -615,7 +616,7 @@
           "PART": "Repuestos",
           "TALL": "Taller",
           "INSU": "Seguros",
-          "RETA": "Taller & Repuestos"
+          "RETA":"Taller & Repuestos"
         }
       },
       "startDate": {
@@ -655,105 +656,10 @@
     },
     "processTypes": {
       "FUEL": "Combustible",
-      "PART": "Repuestos",
+      "PART": "Repuestos", 
       "TALL": "Taller",
       "INSU": "Seguros",
-      "RETA": "Taller & Repuestos"
-    },
-    "detail": {
-      "add": {
-        "title": "Agregar Detalle de Mantenimiento",
-        "form": {
-          "description": "Complete la informaciÃ³n del detalle de mantenimiento",
-          "name": "Nombre",
-          "name.placeholder": "Ingrese el nombre del detalle",
-          "descriptionLabel": "DescripciÃ³n",
-          "description.placeholder": "Ingrese una descripciÃ³n del detalle",
-          "diagnosis": "DiagnÃ³stico",
-          "diagnosis.placeholder": "Ingrese el diagnÃ³stico del problema",
-          "mileage": "Kilometraje",
-          "mileage.placeholder": "Ingrese el kilometraje",
-          "cost": "Costo",
-          "cost.placeholder": "Ingrese el costo",
-          "technician": "TÃ©cnico",
-          "technician.placeholder": "Ingrese el nombre del tÃ©cnico",
-          "maintenanceType": "Tipo de Mantenimiento",
-          "maintenanceType.placeholder": "Seleccione el tipo de mantenimiento",
-          "nextMaintenanceDate": "PrÃ³xima Fecha de Mantenimiento",
-          "nextMaintenanceDate.placeholder": "Seleccione la prÃ³xima fecha"
-        }
-      },
-      "edit": {
-        "title": "Editar Detalle de Mantenimiento",
-        "form": {
-          "description": "Modifique la informaciÃ³n del detalle de mantenimiento",
-          "name": "Nombre",
-          "name.placeholder": "Ingrese el nombre del detalle",
-          "descriptionLabel": "DescripciÃ³n",
-          "description.placeholder": "Ingrese una descripciÃ³n del detalle",
-          "diagnosis": "DiagnÃ³stico",
-          "diagnosis.placeholder": "Ingrese el diagnÃ³stico del problema",
-          "mileage": "Kilometraje",
-          "mileage.placeholder": "Ingrese el kilometraje",
-          "cost": "Costo",
-          "cost.placeholder": "Ingrese el costo",
-          "technician": "TÃ©cnico",
-          "technician.placeholder": "Ingrese el nombre del tÃ©cnico",
-          "maintenanceType": "Tipo de Mantenimiento",
-          "maintenanceType.placeholder": "Seleccione el tipo de mantenimiento",
-          "nextMaintenanceDate": "PrÃ³xima Fecha de Mantenimiento",
-          "nextMaintenanceDate.placeholder": "Seleccione la prÃ³xima fecha"
-        }
-      },
-      "list": {
-        "title": "Detalles de Mantenimiento",
-        "search": {
-          "placeholder": "Buscar detalles..."
-        },
-        "empty": {
-          "title": "No hay detalles de mantenimiento",
-          "message": "No se encontraron detalles de mantenimiento para este mantenimiento.",
-          "action": "Agregar Detalle"
-        },
-        "cost": "Costo",
-        "error": "Error al cargar los detalles de mantenimiento"
-      },
-      "delete": {
-        "confirm": {
-          "title": "Confirmar EliminaciÃ³n",
-          "message": "Â¿EstÃ¡ seguro de que desea eliminar este detalle de mantenimiento?"
-        },
-        "success": "Detalle de mantenimiento eliminado exitosamente",
-        "error": "Error al eliminar el detalle de mantenimiento"
-      }
-    },
-    "parts": {
-      "title": "Repuestos",
-      "empty": "No hay repuestos agregados",
-      "add": {
-        "title": "Agregar Repuesto",
-        "form": {
-          "name": {
-            "label": "Nombre del Repuesto",
-            "placeholder": "Ingrese el nombre del repuesto"
-          },
-          "quantity": {
-            "label": "Cantidad",
-            "placeholder": "Ingrese la cantidad"
-          },
-          "cost": {
-            "label": "Costo Unitario",
-            "placeholder": "Ingrese el costo unitario"
-          },
-          "unitOfMeasure": {
-            "label": "Unidad de Medida",
-            "placeholder": "Seleccione la unidad de medida"
-          },
-          "totalCost": {
-            "label": "Costo Total"
-          }
-        }
-      }
+      "RETA":"Taller & Repuestos"
     }
   },
   "fuel": {
@@ -1013,4 +919,6 @@
       }
     }
   }
+
 }
+

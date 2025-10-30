@@ -220,7 +220,9 @@ export class MaintenanceListComponent implements OnInit, OnDestroy {
         if(maintenance.processType === 'INSU') {
           this.router.navigate([`/maintenance/insurance/list`, maintenance.id]);
         }
-      
+        if(maintenance.processType === 'RETA') {
+          this.router.navigate([`/maintenance/detail/list`, maintenance.id]);
+        }
     }, 150);
   }
 

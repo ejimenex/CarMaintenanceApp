@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { AlertService } from '../../utils/alert.service';
 import { ApiResponse } from '../../utils/api.service';
-import { Catalog, CatalogService } from 'src/app/utils/catalog.service.';
+import { Catalog, CatalogService } from 'src/app/utils/catalog.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { 

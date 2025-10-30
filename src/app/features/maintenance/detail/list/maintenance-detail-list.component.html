@@ -1,0 +1,101 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'maintenance.detail.list.title' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addMaintenanceDetail()" fill="clear">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ 'maintenance.detail.list.title' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Search Bar -->
+  <ion-searchbar
+    [(ngModel)]="globalSearch"
+    (ionInput)="onSearch($event)"
+    (ionClear)="onClearSearch()"
+    (ionSearch)="performSearch()"
+    [placeholder]="'maintenance.detail.list.search.placeholder' | translate"
+    show-clear-button="focus"
+    debounce="2000">
+  </ion-searchbar>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>{{ 'common.loading' | translate }}</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage && !loading" class="error-container">
+    <ion-icon name="alert-circle" color="danger"></ion-icon>
+    <p>{{ errorMessage }}</p>
+    <ion-button (click)="loadMaintenanceDetails()" fill="outline" color="primary">
+      {{ 'common.retry' | translate }}
+    </ion-button>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !errorMessage && maintenanceDetails.length === 0" class="empty-state">
+    <ion-icon name="construct-outline" size="large" color="medium"></ion-icon>
+    <h3>{{ 'maintenance.detail.list.empty.title' | translate }}</h3>
+    <p>{{ 'maintenance.detail.list.empty.message' | translate }}</p>
+    <ion-button (click)="addMaintenanceDetail()" fill="solid" color="primary">
+      {{ 'maintenance.detail.list.empty.action' | translate }}
+    </ion-button>
+  </div>
+
+  <!-- Maintenance Details List -->
+  <ion-list *ngIf="!loading && !errorMessage && maintenanceDetails.length > 0">
+    <ion-item-sliding *ngFor="let detail of maintenanceDetails; trackBy: trackByMaintenanceDetail">
+      <ion-item button>
+        <ion-label>
+          <h2>{{ detail.name }}</h2>
+          <p>
+            <ion-chip [color]="getMaintenanceTypeColor(detail.maintenanceTypeName)" size="small">
+              {{ detail.maintenanceTypeName }}
+            </ion-chip>
+            <ion-chip [color]="getStatusColor(detail.statusName)" size="small">
+              {{ detail.statusName }}
+            </ion-chip>
+          </p>
+          <p class="cost">{{ 'maintenance.detail.list.cost' | translate }}: {{ detail.cost | currency }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="viewMaintenanceDetail(detail.id)" color="primary">
+          <ion-icon name="eye" slot="icon-only"></ion-icon>
+          <div class="option-label">{{ 'common.view' | translate }}</div>
+        </ion-item-option>
+        <ion-item-option (click)="editMaintenanceDetail(detail.id)" color="secondary">
+          <ion-icon name="create" slot="icon-only"></ion-icon>
+          <div class="option-label">{{ 'common.edit' | translate }}</div>
+        </ion-item-option>
+        <ion-item-option (click)="confirmDelete(detail.id)" color="danger">
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+          <div class="option-label">{{ 'common.delete' | translate }}</div>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- Delete Confirmation Alert -->
+  <ion-alert
+    [isOpen]="showDeleteAlert"
+    [header]="'maintenance.detail.delete.confirm.title' | translate"
+    [message]="'maintenance.detail.delete.confirm.message' | translate"
+    [buttons]="deleteAlertButtons"
+    (didDismiss)="onDeleteAlertDismiss()">
+  </ion-alert>
+</ion-content>

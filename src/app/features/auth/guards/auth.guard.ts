@@ -13,8 +13,17 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    const isAuthenticated= this.authService.isAuthenticated();
+    const isAuthenticated = this.authService.isAuthenticated();
     if(!isAuthenticated){
+      // Only handle token expiration if we're not on login/register pages
+      const url = this.router.url;
+      const parts = url.split('/');
+      const lastSegment = parts[parts.length - 1];
+      
+      if(lastSegment !== 'login' && lastSegment !== 'register') {
+        this.authService.handleTokenExpiration();
+      }
+      
       this.router.navigate(['/login']);
       return false;
     }

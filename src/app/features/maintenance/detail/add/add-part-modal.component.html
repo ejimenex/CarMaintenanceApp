@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'maintenance.parts.add.title' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="modal-content">
+  <div class="form-container">
+    <form [formGroup]="partForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Part Name -->
+      <div class="field-group">
+        <label class="field-label">
+          <ion-icon name="construct" class="field-icon"></ion-icon>
+          {{ 'maintenance.parts.form.name.label' | translate }} *
+        </label>
+        <ion-input
+          formControlName="name"
+          [placeholder]="'maintenance.parts.form.name.placeholder' | translate"
+          class="modern-input"
+          [class.error]="isFieldInvalid('name')">
+        </ion-input>
+        @if (isFieldInvalid('name')) {
+          <div class="error-message">
+            {{ getFieldError('name') }}
+          </div>
+        }
+      </div>
+
+      <!-- Quantity and Cost Row -->
+      <div class="row">
+        <div class="col-6">
+          <div class="field-group">
+            <label class="field-label">
+              <ion-icon name="list" class="field-icon"></ion-icon>
+              {{ 'maintenance.parts.form.quantity.label' | translate }} *
+            </label>
+            <ion-input
+              formControlName="quantity"
+              type="number"
+              min="1"
+              [placeholder]="'maintenance.parts.form.quantity.placeholder' | translate"
+              class="modern-input"
+              [class.error]="isFieldInvalid('quantity')">
+            </ion-input>
+            @if (isFieldInvalid('quantity')) {
+              <div class="error-message">
+                {{ getFieldError('quantity') }}
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="field-group">
+            <label class="field-label">
+              <ion-icon name="cash" class="field-icon"></ion-icon>
+              {{ 'maintenance.parts.form.cost.label' | translate }} *
+            </label>
+            <ion-input
+              formControlName="cost"
+              type="number"
+              step="0.01"
+              min="0"
+              [placeholder]="'maintenance.parts.form.cost.placeholder' | translate"
+              class="modern-input"
+              [class.error]="isFieldInvalid('cost')">
+            </ion-input>
+            @if (isFieldInvalid('cost')) {
+              <div class="error-message">
+                {{ getFieldError('cost') }}
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Unit of Measure -->
+      <div class="field-group">
+        <label class="field-label">
+          <ion-icon name="scale" class="field-icon"></ion-icon>
+          {{ 'maintenance.parts.form.unitOfMeasure.label' | translate }} *
+        </label>
+        <ion-select
+          formControlName="unitOfMeasure"
+          [placeholder]="'maintenance.parts.form.unitOfMeasure.placeholder' | translate"
+          class="modern-select"
+          [class.error]="isFieldInvalid('unitOfMeasure')">
+          @for (unit of unitOfMeasures; track unit.id) {
+            <ion-select-option [value]="unit.id">
+              {{ unit.name }}
+            </ion-select-option>
+          }
+        </ion-select>
+        @if (isFieldInvalid('unitOfMeasure')) {
+          <div class="error-message">
+            {{ getFieldError('unitOfMeasure') }}
+          </div>
+        }
+      </div>
+
+      <!-- Total Cost Display -->
+      <div class="field-group">
+        <div class="total-cost-display">
+          <ion-icon name="calculator" class="field-icon"></ion-icon>
+          <span class="total-label">{{ 'maintenance.parts.form.totalCost.label' | translate }}:</span>
+          <span class="total-value">
+            {{ (partForm.get('quantity')?.value || 0) * (partForm.get('cost')?.value || 0) | currency:'USD':'symbol':'1.2-2' }}
+          </span>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-buttons">
+      <ion-button 
+        fill="solid" 
+        color="medium"
+        (click)="dismiss()">
+        <ion-icon name="close" slot="start"></ion-icon>
+        {{ 'common.cancel' | translate }}
+      </ion-button>
+      
+      <ion-button 
+        fill="solid" 
+        color="primary"
+        [disabled]="!partForm.valid"
+        (click)="onSubmit()">
+        <ion-icon name="checkmark" slot="start"></ion-icon>
+        {{ 'common.add' | translate }}
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+

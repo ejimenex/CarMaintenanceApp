@@ -5,10 +5,11 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProcessInsuranceDetailService, ProccessInsuranceDetail } from '../../../../utils/processInsuranceDetail.service';
-import { CatalogService, Catalog } from '../../../../utils/catalog.service';
+
 import { AlertService } from '../../../../utils/alert.service';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Catalog, CatalogService } from 'src/app/utils/catalog.service';
 
 @Component({
   selector: 'app-insurance-detail-add',

@@ -76,7 +76,10 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
     this.setupDebouncedSearch();
   }
   ionViewDidEnter() {
-    this.loadVehicles();
+    // Solo recargar si no hay datos o si hay un error
+    if (this.vehicles.length === 0 || this.errorMessage) {
+      this.loadVehicles();
+    }
   }
   private translateDeleteButtons() {
     this.deleteAlertButtons = this.deleteAlertButtons.map(button => ({
@@ -86,6 +89,11 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
   }
 
   loadVehicles(isLoadMore: boolean = false) {
+    // Evitar llamadas duplicadas si ya está cargando
+    if (this.loading && !isLoadMore) {
+      return;
+    }
+
     if (isLoadMore) {
       this.currentPage++;
     } else {

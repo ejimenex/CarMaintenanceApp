@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
         
         // Si llegamos aquí, el login fue exitoso
         console.log('✅ Login successful');
+        // No necesitamos hacer nada más aquí, el AuthService maneja la navegación
       } catch (error: any) {
         console.error('❌ Login error:', error);
         console.error('Error details:', {
@@ -77,10 +78,9 @@ export class LoginComponent implements OnInit {
           console.error('⏰ Login timed out - check your internet connection');
         }
         // El error ya se muestra en el AuthService, pero aseguramos que el loading se detenga
-      } finally {
-        console.log('🏁 Login process finished, setting isLoading to false');
         this.isLoading = false;
       }
+      // No usar finally aquí para evitar conflictos con la navegación del AuthService
     } else {
       console.log('❌ Form is invalid');
       this.markFormGroupTouched();

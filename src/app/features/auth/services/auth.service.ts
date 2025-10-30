@@ -47,6 +47,8 @@ interface JWTPayload {
 export class AuthService {
   private userSubject = new BehaviorSubject<UserData | null>(null);
   user$: Observable<UserData | null> = this.userSubject.asObservable();
+  private hasLoggedExpiredToken = false; // Flag to prevent infinite logging
+  private isCheckingAuth = false; // Flag to prevent recursive calls
   
   // TODO: Replace with your actual API base URL
   private apiUrl = environment.apiUrl;
@@ -93,6 +95,22 @@ export class AuthService {
 
   private clearStoredUser(): void {
     localStorage.removeItem('currentUser');
+    this.hasLoggedExpiredToken = false; // Reset flag when clearing user
+  }
+
+  private handleExpiredToken(): void {
+    // Only log once to prevent infinite logging
+    if (!this.hasLoggedExpiredToken) {
+      console.log('Token expired - clearing user data');
+      this.hasLoggedExpiredToken = true;
+    }
+    this.clearStoredUser();
+    this.userSubject.next(null);
+  }
+
+  // Public method to handle token expiration cleanup
+  public handleTokenExpiration(): void {
+    this.handleExpiredToken();
   }
 
   getCurrentUser(): Observable<UserData | null> {
@@ -128,7 +146,18 @@ export class AuthService {
       console.log('💾 Storing user data and navigating...');
       this.userSubject.next(userData);
       this.storeUser(userData);
-      await this.router.navigate(['/user-preference']);
+      
+      // Reset flags after successful login
+      this.hasLoggedExpiredToken = false;
+      this.isCheckingAuth = false;
+      
+      console.log('🔍 Token stored, checking if valid...');
+      // Test the token immediately after storing
+      const testAuth = this.isAuthenticated();
+      console.log('🔍 Token validation result:', testAuth);
+      
+      // Usar navigateByUrl para una navegación más robusta
+      await this.router.navigateByUrl('/vehicles/list', { replaceUrl: true });
       console.log('🎯 Navigation completed');
     } catch (error: any) {
       console.error('💥 AuthService error:', error);
@@ -209,50 +238,73 @@ export class AuthService {
   }
 
     isAuthenticated(): boolean {
-       // Check localStorage for token
-       const storedUser = localStorage.getItem('currentUser');
-       if (!storedUser) {
-         return false;
-       }
-       
-       try {
-         const userData: UserData = JSON.parse(storedUser);
-         
-         // Check if token exists
-         if (!userData.token) {
-           this.clearStoredUser();
-           return false;
-         }
-         
-         // Decode JWT token to get expiration
-         try {
-           const decodedToken = jwtDecode<JWTPayload>(userData.token);
-           const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-           
-           // Check if token is expired
-           if (decodedToken.exp && decodedToken.exp < currentTime) {
-             console.log('Token expired. Exp:', new Date(decodedToken.exp * 1000), 'Current:', new Date());
-             this.clearStoredUser();
-             this.userSubject.next(null);
-             return false;
-           }
-           
-           console.log('Token valid. Expires:', new Date(decodedToken.exp * 1000));
-         } catch (jwtError) {
-           console.error('Invalid JWT token:', jwtError);
-           this.clearStoredUser();
-           return false;
-         }
-         
-         // Token is valid, update the user subject
-         this.userSubject.next(userData);
-         return true;
-       } catch (error) {
-         // If parsing fails, clear invalid data
-         console.error('Error parsing stored user data:', error);
-         this.clearStoredUser();
-         return false;
-       }
+      const url = this.router.url; // ejemplo: "/user-preference"
+      const parts = url.split('/'); 
+      let lastSegment = parts[parts.length - 1]; // "user-preference"
+      console.log('🔍 isAuthenticated called - URL:', url, 'Last segment:', lastSegment);
+      
+      // Don't validate token on login/register pages
+      if(lastSegment === 'login' || lastSegment === 'register'){
+        console.log('🔍 Skipping auth check on login/register page');
+        return false;
+      }
+   
+      // Prevent recursive calls
+      if (this.isCheckingAuth) {
+        console.log('🔍 Preventing recursive auth check');
+        return false;
+      }
+      
+      this.isCheckingAuth = true;
+      
+      try {
+        // Check localStorage for token
+        const storedUser = localStorage.getItem('currentUser');
+        if (!storedUser) {
+          return false;
+        }
+        
+        const userData: UserData = JSON.parse(storedUser);
+        
+        // Check if token exists
+        if (!userData.token) {
+          return false;
+        }
+        
+        // Decode JWT token to get expiration
+        try {
+          console.log('🔍 Decoding token:', userData.token.substring(0, 50) + '...');
+          const decodedToken = jwtDecode<JWTPayload>(userData.token);
+          console.log('🔍 Decoded token payload:', decodedToken);
+          
+          const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+          console.log('🔍 Current time:', currentTime, 'Token exp:', decodedToken.exp);
+          
+          // Check if token is expired
+          if (decodedToken.exp && decodedToken.exp < currentTime) {
+            // Only log once to prevent infinite logging
+            if (!this.hasLoggedExpiredToken) {
+              console.log('❌ Token expired. Exp:', new Date(decodedToken.exp * 1000), 'Current:', new Date());
+              this.hasLoggedExpiredToken = true;
+            }
+            return false;
+          }
+          
+          // Reset flag when token is valid
+          this.hasLoggedExpiredToken = false;
+          console.log('✅ Token valid. Expires:', new Date(decodedToken.exp * 1000));
+          return true;
+        } catch (jwtError) {
+          console.error('❌ Invalid JWT token:', jwtError);
+          return false;
+        }
+      } catch (error) {
+        // If parsing fails, return false
+        console.error('Error parsing stored user data:', error);
+        return false;
+      } finally {
+        this.isCheckingAuth = false;
+      }
    }
 
   private async showErrorAlert(header: string, message: string): Promise<void> {
