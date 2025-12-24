@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>
       <ion-icon name="car" slot="start" class="header-icon"></ion-icon>
-      {{ 'vehicles.viewVehicle' | translate }}
+      {{ 'vehicles_viewVehicle' | translate }}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()" fill="clear">
@@ -51,7 +51,7 @@
           <div class="info-item">
             <div class="info-label">
               <ion-icon name="business" class="info-icon"></ion-icon>
-              {{ 'vehicles.form.brand' | translate }}
+              {{ 'vehicles_form_brand' | translate }}
             </div>
             <div class="info-value">{{ vehicle.brand || 'N/A' }}</div>
           </div>
@@ -60,7 +60,7 @@
           <div class="info-item">
             <div class="info-label">
               <ion-icon name="car-sport" class="info-icon"></ion-icon>
-              {{ 'vehicles.form.model' | translate }}
+              {{ 'vehicles_form_model' | translate }}
             </div>
             <div class="info-value">{{ vehicle.model || 'N/A' }}</div>
           </div>
@@ -69,7 +69,7 @@
           <div class="info-item">
             <div class="info-label">
               <ion-icon name="car-outline" class="info-icon"></ion-icon>
-              {{ 'vehicles.form.vehicleType' | translate }}
+              {{ 'vehicles_form_vehicleType' | translate }}
             </div>
             <div class="info-value">{{ vehicle.vehicleType || 'N/A' }}</div>
           </div>
@@ -78,7 +78,7 @@
           <div class="info-item">
             <div class="info-label">
               <ion-icon name="settings" class="info-icon"></ion-icon>
-              {{ 'vehicles.form.vehicleMotorType' | translate }}
+              {{ 'vehicles_form_vehicleMotorType' | translate }}
             </div>
             <div class="info-value">{{ vehicle.vehicleMotorType || 'N/A' }}</div>
           </div>
@@ -87,7 +87,7 @@
           <div class="info-item">
             <div class="info-label">
               <ion-icon name="color-palette" class="info-icon"></ion-icon>
-              {{ 'vehicles.form.color' | translate }}
+              {{ 'vehicles_form_color' | translate }}
             </div>
             <div class="info-value">
               <span class="color-indicator" [style.background-color]="vehicle.color"></span>
@@ -100,7 +100,7 @@
             <div class="info-item">
               <div class="info-label">
                 <ion-icon name="calendar" class="info-icon"></ion-icon>
-                {{ 'vehicles.form.year' | translate }}
+                {{ 'vehicles_form_year' | translate }}
               </div>
               <div class="info-value">{{ vehicle.year }}</div>
             </div>
@@ -111,7 +111,7 @@
             <div class="info-item">
               <div class="info-label">
                 <ion-icon name="speedometer" class="info-icon"></ion-icon>
-                {{ 'vehicles.form.mileage' | translate }}
+                {{ 'vehicles_form_mileage' | translate }}
               </div>
               <div class="info-value">{{ vehicle.mileage | number }} km</div>
             </div>
@@ -128,7 +128,7 @@
   @if (!vehicle) {
     <div class="loading-container">
       <ion-spinner name="crescent"></ion-spinner>
-      <p>{{ 'common.loading' | translate }}...</p>
+      <p>{{ 'common_loading' | translate }}...</p>
     </div>
   }
 </ion-content>

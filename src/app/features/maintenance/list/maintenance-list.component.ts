@@ -41,12 +41,12 @@ export class MaintenanceListComponent implements OnInit, OnDestroy {
   maintenanceToDelete: ProcessHeaderGetRequest | null = null;
   deleteAlertButtons = [
     {
-      text: this.translateService.instant('common.cancel'),
+      text: this.translateService.instant('common_cancel'),
       role: 'cancel',
       cssClass: 'alert-button-cancel'
     },
     {
-      text: this.translateService.instant('maintenance.actions.delete'),
+      text: this.translateService.instant('maintenance_actions_delete'),
       role: 'destructive',
       cssClass: 'alert-button-delete',
       handler: () => {
@@ -110,7 +110,7 @@ export class MaintenanceListComponent implements OnInit, OnDestroy {
     this.processHeaderService.getProcessHeaderPaged(this.currentPage, this.globalSearch).pipe(
       catchError(error => {
         console.error('❌ Error loading maintenances:', error);
-        this.errorMessage = this.translateService.instant('maintenance.list.error');
+        this.errorMessage = this.translateService.instant('maintenance_list_error');
         return of(null);
       }),
       finalize(() => {
@@ -145,7 +145,7 @@ export class MaintenanceListComponent implements OnInit, OnDestroy {
           this.maintenances = [];
         } else {
           console.error('❌ Respuesta inválida:', response);
-          this.errorMessage = response?.message || this.translateService.instant('maintenance.list.error');
+          this.errorMessage = response?.message || this.translateService.instant('maintenance_list_error');
           this.maintenances = [];
         }
       },
@@ -213,16 +213,27 @@ export class MaintenanceListComponent implements OnInit, OnDestroy {
   }
 
   addFuelDetail(maintenance: any) {
-    this.closeMenuWithDelay(); // Close the dropdown menu before navigating
+    this.closeMenuWithDelay();
+  
     setTimeout(() => {
-      if(maintenance.processType === 'FUEL') {
-        this.router.navigate([`/maintenance/fuel/list`, maintenance.id]);}
-        if(maintenance.processType === 'INSU') {
-          this.router.navigate([`/maintenance/insurance/list`, maintenance.id]);
-        }
-        if(maintenance.processType === 'RETA') {
-          this.router.navigate([`/maintenance/detail/list`, maintenance.id]);
-        }
+      // 1. Definimos el mapa de rutas (fácil de leer y extender)
+      const routeMap: Record<string, string> = {
+        'FUEL': '/maintenance/fuel/list',
+        'INSU': '/maintenance/insurance/list',
+        'RETA': '/maintenance/detail/list',
+        'TAXE': '/maintenance/taxe/list',
+        'PART': '/maintenance/part/list'
+      };
+  
+      // 2. Obtenemos la ruta basada en el tipo de proceso
+      const path = routeMap[maintenance?.processType];
+  
+      // 3. Navegamos solo si existe una ruta válida
+      if (path) {
+        this.router.navigate([path, maintenance.id]);
+      } else {
+        console.warn(`No se encontró una ruta para el tipo: ${maintenance?.processType}`);
+      }
     }, 150);
   }
 
@@ -246,7 +257,7 @@ export class MaintenanceListComponent implements OnInit, OnDestroy {
     this.processHeaderService.deleteProcessHeader(this.maintenanceToDelete.id).pipe(
       catchError(error => {
         console.error('Error deleting maintenance:', error);
-        this.alertService.showError(this.translateService.instant('maintenance.delete.error'));
+        this.alertService.showError(this.translateService.instant('maintenance_delete_error'));
         return of(null);
       }),
       finalize(() => {
@@ -257,12 +268,12 @@ export class MaintenanceListComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (response: any) => {
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('maintenance.delete.success'));
+          this.alertService.showSuccess(this.translateService.instant('maintenance_delete_success'));
           // Remove the deleted maintenance from the list
           this.maintenances = this.maintenances.filter(m => m.id !== this.maintenanceToDelete?.id);
           this.totalItems--;
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('maintenance.delete.error'));
+          this.alertService.showError(response?.message || this.translateService.instant('maintenance_delete_error'));
         }
       }
     });

@@ -18,8 +18,13 @@ export const VEHICLES_ROUTES: Routes = [
   },
   {
     path: 'edit/:id',
+      loadComponent: () =>
+        import('./crud/edit/vehicles-edit.component').then((m) => m.VehiclesEditComponent)
+    },
+  {
+    path: 'dashboard/:id',
     loadComponent: () =>
-      import('./crud/edit/vehicles-edit.component').then((m) => m.VehiclesEditComponent)
+      import('./vehicleDashBoard/vehicleDashboard.component').then((m) => m.VehicleDashboardComponent)
   },
   // {
   //   path: 'detail/:id',

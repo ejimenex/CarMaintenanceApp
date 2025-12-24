@@ -11,7 +11,8 @@ export interface ProccessInsuranceDetail
   amount: number;  
   InsuranceAmount: number; 
   currency: string;         
-  processHeaderId: string;    
+  processHeaderId: string;  
+  id?: string | null;
 }
 
 

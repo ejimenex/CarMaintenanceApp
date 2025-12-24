@@ -3,11 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="onCancel()"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'maintenance.detail.edit.title' | translate }}</ion-title>
+    <ion-title>{{ 'maintenance_detail_edit_title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onSubmit()" [disabled]="!maintenanceDetailForm.valid || loading" fill="solid" color="primary">
         <ion-icon name="checkmark" slot="start"></ion-icon>
-        {{ 'common.save' | translate }}
+        {{ 'common_save' | translate }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -20,14 +20,14 @@
       <!-- Header Section -->
       <div class="form-header">
         <ion-icon name="construct" class="header-icon"></ion-icon>
-        <h2>{{ 'maintenance.detail.edit.title' | translate }}</h2>
-        <p>{{ 'maintenance.detail.edit.form.description' | translate }}</p>
+        <h2>{{ 'maintenance_detail_edit_title' | translate }}</h2>
+        <p>{{ 'maintenance_detail_edit_form_description' | translate }}</p>
       </div>
 
       <!-- Loading Spinner -->
       <div *ngIf="loading" class="loading-container">
         <ion-spinner name="crescent"></ion-spinner>
-        <p>{{ 'common.loading' | translate }}</p>
+        <p>{{ 'common_loading' | translate }}</p>
       </div>
 
       <!-- Error Message -->
@@ -35,7 +35,7 @@
         <ion-icon name="alert-circle" color="danger"></ion-icon>
         <p>{{ errorMessage }}</p>
         <ion-button (click)="loadMaintenanceDetail()" fill="outline" color="primary">
-          {{ 'common.retry' | translate }}
+          {{ 'common_retry' | translate }}
         </ion-button>
       </div>
 
@@ -44,10 +44,10 @@
         
         <!-- Name Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.edit.form.name' | translate }} *</label>
+          <label class="field-label">{{ 'maintenance_detail_edit_form_name' | translate }} *</label>
           <ion-input 
             formControlName="name" 
-            [placeholder]="'maintenance.detail.edit.form.name.placeholder' | translate"
+            [placeholder]="'maintenance_detail_edit_form_name_placeholder' | translate"
             class="modern-input"
             fill="outline">
           </ion-input>
@@ -60,10 +60,10 @@
 
         <!-- Description Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.edit.form.description' | translate }}</label>
+          <label class="field-label">{{ 'maintenance_detail_edit_form_description' | translate }}</label>
           <ion-textarea 
             formControlName="description" 
-            [placeholder]="'maintenance.detail.edit.form.description.placeholder' | translate"
+            [placeholder]="'maintenance_detail_edit_form_description_placeholder' | translate"
             class="modern-textarea"
             fill="outline"
             rows="3">
@@ -72,10 +72,10 @@
 
         <!-- Diagnosis Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.edit.form.diagnosis' | translate }} *</label>
+          <label class="field-label">{{ 'maintenance_detail_edit_form_diagnosis' | translate }} *</label>
           <ion-textarea 
             formControlName="diagnosis" 
-            [placeholder]="'maintenance.detail.edit.form.diagnosis.placeholder' | translate"
+            [placeholder]="'maintenance_detail_edit_form_diagnosis_placeholder' | translate"
             class="modern-textarea"
             fill="outline"
             rows="3">
@@ -91,11 +91,11 @@
         <div class="row">
           <div class="col-6">
             <div class="field-group">
-              <label class="field-label">{{ 'maintenance.detail.edit.form.mileage' | translate }} *</label>
+              <label class="field-label">{{ 'maintenance_detail_edit_form_mileage' | translate }} *</label>
               <ion-input 
                 formControlName="mileage" 
                 type="number"
-                [placeholder]="'maintenance.detail.edit.form.mileage.placeholder' | translate"
+                [placeholder]="'maintenance_detail_edit_form_mileage_placeholder' | translate"
                 class="modern-input"
                 fill="outline">
               </ion-input>
@@ -108,12 +108,12 @@
           </div>
           <div class="col-6">
             <div class="field-group">
-              <label class="field-label">{{ 'maintenance.detail.edit.form.cost' | translate }} *</label>
+              <label class="field-label">{{ 'maintenance_detail_edit_form_cost' | translate }} *</label>
               <ion-input 
                 formControlName="cost" 
                 type="number"
                 step="0.01"
-                [placeholder]="'maintenance.detail.edit.form.cost.placeholder' | translate"
+                [placeholder]="'maintenance_detail_edit_form_cost_placeholder' | translate"
                 class="modern-input"
                 fill="outline">
               </ion-input>
@@ -128,10 +128,10 @@
 
         <!-- Technician Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.edit.form.technician' | translate }}</label>
+          <label class="field-label">{{ 'maintenance_detail_edit_form_technician' | translate }}</label>
           <ion-input 
             formControlName="Technician" 
-            [placeholder]="'maintenance.detail.edit.form.technician.placeholder' | translate"
+            [placeholder]="'maintenance_detail_edit_form_technician_placeholder' | translate"
             class="modern-input"
             fill="outline">
           </ion-input>
@@ -139,10 +139,10 @@
 
         <!-- Maintenance Type Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.edit.form.maintenanceType' | translate }} *</label>
+          <label class="field-label">{{ 'maintenance_detail_edit_form_maintenanceType' | translate }} *</label>
           <ion-select 
             formControlName="maintenanceTypeId"
-            [placeholder]="'maintenance.detail.edit.form.maintenanceType.placeholder' | translate"
+            [placeholder]="'maintenance_detail_edit_form_maintenanceType_placeholder' | translate"
             class="modern-select"
             fill="outline">
             @for (type of maintenanceTypes; track type.code) {
@@ -160,7 +160,7 @@
 
         <!-- Next Maintenance Date Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.edit.form.nextMaintenanceDate' | translate }}</label>
+          <label class="field-label">{{ 'maintenance_detail_edit_form_nextMaintenanceDate' | translate }}</label>
           <ion-input 
             formControlName="nextMaintenanceDate" 
             type="date"
@@ -178,39 +178,19 @@
       <div class="loading-overlay">
         <div class="loading-content">
           <ion-spinner name="crescent"></ion-spinner>
-          <p>{{ 'common.loading' | translate }}</p>
+          <p>{{ 'common_loading' | translate }}</p>
         </div>
       </div>
     }
   </div>
 </ion-content>
 
-    <!-- Form Footer -->
-    <ion-footer class="form-footer">
-      <ion-toolbar>
-        <div class="footer-buttons">
-          <ion-button 
-            fill="solid" 
-            class="footer-btn cancel-btn"
-            (click)="onCancel()">
-            <ion-icon name="close" slot="icon-only"></ion-icon>
-          </ion-button>
-          
-          <ion-button 
-            type="submit"
-            fill="solid" 
-            class="footer-btn save-btn"
-            [disabled]="maintenanceDetailForm.invalid || loading"
-            (click)="onSubmit()">
-            <ion-icon name="checkmark" slot="icon-only"></ion-icon>
-          </ion-button>
-          
-          <ion-button 
-            fill="solid" 
-            class="footer-btn exit-btn"
-            (click)="onCancel()">
-            <ion-icon name="exit" slot="icon-only"></ion-icon>
-          </ion-button>
-        </div>
-      </ion-toolbar>
-    </ion-footer>
+<!-- ✅ FOOTER CON APP-FOOTER -->
+<app-footer
+  [showSaveButton]="true"
+  [saveButtonText]="'common.update'"
+  [saveButtonDisabled]="maintenanceDetailForm.invalid"
+  [saveButtonLoading]="loading"
+  (onSave)="onSubmit()"
+  (onBack)="onCancel()">
+</app-footer>

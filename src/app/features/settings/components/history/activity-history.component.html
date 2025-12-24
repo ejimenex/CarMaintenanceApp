@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/settings"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'settings.activityHistory.title' | translate }}</ion-title>
+    <ion-title>{{ 'settings_activityHistory_title' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
     <ion-card class="info-card">
       <ion-card-content>
         <p class="info-text">
-          {{ 'settings.activityHistory.description' | translate }}
+          {{ 'settings_activityHistory_description' | translate }}
         </p>
       </ion-card-content>
     </ion-card>
@@ -23,7 +23,7 @@
       <ion-card class="loading-card">
         <ion-card-content class="loading-content">
           <ion-spinner name="crescent"></ion-spinner>
-          <p>{{ 'settings.activityHistory.loading' | translate }}</p>
+          <p>{{ 'settings_activityHistory_loading' | translate }}</p>
         </ion-card-content>
       </ion-card>
     }
@@ -34,7 +34,7 @@
         <ion-card-content>
           <p class="error-text">{{ error }}</p>
           <ion-button fill="outline" (click)="loadActivityHistory()">
-            {{ 'settings.activityHistory.retry' | translate }}
+            {{ 'settings_activityHistory_retry' | translate }}
           </ion-button>
         </ion-card-content>
       </ion-card>
@@ -44,7 +44,7 @@
     @if (!error && activityHistory.length > 0) {
       <ion-card class="history-card">
         <ion-card-header>
-          <ion-card-title>{{ 'settings.activityHistory.recentActivity' | translate }}</ion-card-title>
+          <ion-card-title>{{ 'settings_activityHistory_recentActivity' | translate }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <ion-list>
@@ -60,7 +60,7 @@
                   <p class="activity-description">{{ activity.description | translate}}</p>
                   <p class="activity-date">
                     <ion-icon name="calendar" class="date-icon"></ion-icon>
-                    {{ formatDate(activity.createdAt) }} {{ 'settings.activityHistory.at' | translate }} {{ formatTime(activity.createdAt) }}
+                    {{ formatDate(activity.createdAt) }} {{ 'settings_activityHistory_at' | translate }} {{ formatTime(activity.createdAt) }}
                   </p>
                 </ion-label>
               </ion-item>
@@ -73,7 +73,7 @@
       <ion-infinite-scroll (ionInfinite)="loadMore($event)" [disabled]="!hasMoreData || isLoading">
         <ion-infinite-scroll-content
           loadingSpinner="bubbles"
-          [loadingText]="'settings.activityHistory.loadingMore' | translate">
+          [loadingText]="'settings_activityHistory_loadingMore' | translate">
         </ion-infinite-scroll-content>
       </ion-infinite-scroll>
     }
@@ -83,7 +83,7 @@
       <ion-card class="empty-card">
         <ion-card-content class="empty-content">
           <ion-icon name="list" class="empty-icon"></ion-icon>
-          <p>{{ 'settings.activityHistory.empty' | translate }}</p>
+          <p>{{ 'settings_activityHistory_empty' | translate }}</p>
         </ion-card-content>
       </ion-card>
     }

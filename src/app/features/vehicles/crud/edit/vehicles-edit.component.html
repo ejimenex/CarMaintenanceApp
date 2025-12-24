@@ -1,199 +1,328 @@
-<ion-header class="uniform-header">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
       <ion-back-button defaultHref="/vehicles"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'vehicles.editVehicle' | translate }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="updateVehicle()" [disabled]="!form.valid || loading" fill="solid" color="primary">
-        <ion-icon name="checkmark" slot="start"></ion-icon>
-        {{ 'vehicles.actions.update' | translate }}
-      </ion-button>
-    </ion-buttons>
+    <ion-title>{{ 'vehicles_editVehicle' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="modern-form-content">
+<ion-content [fullscreen]="true">
   <div class="form-container">
     <form [formGroup]="form" (ngSubmit)="updateVehicle()">
       
-      <!-- Header Section -->
+      <!-- ========== HEADER SECCIÓN ========== -->
       <div class="form-header">
-        <ion-icon name="car" class="header-icon"></ion-icon>
-        <h2>{{ 'vehicles.editVehicle' | translate }}</h2>
-        <p>{{ 'vehicles.edit.description' | translate }}</p>
+        <ion-icon name="create-outline" class="header-icon"></ion-icon>
+        <h2>{{ 'vehicles_editVehicle' | translate }}</h2>
+        <p>Modifica la información del vehículo</p>
       </div>
 
-      <!-- Form Fields -->
-      <div class="form-fields">
-        
-        <!-- Name Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.name' | translate }} *</label>
-          <ion-input 
-            formControlName="name" 
-            [placeholder]="'vehicles.form.enterName' | translate"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (form.get('name')?.invalid && form.get('name')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('name') }}
-            </div>
-          }
+      <!-- ========== INFORMACIÓN BÁSICA ========== -->
+      <div class="form-section">
+        <div class="section-title">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>Información Básica</span>
         </div>
 
-        <!-- Plate Number Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.plateNumber' | translate }} *</label>
-          <ion-input 
-            formControlName="plateNumber" 
-            [placeholder]="'vehicles.form.enterPlate' | translate"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (form.get('plateNumber')?.invalid && form.get('plateNumber')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('plateNumber') }}
-            </div>
-          }
-        </div>
-
-        <!-- Brand Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.brand' | translate }} *</label>
-          <ion-select 
-            formControlName="brandCode" 
-            [placeholder]="'vehicles.form.selectBrand' | translate" 
-            class="modern-select"
-            fill="outline">
-            @for (brand of brands; track brand.id) {
-              <ion-select-option [value]="brand.id">
-                {{ brand.name }}
-              </ion-select-option>
+        <div class="form-fields">
+          
+          <!-- Nombre del Vehículo -->
+          <div class="field-group" [class.has-error]="form.get('name')?.invalid && form.get('name')?.touched">
+            <label class="field-label">
+              <ion-icon name="text-outline"></ion-icon>
+              {{ 'vehicles_form_name' | translate }} *
+            </label>
+            <ion-input 
+              formControlName="name" 
+              [placeholder]="'vehicles_form_enterName' | translate">
+            </ion-input>
+            @if (form.get('name')?.invalid && form.get('name')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('name') }}
+              </div>
             }
-          </ion-select>
-          @if (form.get('brandCode')?.invalid && form.get('brandCode')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('brandCode') }}
-            </div>
-          }
-        </div>
+          </div>
 
-        <!-- Vehicle Type Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.vehicleType' | translate }} *</label>
-          <ion-select 
-            formControlName="vehicleTypeId" 
-            [placeholder]="'vehicles.form.selectVehicleType' | translate" 
-            class="modern-select"
-            fill="outline">
-            @for (vehicleType of vehicleTypes; track vehicleType.id) {
-              <ion-select-option [value]="vehicleType.id">
-                {{ vehicleType.name }}
-              </ion-select-option>
+          <!-- Matrícula -->
+          <div class="field-group" [class.has-error]="form.get('plateNumber')?.invalid && form.get('plateNumber')?.touched">
+            <label class="field-label">
+              <ion-icon name="card-outline"></ion-icon>
+              {{ 'vehicles_form_plateNumber' | translate }} *
+            </label>
+            <ion-input 
+              formControlName="plateNumber" 
+              [placeholder]="'vehicles_form_enterPlate' | translate">
+            </ion-input>
+            @if (form.get('plateNumber')?.invalid && form.get('plateNumber')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('plateNumber') }}
+              </div>
             }
-          </ion-select>
-          @if (form.get('vehicleTypeId')?.invalid && form.get('vehicleTypeId')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('vehicleTypeId') }}
+          </div>
+
+          <!-- Grid de 2 columnas para Brand y Color -->
+          <div class="form-row">
+            
+            <!-- Marca -->
+            <div class="field-group" [class.has-error]="form.get('brandCode')?.invalid && form.get('brandCode')?.touched">
+              <label class="field-label">
+                <ion-icon name="logo-buffer"></ion-icon>
+                {{ 'vehicles_form_brand' | translate }} *
+              </label>
+              <ion-select 
+                formControlName="brandCode" 
+                [placeholder]="'vehicles_form_selectBrand' | translate"
+                interface="popover">
+                @for (brand of brands; track brand.id) {
+                  <ion-select-option [value]="brand.id">
+                    {{ brand.name }}
+                  </ion-select-option>
+                }
+              </ion-select>
+              @if (form.get('brandCode')?.invalid && form.get('brandCode')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('brandCode') }}
+                </div>
+              }
             </div>
-          }
+
+            <!-- Color -->
+            <div class="field-group" [class.has-error]="form.get('color')?.invalid && form.get('color')?.touched">
+              <label class="field-label">
+                <ion-icon name="color-palette-outline"></ion-icon>
+                {{ 'vehicles_form_color' | translate }} *
+              </label>
+              <ion-select 
+                formControlName="color" 
+                [placeholder]="'vehicles_form_selectColor' | translate"
+                interface="popover">
+                @for (color of colors; track color.id) {
+                  <ion-select-option [value]="color.id">
+                    {{ color.name }}
+                  </ion-select-option>
+                }
+              </ion-select>
+              @if (form.get('color')?.invalid && form.get('color')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('color') }}
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Grid de 2 columnas para Modelo y Año -->
+          <div class="form-row">
+            
+            <!-- Modelo -->
+            <div class="field-group" [class.has-error]="form.get('model')?.invalid && form.get('model')?.touched">
+              <label class="field-label">
+                <ion-icon name="car-outline"></ion-icon>
+                {{ 'vehicles_form_model' | translate }}
+              </label>
+              <ion-input 
+                formControlName="model" 
+                [placeholder]="'vehicles_form_enterModel' | translate">
+              </ion-input>
+              @if (form.get('model')?.invalid && form.get('model')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('model') }}
+                </div>
+              }
+            </div>
+
+            <!-- Año -->
+            <div class="field-group" [class.has-error]="form.get('year')?.invalid && form.get('year')?.touched">
+              <label class="field-label">
+                <ion-icon name="calendar-outline"></ion-icon>
+                {{ 'vehicles_form_year' | translate }}
+              </label>
+              <ion-input 
+                formControlName="year" 
+                type="number" 
+                [placeholder]="'vehicles_form_enterYear' | translate">
+              </ion-input>
+              @if (form.get('year')?.invalid && form.get('year')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('year') }}
+                </div>
+              }
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <hr class="form-divider">
+
+      <!-- ========== ESPECIFICACIONES TÉCNICAS ========== -->
+      <div class="form-section">
+        <div class="section-title">
+          <ion-icon name="settings-outline"></ion-icon>
+          <span>Especificaciones Técnicas</span>
         </div>
 
-        <!-- Vehicle Motor Type Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.vehicleMotorType' | translate }} *</label>
-          <ion-select 
-            formControlName="vehicleMotorTypeId" 
-            [placeholder]="'vehicles.form.selectVehicleMotorType' | translate" 
-            class="modern-select"
-            fill="outline">
-            @for (vehicleMotorType of vehicleMotorTypes; track vehicleMotorType.id) {
-              <ion-select-option [value]="vehicleMotorType.id">
-                {{ vehicleMotorType.name }}
-              </ion-select-option>
+        <div class="form-fields">
+          
+          <!-- Tipo de Vehículo -->
+          <div class="field-group" [class.has-error]="form.get('vehicleTypeId')?.invalid && form.get('vehicleTypeId')?.touched">
+            <label class="field-label">
+              <ion-icon name="car-sport-outline"></ion-icon>
+              {{ 'vehicles_form_vehicleType' | translate }} *
+            </label>
+            <ion-select 
+              formControlName="vehicleTypeId" 
+              [placeholder]="'vehicles_form_selectVehicleType' | translate"
+              interface="popover">
+              @for (vehicleType of vehicleTypes; track vehicleType.id) {
+                <ion-select-option [value]="vehicleType.id">
+                  {{ vehicleType.name }}
+                </ion-select-option>
+              }
+            </ion-select>
+            @if (form.get('vehicleTypeId')?.invalid && form.get('vehicleTypeId')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('vehicleTypeId') }}
+              </div>
             }
-          </ion-select>
-          @if (form.get('vehicleMotorTypeId')?.invalid && form.get('vehicleMotorTypeId')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('vehicleMotorTypeId') }}
-            </div>
-          }
-        </div>
+          </div>
 
-        <!-- Model Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.model' | translate }}</label>
-          <ion-input 
-            formControlName="model" 
-            [placeholder]="'vehicles.form.enterModel' | translate"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (form.get('model')?.invalid && form.get('model')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('model') }}
-            </div>
-          }
-        </div>
-
-        <!-- Color Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.color' | translate }} *</label>
-          <ion-select 
-            formControlName="color" 
-            [placeholder]="'vehicles.form.selectColor' | translate"
-            class="modern-select"
-            fill="outline">
-            @for (color of colors; track color.id) {
-              <ion-select-option [value]="color.id">
-                {{ color.name }}
-              </ion-select-option>
+          <!-- Tipo de Motor -->
+          <div class="field-group" [class.has-error]="form.get('vehicleMotorTypeId')?.invalid && form.get('vehicleMotorTypeId')?.touched">
+            <label class="field-label">
+              <ion-icon name="flash-outline"></ion-icon>
+              {{ 'vehicles_form_vehicleMotorType' | translate }} *
+            </label>
+            <ion-select 
+              formControlName="vehicleMotorTypeId" 
+              [placeholder]="'vehicles_form_selectVehicleMotorType' | translate"
+              interface="popover">
+              @for (vehicleMotorType of vehicleMotorTypes; track vehicleMotorType.id) {
+                <ion-select-option [value]="vehicleMotorType.id">
+                  {{ vehicleMotorType.name }}
+                </ion-select-option>
+              }
+            </ion-select>
+            @if (form.get('vehicleMotorTypeId')?.invalid && form.get('vehicleMotorTypeId')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('vehicleMotorTypeId') }}
+              </div>
             }
-          </ion-select>
-          @if (form.get('color')?.invalid && form.get('color')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('color') }}
+          </div>
+
+          <!-- Kilometraje -->
+          <div class="field-group" [class.has-error]="form.get('mileage')?.invalid && form.get('mileage')?.touched">
+            <label class="field-label">
+              <ion-icon name="speedometer-outline"></ion-icon>
+              {{ 'vehicles_form_mileage' | translate }}
+            </label>
+            <ion-input 
+              formControlName="mileage" 
+              type="number" 
+              [placeholder]="'vehicles_form_enterMileage' | translate">
+            </ion-input>
+            <div class="field-hint">
+              Actualiza el kilometraje actual del vehículo
             </div>
-          }
+            @if (form.get('mileage')?.invalid && form.get('mileage')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('mileage') }}
+              </div>
+            }
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <hr class="form-divider">
+
+      <!-- ========== IMAGEN DEL VEHÍCULO ========== -->
+      <div class="form-section">
+        <div class="section-title">
+          <ion-icon name="image-outline"></ion-icon>
+          <span>Imagen del Vehículo</span>
         </div>
 
-        <!-- Year Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.year' | translate }}</label>
-          <ion-input 
-            formControlName="year" 
-            type="number" 
-            [placeholder]="'vehicles.form.enterYear' | translate"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (form.get('year')?.invalid && form.get('year')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('year') }}
+        <div class="form-fields">
+          
+          <!-- Current Image Display -->
+          @if (currentImageUrl && !imagePreview) {
+            <div class="current-image-container">
+              <p class="image-label">Imagen Actual:</p>
+              <div class="image-wrapper">
+                <img 
+                  [src]="currentImageUrl" 
+                  alt="Imagen actual del vehículo" 
+                  class="current-vehicle-image"
+                  (error)="onImageError($event)">
+              </div>
+              <div class="image-actions">
+                <ion-button color="warning" size="small" (click)="triggerFileInput()">
+                  <ion-icon slot="start" name="repeat-outline"></ion-icon>
+                  Cambiar Imagen
+                </ion-button>
+                <ion-button color="danger" size="small" fill="outline" (click)="deleteCurrentImage()">
+                  <ion-icon slot="start" name="trash-outline"></ion-icon>
+                  Eliminar
+                </ion-button>
+              </div>
             </div>
           }
-        </div>
 
-        <!-- Mileage Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'vehicles.form.mileage' | translate }}</label>
-          <ion-input 
-            formControlName="mileage" 
-            type="number" 
-            [placeholder]="'vehicles.form.enterMileage' | translate"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (form.get('mileage')?.invalid && form.get('mileage')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('mileage') }}
+          <!-- No Image + Upload Button -->
+          @if (!currentImageUrl && !imagePreview) {
+            <div class="upload-placeholder" (click)="triggerFileInput()">
+              <ion-icon name="cloud-upload-outline" class="upload-icon"></ion-icon>
+              <h3>Subir Imagen</h3>
+              <p>Haz clic para seleccionar una imagen</p>
+              <p class="upload-hint">Solo imágenes (JPG, PNG, GIF, WEBP) - Máx. 5MB</p>
             </div>
           }
-        </div>
 
+          <!-- New Image Preview -->
+          @if (imagePreview) {
+            <div class="new-image-container">
+              <p class="image-label">Nueva Imagen:</p>
+              <div class="image-wrapper">
+                <img 
+                  [src]="imagePreview" 
+                  alt="Vista previa de nueva imagen" 
+                  class="new-vehicle-image">
+              </div>
+              <div class="image-actions">
+                <ion-button color="danger" size="small" (click)="clearImage()">
+                  <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+                  Cancelar Cambio
+                </ion-button>
+                <ion-button color="primary" size="small" (click)="triggerFileInput()">
+                  <ion-icon slot="start" name="repeat-outline"></ion-icon>
+                  Elegir Otra
+                </ion-button>
+              </div>
+            </div>
+          }
+
+          <!-- Hidden File Input -->
+          <input 
+            type="file" 
+            id="vehicleImageInput"
+            accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+            (change)="onImageSelected($event)"
+            style="display: none;">
+
+        </div>
       </div>
 
     </form>
@@ -203,45 +332,20 @@
       <div class="loading-overlay">
         <div class="loading-content">
           <ion-spinner name="crescent"></ion-spinner>
-          <p>{{ 'vehicles.actions.update' | translate }}...</p>
+          <p>{{ 'vehicles_actions_update' | translate }}...</p>
         </div>
       </div>
     }
   </div>
-  <ion-footer class="form-footer">
-    <ion-toolbar>
-      <div class="footer-buttons">
-        <!-- Cancel Button -->
-        <ion-button 
-          (click)="cancelForm()" 
-          fill="solid" 
-          color="medium" 
-          class="footer-btn cancel-btn">
-          <ion-icon name="close" slot="icon-only"></ion-icon>
-        </ion-button>
-  
-        <!-- Update Button -->
-        <ion-button 
-          (click)="updateVehicle()" 
-          [disabled]="!form.valid || loading"
-          fill="solid" 
-          color="primary" 
-          class="footer-btn save-btn">
-          <ion-icon name="checkmark" slot="icon-only"></ion-icon>
-        </ion-button>
-  
-        <!-- Exit Button -->
-        <ion-button 
-          (click)="exitScreen()" 
-          fill="solid" 
-          color="danger" 
-          class="footer-btn exit-btn">
-          <ion-icon name="home" slot="icon-only"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-toolbar>
-  </ion-footer>
 </ion-content>
 
-<!-- Footer with Action Buttons -->
-
+<!-- ✅ FOOTER CON APP-FOOTER -->
+<app-footer
+  [showSaveButton]="true"
+  [saveButtonText]="'vehicles.actions.update'"
+  [saveButtonDisabled]="!form.valid"
+  [saveButtonLoading]="loading"
+  [customBackRoute]="'/vehicles'"
+  (onSave)="updateVehicle()"
+  (onBack)="cancelForm()">
+</app-footer>

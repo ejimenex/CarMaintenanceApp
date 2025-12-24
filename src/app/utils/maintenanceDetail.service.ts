@@ -19,6 +19,7 @@ export interface MaintenanceDetail
   MaintenanceDetailId: string;  
   nextMaintenanceDate?: Date;
   maintenanceParts: MaintenancePart[];
+  basicMaintenances:string[];
 }
 
 

@@ -93,7 +93,7 @@ export class ChangePasswordComponent {
   }
 
   private loadSecurityTips() {
-    this.securityTips = this.translateService.instant('settings.account.changePassword.tips');
+    this.securityTips = this.translateService.instant('settings_account_changePassword_tips');
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -124,7 +124,7 @@ export class ChangePasswordComponent {
               this.alertService.showError(response.message || response.errors?.join(', ') || 'Error desconocido');
               return;
             }
-            this.alertService.showSuccess(this.translateService.instant('settings.account.changePassword.button') + ' exitosamente');
+            this.alertService.showSuccess(this.translateService.instant('settings_account_changePassword_button') + ' exitosamente');
             this.passwordForm.reset();
           },
           error: (error) => {

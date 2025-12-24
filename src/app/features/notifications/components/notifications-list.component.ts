@@ -8,12 +8,7 @@ import {
   IonTitle, 
   IonContent,
   IonCard,
-  IonCardHeader,
-  IonCardTitle,
   IonCardContent,
-  IonList,
-  IonItem,
-  IonLabel,
   IonButton,
   IonIcon,
   IonBadge,
@@ -54,11 +49,7 @@ import { AlertService } from '../../../utils/alert.service';
     IonTitle,
     IonContent,
     IonCard,
-    IonCardHeader,
-    IonCardTitle,
     IonCardContent,
-    IonList,
-    IonItem,
     IonButton,
     IonIcon,
     IonBadge,
@@ -150,7 +141,7 @@ deleteNotification(notification: Notification) {
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
 
-    if (minutes < 1) return this.translateService.instant('notifications.justNow');
+    if (minutes < 1) return this.translateService.instant('notifications_justNow');
     if (minutes < 60) return this.translateService.instant('notifications.minutesAgo', { minutes });
     if (hours < 24) return this.translateService.instant('notifications.hoursAgo', { hours });
     return this.translateService.instant('notifications.daysAgo', { days });

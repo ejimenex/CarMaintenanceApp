@@ -90,7 +90,7 @@ export class ActivityHistoryComponent implements OnInit {
       .pipe(
         catchError(error => {
           console.error('Error loading activity history:', error);
-          this.error = this.translateService.instant('settings.activityHistory.error');
+          this.error = this.translateService.instant('settings_activityHistory_error');
           return of(null);
         }),
         finalize(() => {

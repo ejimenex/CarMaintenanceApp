@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { firstValueFrom } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { MenuController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 import { environment } from 'src/environments/environment';
 import { ApiService, CrudService } from 'src/app/utils/api.service';
 import { AlertService } from 'src/app/utils/alert.service';
@@ -49,6 +50,11 @@ export class AuthService {
   user$: Observable<UserData | null> = this.userSubject.asObservable();
   private hasLoggedExpiredToken = false; // Flag to prevent infinite logging
   private isCheckingAuth = false; // Flag to prevent recursive calls
+  private storageInitialized = false;
+  private _storage: Storage | null = null;
+  
+  // Storage key constant
+  private readonly USER_STORAGE_KEY = 'currentUser';
   
   // TODO: Replace with your actual API base URL
   private apiUrl = environment.apiUrl;
@@ -62,11 +68,12 @@ export class AuthService {
     private alertController: AlertController,
     private alertService: AlertService, 
     private loadingController: LoadingController,
-    private menu: MenuController
-   
+    private menu: MenuController,
+    private storage: Storage
   ) {
-    // Check for stored user data on app start
-    this.checkStoredUser();
+    // Initialize storage and check for stored user data
+    this.initStorage();
+    
     this.authService = this.apiService.createCrudService<LoginRequest>({
       endpoint: 'auth/login',
       retryAttempts: 3
@@ -77,40 +84,112 @@ export class AuthService {
     });
   }
 
-  private checkStoredUser(): void {
-    const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
-      try {
-        const user = JSON.parse(storedUser);
-        this.userSubject.next(user);
-      } catch (error) {
-        localStorage.removeItem('currentUser');
-      }
+  /**
+   * Inicializa el Ionic Storage
+   */
+  private async initStorage(): Promise<void> {
+    try {
+      this._storage = await this.storage.create();
+      this.storageInitialized = true;
+      console.log('✅ Ionic Storage initialized successfully');
+      
+      // Check for stored user data after storage is ready
+      await this.checkStoredUser();
+    } catch (error) {
+      console.error('❌ Error initializing Ionic Storage:', error);
     }
   }
 
-  private storeUser(user: UserData): void {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  /**
+   * Verifica si hay un usuario almacenado en el Ionic Storage
+   */
+  private async checkStoredUser(): Promise<void> {
+    if (!this._storage) {
+      console.warn('⚠️ Storage not initialized yet');
+      return;
+    }
+
+    try {
+      const storedUser = await this._storage.get(this.USER_STORAGE_KEY);
+      if (storedUser) {
+        console.log('📦 User data found in Ionic Storage');
+        this.userSubject.next(storedUser);
+      } else {
+        console.log('📭 No user data in Ionic Storage');
+      }
+    } catch (error) {
+      console.error('❌ Error reading from Ionic Storage:', error);
+      // Si hay error leyendo, intentar limpiar
+      await this.clearStoredUser();
+    }
   }
 
-  private clearStoredUser(): void {
-    localStorage.removeItem('currentUser');
-    this.hasLoggedExpiredToken = false; // Reset flag when clearing user
+  /**
+   * Almacena los datos del usuario en Ionic Storage
+   */
+  private async storeUser(user: UserData): Promise<void> {
+    if (!this._storage) {
+      console.warn('⚠️ Storage not initialized, cannot store user');
+      return;
+    }
+
+    try {
+      await this._storage.set(this.USER_STORAGE_KEY, user);
+      console.log('💾 User data stored in Ionic Storage');
+    } catch (error) {
+      console.error('❌ Error storing user in Ionic Storage:', error);
+    }
   }
 
-  private handleExpiredToken(): void {
+  /**
+   * Elimina los datos del usuario del Ionic Storage
+   */
+  private async clearStoredUser(): Promise<void> {
+    if (!this._storage) {
+      console.warn('⚠️ Storage not initialized, cannot clear user');
+      return;
+    }
+
+    try {
+      await this._storage.remove(this.USER_STORAGE_KEY);
+      this.hasLoggedExpiredToken = false; // Reset flag when clearing user
+      console.log('🗑️ User data cleared from Ionic Storage');
+    } catch (error) {
+      console.error('❌ Error clearing user from Ionic Storage:', error);
+    }
+  }
+
+  /**
+   * Obtiene los datos del usuario del Ionic Storage
+   */
+  private async getStoredUser(): Promise<UserData | null> {
+    if (!this._storage) {
+      console.warn('⚠️ Storage not initialized');
+      return null;
+    }
+
+    try {
+      const storedUser = await this._storage.get(this.USER_STORAGE_KEY);
+      return storedUser;
+    } catch (error) {
+      console.error('❌ Error getting user from Ionic Storage:', error);
+      return null;
+    }
+  }
+
+  private async handleExpiredToken(): Promise<void> {
     // Only log once to prevent infinite logging
     if (!this.hasLoggedExpiredToken) {
       console.log('Token expired - clearing user data');
       this.hasLoggedExpiredToken = true;
     }
-    this.clearStoredUser();
+    await this.clearStoredUser();
     this.userSubject.next(null);
   }
 
   // Public method to handle token expiration cleanup
-  public handleTokenExpiration(): void {
-    this.handleExpiredToken();
+  public async handleTokenExpiration(): Promise<void> {
+    await this.handleExpiredToken();
   }
 
   getCurrentUser(): Observable<UserData | null> {
@@ -124,7 +203,6 @@ export class AuthService {
     
     try {
       console.log('📤 Sending login request to API...');
-      // TODO: Replace with actual API call
       const data = await firstValueFrom(
         this.authService.createWithoutAuth({ username: email, password : password })
       );
@@ -143,22 +221,19 @@ export class AuthService {
         token: data.data as any
       };
       
-      console.log('💾 Storing user data and navigating...');
+      console.log('💾 Storing user data in Ionic Storage...');
       this.userSubject.next(userData);
-      this.storeUser(userData);
+      await this.storeUser(userData);
       
       // Reset flags after successful login
       this.hasLoggedExpiredToken = false;
       this.isCheckingAuth = false;
       
-      console.log('🔍 Token stored, checking if valid...');
-      // Test the token immediately after storing
-      const testAuth = this.isAuthenticated();
-      console.log('🔍 Token validation result:', testAuth);
+      console.log('✅ User data stored successfully');
       
-      // Usar navigateByUrl para una navegación más robusta
-      await this.router.navigateByUrl('/vehicles/list', { replaceUrl: true });
-      console.log('🎯 Navigation completed');
+      // Navegar al dashboard después del login exitoso
+      await this.router.navigateByUrl('/dashboard', { replaceUrl: true });
+      console.log('🎯 Navigation to dashboard completed');
     } catch (error: any) {
       console.error('💥 AuthService error:', error);
       await this.showErrorAlert('Sign In Error', error.message || 'Failed to sign in');
@@ -177,23 +252,19 @@ export class AuthService {
     await loading.present();
 
     try {
-      // TODO: Replace with actual API call
-   
       const response = await firstValueFrom(
         this.userService.createWithoutAuth({
           userEmail:username,
           password:password,
           name:name
         })
-     
       );
+      
       if(!response.success){
         await this.alertService.showError(response.message || response.errors?.join(', ') || 'Failed to sign up' );
         return;
       }
    
-      // this.userSubject.next(mockUser);
-      // this.storeUser(mockUser);
       await this.router.navigate(['/login']);
     } catch (error: any) {
       await this.showErrorAlert('Sign Up Error', error.message || 'Failed to create account');
@@ -224,7 +295,7 @@ export class AuthService {
   async signOut(): Promise<void> {
     try {
       this.userSubject.next(null);
-      this.clearStoredUser();
+      await this.clearStoredUser();
       this.menu.close();
       this.menu.enable(false);
       await this.router.navigate(['/login']);
@@ -232,80 +303,96 @@ export class AuthService {
       console.error('Sign out error:', error);
       // Even if API call fails, clear local data
       this.userSubject.next(null);
-      this.clearStoredUser();
+      await this.clearStoredUser();
       await this.router.navigate(['/login']);
     }
   }
 
-    isAuthenticated(): boolean {
-      const url = this.router.url; // ejemplo: "/user-preference"
-      const parts = url.split('/'); 
-      let lastSegment = parts[parts.length - 1]; // "user-preference"
-      console.log('🔍 isAuthenticated called - URL:', url, 'Last segment:', lastSegment);
+  /**
+   * Verifica si el usuario está autenticado (ahora es async)
+   * Usa el BehaviorSubject en memoria y valida con Ionic Storage si es necesario
+   */
+  async isAuthenticated(): Promise<boolean> {
+    console.log('🔍 isAuthenticated called');
+ 
+    // Prevent recursive calls
+    if (this.isCheckingAuth) {
+      console.log('🔍 Preventing recursive auth check');
+      return false;
+    }
+    
+    this.isCheckingAuth = true;
+    
+    try {
+      // Primero verificar si hay usuario en el BehaviorSubject
+      const currentUser = this.userSubject.value;
       
-      // Don't validate token on login/register pages
-      if(lastSegment === 'login' || lastSegment === 'register'){
-        console.log('🔍 Skipping auth check on login/register page');
-        return false;
-      }
-   
-      // Prevent recursive calls
-      if (this.isCheckingAuth) {
-        console.log('🔍 Preventing recursive auth check');
-        return false;
-      }
-      
-      this.isCheckingAuth = true;
-      
-      try {
-        // Check localStorage for token
-        const storedUser = localStorage.getItem('currentUser');
+      // Si no hay usuario en memoria, intentar cargar desde Ionic Storage
+      if (!currentUser) {
+        console.log('📭 No user in memory, checking storage...');
+        const storedUser = await this.getStoredUser();
         if (!storedUser) {
+          console.log('📭 No user found in memory or Ionic Storage');
           return false;
         }
         
-        const userData: UserData = JSON.parse(storedUser);
-        
-        // Check if token exists
-        if (!userData.token) {
-          return false;
-        }
-        
-        // Decode JWT token to get expiration
-        try {
-          console.log('🔍 Decoding token:', userData.token.substring(0, 50) + '...');
-          const decodedToken = jwtDecode<JWTPayload>(userData.token);
-          console.log('🔍 Decoded token payload:', decodedToken);
-          
-          const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-          console.log('🔍 Current time:', currentTime, 'Token exp:', decodedToken.exp);
-          
-          // Check if token is expired
-          if (decodedToken.exp && decodedToken.exp < currentTime) {
-            // Only log once to prevent infinite logging
-            if (!this.hasLoggedExpiredToken) {
-              console.log('❌ Token expired. Exp:', new Date(decodedToken.exp * 1000), 'Current:', new Date());
-              this.hasLoggedExpiredToken = true;
-            }
-            return false;
-          }
-          
-          // Reset flag when token is valid
-          this.hasLoggedExpiredToken = false;
-          console.log('✅ Token valid. Expires:', new Date(decodedToken.exp * 1000));
-          return true;
-        } catch (jwtError) {
-          console.error('❌ Invalid JWT token:', jwtError);
-          return false;
-        }
-      } catch (error) {
-        // If parsing fails, return false
-        console.error('Error parsing stored user data:', error);
-        return false;
-      } finally {
-        this.isCheckingAuth = false;
+        // Cargar usuario en memoria
+        console.log('✅ User found in storage, loading to memory');
+        this.userSubject.next(storedUser);
+        return await this.validateToken(storedUser);
       }
-   }
+      
+      // Validar el token del usuario en memoria
+      console.log('✅ User found in memory, validating token');
+      return await this.validateToken(currentUser);
+      
+    } catch (error) {
+      console.error('❌ Error in isAuthenticated:', error);
+      return false;
+    } finally {
+      this.isCheckingAuth = false;
+    }
+  }
+
+  /**
+   * Valida el token JWT
+   */
+  private async validateToken(userData: UserData): Promise<boolean> {
+    // Check if token exists
+    if (!userData.token) {
+      console.log('❌ No token found in user data');
+      return false;
+    }
+    
+    // Decode JWT token to get expiration
+    try {
+      console.log('🔍 Decoding token:', userData.token.substring(0, 50) + '...');
+      const decodedToken = jwtDecode<JWTPayload>(userData.token);
+      console.log('🔍 Decoded token payload:', decodedToken);
+      
+      const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+      console.log('🔍 Current time:', currentTime, 'Token exp:', decodedToken.exp);
+      
+      // Check if token is expired
+      if (decodedToken.exp && decodedToken.exp < currentTime) {
+        // Only log once to prevent infinite logging
+        if (!this.hasLoggedExpiredToken) {
+          console.log('❌ Token expired. Exp:', new Date(decodedToken.exp * 1000), 'Current:', new Date());
+          this.hasLoggedExpiredToken = true;
+        }
+        await this.handleExpiredToken();
+        return false;
+      }
+      
+      // Reset flag when token is valid
+      this.hasLoggedExpiredToken = false;
+      console.log('✅ Token valid. Expires:', new Date(decodedToken.exp * 1000));
+      return true;
+    } catch (jwtError) {
+      console.error('❌ Invalid JWT token:', jwtError);
+      return false;
+    }
+  }
 
   private async showErrorAlert(header: string, message: string): Promise<void> {
     const alert = await this.alertController.create({
@@ -324,4 +411,4 @@ export class AuthService {
     });
     await alert.present();
   }
-} 
+}

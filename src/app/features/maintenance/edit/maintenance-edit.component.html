@@ -4,13 +4,13 @@
       <ion-menu-button menu="main-menu"></ion-menu-button>
       <ion-back-button defaultHref="/maintenance"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'maintenance.edit.title' | translate }}</ion-title>
+    <ion-title>{{ 'maintenance_edit_title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="updateMaintenance()" [disabled]="!maintenanceForm.valid || loading || loadingData" fill="solid" color="primary">
         @if (!loading) {
           <ion-icon name="checkmark" slot="start"></ion-icon>
         }
-        {{ loading ? ('maintenance.edit.saving' | translate) : ('maintenance.actions.save' | translate) }}
+        {{ loading ? ('maintenance_edit_saving' | translate) : ('maintenance_actions_save' | translate) }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -24,7 +24,7 @@
       <div class="loading-overlay">
         <div class="loading-content">
           <ion-spinner name="crescent"></ion-spinner>
-          <p>{{ 'maintenance.edit.loadingData' | translate }}</p>
+          <p>{{ 'maintenance_edit_loadingData' | translate }}</p>
         </div>
       </div>
     }
@@ -35,8 +35,8 @@
         <!-- Header Section -->
         <div class="form-header">
           <ion-icon name="create" class="header-icon"></ion-icon>
-          <h2>{{ 'maintenance.edit.header.title' | translate }}</h2>
-          <p>{{ 'maintenance.edit.header.subtitle' | translate }}</p>
+          <h2>{{ 'maintenance_edit_header_title' | translate }}</h2>
+          <p>{{ 'maintenance_edit_header_subtitle' | translate }}</p>
         </div>
 
         <!-- Form Fields -->
@@ -44,10 +44,10 @@
           
           <!-- Name Field -->
           <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.name.label' | translate }} *</label>
+            <label class="field-label">{{ 'maintenance_form_name_label' | translate }} *</label>
             <ion-input 
               formControlName="name" 
-              [placeholder]="'maintenance.form.name.placeholder' | translate"
+              [placeholder]="'maintenance_form_name_placeholder' | translate"
               class="modern-input"
               fill="outline">
             </ion-input>
@@ -60,10 +60,10 @@
 
           <!-- Vehicle Selection -->
           <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.vehicle.label' | translate }} *</label>
+            <label class="field-label">{{ 'maintenance_form_vehicle_label' | translate }} *</label>
             <ion-select 
               formControlName="vehicleId" 
-              [placeholder]="'maintenance.form.vehicle.placeholder' | translate" 
+              [placeholder]="'maintenance_form_vehicle_placeholder' | translate" 
               class="modern-select"
               fill="outline">
               @for (vehicle of vehicles; track vehicle.value) {
@@ -81,10 +81,10 @@
 
           <!-- Trade/Workshop Selection -->
           <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.workshop.label' | translate }} *</label>
+            <label class="field-label">{{ 'maintenance_form_workshop_label' | translate }} *</label>
             <ion-select 
               formControlName="tradeId" 
-              [placeholder]="'maintenance.form.workshop.placeholder' | translate" 
+              [placeholder]="'maintenance_form_workshop_placeholder' | translate" 
               class="modern-select"
               fill="outline">
               @for (workshop of workshops; track workshop.value) {
@@ -102,10 +102,10 @@
 
           <!-- Process Type Field -->
           <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.processType.label' | translate }} *</label>
+            <label class="field-label">{{ 'maintenance_form_processType_label' | translate }} *</label>
             <ion-select 
               formControlName="processType" 
-              [placeholder]="'maintenance.form.processType.placeholder' | translate" 
+              [placeholder]="'maintenance_form_processType_placeholder' | translate" 
               class="modern-select"
               fill="outline">
               @for (type of processTypes; track type.value) {
@@ -123,7 +123,7 @@
 
           <!-- Start Date Field -->
           <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.startDate.label' | translate }}</label>
+            <label class="field-label">{{ 'maintenance_form_startDate_label' | translate }}</label>
             <ion-input 
               formControlName="startDate" 
               type="date"
@@ -139,7 +139,7 @@
 
           <!-- End Date Field -->
           <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.endDate.label' | translate }}</label>
+            <label class="field-label">{{ 'maintenance_form_endDate_label' | translate }}</label>
             <ion-input 
               formControlName="endDate" 
               type="date"
@@ -155,10 +155,10 @@
 
           <!-- note Field -->
           <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.note.label' | translate }}</label>
+            <label class="field-label">{{ 'maintenance_form_note_label' | translate }}</label>
             <ion-textarea 
               formControlName="note" 
-              [placeholder]="'maintenance.form.note.placeholder' | translate"
+              [placeholder]="'maintenance_form_note_placeholder' | translate"
               rows="3"
               class="modern-input"
               fill="outline">
@@ -180,46 +180,20 @@
       <div class="loading-overlay">
         <div class="loading-content">
           <ion-spinner name="crescent"></ion-spinner>
-          <p>{{ 'maintenance.edit.saving' | translate }}</p>
+          <p>{{ 'maintenance_edit_saving' | translate }}</p>
         </div>
       </div>
     }
   </div>
 </ion-content>
 
-<!-- Footer with Action Buttons -->
-<ion-footer class="form-footer">
-  <ion-toolbar>
-    <div class="footer-buttons">
-      <!-- Cancel Button -->
-      <ion-button 
-        (click)="cancelForm()" 
-        fill="solid" 
-        color="medium" 
-        class="footer-btn cancel-btn"
-        [disabled]="loading || loadingData">
-        <ion-icon name="close" slot="icon-only"></ion-icon>
-      </ion-button>
-
-      <!-- Save Button -->
-      <ion-button 
-        (click)="updateMaintenance()" 
-        [disabled]="!maintenanceForm.valid || loading || loadingData"
-        fill="solid" 
-        color="primary" 
-        class="footer-btn save-btn">
-        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
-      </ion-button>
-
-      <!-- Exit Button -->
-      <ion-button 
-        (click)="exitScreen()" 
-        fill="solid" 
-        color="danger" 
-        class="footer-btn exit-btn"
-        [disabled]="loading || loadingData">
-        <ion-icon name="home" slot="icon-only"></ion-icon>
-      </ion-button>
-    </div>
-  </ion-toolbar>
-</ion-footer>
+<!-- ✅ FOOTER CON APP-FOOTER -->
+<app-footer
+  [showSaveButton]="true"
+  [saveButtonText]="'maintenance.actions.update'"
+  [saveButtonDisabled]="!maintenanceForm.valid || loadingData"
+  [saveButtonLoading]="loading"
+  [customBackRoute]="'/maintenance'"
+  (onSave)="updateMaintenance()"
+  (onBack)="cancelForm()">
+</app-footer>

@@ -1,0 +1,257 @@
+<ion-header class="uniform-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/workshops/list'" [text]="'common_back' | translate"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <ion-icon name="location" slot="start" class="header-icon"></ion-icon>
+      {{ 'workshops_near_me_title' | translate }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refreshMap()" [disabled]="loading">
+        <ion-icon name="refresh" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Loading Spinner -->
+  @if (loading) {
+    <div class="uniform-loading">
+      <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
+      <div class="loading-text">
+        <ion-icon name="location" class="loading-icon"></ion-icon>
+        {{ 'workshops_near_me_loading' | translate }}
+      </div>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (errorMessage) {
+    <div class="uniform-alert danger">
+      <div class="alert-header">
+        <ion-icon name="alert-circle" class="alert-icon"></ion-icon>
+        <h4>{{ 'common_error' | translate }}</h4>
+      </div>
+      <div class="alert-message">{{ errorMessage }}</div>
+      <ion-button (click)="refreshMap()" fill="outline" class="retry-button">
+        <ion-icon name="refresh" slot="start"></ion-icon>
+        {{ 'workshops_near_me_retry' | translate }}
+      </ion-button>
+    </div>
+  }
+
+  <!-- Map Container -->
+  <div class="map-wrapper">
+    <!-- Search Box -->
+    <div class="map-search-container">
+      <div class="search-box">
+        <ion-icon name="search" class="search-icon"></ion-icon>
+        <input 
+          #searchInput
+          type="text" 
+          class="search-input"
+          [(ngModel)]="searchQuery"
+          [placeholder]="'workshops_near_me_search_placeholder' | translate"
+          autocomplete="off"
+        />
+        @if (searchQuery) {
+          <ion-button 
+            fill="clear" 
+            size="small" 
+            class="clear-search-btn"
+            (click)="clearSearch()">
+            <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+          </ion-button>
+        }
+      </div>
+    </div>
+
+    <div #mapContainer class="map-container"></div>
+    
+    <!-- Info Panel -->
+    @if (!loading && nearbyWorkshops.length > 0) {
+      <div class="info-panel">
+        <div class="info-header">
+          <ion-icon name="information-circle" class="info-icon"></ion-icon>
+          <span>{{ 'workshops_near_me_found' | translate: { count: nearbyWorkshops.length } }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Workshops List Below Map -->
+  @if (!loading && nearbyWorkshops.length > 0) {
+    <div class="workshops-list-container">
+      <div class="list-header">
+        <h3>
+          <ion-icon name="list"></ion-icon>
+          {{ 'workshops_near_me_list_title' | translate }}
+        </h3>
+      </div>
+      
+      <div class="workshops-list">
+        @for (workshop of nearbyWorkshops; track workshop.id) {
+          <ion-card class="workshop-card" (click)="onMarkerClick(workshop)">
+            <ion-card-header>
+              <div class="card-header-content">
+                <ion-icon name="construct" class="workshop-icon"></ion-icon>
+                <div class="header-text">
+                  <ion-card-title>{{ workshop.name }}</ion-card-title>
+                  <ion-card-subtitle>
+                    <ion-icon name="location"></ion-icon>
+                    {{ getDistanceToWorkshop(workshop) }}
+                  </ion-card-subtitle>
+                </div>
+              </div>
+            </ion-card-header>
+            
+            <ion-card-content>
+              <div class="workshop-info">
+                <div class="info-item">
+                  <ion-icon name="location" color="primary"></ion-icon>
+                  <span>{{ workshop.address }}</span>
+                </div>
+                
+                <div class="info-item">
+                  <ion-icon name="call" color="success"></ion-icon>
+                  <span>{{ workshop.phone }}</span>
+                </div>
+                
+                <div class="info-item">
+                  <ion-icon name="settings" color="warning"></ion-icon>
+                  <span>{{ workshop.worksShopTypeName }}</span>
+                </div>
+                
+                <div class="info-item">
+                  <ion-icon name="business" color="tertiary"></ion-icon>
+                  <span>{{ workshop.tradeTypeName | translate }}</span>
+                </div>
+              </div>
+              
+              <div class="action-buttons">
+                <ion-button fill="outline" size="small" (click)="callWorkshop(workshop.phone); $event.stopPropagation()">
+                  <ion-icon name="call" slot="start"></ion-icon>
+                  {{ 'workshops_near_me_call' | translate }}
+                </ion-button>
+                
+                <ion-button fill="outline" size="small" (click)="getDirections(workshop); $event.stopPropagation()">
+                  <ion-icon name="navigate" slot="start"></ion-icon>
+                  {{ 'workshops_near_me_directions' | translate }}
+                </ion-button>
+                
+                <ion-button fill="solid" size="small" (click)="viewWorkshopDetails(workshop.id); $event.stopPropagation()">
+                  <ion-icon name="eye" slot="start"></ion-icon>
+                  {{ 'workshops_near_me_view' | translate }}
+                </ion-button>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!loading && nearbyWorkshops.length === 0 && !errorMessage) {
+    <div class="uniform-empty">
+      <div class="empty-icon">
+        <ion-icon name="location-outline"></ion-icon>
+      </div>
+      <h3 class="empty-title">{{ 'workshops_near_me_empty_title' | translate }}</h3>
+      <p class="empty-description">{{ 'workshops_near_me_empty_description' | translate }}</p>
+      <ion-button (click)="goBack()" fill="outline" size="large">
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+        {{ 'workshops_near_me_back_to_list' | translate }}
+      </ion-button>
+    </div>
+  }
+</ion-content>
+
+<!-- Workshop Details Modal -->
+<ion-modal [isOpen]="showWorkshopDetails" (didDismiss)="closeWorkshopDetails()">
+  <ng-template>
+    @if (selectedWorkshop) {
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ selectedWorkshop.name }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeWorkshopDetails()">
+              <ion-icon name="close" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content class="ion-padding">
+        <div class="workshop-details-modal">
+          <div class="modal-header">
+            <ion-icon name="construct" class="modal-icon"></ion-icon>
+            <h2>{{ selectedWorkshop.name }}</h2>
+          </div>
+          
+          <ion-list class="details-list">
+            <ion-item>
+              <ion-icon name="location" slot="start" color="primary"></ion-icon>
+              <ion-label>
+                <h3>{{ 'workshops_near_me_address' | translate }}</h3>
+                <p>{{ selectedWorkshop.address }}</p>
+              </ion-label>
+            </ion-item>
+            
+            <ion-item>
+              <ion-icon name="call" slot="start" color="success"></ion-icon>
+              <ion-label>
+                <h3>{{ 'workshops_near_me_phone' | translate }}</h3>
+                <p>{{ selectedWorkshop.phone }}</p>
+              </ion-label>
+            </ion-item>
+            
+            <ion-item>
+              <ion-icon name="settings" slot="start" color="warning"></ion-icon>
+              <ion-label>
+                <h3>{{ 'workshops_near_me_type' | translate }}</h3>
+                <p>{{ selectedWorkshop.worksShopTypeName }}</p>
+              </ion-label>
+            </ion-item>
+            
+            <ion-item>
+              <ion-icon name="business" slot="start" color="tertiary"></ion-icon>
+              <ion-label>
+                <h3>{{ 'workshops_near_me_trade_type' | translate }}</h3>
+                <p>{{ selectedWorkshop.tradeTypeName | translate }}</p>
+              </ion-label>
+            </ion-item>
+            
+            <ion-item>
+              <ion-icon name="navigate" slot="start" color="danger"></ion-icon>
+              <ion-label>
+                <h3>{{ 'workshops_near_me_distance' | translate }}</h3>
+                <p>{{ getDistanceToWorkshop(selectedWorkshop) }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+          
+          <div class="modal-actions">
+            <ion-button expand="block" (click)="callWorkshop(selectedWorkshop.phone)">
+              <ion-icon name="call" slot="start"></ion-icon>
+              {{ 'workshops_near_me_call' | translate }}
+            </ion-button>
+            
+            <ion-button expand="block" fill="outline" (click)="getDirections(selectedWorkshop)">
+              <ion-icon name="navigate" slot="start"></ion-icon>
+              {{ 'workshops_near_me_directions' | translate }}
+            </ion-button>
+            
+            <ion-button expand="block" fill="outline" (click)="viewWorkshopDetails(selectedWorkshop.id)">
+              <ion-icon name="eye" slot="start"></ion-icon>
+              {{ 'workshops_near_me_view_full' | translate }}
+            </ion-button>
+          </div>
+        </div>
+      </ion-content>
+    }
+  </ng-template>
+</ion-modal>
+

@@ -1,0 +1,140 @@
+<ion-header class="uniform-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-back-button
+        [defaultHref]="'/maintenance/taxe/list/' + maintenanceId"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ "TAXE" | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="savetaxeDetail()"
+        [disabled]="!taxeDetailForm.valid || loading || loadingCatalogs"
+        fill="solid"
+        color="primary"
+      >
+        @if (!loading) {
+        <ion-icon name="checkmark" slot="start"></ion-icon>
+        }
+        {{
+          loading
+            ? ("insurance_add_saving" | translate)
+            : ("common_save" | translate)
+        }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="modern-form-content">
+  <div class="form-container">
+    <!-- Loading Catalogs Indicator -->
+    @if (loadingCatalogs) {
+    <div class="loading-overlay">
+      <div class="loading-content">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>{{ "taxe_add_loadingCatalogs" | translate }}</p>
+      </div>
+    </div>
+    } @if (!loadingCatalogs) {
+    <form [formGroup]="taxeDetailForm" (ngSubmit)="savetaxeDetail()">
+      <!-- Header Section -->
+      <div class="form-header">
+        <ion-icon name="shield-checkmark" class="header-icon"></ion-icon>
+        <h2>{{ "taxe_add_header_title" | translate }}</h2>
+        <p>{{ "taxe_add_header_subtitle" | translate }}</p>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="form-fields">
+        <!-- Policy Number Field -->
+        <div class="field-group">
+          <label class="field-label"
+            >{{ "description_label" | translate }} *</label
+          >
+          <ion-input
+            formControlName="description"
+            [placeholder]="'description_label' | translate"
+            class="modern-input"
+            fill="outline"
+          >
+          </ion-input>
+          @if (taxeDetailForm.get('description')?.invalid &&
+          taxeDetailForm.get('description')?.touched) {
+          <div class="error-message">
+            {{ getFieldError("description") }}
+          </div>
+          }
+        </div>
+        <!-- Currency Field -->
+        <div class="field-group">
+          <label class="field-label"
+            >{{ "userPreferences_selectCurrency" | translate }} *</label
+          >
+          <ion-select
+            formControlName="currency"
+            [placeholder]="'taxe_form_currency_placeholder' | translate"
+            class="modern-select"
+            fill="outline"
+          >
+            @for (currency of currencies; track currency.id) {
+            <ion-select-option [value]="currency.code">
+              {{ currency.name }} ({{ currency.code }})
+            </ion-select-option>
+            }
+          </ion-select>
+          @if (taxeDetailForm.get('currency')?.invalid &&
+          taxeDetailForm.get('currency')?.touched) {
+          <div class="error-message">
+            {{ getFieldError("currency") }}
+          </div>
+          }
+        </div>
+
+        <!-- taxe Amount Field -->
+        <div class="field-group">
+          <label class="field-label">{{ "amount" | translate }} *</label>
+          <ion-input
+            formControlName="amount"
+            type="number"
+            step="0.01"
+            min="0.01"
+            [placeholder]="'amount' | translate"
+            class="modern-input"
+            fill="outline"
+          >
+          </ion-input>
+          @if (taxeDetailForm.get('amount')?.invalid &&
+          taxeDetailForm.get('amount')?.touched) {
+          <div class="error-message">
+            {{ getFieldError("amount") }}
+          </div>
+          }
+        </div>
+      </div>
+    </form>
+    }
+
+    <!-- Loading Spinner for Save -->
+    @if (loading) {
+    <div class="loading-overlay">
+      <div class="loading-content">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>{{ "taxe_add_saving" | translate }}</p>
+      </div>
+    </div>
+    }
+  </div>
+</ion-content>
+
+<!-- ✅ FOOTER CON APP-FOOTER -->
+<app-footer
+  [showSaveButton]="true"
+  [saveButtonText]="'common_save'"
+  [saveButtonDisabled]="!taxeDetailForm.valid || loadingCatalogs"
+  [saveButtonLoading]="loading"
+  (onSave)="savetaxeDetail()"
+  (onBack)="cancelForm()"
+>
+</app-footer>

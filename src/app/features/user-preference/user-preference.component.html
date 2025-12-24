@@ -3,101 +3,242 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ 'userPreferences.title' | translate }}</ion-title>
+    <ion-title>{{ 'userPreferences_title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="savePreferences()" [disabled]="!preferenceForm.valid || isLoading" fill="solid" color="primary">
         <ion-icon name="checkmark" slot="start"></ion-icon>
-        {{ 'common.save' | translate }}
+        {{ 'common_save' | translate }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="modern-form-content">
-  <div class="form-container">
-    <form [formGroup]="preferenceForm" (ngSubmit)="savePreferences()">
+<ion-content [fullscreen]="true" class="bg-gray-50">
+  <div class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <form [formGroup]="preferenceForm" (ngSubmit)="savePreferences()" class="max-w-2xl mx-auto">
       
-      <!-- Header Section -->
-      <div class="form-header">
-        <ion-icon name="settings" class="header-icon"></ion-icon>
-        <h2>{{ 'userPreferences.title' | translate }}</h2>
-        <p>{{ 'userPreferences.subtitle' | translate }}</p>
+      <!-- Header Section with Tailwind -->
+      <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-t-2xl shadow-lg p-8 text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm mb-4">
+          <ion-icon name="settings" class="text-4xl text-white"></ion-icon>
+        </div>
+        <h2 class="text-3xl font-bold text-white mb-2">{{ 'userPreferences_title' | translate }}</h2>
+        <p class="text-blue-100 text-lg">{{ 'userPreferences_subtitle' | translate }}</p>
       </div>
 
-      <!-- Form Fields -->
-      <div class="form-fields">
+      <!-- Form Card with Tailwind -->
+      <div class="bg-white rounded-b-2xl shadow-lg p-8 space-y-6">
         
-        <!-- Language Selection -->
-        <div class="field-group">
-          <label class="field-label">{{ 'userPreferences.language' | translate }} *</label>
-          <ion-select 
-            formControlName="languageId" 
-            [placeholder]="'userPreferences.selectLanguage' | translate"
-            class="modern-select" 
-            fill="outline">
-            @for (lang of languages; track lang.id) {
-              <ion-select-option [value]="lang.id">
-                {{ lang.name }}
-              </ion-select-option>
-            }
-          </ion-select>
+        <!-- Language Selection with Tailwind -->
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+            <ion-icon name="language" class="text-blue-600 text-xl"></ion-icon>
+            {{ 'userPreferences_language' | translate }}
+            <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <ion-select 
+              formControlName="languageId" 
+              [placeholder]="'userPreferences_selectLanguage' | translate"
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-gray-400" 
+              fill="outline">
+              @for (lang of languages; track lang.id) {
+                <ion-select-option [value]="lang.id">
+                  {{ lang.name }}
+                </ion-select-option>
+              }
+            </ion-select>
+          </div>
           @if (preferenceForm.get('languageId')?.invalid && preferenceForm.get('languageId')?.touched) {
-            <div class="error-message">
-              {{ 'userPreferences.errors.languageRequired' | translate }}
+            <div class="flex items-center gap-2 text-red-600 text-sm mt-2 bg-red-50 p-3 rounded-lg animate-pulse">
+              <ion-icon name="alert-circle" class="text-lg"></ion-icon>
+              <span>{{ 'userPreferences_errors_languageRequired' | translate }}</span>
             </div>
           }
         </div>
 
-        <!-- Country Selection -->
-        <div class="field-group">
-          <label class="field-label">{{ 'userPreferences.country' | translate }} *</label>
-          <ion-select 
-            formControlName="countryId" 
-            [placeholder]="'userPreferences.selectCountry' | translate"
-            class="modern-select" 
-            fill="outline">
-            @for (country of countries; track country.id) {
-              <ion-select-option [value]="country.id">
-                {{ country.name }}
-              </ion-select-option>
-            }
-          </ion-select>
+        <!-- Country Selection with Tailwind -->
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+            <ion-icon name="globe" class="text-green-600 text-xl"></ion-icon>
+            {{ 'userPreferences_country' | translate }}
+            <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <ion-select 
+              formControlName="countryId" 
+              [placeholder]="'userPreferences_selectCountry' | translate"
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-400" 
+              fill="outline">
+              @for (country of countries; track country.id) {
+                <ion-select-option [value]="country.id">
+                  {{ country.name }}
+                </ion-select-option>
+              }
+            </ion-select>
+          </div>
           @if (preferenceForm.get('countryId')?.invalid && preferenceForm.get('countryId')?.touched) {
-            <div class="error-message">
-              {{ 'userPreferences.errors.countryRequired' | translate }}
+            <div class="flex items-center gap-2 text-red-600 text-sm mt-2 bg-red-50 p-3 rounded-lg animate-pulse">
+              <ion-icon name="alert-circle" class="text-lg"></ion-icon>
+              <span>{{ 'userPreferences_errors_countryRequired' | translate }}</span>
             </div>
           }
         </div>
 
-        <!-- Currency Selection -->
-        <div class="field-group">
-          <label class="field-label">{{ 'userPreferences.currency' | translate }} *</label>
-          <ion-select 
-            formControlName="currencyId" 
-            [placeholder]="'userPreferences.selectCurrency' | translate"
-            class="modern-select" 
-            fill="outline">
-            @for (currency of currencies; track currency.id) {
-              <ion-select-option [value]="currency.id">
-                {{ currency.name }} ({{ currency.code }})
-              </ion-select-option>
-            }
-          </ion-select>
+        <!-- Currency Selection with Tailwind -->
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+            <ion-icon name="cash" class="text-yellow-600 text-xl"></ion-icon>
+            {{ 'userPreferences_currency' | translate }}
+            <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <ion-select 
+              formControlName="currencyId" 
+              [placeholder]="'userPreferences_selectCurrency' | translate"
+              class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 hover:border-gray-400" 
+              fill="outline">
+              @for (currency of currencies; track currency.id) {
+                <ion-select-option [value]="currency.id">
+                  {{ currency.name }} ({{ currency.code }})
+                </ion-select-option>
+              }
+            </ion-select>
+          </div>
           @if (preferenceForm.get('currencyId')?.invalid && preferenceForm.get('currencyId')?.touched) {
-            <div class="error-message">
-              {{ 'userPreferences.errors.currencyRequired' | translate }}
+            <div class="flex items-center gap-2 text-red-600 text-sm mt-2 bg-red-50 p-3 rounded-lg animate-pulse">
+              <ion-icon name="alert-circle" class="text-lg"></ion-icon>
+              <span>{{ 'userPreferences_errors_currencyRequired' | translate }}</span>
             </div>
           }
+        </div>
+
+        <!-- Theme Color Selection -->
+        <div style="margin-top: 2rem;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+            <ion-icon name="color-palette" style="color: #9333ea; font-size: 20px;"></ion-icon>
+            {{ 'userPreferences_themeColor' | translate }}
+          </label>
+          <p style="font-size: 12px; color: #6b7280; margin-bottom: 16px;">{{ 'userPreferences_themeColor_description' | translate }}</p>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 8px 0;">
+            @for (color of themeColors; track color.id) {
+              <button 
+                type="button"
+                (click)="selectThemeColor(color.id)"
+                [style.border]="isColorSelected(color.id) ? '3px solid ' + color.primary : '2px solid #e5e7eb'"
+                [style.background-color]="isColorSelected(color.id) ? color.primary + '20' : 'white'"
+                [style.box-shadow]="isColorSelected(color.id) ? '0 4px 15px ' + color.primary + '50' : '0 2px 4px rgba(0,0,0,0.1)'"
+                style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 16px; border-radius: 16px; min-width: 80px; cursor: pointer; transition: all 0.2s ease;">
+                
+                <!-- Color Circle -->
+                <div 
+                  [style.background]="'linear-gradient(135deg, ' + color.primary + ' 0%, ' + color.secondary + ' 100%)'"
+                  style="width: 56px; height: 56px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center;">
+                  @if (isColorSelected(color.id)) {
+                    <ion-icon name="checkmark" style="color: white; font-size: 24px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"></ion-icon>
+                  }
+                </div>
+                
+                <!-- Color Name -->
+                <span 
+                  [style.color]="isColorSelected(color.id) ? color.secondary : '#4b5563'"
+                  style="margin-top: 12px; font-size: 13px; font-weight: 600;">
+                  {{ color.name }}
+                </span>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative my-10">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t-2 border-gray-200"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="bg-white px-4 py-2 rounded-full border-2 border-gray-200 shadow-sm">
+              <ion-icon name="ellipsis-horizontal" class="text-gray-400 text-xl"></ion-icon>
+            </span>
+          </div>
+        </div>
+
+        <!-- Notification Settings Section -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 flex items-center gap-2 mb-6">
+            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+              <ion-icon name="notifications" class="text-purple-600 text-xl"></ion-icon>
+            </div>
+            {{ 'userPreferences_notificationSettings' | translate }}
+          </h3>
+
+          <div class="space-y-4">
+            <!-- Push Notifications Toggle -->
+            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-xl border border-blue-200 hover:shadow-md transition-shadow duration-200">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-sm">
+                  <ion-icon name="phone-portrait" class="text-white text-xl"></ion-icon>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-800">{{ 'userPreferences_pushEnabled' | translate }}</label>
+                  <p class="text-xs text-gray-500 mt-1">{{ 'userPreferences_pushEnabled_description' | translate }}</p>
+                </div>
+              </div>
+              <ion-toggle formControlName="pushEnabled" color="primary"></ion-toggle>
+            </div>
+
+            <!-- Email Notifications Toggle -->
+            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-green-100/50 rounded-xl border border-green-200 hover:shadow-md transition-shadow duration-200">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center shadow-sm">
+                  <ion-icon name="mail" class="text-white text-xl"></ion-icon>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-800">{{ 'userPreferences_emailEnabled' | translate }}</label>
+                  <p class="text-xs text-gray-500 mt-1">{{ 'userPreferences_emailEnabled_description' | translate }}</p>
+                </div>
+              </div>
+              <ion-toggle formControlName="emailEnabled" color="primary"></ion-toggle>
+            </div>
+
+            <!-- Notify Before Days Toggle -->
+            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-orange-100/50 rounded-xl border border-orange-200 hover:shadow-md transition-shadow duration-200">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center shadow-sm">
+                  <ion-icon name="calendar" class="text-white text-xl"></ion-icon>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-800">{{ 'userPreferences_notifyBeforeDays' | translate }}</label>
+                  <p class="text-xs text-gray-500 mt-1">{{ 'userPreferences_notifyBeforeDays_description' | translate }}</p>
+                </div>
+              </div>
+              <ion-toggle formControlName="notifyBeforeDays" color="primary"></ion-toggle>
+            </div>
+
+            <!-- Notify Before Km Toggle -->
+            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-red-50 to-red-100/50 rounded-xl border border-red-200 hover:shadow-md transition-shadow duration-200">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center shadow-sm">
+                  <ion-icon name="speedometer" class="text-white text-xl"></ion-icon>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-800">{{ 'userPreferences_notifyBeforeKm' | translate }}</label>
+                  <p class="text-xs text-gray-500 mt-1">{{ 'userPreferences_notifyBeforeKm_description' | translate }}</p>
+                </div>
+              </div>
+              <ion-toggle formControlName="notifyBeforeKm" color="primary"></ion-toggle>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <!-- Loading Overlay -->
+      <!-- Loading Overlay with Tailwind -->
       @if (isLoading) {
-        <div class="loading-overlay">
-          <div class="loading-content">
-            <ion-spinner name="crescent"></ion-spinner>
-            <p>{{ 'userPreferences.saving' | translate }}...</p>
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 rounded-2xl">
+          <div class="bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center gap-4 animate-pulse">
+            <ion-spinner name="crescent" class="w-12 h-12 text-blue-600"></ion-spinner>
+            <p class="text-gray-700 font-semibold text-lg">{{ 'userPreferences_saving' | translate }}...</p>
           </div>
         </div>
       }
@@ -105,38 +246,14 @@
     </form>
   </div>
 
-  <!-- Footer with Action Buttons -->
-  <ion-footer class="form-footer">
-    <ion-toolbar>
-      <div class="footer-buttons">
-        <!-- Cancel Button -->
-        <ion-button 
-          (click)="cancelForm()" 
-          fill="solid" 
-          color="medium" 
-          class="footer-btn cancel-btn">
-          <ion-icon name="close" slot="icon-only"></ion-icon>
-        </ion-button>
-
-        <!-- Save Button -->
-        <ion-button 
-          (click)="savePreferences()" 
-          [disabled]="!preferenceForm.valid || isLoading"
-          fill="solid" 
-          color="primary" 
-          class="footer-btn save-btn">
-          <ion-icon name="checkmark" slot="icon-only"></ion-icon>
-        </ion-button>
-
-        <!-- Exit Button -->
-        <ion-button 
-          (click)="exitScreen()" 
-          fill="solid" 
-          color="danger" 
-          class="footer-btn exit-btn">
-          <ion-icon name="home" slot="icon-only"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-toolbar>
-  </ion-footer>
+  <!-- Footer Genérico -->
+  <app-footer
+    [showSaveButton]="true"
+    [saveButtonText]="'common.save'"
+    [saveButtonDisabled]="!preferenceForm.valid || isLoading"
+    [saveButtonLoading]="isLoading"
+    [customBackRoute]="'/dashboard'"
+    (onSave)="savePreferences()"
+    (onBack)="cancelForm()">
+  </app-footer>
 </ion-content>

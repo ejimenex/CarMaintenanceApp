@@ -8,6 +8,7 @@ import { ProcessHeaderService, ProccessHeaderModel } from '../../../utils/proces
 import { VehicleService, VehicleGetRequest, LabelValueDto } from '../../../utils/vehicle.service';
 import { WorkshopService, WorkshopGetRequest, LabelValueDto as TradeLabelValueDto } from '../../../utils/worksShop.service';
 import { AlertService } from '../../../utils/alert.service';
+import { AppFooterComponent } from '../../../shared/components/app-footer/app-footer.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -27,7 +28,8 @@ export interface MaintenanceDetail {
     IonicModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    AppFooterComponent
   ],
   providers: [
     ProcessHeaderService,
@@ -49,6 +51,7 @@ export class MaintenanceAddComponent implements OnInit {
     { value: 'TALL', label: 'Taller' },
     { value: 'INSU', label: 'Seguros' },
     { value: 'RETA', label: 'Taller & Repuestos' },
+    { value: 'TAXE', label: 'Impuestos' },
   ];
 
   constructor(
@@ -85,7 +88,7 @@ export class MaintenanceAddComponent implements OnInit {
     this.vehicleService.getAll().pipe(
       catchError(error => {
         console.error('Error loading vehicles:', error);
-        this.alertService.showError(this.translateService.instant('maintenance.form.errors.loadVehicles'));
+        this.alertService.showError(this.translateService.instant('maintenance_form_errors_loadVehicles'));
         return of(null);
       })
     ).subscribe({
@@ -94,7 +97,7 @@ export class MaintenanceAddComponent implements OnInit {
           this.vehicles = response.data || [];
           console.log('✅ Vehículos cargados para dropdown:', this.vehicles);
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('maintenance.form.errors.loadVehicles'));
+          this.alertService.showError(response?.message || this.translateService.instant('maintenance_form_errors_loadVehicles'));
         }
       }
     });
@@ -104,7 +107,7 @@ export class MaintenanceAddComponent implements OnInit {
     this.workshopService.getAll().pipe(
       catchError(error => {
         console.error('Error loading workshops:', error);
-        this.alertService.showError(this.translateService.instant('maintenance.form.errors.loadWorkshops'));
+        this.alertService.showError(this.translateService.instant('maintenance_form_errors_loadWorkshops'));
         return of(null);
       })
     ).subscribe({
@@ -113,7 +116,7 @@ export class MaintenanceAddComponent implements OnInit {
           this.workshops = response.data || [];
           console.log('✅ Talleres cargados para dropdown:', this.workshops);
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('maintenance.form.errors.loadWorkshops'));
+          this.alertService.showError(response?.message || this.translateService.instant('maintenance_form_errors_loadWorkshops'));
         }
       }
     });
@@ -138,7 +141,7 @@ export class MaintenanceAddComponent implements OnInit {
       this.processHeaderService.createProcessHeader(maintenanceData).pipe(
         catchError(error => {
           console.error('Error creating maintenance:', error);
-          this.alertService.showError(this.translateService.instant('maintenance.add.error'));
+          this.alertService.showError(this.translateService.instant('maintenance_add_error'));
           return of(null);
         }),
         finalize(() => {
@@ -147,17 +150,17 @@ export class MaintenanceAddComponent implements OnInit {
       ).subscribe({
         next: (response: any) => {
           if (response && response.success) {
-            this.alertService.showSuccess(this.translateService.instant('maintenance.add.success'));
+            this.alertService.showSuccess(this.translateService.instant('maintenance_add_success'));
            // this.router.navigate(['/maintenance']);
              this.goToDetail(response.data.id);
           } else {
-            this.alertService.showError(response?.message || this.translateService.instant('maintenance.add.error'));
+            this.alertService.showError(response?.message || this.translateService.instant('maintenance_add_error'));
           }
         }
       });
     } else {
       this.markFormGroupTouched();
-      this.alertService.showError(this.translateService.instant('maintenance.form.errors.invalidForm'));
+      this.alertService.showError(this.translateService.instant('maintenance_form_errors_invalidForm'));
     }
   }
 
@@ -172,7 +175,7 @@ export class MaintenanceAddComponent implements OnInit {
     const field = this.maintenanceForm.get(fieldName);
     if (field && field.errors && field.touched) {
       if (field.errors['required']) {
-        return this.translateService.instant('maintenance.form.errors.required');
+        return this.translateService.instant('maintenance_form_errors_required');
       }
       if (field.errors['minlength']) {
         return this.translateService.instant('maintenance.form.errors.minLength', { 
@@ -189,18 +192,24 @@ export class MaintenanceAddComponent implements OnInit {
   cancelForm() {
     this.router.navigate(['/maintenance']);
   }
-goToDetail(maintenanceId: string) {
-  let processType=this.maintenanceForm.get('processType')?.value;
+  goToDetail(maintenanceId: string) {
+    const processType = this.maintenanceForm.get('processType')?.value;
+  
+    const routes: Record<string, string> = {
+      'FUEL': `/maintenance/fuel/add`,
+      'INSU': `/maintenance/insurance/add`,
+      'RETA': `/maintenance/detail/add`,
+      'TAXE': `/maintenance/taxe/add`
+    };
   debugger;
-  if(processType === 'FUEL') {
-    this.router.navigate([`/maintenance/fuel/add`, maintenanceId]);}
-    if(processType=== 'INSU') {
-      this.router.navigate([`/maintenance/insurance/add`, maintenanceId]);
+    const targetRoute = routes[processType];
+  
+    if (targetRoute) {
+      this.router.navigate([targetRoute, maintenanceId]);
+    } else {
+      console.warn('Tipo de proceso no reconocido:', processType);
     }
-    if(processType === 'RETA') {
-      this.router.navigate([`/maintenance/detail/list`, maintenanceId]);
-    }
-}
+  }
   exitScreen() {
     this.router.navigate(['/']);
   }

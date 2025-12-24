@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { WorkshopService, WorkshopEditRequest } from '../../../../utils/worksShop.service';
 import { AlertService } from '../../../../utils/alert.service';
 import { CatalogService, Catalog } from '../../../../utils/catalog.service';
+import { AppFooterComponent } from '../../../../shared/components/app-footer/app-footer.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -18,7 +19,8 @@ import { of } from 'rxjs';
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    AppFooterComponent
   ],
   providers: [
     WorkshopService,
@@ -53,7 +55,7 @@ export class WorkShopsEditComponent implements OnInit {
     if (this.workshopId) {
       this.loadWorkshop();
     } else {
-      this.alertService.showError(this.translateService.instant('workshops.edit.error.invalidId'));
+      this.alertService.showError(this.translateService.instant('workshops_edit_error_invalidId'));
       this.router.navigate(['/workshops']);
     }
   }
@@ -75,7 +77,7 @@ export class WorkShopsEditComponent implements OnInit {
     this.workshopService.getByIdWorksShop(this.workshopId).pipe(
       catchError((error: any) => {
         console.error('Error loading workshop:', error);
-        this.alertService.showError(this.translateService.instant('workshops.edit.error.load'));
+        this.alertService.showError(this.translateService.instant('workshops_edit_error_load'));
         this.router.navigate(['/workshops']);
         return of(null);
       }),
@@ -94,7 +96,7 @@ export class WorkShopsEditComponent implements OnInit {
             tradeTypeId: workshop.tradeTypeId || ''
           });
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('workshops.edit.error.load'));
+          this.alertService.showError(response?.message || this.translateService.instant('workshops_edit_error_load'));
           this.router.navigate(['/workshops']);
         }
       }
@@ -137,7 +139,7 @@ export class WorkShopsEditComponent implements OnInit {
   updateWorkshop() {
     if (this.workshopForm.invalid || !this.workshopId) {
       this.markFormGroupTouched();
-      this.alertService.showError(this.translateService.instant('workshops.form.errors.invalidForm'));
+      this.alertService.showError(this.translateService.instant('workshops_form_errors_invalidForm'));
       return;
     }
 
@@ -147,7 +149,7 @@ export class WorkShopsEditComponent implements OnInit {
     this.workshopService.editWorksShop(this.workshopId, { ...formData, id: this.workshopId }).pipe(
       catchError((error: any) => {
         console.error('Error updating workshop:', error);
-        this.alertService.showError(this.translateService.instant('workshops.edit.error.update'));
+        this.alertService.showError(this.translateService.instant('workshops_edit_error_update'));
         return of(null);
       }),
       finalize(() => {
@@ -156,7 +158,7 @@ export class WorkShopsEditComponent implements OnInit {
     ).subscribe({
       next: (response: any) => {
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('workshops.edit.success'));
+          this.alertService.showSuccess(this.translateService.instant('workshops_edit_success'));
           this.router.navigate(['/workshops']);
         } else {
           this.alertService.showError(response.message,response.errors);
@@ -169,7 +171,7 @@ export class WorkShopsEditComponent implements OnInit {
     this.catalogService.getworkShopType().pipe(
       catchError(error => {
         console.error('Error loading workshop types:', error);
-        this.alertService.showError(this.translateService.instant('workshops.form.errors.loadTypes'));
+        this.alertService.showError(this.translateService.instant('workshops_form_errors_loadTypes'));
         return of(null);
       })
     ).subscribe({
@@ -177,7 +179,7 @@ export class WorkShopsEditComponent implements OnInit {
         if (response && response.success) {
           this.workShopTypes = response.data || [];
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('workshops.form.errors.loadTypes'));
+          this.alertService.showError(response?.message || this.translateService.instant('workshops_form_errors_loadTypes'));
         }
       }
     });
@@ -187,7 +189,7 @@ export class WorkShopsEditComponent implements OnInit {
     this.catalogService.getTradeType().pipe(
       catchError(error => {
         console.error('Error loading trade types:', error);
-        this.alertService.showError(this.translateService.instant('workshops.form.errors.loadTradeTypes'));
+        this.alertService.showError(this.translateService.instant('workshops_form_errors_loadTradeTypes'));
         return of(null);
       })
     ).subscribe({
@@ -195,7 +197,7 @@ export class WorkShopsEditComponent implements OnInit {
         if (response && response.success) {
           this.tradeTypes = response.data || [];
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('workshops.form.errors.loadTradeTypes'));
+          this.alertService.showError(response?.message || this.translateService.instant('workshops_form_errors_loadTradeTypes'));
         }
       }
     });
@@ -210,7 +212,7 @@ export class WorkShopsEditComponent implements OnInit {
 
   cancelForm() {
     this.alertService.showConfirm(
-      this.translateService.instant('workshops.edit.cancelConfirm')
+      this.translateService.instant('workshops_edit_cancelConfirm')
     ).then(result => {
       if (result) {
         this.router.navigate(['/workshops']);
@@ -220,7 +222,7 @@ export class WorkShopsEditComponent implements OnInit {
 
   exitScreen() {
     this.alertService.showConfirm(
-      this.translateService.instant('workshops.edit.exitConfirm')
+      this.translateService.instant('workshops_edit_exitConfirm')
     ).then(result => {
       if (result) {
         this.router.navigate(['/workshops']);

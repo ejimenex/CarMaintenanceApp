@@ -38,12 +38,12 @@ export class MaintenanceDetailListComponent implements OnInit, OnDestroy {
   detailToDelete: string = '';
   deleteAlertButtons = [
     {
-      text: this.translateService.instant('common.cancel'),
+      text: this.translateService.instant('common_cancel'),
       role: 'cancel',
       cssClass: 'alert-button-cancel'
     },
     {
-      text: this.translateService.instant('maintenance.actions.delete'),
+      text: this.translateService.instant('maintenance_actions_delete'),
       role: 'destructive',
       cssClass: 'alert-button-delete',
       handler: () => {
@@ -98,7 +98,7 @@ export class MaintenanceDetailListComponent implements OnInit, OnDestroy {
     this.maintenanceDetailService.getByHeader(this.maintenanceHeaderId).pipe(
       catchError(error => {
         console.error('❌ Error loading maintenance details:', error);
-        this.errorMessage = this.translateService.instant('maintenance.detail.list.error');
+        this.errorMessage = this.translateService.instant('maintenance_detail_list_error');
         return of(null);
       }),
       finalize(() => {
@@ -122,7 +122,7 @@ export class MaintenanceDetailListComponent implements OnInit, OnDestroy {
           this.maintenanceDetails = [];
         } else {
           console.error('❌ Respuesta inválida:', response);
-          this.errorMessage = response?.message || this.translateService.instant('maintenance.detail.list.error');
+          this.errorMessage = response?.message || this.translateService.instant('maintenance_detail_list_error');
           this.maintenanceDetails = [];
         }
       },
@@ -211,7 +211,7 @@ export class MaintenanceDetailListComponent implements OnInit, OnDestroy {
     this.maintenanceDetailService.deleteMaintenanceDetail(this.detailToDelete).pipe(
       catchError(error => {
         console.error('❌ Error deleting maintenance detail:', error);
-        this.alertService.showError(this.translateService.instant('maintenance.detail.delete.error'));
+        this.alertService.showError(this.translateService.instant('maintenance_detail_delete_error'));
         return of(null);
       }),
       finalize(() => {
@@ -223,7 +223,7 @@ export class MaintenanceDetailListComponent implements OnInit, OnDestroy {
       next: (response: any) => {
         console.log('📦 Delete response:', response);
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('maintenance.detail.delete.success'));
+          this.alertService.showSuccess(this.translateService.instant('maintenance_detail_delete_success'));
           // Remove the deleted detail from the list using the same ID logic
           this.maintenanceDetails = this.maintenanceDetails.filter(d => {
             const currentId = d.MaintenanceDetailId || d.id  || (d as any).Id;
@@ -232,7 +232,7 @@ export class MaintenanceDetailListComponent implements OnInit, OnDestroy {
           console.log('✅ Detail removed from list. Remaining items:', this.maintenanceDetails.length);
         } else {
           console.error('❌ Delete failed:', response);
-          this.alertService.showError(response?.message || this.translateService.instant('maintenance.detail.delete.error'));
+          this.alertService.showError(response?.message || this.translateService.instant('maintenance_detail_delete_error'));
         }
       },
       error: (error) => {

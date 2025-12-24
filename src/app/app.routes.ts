@@ -4,13 +4,14 @@ import { AuthGuard } from './features/auth/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'vehicles',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
     path: 'dashboard',
-    redirectTo: 'vehicles',
-    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
   },
   {
     path: 'login',
@@ -32,7 +33,7 @@ export const routes: Routes = [
     path: 'workshops',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./features/workShops/work-shops.routes').then((m) => m.workShopsRoutes),
+      import('./features/workShops/workShops.routes').then((m) => m.WORKSHOPS_ROUTES),
   },
   {
     path: 'vehicles',

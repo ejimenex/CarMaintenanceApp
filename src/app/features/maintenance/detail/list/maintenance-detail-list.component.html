@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="goBack()"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'maintenance.detail.list.title' | translate }}</ion-title>
+    <ion-title>{{ 'maintenance_detail_list_title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="addMaintenanceDetail()" fill="clear">
         <ion-icon name="add" slot="icon-only"></ion-icon>
@@ -15,7 +15,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">{{ 'maintenance.detail.list.title' | translate }}</ion-title>
+      <ion-title size="large">{{ 'maintenance_detail_list_title' | translate }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -25,7 +25,7 @@
     (ionInput)="onSearch($event)"
     (ionClear)="onClearSearch()"
     (ionSearch)="performSearch()"
-    [placeholder]="'maintenance.detail.list.search.placeholder' | translate"
+    [placeholder]="'maintenance_detail_list_search_placeholder' | translate"
     show-clear-button="focus"
     debounce="2000">
   </ion-searchbar>
@@ -33,7 +33,7 @@
   <!-- Loading Spinner -->
   <div *ngIf="loading" class="loading-container">
     <ion-spinner name="crescent"></ion-spinner>
-    <p>{{ 'common.loading' | translate }}</p>
+    <p>{{ 'common_loading' | translate }}</p>
   </div>
 
   <!-- Error Message -->
@@ -41,17 +41,17 @@
     <ion-icon name="alert-circle" color="danger"></ion-icon>
     <p>{{ errorMessage }}</p>
     <ion-button (click)="loadMaintenanceDetails()" fill="outline" color="primary">
-      {{ 'common.retry' | translate }}
+      {{ 'common_retry' | translate }}
     </ion-button>
   </div>
 
   <!-- Empty State -->
   <div *ngIf="!loading && !errorMessage && maintenanceDetails.length === 0" class="empty-state">
     <ion-icon name="construct-outline" size="large" color="medium"></ion-icon>
-    <h3>{{ 'maintenance.detail.list.empty.title' | translate }}</h3>
-    <p>{{ 'maintenance.detail.list.empty.message' | translate }}</p>
+    <h3>{{ 'maintenance_detail_list_empty_title' | translate }}</h3>
+    <p>{{ 'maintenance_detail_list_empty_message' | translate }}</p>
     <ion-button (click)="addMaintenanceDetail()" fill="solid" color="primary">
-      {{ 'maintenance.detail.list.empty.action' | translate }}
+      {{ 'maintenance_detail_list_empty_action' | translate }}
     </ion-button>
   </div>
 
@@ -69,22 +69,22 @@
               {{ detail.statusName }}
             </ion-chip>
           </p>
-          <p class="cost">{{ 'maintenance.detail.list.cost' | translate }}: {{ detail.cost | currency }}</p>
+          <p class="cost">{{ 'maintenance_detail_list_cost' | translate }}: {{ detail.cost | currency }}</p>
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
         <ion-item-option (click)="viewMaintenanceDetail(detail.id)" color="primary">
           <ion-icon name="eye" slot="icon-only"></ion-icon>
-          <div class="option-label">{{ 'common.view' | translate }}</div>
+          <div class="option-label">{{ 'common_view' | translate }}</div>
         </ion-item-option>
         <ion-item-option (click)="editMaintenanceDetail(detail.id)" color="secondary">
           <ion-icon name="create" slot="icon-only"></ion-icon>
-          <div class="option-label">{{ 'common.edit' | translate }}</div>
+          <div class="option-label">{{ 'common_edit' | translate }}</div>
         </ion-item-option>
         <ion-item-option (click)="confirmDelete(detail.id)" color="danger">
           <ion-icon name="trash" slot="icon-only"></ion-icon>
-          <div class="option-label">{{ 'common.delete' | translate }}</div>
+          <div class="option-label">{{ 'common_delete' | translate }}</div>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
@@ -93,8 +93,8 @@
   <!-- Delete Confirmation Alert -->
   <ion-alert
     [isOpen]="showDeleteAlert"
-    [header]="'maintenance.detail.delete.confirm.title' | translate"
-    [message]="'maintenance.detail.delete.confirm.message' | translate"
+    [header]="'maintenance_detail_delete_confirm_title' | translate"
+    [message]="'maintenance_detail_delete_confirm_message' | translate"
     [buttons]="deleteAlertButtons"
     (didDismiss)="onDeleteAlertDismiss()">
   </ion-alert>

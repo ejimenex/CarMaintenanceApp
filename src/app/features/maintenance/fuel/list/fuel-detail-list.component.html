@@ -6,7 +6,7 @@
     </ion-buttons>
     <ion-title class="header-title">
       <ion-icon name="car-sport" slot="start" class="header-icon"></ion-icon>
-      {{ 'fuel.list.title' | translate }}
+      {{ 'fuel_list_title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,7 @@
         <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
         <div class="loading-text">
           <ion-icon name="hourglass" class="loading-icon"></ion-icon>
-          {{ 'fuel.list.loading' | translate }}
+          {{ 'fuel_list_loading' | translate }}
         </div>
       </div>
     }
@@ -30,12 +30,12 @@
       <div class="uniform-alert danger">
         <div class="alert-header">
           <ion-icon name="alert-circle" class="alert-icon"></ion-icon>
-          <h4>{{ 'common.error' | translate }}</h4>
+          <h4>{{ 'common_error' | translate }}</h4>
         </div>
         <div class="alert-message">{{ errorMessage }}</div>
         <ion-button (click)="loadFuelDetails()" fill="outline" class="retry-button">
           <ion-icon name="refresh" slot="start"></ion-icon>
-          {{ 'fuel.list.retry' | translate }}
+          {{ 'fuel_list_retry' | translate }}
         </ion-button>
       </div>
     }
@@ -44,7 +44,7 @@
     @if (!loading && fuelDetails.length > 0) {
       <div class="fuel-details-container">
         <div class="list-header">
-          <h3 class="list-title">{{ 'fuel.list.detailsTitle' | translate: { count: fuelDetails.length } }}</h3>
+          <h3 class="list-title">{{ 'fuel_list_detailsTitle' | translate: { count: fuelDetails.length } }}</h3>
         </div>
 
         <div class="uniform-list">
@@ -114,17 +114,17 @@
                     <ion-list class="menu-list">
                       <ion-item button (click)="viewFuelDetail(fuelDetail.processHeaderId); closeMenu()" class="menu-item">
                         <ion-icon name="eye" slot="start" color="primary"></ion-icon>
-                        <ion-label>{{ 'fuel.actions.view' | translate }}</ion-label>
+                        <ion-label>{{ 'fuel_actions_view' | translate }}</ion-label>
                       </ion-item>
 
                       <ion-item button (click)="editFuelDetail(fuelDetail.processHeaderId); closeMenu()" class="menu-item">
                         <ion-icon name="create" slot="start" color="warning"></ion-icon>
-                        <ion-label>{{ 'fuel.actions.edit' | translate }}</ion-label>
+                        <ion-label>{{ 'fuel_actions_edit' | translate }}</ion-label>
                       </ion-item>
 
                       <ion-item button (click)="confirmDelete(fuelDetail); closeMenu()" class="menu-item">
                         <ion-icon name="trash" slot="start" color="danger"></ion-icon>
-                        <ion-label>{{ 'fuel.actions.delete' | translate }}</ion-label>
+                        <ion-label>{{ 'fuel_actions_delete' | translate }}</ion-label>
                       </ion-item>
                     </ion-list>
                   </ion-content>
@@ -142,11 +142,11 @@
         <div class="empty-icon">
           <ion-icon name="car-sport-outline"></ion-icon>
         </div>
-        <h3 class="empty-title">{{ 'fuel.list.empty.title' | translate }}</h3>
-        <p class="empty-description">{{ 'fuel.list.empty.description' | translate }}</p>
+        <h3 class="empty-title">{{ 'fuel_list_empty_title' | translate }}</h3>
+        <p class="empty-description">{{ 'fuel_list_empty_description' | translate }}</p>
         <ion-button (click)="addFuelDetail()" class="add-fuel-btn" fill="solid" size="large">
           <ion-icon name="add-circle" slot="start"></ion-icon>
-          {{ 'fuel.list.empty.button' | translate }}
+          {{ 'fuel_list_empty_button' | translate }}
         </ion-button>
       </div>
     }
@@ -157,7 +157,7 @@
         <ion-spinner name="bubbles" class="loading-more-spinner"></ion-spinner>
         <div class="loading-more-text">
           <ion-icon name="sync" class="loading-more-icon"></ion-icon>
-          {{ 'fuel.list.loadingMore' | translate }}
+          {{ 'fuel_list_loadingMore' | translate }}
         </div>
       </div>
     }
@@ -174,8 +174,8 @@
 <!-- Delete Confirmation Alert -->
 <ion-alert
   [isOpen]="showDeleteAlert"
-  [header]="'fuel.delete.confirm' | translate"
-  [message]="('fuel.delete.message' | translate: { fuelType: fuelDetailToDelete?.fuelType || 'este detalle' })"
+  [header]="'fuel_delete_confirm' | translate"
+  [message]="('fuel_delete_message' | translate: { fuelType: fuelDetailToDelete?.fuelType || 'este detalle' })"
   [buttons]="deleteAlertButtons"
   (didDismiss)="onDeleteAlertDismiss()">
 </ion-alert>

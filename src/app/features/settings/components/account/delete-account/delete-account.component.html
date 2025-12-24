@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/settings"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'settings.account.deleteAccount.header' | translate }}</ion-title>
+    <ion-title>{{ 'settings_account_deleteAccount_header' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,12 +15,12 @@
       <ion-card-header>
         <ion-card-title class="warning-title">
           <ion-icon name="warning" class="warning-icon"></ion-icon>
-          {{ 'settings.account.deleteAccount.warning' | translate }}
+          {{ 'settings_account_deleteAccount_warning' | translate }}
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p class="warning-text">
-          {{ 'settings.account.deleteAccount.warningText' | translate }}
+          {{ 'settings_account_deleteAccount_warningText' | translate }}
         </p>
         <ul class="warning-list">
           @for (consequence of consequences; track $index) {
@@ -33,27 +33,27 @@
     <!-- Delete Form -->
     <ion-card class="form-card">
       <ion-card-header>
-        <ion-card-title>{{ 'settings.account.deleteAccount.confirmTitle' | translate }}</ion-card-title>
+        <ion-card-title>{{ 'settings_account_deleteAccount_confirmTitle' | translate }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <form [formGroup]="deleteForm" (ngSubmit)="confirmDelete()">
           
           <ion-item class="form-item">
-            <ion-label position="stacked">{{ 'settings.account.deleteAccount.reason' | translate }}</ion-label>
+            <ion-label position="stacked">{{ 'settings_account_deleteAccount_reason' | translate }}</ion-label>
             <ion-input 
               formControlName="reason"
-              [placeholder]="'settings.account.deleteAccount.reasonPlaceholder' | translate"
+              [placeholder]="'settings_account_deleteAccount_reasonPlaceholder' | translate"
               type="text">
             </ion-input>
           </ion-item>
           
           <ion-item class="form-item">
             <ion-label position="stacked">
-              {{ 'settings.account.deleteAccount.confirmation' | translate }}
+              {{ 'settings_account_deleteAccount_confirmation' | translate }}
             </ion-label>
             <ion-input 
               formControlName="confirmation"
-              [placeholder]="'settings.account.deleteAccount.confirmationPlaceholder' | translate"
+              [placeholder]="'settings_account_deleteAccount_confirmationPlaceholder' | translate"
               type="text">
             </ion-input>
           </ion-item>
@@ -65,7 +65,7 @@
               color="danger"
               [disabled]="deleteForm.invalid || isLoading">
               <ion-icon name="trash" slot="start"></ion-icon>
-              {{ isLoading ? ('settings.account.deleteAccount.buttonLoading' | translate) : ('settings.account.deleteAccount.button' | translate) }}
+              {{ isLoading ? ('settings_account_deleteAccount_buttonLoading' | translate) : ('settings_account_deleteAccount_button' | translate) }}
             </ion-button>
           </div>
 
@@ -79,7 +79,7 @@
 <!-- Confirmation Alert -->
 <ion-alert
   [isOpen]="showConfirmation"
-  [header]="'settings.account.deleteAccount.alertTitle' | translate"
-  [message]="'settings.account.deleteAccount.alertMessage' | translate"
+  [header]="'settings_account_deleteAccount_alertTitle' | translate"
+  [message]="'settings_account_deleteAccount_alertMessage' | translate"
   [buttons]="alertButtons">
 </ion-alert>

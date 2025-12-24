@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProcessInsuranceDetailService, ProccessInsuranceDetail } from '../../../../utils/processInsuranceDetail.service';
-
+import { AppFooterComponent } from '../../../../shared/components/app-footer/app-footer.component';
 import { AlertService } from '../../../../utils/alert.service';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -20,7 +20,8 @@ import { Catalog, CatalogService } from 'src/app/utils/catalog.service';
     IonicModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    AppFooterComponent
   ],
   providers: [
     ProcessInsuranceDetailService,
@@ -53,7 +54,7 @@ export class InsuranceDetailAddComponent implements OnInit {
     this.maintenanceId = this.route.snapshot.paramMap.get('id') || '';
     
     if (!this.maintenanceId) {
-      this.alertService.showError(this.translateService.instant('insurance.add.error.invalidMaintenanceId'));
+      this.alertService.showError(this.translateService.instant('insurance_add_error_invalidMaintenanceId'));
       this.router.navigate(['/maintenance']);
       return;
     }
@@ -79,7 +80,7 @@ export class InsuranceDetailAddComponent implements OnInit {
     this.catalogService.getCurrency().pipe(
       catchError(error => {
         console.error('Error loading currencies:', error);
-        this.alertService.showError(this.translateService.instant('insurance.form.errors.loadCurrencies'));
+        this.alertService.showError(this.translateService.instant('insurance_form_errors_loadCurrencies'));
         return of(null);
       }),
       finalize(() => {
@@ -99,7 +100,7 @@ export class InsuranceDetailAddComponent implements OnInit {
             });
           }
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('insurance.form.errors.loadCurrencies'));
+          this.alertService.showError(response?.message || this.translateService.instant('insurance_form_errors_loadCurrencies'));
         }
       }
     });
@@ -112,6 +113,7 @@ export class InsuranceDetailAddComponent implements OnInit {
       const formValue = this.insuranceDetailForm.value;
 
       const insuranceDetailData: ProccessInsuranceDetail = {
+        id: null,
         processHeaderId: this.maintenanceId,
         policyNumber: formValue.policyNumber,
         coverageStartDate: formValue.coverageStartDate ? new Date(formValue.coverageStartDate) : undefined,
@@ -126,7 +128,7 @@ export class InsuranceDetailAddComponent implements OnInit {
       this.processInsuranceDetailService.createProcessHeader(insuranceDetailData).pipe(
         catchError(error => {
           console.error('Error creating insurance detail:', error);
-          this.alertService.showError(this.translateService.instant('insurance.add.error'));
+          this.alertService.showError(this.translateService.instant('insurance_add_error'));
           return of(null);
         }),
         finalize(() => {
@@ -135,7 +137,7 @@ export class InsuranceDetailAddComponent implements OnInit {
       ).subscribe({
         next: (response: any) => {
           if (response && response.success) {
-            this.alertService.showSuccess(this.translateService.instant('insurance.add.success'));
+            this.alertService.showSuccess(this.translateService.instant('insurance_add_success'));
             this.router.navigate(['/maintenance/insurance/list', this.maintenanceId]);
           } else {
             this.alertService.showError(response.message || 'An error occurred', response.errors);
@@ -144,7 +146,7 @@ export class InsuranceDetailAddComponent implements OnInit {
       });
     } else {
       this.markFormGroupTouched();
-      this.alertService.showError(this.translateService.instant('insurance.form.errors.invalidForm'));
+      this.alertService.showError(this.translateService.instant('insurance_form_errors_invalidForm'));
     }
   }
 
@@ -159,7 +161,7 @@ export class InsuranceDetailAddComponent implements OnInit {
     const field = this.insuranceDetailForm.get(fieldName);
     if (field && field.errors && field.touched) {
       if (field.errors['required']) {
-        return this.translateService.instant('insurance.form.errors.required');
+        return this.translateService.instant('insurance_form_errors_required');
       }
       if (field.errors['min']) {
         return this.translateService.instant('insurance.form.errors.minValue', { 

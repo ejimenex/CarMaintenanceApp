@@ -139,7 +139,7 @@ export class AlertService {
    * Show error toast
    */
   async showError(message: string, listErrors?: string[],duration?: number): Promise<void> {
-    debugger
+   
     if(message){
       message =  this.translate.instant(message);
     }

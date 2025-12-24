@@ -1,0 +1,432 @@
+// Header styles
+ion-header {
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+
+    ion-title {
+      font-weight: 600;
+    }
+
+    ion-buttons {
+      ion-button {
+        --color: var(--ion-color-primary-contrast);
+
+        ion-icon {
+          font-size: 24px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    // Add button in header - make it stand out
+    ion-buttons[slot="end"] {
+      ion-button {
+        --background: white;
+        --background-hover: rgba(255, 255, 255, 0.9);
+        --background-activated: rgba(255, 255, 255, 0.8);
+        --color: var(--ion-color-primary);
+        --border-radius: 8px;
+        --padding-start: 12px;
+        --padding-end: 12px;
+        --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        margin-right: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: none;
+
+        ion-icon {
+          font-size: 24px;
+          font-weight: bold;
+          margin-right: 4px;
+        }
+
+        &:hover {
+          --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          transform: translateY(-1px);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        &:active {
+          transform: translateY(0);
+          transition: transform 0.1s ease;
+        }
+      }
+    }
+  }
+}
+
+// Content styles
+ion-content {
+  --background: #f5f5f5;
+}
+
+// Loading container
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 16px;
+
+  ion-spinner {
+    width: 48px;
+    height: 48px;
+    --color: var(--ion-color-primary);
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--ion-color-medium);
+  }
+}
+
+// Error container
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  height: 60vh;
+
+  ion-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin-bottom: 24px;
+    color: var(--ion-color-danger);
+    font-size: 1rem;
+  }
+}
+
+// Empty state
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  height: 60vh;
+
+  ion-icon {
+    font-size: 96px;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--ion-color-dark);
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--ion-color-medium);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  ion-button {
+    --padding-start: 24px;
+    --padding-end: 24px;
+    font-weight: 600;
+  }
+}
+
+// Content wrapper
+.content-wrapper {
+  padding: 16px;
+}
+
+// List title
+.list-title {
+  margin-bottom: 16px;
+  padding: 0 8px;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin: 0;
+  }
+}
+
+// Uniform list
+.uniform-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// Part item
+.part-item {
+  --background: white;
+  --border-radius: 12px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-end: 8px;
+  --min-height: 120px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-bottom: 0;
+
+  &::part(native) {
+    border-radius: 12px;
+  }
+}
+
+// Part number badge
+.part-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+
+  .number-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+}
+
+// Part image/icon
+.part-image {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  background: var(--ion-color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .part-icon {
+    font-size: 28px;
+    color: var(--ion-color-primary);
+  }
+}
+
+// Part details
+.part-details {
+  margin: 0;
+
+  h2, p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+  }
+
+  .part-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+
+    .part-name-icon {
+      font-size: 18px;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .part-quantity,
+  .part-cost,
+  .part-total {
+    font-size: 0.9rem;
+    color: var(--ion-color-medium);
+
+    ion-icon {
+      font-size: 16px;
+    }
+
+    .part-quantity-icon {
+      color: var(--ion-color-secondary);
+    }
+
+    .part-cost-icon {
+      color: var(--ion-color-success);
+    }
+
+    .part-total-icon {
+      color: var(--ion-color-tertiary);
+    }
+  }
+
+  .part-total {
+    font-weight: 500;
+
+    strong {
+      color: var(--ion-color-dark);
+      font-size: 1rem;
+    }
+  }
+}
+
+// Menu button
+.menu-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin: 0;
+
+  .menu-icon {
+    font-size: 24px;
+    color: var(--ion-color-medium);
+  }
+}
+
+// Action popover
+.action-popover {
+  --width: 200px;
+
+  .action-menu {
+    padding: 0;
+    margin: 0;
+
+    ion-item {
+      --padding-start: 16px;
+      --inner-padding-end: 16px;
+      --min-height: 48px;
+      cursor: pointer;
+
+      ion-icon {
+        margin-right: 12px;
+        font-size: 20px;
+      }
+
+      &:hover {
+        --background: var(--ion-color-light);
+      }
+
+      &.delete-option {
+        --background: rgba(var(--ion-color-danger-rgb), 0.05);
+
+        &:hover {
+          --background: rgba(var(--ion-color-danger-rgb), 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Floating Action Button - Make it more visible and animated
+ion-fab {
+  ion-fab-button {
+    --background: var(--ion-color-primary);
+    --background-activated: var(--ion-color-primary-shade);
+    --background-hover: var(--ion-color-primary-tint);
+    --color: white;
+    --border-radius: 50%;
+    --box-shadow: 0 6px 20px rgba(var(--ion-color-primary-rgb), 0.5);
+    width: 70px;
+    height: 70px;
+    margin: 0 20px 20px 0;
+
+    ion-icon {
+      font-size: 44px;
+      font-weight: 900;
+      color: white;
+    }
+
+    &:hover {
+      --box-shadow: 0 8px 24px rgba(var(--ion-color-primary-rgb), 0.6);
+      transform: scale(1.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    &:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+
+    // Pulse animation
+    &.pulse-button {
+      animation: pulse-animation 2s infinite;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background: var(--ion-color-primary);
+        opacity: 0.7;
+        animation: pulse-ring 2s infinite;
+      }
+    }
+  }
+}
+
+// Pulse animations
+@keyframes pulse-animation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+// Responsive styles
+@media (max-width: 576px) {
+  .content-wrapper {
+    padding: 12px;
+  }
+
+  .part-item {
+    --min-height: 140px;
+  }
+
+  .part-details {
+    h2 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  ion-fab {
+    ion-fab-button {
+      width: 60px;
+      height: 60px;
+      margin: 0 16px 16px 0;
+
+      ion-icon {
+        font-size: 36px;
+        font-weight: 900;
+        color: white;
+      }
+    }
+  }
+}
+

@@ -5,6 +5,7 @@ import { ApiService, CrudService, ApiResponse, QueryParams } from './api.service
 // Example interfaces for different entities
 export interface ProccessHeaderModel 
 {
+  id?: string;
   name: string;            
   vehicleId: string;           
   processType: string;       
@@ -28,6 +29,7 @@ export interface ProcessHeaderGetRequest {
   tradeId: string;
   tradeName?: string;
   totalAmount?: number;
+  createdDate?: Date;
  
 }
 

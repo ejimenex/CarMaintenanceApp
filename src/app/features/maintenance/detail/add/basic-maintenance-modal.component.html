@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mantenimientos Básicos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let maintenance of basicMaintenancesCatalog">
+      <ion-checkbox slot="start" [checked]="isSelected(maintenance.id || '')" (ionChange)="toggleSelection(maintenance.id || '' )"></ion-checkbox>
+      <ion-label>{{ maintenance.name | translate }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-footer>
+    <ion-button expand="block" color="primary" (click)="addSelectedMaintenances()">
+      Agregar mantenimientos
+    </ion-button>
+  </ion-footer>
+</ion-content>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService, CrudService, ApiResponse, QueryParams } from './api.service';
+import { environment } from '../../environments/environment';
 
 // Example interfaces for different entities
 export interface VehicleCreateRequest 
@@ -14,6 +16,7 @@ export interface VehicleCreateRequest
   mileage?: number;        // decimal → number
   plateNumber: string;     // required
   year?: number | null;    // nullable int
+  imageUrl?: string;       // optional - URL de la imagen
 }
 export interface VehicleEditRequest extends VehicleCreateRequest
 {
@@ -39,6 +42,7 @@ export interface VehicleGetRequest {
   plateNumber: string;
   year?: number | null;
   image?: string;
+  imageUrl?: string; // URL de la imagen desde el backend
 }
 
 @Injectable({
@@ -49,7 +53,10 @@ export class VehicleService {
   private vehicleService: CrudService<VehicleCreateRequest>;
   private vehicleGetService: CrudService<VehicleGetRequest>;
   private labelValueDtoService: CrudService<LabelValueDto>;
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    private http: HttpClient
+  ) {
     // Initialize CRUD services for different entities
         this.vehicleService = this.apiService.createCrudService<VehicleCreateRequest>({
           endpoint: 'vehicle',
@@ -84,9 +91,9 @@ editVehicle(id:string,data:VehicleEditRequest):Observable<ApiResponse<VehicleEdi
 {
 return this.vehicleEditService.update(id,data)
 }
-getByIdVehicle(id:string):Observable<ApiResponse<VehicleEditRequest>>
+getByIdVehicle(id:string):Observable<ApiResponse<VehicleGetRequest>>
 {
-return this.vehicleEditService.getById(id)
+return this.vehicleGetService.getById(id)
 }
 createVehicle(data:VehicleCreateRequest):Observable<ApiResponse<VehicleCreateRequest>>
 {
@@ -98,6 +105,23 @@ deleteVehicle(id: string): Observable<ApiResponse<any>> {
 }
 getAll(): Observable<ApiResponse<LabelValueDto[]>> {
   return this.labelValueDtoService.getAllWithoutParams();
+}
+
+/**
+ * Create vehicle with images using FormData
+ * NO Base64 - Uses multipart/form-data
+ */
+createVehicleWithImages(formData: FormData): Observable<ApiResponse<any>> {
+  
+
+  return this.vehicleService.createFormData(formData)
+}
+
+/**
+ * Update vehicle with images using FormData
+ */
+updateVehicleWithImages(id: string, formData: FormData): Observable<ApiResponse<any>> {
+ return this.vehicleService.updateWithFormData(id, formData) 
 }
 
 }

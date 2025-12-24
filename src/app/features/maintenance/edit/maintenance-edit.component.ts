@@ -8,6 +8,7 @@ import { ProcessHeaderService, ProccessHeaderModel } from '../../../utils/proces
 import { VehicleService, LabelValueDto } from '../../../utils/vehicle.service';
 import { WorkshopService, LabelValueDto as TradeLabelValueDto } from '../../../utils/worksShop.service';
 import { AlertService } from '../../../utils/alert.service';
+import { AppFooterComponent } from '../../../shared/components/app-footer/app-footer.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -20,7 +21,8 @@ import { of } from 'rxjs';
     IonicModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    AppFooterComponent
   ],
   providers: [
     ProcessHeaderService,
@@ -63,7 +65,7 @@ export class MaintenanceEditComponent implements OnInit {
     this.maintenanceId = this.route.snapshot.paramMap.get('id') || '';
     
     if (!this.maintenanceId) {
-      this.alertService.showError(this.translateService.instant('maintenance.edit.error.invalidId'));
+      this.alertService.showError(this.translateService.instant('maintenance_edit_error_invalidId'));
       this.router.navigate(['/maintenance']);
       return;
     }
@@ -93,7 +95,7 @@ export class MaintenanceEditComponent implements OnInit {
     this.processHeaderService.getByIdProcessHeader(this.maintenanceId).pipe(
       catchError(error => {
         console.error('Error loading maintenance data:', error);
-        this.alertService.showError(this.translateService.instant('maintenance.edit.error.load'));
+        this.alertService.showError(this.translateService.instant('maintenance_edit_error_load'));
         return of(null);
       }),
       finalize(() => {
@@ -105,7 +107,7 @@ export class MaintenanceEditComponent implements OnInit {
           this.populateForm(response.data);
           console.log('✅ Datos del mantenimiento cargados:', response.data);
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('maintenance.edit.error.load'));
+          this.alertService.showError(response?.message || this.translateService.instant('maintenance_edit_error_load'));
           this.router.navigate(['/maintenance']);
         }
       }
@@ -121,6 +123,7 @@ export class MaintenanceEditComponent implements OnInit {
     };
 
     this.maintenanceForm.patchValue({
+      id: this.maintenanceId || '',
       name: maintenanceData.name || '',
       vehicleId: maintenanceData.vehicleId || '',
       processType: maintenanceData.processType || '',
@@ -137,7 +140,7 @@ export class MaintenanceEditComponent implements OnInit {
     this.vehicleService.getAll().pipe(
       catchError(error => {
         console.error('Error loading vehicles:', error);
-        this.alertService.showError(this.translateService.instant('maintenance.form.errors.loadVehicles'));
+        this.alertService.showError(this.translateService.instant('maintenance_form_errors_loadVehicles'));
         return of(null);
       })
     ).subscribe({
@@ -146,7 +149,7 @@ export class MaintenanceEditComponent implements OnInit {
           this.vehicles = response.data || [];
           console.log('✅ Vehículos cargados para dropdown:', this.vehicles);
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('maintenance.form.errors.loadVehicles'));
+          this.alertService.showError(response?.message || this.translateService.instant('maintenance_form_errors_loadVehicles'));
         }
       }
     });
@@ -156,7 +159,7 @@ export class MaintenanceEditComponent implements OnInit {
     this.workshopService.getAll().pipe(
       catchError(error => {
         console.error('Error loading workshops:', error);
-        this.alertService.showError(this.translateService.instant('maintenance.form.errors.loadWorkshops'));
+        this.alertService.showError(this.translateService.instant('maintenance_form_errors_loadWorkshops'));
         return of(null);
       })
     ).subscribe({
@@ -165,7 +168,7 @@ export class MaintenanceEditComponent implements OnInit {
           this.workshops = response.data || [];
           console.log('✅ Talleres cargados para dropdown:', this.workshops);
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('maintenance.form.errors.loadWorkshops'));
+          this.alertService.showError(response?.message || this.translateService.instant('maintenance_form_errors_loadWorkshops'));
         }
       }
     });
@@ -178,6 +181,7 @@ export class MaintenanceEditComponent implements OnInit {
       const formValue = this.maintenanceForm.value;
       const maintenanceData: ProccessHeaderModel = {
         name: formValue.name,
+        id:this.maintenanceId,
         vehicleId: formValue.vehicleId,
         processType: formValue.processType,
         startDate: formValue.startDate ? new Date(formValue.startDate) : new Date(),
@@ -190,8 +194,9 @@ export class MaintenanceEditComponent implements OnInit {
 
       this.processHeaderService.editProcessHeader(this.maintenanceId, maintenanceData).pipe(
         catchError(error => {
+        
           console.error('Error updating maintenance:', error);
-          this.alertService.showError(this.translateService.instant('maintenance.edit.error.update'));
+          this.alertService.showError(this.translateService.instant('maintenance_edit_error_update'));
           return of(null);
         }),
         finalize(() => {
@@ -200,16 +205,16 @@ export class MaintenanceEditComponent implements OnInit {
       ).subscribe({
         next: (response: any) => {
           if (response && response.success) {
-            this.alertService.showSuccess(this.translateService.instant('maintenance.edit.success'));
+            this.alertService.showSuccess(this.translateService.instant('maintenance_edit_success'));
             this.router.navigate(['/maintenance']);
           } else {
-            this.alertService.showError(response?.message || this.translateService.instant('maintenance.edit.error.update'));
+            this.alertService.showError(response?.message || this.translateService.instant('maintenance_edit_error_update'));
           }
         }
       });
     } else {
       this.markFormGroupTouched();
-      this.alertService.showError(this.translateService.instant('maintenance.form.errors.invalidForm'));
+      this.alertService.showError(this.translateService.instant('maintenance_form_errors_invalidForm'));
     }
   }
 
@@ -224,7 +229,7 @@ export class MaintenanceEditComponent implements OnInit {
     const field = this.maintenanceForm.get(fieldName);
     if (field && field.errors && field.touched) {
       if (field.errors['required']) {
-        return this.translateService.instant('maintenance.form.errors.required');
+        return this.translateService.instant('maintenance_form_errors_required');
       }
       if (field.errors['minlength']) {
         return this.translateService.instant('maintenance.form.errors.minLength', { 

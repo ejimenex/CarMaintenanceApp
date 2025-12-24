@@ -10,6 +10,8 @@ import { CatalogService, Catalog } from '../../../../utils/catalog.service';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 
+import { AppFooterComponent } from '../../../../shared/components/app-footer/app-footer.component';
+
 @Component({
   selector: 'app-work-shops-add',
   templateUrl: './work-shops-add.component.html',
@@ -18,7 +20,8 @@ import { of } from 'rxjs';
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    AppFooterComponent
   ],
   providers: [
     WorkshopService,
@@ -97,7 +100,7 @@ export class WorkShopsAddComponent implements OnInit {
   saveWorkshop() {
     if (this.workshopForm.invalid) {
       this.markFormGroupTouched();
-      this.alertService.showError(this.translateService.instant('workshops.form.errors.invalidForm'));
+      this.alertService.showError(this.translateService.instant('workshops_form_errors_invalidForm'));
       return;
     }
 
@@ -107,7 +110,7 @@ export class WorkShopsAddComponent implements OnInit {
     this.workshopService.createWorksShop(formData).pipe(
       catchError(error => {
         console.error('Error creating workshop:', error);
-        this.alertService.showError(this.translateService.instant('workshops.add.error'));
+        this.alertService.showError(this.translateService.instant('workshops_add_error'));
         return of(null);
       }),
       finalize(() => {
@@ -115,9 +118,9 @@ export class WorkShopsAddComponent implements OnInit {
       })
     ).subscribe({
       next: (response: any) => {
-        debugger
+      
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('workshops.add.success'));
+          this.alertService.showSuccess(this.translateService.instant('workshops_add_success'));
           this.router.navigate(['/workshops']);
         } else {
           this.alertService.showError(response.message,response.errors);
@@ -130,7 +133,7 @@ export class WorkShopsAddComponent implements OnInit {
     this.catalogService.getworkShopType().pipe(
       catchError(error => {
         console.error('Error loading workshop types:', error);
-        this.alertService.showError(this.translateService.instant('workshops.form.errors.loadTypes'));
+        this.alertService.showError(this.translateService.instant('workshops_form_errors_loadTypes'));
         return of(null);
       })
     ).subscribe({
@@ -138,7 +141,7 @@ export class WorkShopsAddComponent implements OnInit {
         if (response && response.success) {
           this.workShopTypes = response.data || [];
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('workshops.form.errors.loadTypes'));
+          this.alertService.showError(response?.message || this.translateService.instant('workshops_form_errors_loadTypes'));
         }
       }
     });
@@ -147,7 +150,7 @@ export class WorkShopsAddComponent implements OnInit {
     this.catalogService.getTradeType().pipe(
       catchError(error => {
         console.error('Error loading workshop types:', error);
-        this.alertService.showError(this.translateService.instant('workshops.form.errors.loadTypes'));
+        this.alertService.showError(this.translateService.instant('workshops_form_errors_loadTypes'));
         return of(null);
       })
     ).subscribe({
@@ -155,7 +158,7 @@ export class WorkShopsAddComponent implements OnInit {
         if (response && response.success) {
           this.tradeTypes = response.data || [];
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('workshops.form.errors.loadTypes'));
+          this.alertService.showError(response?.message || this.translateService.instant('workshops_form_errors_loadTypes'));
         }
       }
     });
@@ -169,7 +172,7 @@ export class WorkShopsAddComponent implements OnInit {
 
   cancelForm() {
     this.alertService.showConfirm(
-      this.translateService.instant('workshops.add.cancelConfirm')
+      this.translateService.instant('workshops_add_cancelConfirm')
     ).then(result => {
       if (result) {
         this.router.navigate(['/workshops']);
@@ -179,7 +182,7 @@ export class WorkShopsAddComponent implements OnInit {
 
   exitScreen() {
     this.alertService.showConfirm(
-      this.translateService.instant('workshops.add.exitConfirm')
+      this.translateService.instant('workshops_add_exitConfirm')
     ).then(result => {
       if (result) {
         this.router.navigate(['/workshops']);

@@ -1,0 +1,159 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'maintenance_parts_list_title' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addMaintenancePart()" fill="solid" color="light">
+        <ion-icon name="add-circle" slot="start"></ion-icon>
+        {{ 'common_add' | translate }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ 'maintenance_parts_list_title' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Search Bar -->
+  <ion-searchbar
+    [(ngModel)]="globalSearch"
+    (ionInput)="onSearch($event)"
+    (ionClear)="onClearSearch()"
+    (ionSearch)="performSearch()"
+    [placeholder]="'maintenance_parts_list_search_placeholder' | translate"
+    show-clear-button="focus"
+    debounce="2000">
+  </ion-searchbar>
+
+  <!-- Loading Spinner -->
+  @if (loading) {
+    <div class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>{{ 'common_loading' | translate }}</p>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (errorMessage && !loading) {
+    <div class="error-container">
+      <ion-icon name="alert-circle" color="danger"></ion-icon>
+      <p>{{ errorMessage }}</p>
+      <ion-button (click)="loadMaintenanceParts()" fill="outline" color="primary">
+        {{ 'common_retry' | translate }}
+      </ion-button>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!loading && !errorMessage && maintenanceParts.length === 0) {
+    <div class="empty-state">
+      <ion-icon name="construct-outline" size="large" color="medium"></ion-icon>
+      <h3>{{ 'maintenance_parts_list_empty_title' | translate }}</h3>
+      <p>{{ 'maintenance_parts_list_empty_message' | translate }}</p>
+      <ion-button (click)="addMaintenancePart()" fill="solid" color="primary">
+        {{ 'maintenance_parts_list_empty_action' | translate }}
+      </ion-button>
+    </div>
+  }
+
+  <!-- Parts List -->
+  @if (!loading && !errorMessage && maintenanceParts.length > 0) {
+    <div class="content-wrapper">
+      <!-- List Title with Count -->
+      <div class="list-title">
+        <h2>{{ 'maintenance_parts_list_detailsTitle' | translate: {count: maintenanceParts.length} }}</h2>
+      </div>
+      
+      <div class="uniform-list">
+        @for (part of maintenanceParts; track part.id; let i = $index) {
+          <ion-item class="part-item">
+            <!-- Sequential Number -->
+            <div slot="start" class="part-number">
+              <span class="number-badge">{{ i + 1 }}</span>
+            </div>
+            
+            <!-- Part Icon -->
+            <ion-avatar slot="start" class="part-image">
+              <ion-icon name="settings" class="part-icon"></ion-icon>
+            </ion-avatar>
+            
+            <!-- Part Details -->
+            <ion-label class="part-details">
+              <h2 class="part-name">
+                <ion-icon name="build" class="part-name-icon"></ion-icon>
+                {{ part.name }}
+              </h2>
+              <p class="part-quantity">
+                <ion-icon name="cube" class="part-quantity-icon"></ion-icon>
+                {{ 'maintenance_parts_list_quantity' | translate }}: {{ part.quantity }} {{ part.unitOfMeasure }}
+              </p>
+              <p class="part-cost">
+                <ion-icon name="cash" class="part-cost-icon"></ion-icon>
+                {{ 'maintenance_parts_list_unitCost' | translate }}: ${{ part.cost | number:'1.2-2' }}
+              </p>
+              <p class="part-total">
+                <ion-icon name="calculator" class="part-total-icon"></ion-icon>
+                {{ 'maintenance_parts_list_totalCost' | translate }}: <strong>${{ getTotalCost(part) | number:'1.2-2' }}</strong>
+              </p>
+            </ion-label>
+            
+            <!-- Dropdown Menu -->
+            <ion-button 
+              slot="end" 
+              fill="clear" 
+              class="menu-button"
+              (click)="toggleMenu($event, part.id)">
+              <ion-icon name="ellipsis-vertical" class="menu-icon"></ion-icon>
+            </ion-button>
+            
+            <!-- Dropdown Menu Popover -->
+            <ion-popover 
+              [isOpen]="openMenuId === part.id" 
+              [event]="menuEvent"
+              (didDismiss)="closeMenu()"
+              class="action-popover">
+              <ng-template>
+                <ion-list class="action-menu">
+                  <ion-item button detail="false" (click)="viewMaintenancePart(part.id)">
+                    <ion-icon name="eye" slot="start" color="primary"></ion-icon>
+                    <ion-label>{{ 'common_view' | translate }}</ion-label>
+                  </ion-item>
+                  <ion-item button detail="false" (click)="editMaintenancePart(part.id)">
+                    <ion-icon name="create" slot="start" color="secondary"></ion-icon>
+                    <ion-label>{{ 'common_edit' | translate }}</ion-label>
+                  </ion-item>
+                  <ion-item button detail="false" (click)="confirmDelete(part.id)" class="delete-option">
+                    <ion-icon name="trash" slot="start" color="danger"></ion-icon>
+                    <ion-label color="danger">{{ 'common_delete' | translate }}</ion-label>
+                  </ion-item>
+                </ion-list>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Delete Confirmation Alert -->
+  <ion-alert
+    [isOpen]="showDeleteAlert"
+    [header]="'maintenance_parts_delete_confirm_title' | translate"
+    [message]="'maintenance_parts_delete_confirm_message' | translate"
+    [buttons]="deleteAlertButtons"
+    (didDismiss)="onDeleteAlertDismiss()">
+  </ion-alert>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addMaintenancePart()" color="primary" class="pulse-button">
+      <ion-icon name="add" size="large"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

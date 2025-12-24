@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProcessFuelDetailService, ProccessFuelDetail } from '../../../../utils/processFuelDetail.service';
 import { CatalogService, Catalog } from '../../../../utils/catalog.service';
 import { AlertService } from '../../../../utils/alert.service';
+import { AppFooterComponent } from '../../../../shared/components/app-footer/app-footer.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -19,7 +20,8 @@ import { of } from 'rxjs';
     IonicModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    AppFooterComponent
   ],
   providers: [
     ProcessFuelDetailService,
@@ -60,7 +62,7 @@ export class FuelDetailAddComponent implements OnInit {
     this.maintenanceId = this.route.snapshot.paramMap.get('id') || '';
     
     if (!this.maintenanceId) {
-      this.alertService.showError(this.translateService.instant('fuel.add.error.invalidMaintenanceId'));
+      this.alertService.showError(this.translateService.instant('fuel_add_error_invalidMaintenanceId'));
       this.router.navigate(['/maintenance']);
       return;
     }
@@ -86,7 +88,7 @@ export class FuelDetailAddComponent implements OnInit {
     this.catalogService.getUnitOfMeasure().pipe(
       catchError(error => {
         console.error('Error loading unit of measures:', error);
-        this.alertService.showError(this.translateService.instant('fuel.form.errors.loadUnitMeasures'));
+        this.alertService.showError(this.translateService.instant('fuel_form_errors_loadUnitMeasures'));
         return of(null);
       }),
       finalize(() => {
@@ -98,7 +100,7 @@ export class FuelDetailAddComponent implements OnInit {
           this.unitOfMeasures = response.data || [];
           console.log('✅ Unidades de medida cargadas:', this.unitOfMeasures);
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('fuel.form.errors.loadUnitMeasures'));
+          this.alertService.showError(response?.message || this.translateService.instant('fuel_form_errors_loadUnitMeasures'));
         }
       }
     });
@@ -132,7 +134,7 @@ export class FuelDetailAddComponent implements OnInit {
       this.processFuelDetailService.createProcessHeader(fuelDetailData).pipe(
         catchError(error => {
           console.error('Error creating fuel detail:', error);
-          this.alertService.showError(this.translateService.instant('fuel.add.error'));
+          this.alertService.showError(this.translateService.instant('fuel_add_error'));
           return of(null);
         }),
         finalize(() => {
@@ -141,7 +143,7 @@ export class FuelDetailAddComponent implements OnInit {
       ).subscribe({
         next: (response: any) => {
           if (response && response.success) {
-            this.alertService.showSuccess(this.translateService.instant('fuel.add.success'));
+            this.alertService.showSuccess(this.translateService.instant('fuel_add_success'));
             this.router.navigate(['/maintenance/fuel/list', this.maintenanceId]);
           } else {
             this.alertService.showError(response.message || 'An error occurred', response.errors);
@@ -150,7 +152,7 @@ export class FuelDetailAddComponent implements OnInit {
       });
     } else {
       this.markFormGroupTouched();
-      this.alertService.showError(this.translateService.instant('fuel.form.errors.invalidForm'));
+      this.alertService.showError(this.translateService.instant('fuel_form_errors_invalidForm'));
     }
   }
 
@@ -165,7 +167,7 @@ export class FuelDetailAddComponent implements OnInit {
     const field = this.fuelDetailForm.get(fieldName);
     if (field && field.errors && field.touched) {
       if (field.errors['required']) {
-        return this.translateService.instant('fuel.form.errors.required');
+        return this.translateService.instant('fuel_form_errors_required');
       }
       if (field.errors['min']) {
         return this.translateService.instant('fuel.form.errors.minValue', { 

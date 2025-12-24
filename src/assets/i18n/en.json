@@ -1,979 +1,778 @@
 {
-  "TallerAllreadRegistrered": "Workshop already registered",
-  "Invalid Ids": "The provided IDs are not valid",
-  "UserNotExist": "User does not exist",
-  "UserBlocked": "User is blocked",
-  "EmailNotConfirmed": "Email is not confirmed",
-  "InvalidPassword": "Password is incorrect",
-  "InvalidEmail": "Email is not valid",
-  "UserLoggedSuccesfully": "User logged in successfully",
-  "RequiredName": "User name is required",
-  "RequiredAddress": "Address is required",
-  "RequiredPhone": "Phone is required",
-  "RequiredEmail": "User email is required",
-  "EmailAlreadyExist": "Email already exists",
-  "PasswordPolicy": "Password must have at least 8 characters, one uppercase, one lowercase, one number and one special character",
-  "RequiredPassword": "Password is required",
-  "RequiredNewPassword": "New password is required",
-  "RequiredConfirmPassword": "Password confirmation is required",
+  "ADDEQUIPMENT": "Equipment added",
+  "ADDFUEL": "Pago de Combustible agregado",
+  "ADDINSURANCEDETAIL": "Pago de Seguro agregado",
+  "ADDMAINTENANCEDETAIL": "Detalle de Mantenimiento agregado",
+  "ADDPROCCESS": "Mantenimiento agregado",
+  "ADDTALLER": "New workshop added",
+  "AddFuelSucessfully": "Pago de Combustible agregado correctamente",
+  "AddInsuranceSucessfully": "Pago de Seguro agregado correctamente",
+  "AddMaintenanceDetailSuccessfully": "Detalle de Mantenimiento agregado correctamente",
+  "AddProcessSuccessfully": "Mantenimiento agregado correctamente",
   "AddVehicle": "Vehicle added successfully",
-  "UpdateVehicle": "Vehicle updated successfully",
-  "LOGIN": "Login successful",
+  "AddWorkshop": "New workshop added",
+  "AllService": "All Services",
+  "AutoAire": "Auto Air",
   "CHANGEPASSWORD": "Password updated successfully",
   "DELETEUSER": "User deleted successfully",
-  "ADDEQUIPMENT": "Equipment added",
-  "UPDATEEQUIPMENT": "Equipment updated",
-  "ADDTALLER": "New workshop added",
-  "UPDATETALLER": "Workshop modified",
-  "AddWorkshop": "New workshop added",
+  "Diésel": "Diésel",
+  "EDITMAINTENANCEDETAIL": "Detalle de Mantenimiento editado",
   "Electric": "Electric Workshop",
+  "ElectricFuel": "Electric",
+  "EmailAlreadyExist": "Email already exists",
+  "EmailNotConfirmed": "Email is not confirmed",
+  "Finished": "Finished",
+  "GasLP": "Gas LP",
+  "InProgress": "In Progress",
+  "Invalid Ids": "The provided IDs are not valid",
+  "InvalidEmail": "Email is not valid",
+  "InvalidPassword": "Password is incorrect",
+  "LOGIN": "Login successful",
   "Mecanic": "Mechanic Workshop",
+  "New": "Pending",
+  "PasswordPolicy": "Password must have at least 8 characters, one uppercase, one lowercase, one number and one special character",
+  "Pending": "Pending",
+  "PremiumFuel": "Gasolina Premium",
+  "RegularFuel": "Gasolina Regular",
+  "RequiredAddress": "Address is required",
+  "RequiredAmountInsurance": "El monto del seguro es requerido",
+  "RequiredConfirmPassword": "Password confirmation is required",
+  "RequiredEmail": "User email is required",
+  "RequiredFuelType": "El tipo de combustible es requerido",
+  "RequiredInsuranceCompany": "El nombre de la aseguradora es requerido",
+  "RequiredName": "User name is required",
+  "RequiredNewPassword": "New password is required",
+  "RequiredPassword": "Password is required",
+  "RequiredPhone": "Phone is required",
+  "RequiredPolicyNumber": "El número de poliza es requerido",
+  "StorePart": "Store Part",
+  "Taller": "WorksShop",
+  "TallerAllreadRegistrered": "Workshop already registered",
+  "TallerYStorePart": "Workshop and Store Part",
+  "UPDATEEQUIPMENT": "Equipment updated",
+  "UPDATEPROCESS": "Mantenimiento actualizado",
+  "UPDATETALLER": "Workshop modified",
+  "UnitOfMeasureIdRequired": "La unidad de medida es requerida",
+  "UpdateMaintenanceDetail": "Detalle de Mantenimiento actualizado correctamente",
+  "UpdateVehicle": "Vehicle updated successfully",
+  "UserBlocked": "User is blocked",
+  "UserLoggedSuccesfully": "User logged in successfully",
+  "UserNotExist": "User does not exist",
   "Weels": "Tire Center",
-  "AutoAire": "Auto Air",
-  "AllService": "All Services",
+  "acceptNotification": "Aceptar Notificación",
+  "alertNotification": "Alertar Notificación",
+  "alertNotificationMaintenance": "Notificación de Mantenimiento",
+  "alertNotificationPaid": "Notificación de Proximo Consumo",
+  "amount": "Amount",
   "black": "Black",
-  "white": "White",
-  "red": "Red",
   "blue": "Blue",
-  "green": "Green",
-  "yellow": "Yellow",
-  "purple": "Purple",
-  "orange": "Orange",
   "brown": "Brown",
+  "common_actions": "Actions",
+  "common_add": "Add",
+  "common_back": "Back",
+  "common_cancel": "Cancel",
+  "common_close": "Close",
+  "common_confirm": "Confirm",
+  "common_dayAgo": "{{days}} day ago",
+  "common_daysAgo": "{{days}} days ago",
+  "common_delete": "Delete",
+  "common_edit": "Edit",
+  "common_error": "Error",
+  "common_exit": "Exit",
+  "common_filter": "Filter",
+  "common_hourAgo": "{{hours}} hour ago",
+  "common_hoursAgo": "{{hours}} hours ago",
+  "common_lessThanHour": "Less than 1 hour ago",
+  "common_loading": "Loading...",
+  "common_never": "Never",
+  "common_next": "Next",
+  "common_no": "No",
+  "common_open": "Open",
+  "common_previous": "Previous",
+  "common_refresh": "Refresh",
+  "common_save": "Save",
+  "common_search": "Search",
+  "common_sort": "Sort",
+  "common_success": "Success",
+  "common_view": "View",
+  "common_yes": "Yes",
+  "dashboardStats_charts_costsByCategory_subtitle": "Expense breakdown",
+  "dashboardStats_charts_costsByCategory_title": "Costs by Category",
+  "dashboardStats_charts_maintenanceTypes_subtitle": "Percentage distribution",
+  "dashboardStats_charts_maintenanceTypes_title": "Maintenance Types",
+  "dashboardStats_filter_apply": "Apply Filter",
+  "dashboardStats_filter_monthFrom": "Month From",
+  "dashboardStats_filter_monthTo": "Month To",
+  "dashboardStats_filter_selectMonth": "Select month",
+  "dashboardStats_filter_selectYear": "Select year",
+  "dashboardStats_filter_title": "Filter by Date",
+  "dashboardStats_filter_yearFrom": "Year From",
+  "dashboardStats_filter_yearTo": "Year To",
+  "dashboardStats_header_title": "Statistics Dashboard",
+  "dashboardStats_info_realTimeData": "The data shown is updated in real time from your database.",
+  "dashboardStats_info_refreshData": "Press the refresh button in the top right corner to reload the data.",
+  "dashboardStats_info_title": "Information",
+  "dashboardStats_loading": "Loading data...",
+  "dashboardStats_summary_lastUpdate": "Last Update",
+  "dashboardStats_summary_totalCost": "Total Cost",
+  "dashboardStats_summary_totalMaintenances": "Total Maintenances",
+  "dashboardStats_welcome_subtitle": "Overview of maintenance and costs",
+  "dashboardStats_welcome_title": "Maintenance Statistics Dashboard",
+  "dashboard_menu_footer_helpSupport": "Help & Support",
+  "dashboard_menu_footer_logout": "Sign Out",
+  "dashboard_menu_footer_settings": "Settings",
+  "dashboard_menu_header_subtitle": "Automotive Management System",
+  "dashboard_menu_header_title": "Maintenance",
+  "dashboard_menu_navigation_maintenance": "Maintenance",
+  "dashboard_menu_navigation_myServices": "My Services",
+  "dashboard_menu_navigation_settings": "Settings",
+  "dashboard_menu_navigation_title": "Main Navigation",
+  "dashboard_menu_navigation_userPreferences": "User Preferences",
+  "dashboard_menu_navigation_vehicles": "Vehicles",
+  "dashboard_menu_navigation_workshops": "Workshops",
+  "dashboard_menu_notifications_title": "Notifications",
+  "dashboard_menu_quickActions_addMaintenance": "Agregar Mantenimiento",
+  "dashboard_menu_quickActions_addVehicle": "Add Vehicle",
+  "dashboard_menu_quickActions_addWorkshop": "Add Workshop",
+  "dashboard_menu_quickActions_title": "Quick Actions",
+  "dashboard_menu_stats_lastAccess": "Last access:",
+  "dashboard_menu_stats_loading": "Loading statistics...",
+  "dashboard_menu_stats_totalAccess": "Total access:",
+  "dashboard_quickActions_vehicles_description": "Manage your vehicle fleet",
+  "dashboard_quickActions_vehicles_title": "Vehicles",
+  "dashboard_quickActions_workshops_description": "Manage workshops and maintenance",
+  "dashboard_quickActions_workshops_title": "Workshops",
+  "dashboard_title": "Dashboard",
+  "dashboard_welcome_subtitle": "Manage your vehicles and workshops",
+  "dashboard_welcome_title": "Welcome, {{userName}}!",
+  "deleteNotification": "Eliminar Notificación",
+  "fuel_actions_delete": "Delete",
+  "fuel_actions_edit": "Edit",
+  "fuel_actions_save": "Save",
+  "fuel_actions_view": "View",
+  "fuel_add_error": "Error adding fuel detail",
+  "fuel_add_header_subtitle": "Complete the fuel information used",
+  "fuel_add_header_title": "New Fuel Detail",
+  "fuel_add_invalidMaintenanceId": "Invalid maintenance ID",
+  "fuel_add_loadingCatalogs": "Loading catalogs...",
+  "fuel_add_saving": "Saving detail...",
+  "fuel_add_success": "Fuel detail added successfully",
+  "fuel_add_title": "Add Fuel Detail",
+  "fuel_delete_confirm": "Confirm deletion",
+  "fuel_delete_error": "Error deleting fuel detail",
+  "fuel_delete_message": "Are you sure you want to delete the {{fuelType}} detail?",
+  "fuel_delete_success": "Fuel detail deleted successfully",
+  "fuel_error_invalidMaintenanceId": "Invalid maintenance ID",
+  "fuel_form_errors_invalidForm": "Please complete all required fields",
+  "fuel_form_errors_loadUnitMeasures": "Error loading units of measure",
+  "fuel_form_errors_minValue": "Minimum value is {{min}}",
+  "fuel_form_errors_required": "This field is required",
+  "fuel_form_fuelAmount_label": "Fuel Amount",
+  "fuel_form_fuelAmount_placeholder": "Enter amount",
+  "fuel_form_fuelPrice_label": "Price per Unit (Optional)",
+  "fuel_form_fuelPrice_placeholder": "Enter price per unit",
+  "fuel_form_fuelType_label": "Fuel Type",
+  "fuel_form_fuelType_options_DIESEL": "Diesel",
+  "fuel_form_fuelType_options_ELECTRIC": "Electric",
+  "fuel_form_fuelType_options_GASOLINE": "Gasoline",
+  "fuel_form_fuelType_options_LPG": "LPG",
+  "fuel_form_fuelType_placeholder": "Select fuel type",
+  "fuel_form_notes_label": "Notes (Optional)",
+  "fuel_form_notes_placeholder": "Additional notes about the fuel",
+  "fuel_form_totalCost_label": "Calculated Total Cost",
+  "fuel_form_unitOfMeasure_label": "Unit of Measure",
+  "fuel_form_unitOfMeasure_placeholder": "Select unit of measure",
+  "fuel_list_detailsTitle": "Fuel Details ({{count}})",
+  "fuel_list_empty_button": "Add First Detail",
+  "fuel_list_empty_description": "No fuel details found for this maintenance. Add the first detail.",
+  "fuel_list_empty_title": "No fuel details",
+  "fuel_list_error": "Error loading fuel details",
+  "fuel_list_loading": "Loading fuel details...",
+  "fuel_list_loadingMore": "Loading more details...",
+  "fuel_list_retry": "Retry",
+  "fuel_list_title": "Fuel Details",
+  "fuel_title": "Fuel Details",
   "gray": "Gray",
-  "pink": "Pink",
+  "green": "Green",
+  "insurance_actions_delete": "Delete",
+  "insurance_actions_edit": "Edit",
+  "insurance_actions_save": "Save",
+  "insurance_actions_view": "View",
+  "insurance_add_error": "Error adding insurance detail",
+  "insurance_add_header_subtitle": "Complete the insurance information used",
+  "insurance_add_header_title": "New Insurance Detail",
+  "insurance_add_invalidMaintenanceId": "Invalid maintenance ID",
+  "insurance_add_loadingCatalogs": "Loading catalogs...",
+  "insurance_add_saving": "Saving detail...",
+  "insurance_add_success": "Insurance detail added successfully",
+  "insurance_add_title": "Add Insurance Detail",
+  "insurance_delete_confirm": "Confirm deletion",
+  "insurance_delete_error": "Error deleting insurance detail",
+  "insurance_delete_message": "Are you sure you want to delete the {{policy}} policy detail?",
+  "insurance_delete_success": "Insurance detail deleted successfully",
+  "insurance_error_invalidMaintenanceId": "Invalid maintenance ID",
+  "insurance_form_additionalAmount_label": "Additional Amount (Optional)",
+  "insurance_form_additionalAmount_placeholder": "Enter additional amount if applicable",
+  "insurance_form_coverageDuration_days": "days",
+  "insurance_form_coverageDuration_label": "Coverage Duration",
+  "insurance_form_coverageEndDate_label": "Coverage End Date",
+  "insurance_form_coverageEndDate_placeholder": "Select end date",
+  "insurance_form_coverageStartDate_label": "Coverage Start Date",
+  "insurance_form_coverageStartDate_placeholder": "Select start date",
+  "insurance_form_currency_label": "Currency",
+  "insurance_form_currency_placeholder": "Select currency",
+  "insurance_form_errors_invalidForm": "Please complete all required fields",
+  "insurance_form_errors_loadCurrencies": "Error loading currencies",
+  "insurance_form_errors_minValue": "Minimum value is {{min}}",
+  "insurance_form_errors_required": "This field is required",
+  "insurance_form_insuranceAmount_label": "Insurance Amount",
+  "insurance_form_insuranceAmount_placeholder": "Enter insurance amount",
+  "insurance_form_policyNumber_label": "Policy Number",
+  "insurance_form_policyNumber_placeholder": "Enter policy number",
+  "insurance_form_totalCoverage_label": "Total Coverage",
+  "insurance_list_detailsTitle": "Insurance Details ({{count}})",
+  "insurance_list_empty_button": "Add First Detail",
+  "insurance_list_empty_description": "No insurance details found for this maintenance. Add the first detail.",
+  "insurance_list_empty_title": "No insurance details",
+  "insurance_list_error": "Error loading insurance details",
+  "insurance_list_loading": "Loading insurance details...",
+  "insurance_list_loadingMore": "Loading more details...",
+  "insurance_list_retry": "Retry",
+  "insurance_list_title": "Insurance Details",
+  "insurance_title": "Insurance Details",
+  "languages_en": "English",
+  "languages_es": "Spanish",
+  "languages_pt": "Portuguese",
+  "languages_ru": "Russian",
   "lime": "Lime",
+  "maintenance_actions_addDetail": "Add Detail",
+  "maintenance_actions_cancel": "Cancel",
+  "maintenance_actions_delete": "Delete",
+  "maintenance_actions_edit": "Edit",
+  "maintenance_actions_exit": "Exit",
+  "maintenance_actions_save": "Save",
+  "maintenance_actions_view": "View",
+  "maintenance_addMaintenance": "Add Maintenance",
+  "maintenance_add_cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+  "maintenance_add_error": "Error creating maintenance",
+  "maintenance_add_exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost.",
+  "maintenance_add_header_subtitle": "Complete the vehicle maintenance information",
+  "maintenance_add_header_title": "Maintenance Registration",
+  "maintenance_add_saving": "Saving maintenance...",
+  "maintenance_add_success": "Maintenance created successfully",
+  "maintenance_add_title": "New Maintenance",
+  "maintenance_deleteMaintenance": "Delete Maintenance",
+  "maintenance_delete_confirm": "Confirm deletion",
+  "maintenance_delete_error": "Error deleting maintenance",
+  "maintenance_delete_message": "Are you sure you want to delete the maintenance for {{vehicleName}}?",
+  "maintenance_delete_success": "Maintenance deleted successfully",
+  "maintenance_detail_add_form_cost": "Cost",
+  "maintenance_detail_add_form_cost.placeholder": "Enter cost",
+  "maintenance_detail_add_form_cost_placeholder": "Enter cost",
+  "maintenance_detail_add_form_description": "Complete the maintenance detail information",
+  "maintenance_detail_add_form_description.placeholder": "Enter detail description",
+  "maintenance_detail_add_form_description_placeholder": "Enter detail description",
+  "maintenance_detail_add_form_descriptionLabel": "Description",
+  "maintenance_detail_add_form_diagnosis": "Diagnosis",
+  "maintenance_detail_add_form_diagnosis.placeholder": "Enter problem diagnosis",
+  "maintenance_detail_add_form_diagnosis_placeholder": "Enter problem diagnosis",
+  "maintenance_detail_add_form_maintenanceType": "Maintenance Type",
+  "maintenance_detail_add_form_maintenanceType.placeholder": "Select maintenance type",
+  "maintenance_detail_add_form_maintenanceType_placeholder": "Select maintenance type",
+  "maintenance_detail_add_form_mileage": "Mileage",
+  "maintenance_detail_add_form_mileage.placeholder": "Enter mileage",
+  "maintenance_detail_add_form_mileage_placeholder": "Enter mileage",
+  "maintenance_detail_add_form_name": "Name",
+  "maintenance_detail_add_form_name.placeholder": "Enter detail name",
+  "maintenance_detail_add_form_name_placeholder": "Enter detail name",
+  "maintenance_detail_add_form_nextMaintenanceDate": "Next Maintenance Date",
+  "maintenance_detail_add_form_nextMaintenanceDate.placeholder": "Select next date",
+  "maintenance_detail_add_form_technician": "Technician",
+  "maintenance_detail_add_form_technician.placeholder": "Enter technician name",
+  "maintenance_detail_add_form_technician_placeholder": "Enter technician name",
+  "maintenance_detail_add_title": "Add Maintenance Detail",
+  "maintenance_detail_delete_confirm_message": "Are you sure you want to delete this maintenance detail?",
+  "maintenance_detail_delete_confirm_title": "Confirm Deletion",
+  "maintenance_detail_delete_error": "Error deleting maintenance detail",
+  "maintenance_detail_delete_success": "Maintenance detail deleted successfully",
+  "maintenance_detail_edit_form_cost": "Cost",
+  "maintenance_detail_edit_form_cost.placeholder": "Enter cost",
+  "maintenance_detail_edit_form_cost_placeholder": "Enter cost",
+  "maintenance_detail_edit_form_description": "Modify the maintenance detail information",
+  "maintenance_detail_edit_form_description.placeholder": "Enter detail description",
+  "maintenance_detail_edit_form_description_placeholder": "Enter detail description",
+  "maintenance_detail_edit_form_descriptionLabel": "Description",
+  "maintenance_detail_edit_form_diagnosis": "Diagnosis",
+  "maintenance_detail_edit_form_diagnosis.placeholder": "Enter problem diagnosis",
+  "maintenance_detail_edit_form_diagnosis_placeholder": "Enter problem diagnosis",
+  "maintenance_detail_edit_form_maintenanceType": "Maintenance Type",
+  "maintenance_detail_edit_form_maintenanceType.placeholder": "Select maintenance type",
+  "maintenance_detail_edit_form_maintenanceType_placeholder": "Select maintenance type",
+  "maintenance_detail_edit_form_mileage": "Mileage",
+  "maintenance_detail_edit_form_mileage.placeholder": "Enter mileage",
+  "maintenance_detail_edit_form_mileage_placeholder": "Enter mileage",
+  "maintenance_detail_edit_form_name": "Name",
+  "maintenance_detail_edit_form_name.placeholder": "Enter detail name",
+  "maintenance_detail_edit_form_name_placeholder": "Enter detail name",
+  "maintenance_detail_edit_form_nextMaintenanceDate": "Next Maintenance Date",
+  "maintenance_detail_edit_form_nextMaintenanceDate.placeholder": "Select next date",
+  "maintenance_detail_edit_form_technician": "Technician",
+  "maintenance_detail_edit_form_technician.placeholder": "Enter technician name",
+  "maintenance_detail_edit_form_technician_placeholder": "Enter technician name",
+  "maintenance_detail_edit_title": "Edit Maintenance Detail",
+  "maintenance_detail_list_cost": "Cost",
+  "maintenance_detail_list_empty_action": "Add Detail",
+  "maintenance_detail_list_empty_message": "No maintenance details found for this maintenance.",
+  "maintenance_detail_list_empty_title": "No maintenance details",
+  "maintenance_detail_list_error": "Error loading maintenance details",
+  "maintenance_detail_list_search_placeholder": "Search details...",
+  "maintenance_detail_list_title": "Maintenance Details",
+  "maintenance_editMaintenance": "Edit Maintenance",
+  "maintenance_edit_error_invalidId": "Invalid maintenance ID",
+  "maintenance_edit_error_load": "Error loading maintenance",
+  "maintenance_edit_error_update": "Error updating maintenance",
+  "maintenance_edit_header_subtitle": "Modify the maintenance information",
+  "maintenance_edit_header_title": "Edit Maintenance",
+  "maintenance_edit_loadingData": "Loading maintenance data...",
+  "maintenance_edit_saving": "Saving changes...",
+  "maintenance_edit_success": "Maintenance updated successfully",
+  "maintenance_edit_title": "Edit Maintenance",
+  "maintenance_form_endDate_label": "End Date",
+  "maintenance_form_endDate_placeholder": "Select end date",
+  "maintenance_form_errors_invalidForm": "Please complete all required fields",
+  "maintenance_form_errors_loadVehicles": "Error loading vehicles",
+  "maintenance_form_errors_loadWorkshops": "Error loading workshops",
+  "maintenance_form_errors_minLength": "Must be at least {{min}} characters",
+  "maintenance_form_errors_required": "This field is required",
+  "maintenance_form_name_label": "Maintenance Name",
+  "maintenance_form_name_placeholder": "e.g.: Oil change, General inspection...",
+  "maintenance_form_notes_label": "Notes",
+  "maintenance_form_notes_placeholder": "Additional notes about the maintenance",
+  "maintenance_form_note_placeholder": "Additional notes about the maintenance",
+  "maintenance_form_processType_FUEL": "Combustible",
+  "maintenance_form_processType_INSU": "Seguros",
+  "maintenance_form_processType_PART": "Repuestos",
+  "maintenance_form_processType_RETA": "Taller & Repuestos",
+  "maintenance_form_processType_TALL": "Taller",
+  "maintenance_form_processType_label": "Process Type",
+  "maintenance_form_processType_options_FUEL": "Fuel",
+  "maintenance_form_processType_options_INSU": "Insurance",
+  "maintenance_form_processType_options_PART": "Parts",
+  "maintenance_form_processType_options_RETA": "Taller & Repuestos",
+  "maintenance_form_processType_options_TALL": "Workshop",
+  "maintenance_form_processType_placeholder": "Select process type",
+  "maintenance_form_startDate_label": "Start Date",
+  "maintenance_form_startDate_placeholder": "Select start date",
+  "maintenance_form_vehicle_label": "Vehicle",
+  "maintenance_form_vehicle_placeholder": "Select a vehicle",
+  "maintenance_form_workshop_label": "Workshop",
+  "maintenance_form_workshop_placeholder": "Select a workshop",
+  "maintenance_list_empty_button": "Add First Maintenance",
+  "maintenance_list_empty_description": "No maintenance records found. Start by adding your first maintenance record.",
+  "maintenance_list_empty_title": "No maintenance records",
+  "maintenance_list_error": "Error loading maintenance records",
+  "maintenance_list_loading": "Loading maintenance...",
+  "maintenance_list_loadingMore": "Loading more maintenance...",
+  "maintenance_list_noResults_description": "No maintenance records found matching your search.",
+  "maintenance_list_noResults_title": "No results",
+  "maintenance_list_retry": "Retry",
+  "maintenance_list_search_placeholder": "Search maintenance...",
+  "maintenance_list_title": "Maintenance ({{count}})",
+  "maintenance_parts_add_cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+  "maintenance_parts_add_error_create": "Error creating part",
+  "maintenance_parts_add_error_invalidForm": "Please complete all required fields",
+  "maintenance_parts_add_error_loadCatalogs": "Error loading catalogs",
+  "maintenance_parts_add_error_min": "Minimum value is {{min}}",
+  "maintenance_parts_add_error_minLength": "Must be at least {{length}} characters",
+  "maintenance_parts_add_error_noMaintenanceId": "Maintenance ID not found",
+  "maintenance_parts_add_error_required": "This field is required",
+  "maintenance_parts_add_exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost.",
+  "maintenance_parts_add_form_cost_label": "Unit Cost",
+  "maintenance_parts_add_form_cost_placeholder": "Enter unit cost",
+  "maintenance_parts_form_cost_placeholder": "Enter unit cost",
+  "maintenance_parts_add_form_name_label": "Part Name",
+  "maintenance_parts_add_form_name_placeholder": "Enter part name",
+  "maintenance_parts_form_name_placeholder": "Enter part name",
+  "maintenance_parts_add_form_quantity_label": "Quantity",
+  "maintenance_parts_add_form_quantity_placeholder": "Enter quantity",
+  "maintenance_parts_form_quantity_placeholder": "Enter quantity",
+  "maintenance_parts_add_form_totalCost_hint": "Calculated automatically (Quantity × Unit Cost)",
+  "maintenance_parts_add_form_totalCost_label": "Total Cost",
+  "maintenance_parts_add_form_unitOfMeasure_label": "Unit of Measure",
+  "maintenance_parts_add_form_unitOfMeasure_placeholder": "Select unit of measure",
+  "maintenance_parts_form_unitOfMeasure_placeholder": "Select unit of measure",
+  "maintenance_parts_add_loadingCatalogs": "Loading catalogs...",
+  "maintenance_parts_add_saving": "Saving part...",
+  "maintenance_parts_add_sectionTitle": "Part Information",
+  "maintenance_parts_add_subtitle": "Complete the part information",
+  "maintenance_parts_add_success": "Part added successfully",
+  "maintenance_parts_add_title": "Add Part",
+  "maintenance_parts_delete_confirm_message": "Are you sure you want to delete this part?",
+  "maintenance_parts_delete_confirm_title": "Confirm Deletion",
+  "maintenance_parts_delete_error": "Error deleting part",
+  "maintenance_parts_delete_noSelection": "No part selected for deletion",
+  "maintenance_parts_delete_success": "Part deleted successfully",
+  "maintenance_parts_edit_cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+  "maintenance_parts_edit_error_invalidForm": "Please complete all required fields",
+  "maintenance_parts_edit_error_load": "Error loading part data",
+  "maintenance_parts_edit_error_loadCatalogs": "Error loading catalogs",
+  "maintenance_parts_edit_error_min": "Minimum value is {{min}}",
+  "maintenance_parts_edit_error_minLength": "Must be at least {{length}} characters",
+  "maintenance_parts_edit_error_noId": "Part ID not found",
+  "maintenance_parts_edit_error_required": "This field is required",
+  "maintenance_parts_edit_error_update": "Error updating part",
+  "maintenance_parts_edit_exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost.",
+  "maintenance_parts_edit_form_cost_label": "Unit Cost",
+  "maintenance_parts_edit_form_cost_placeholder": "Enter unit cost",
+  "maintenance_parts_edit_form_name_label": "Part Name",
+  "maintenance_parts_edit_form_name_placeholder": "Enter part name",
+  "maintenance_parts_edit_form_quantity_label": "Quantity",
+  "maintenance_parts_edit_form_quantity_placeholder": "Enter quantity",
+  "maintenance_parts_edit_form_totalCost_hint": "Calculated automatically (Quantity × Unit Cost)",
+  "maintenance_parts_edit_form_totalCost_label": "Total Cost",
+  "maintenance_parts_edit_form_unitOfMeasure_label": "Unit of Measure",
+  "maintenance_parts_edit_form_unitOfMeasure_placeholder": "Select unit of measure",
+  "maintenance_parts_edit_loadingData": "Loading part data...",
+  "maintenance_parts_edit_saving": "Saving changes...",
+  "maintenance_parts_edit_sectionTitle": "Part Information",
+  "maintenance_parts_edit_subtitle": "Update the part information",
+  "maintenance_parts_edit_success": "Part updated successfully",
+  "maintenance_parts_edit_title": "Edit Part",
+  "maintenance_parts_empty": "No parts added",
+  "maintenance_parts_empty_subtitle": "Add parts or select basic services",
+  "maintenance_parts_list_detailsTitle": "Parts List ({{count}})",
+  "maintenance_parts_list_empty_action": "Add Part",
+  "maintenance_parts_list_empty_message": "No parts have been added for this maintenance yet.",
+  "maintenance_parts_list_empty_title": "No parts found",
+  "maintenance_parts_list_error": "Error loading parts",
+  "maintenance_parts_list_loading": "Loading parts...",
+  "maintenance_parts_list_quantity": "Quantity",
+  "maintenance_parts_list_retry": "Retry",
+  "maintenance_parts_list_search_placeholder": "Search parts...",
+  "maintenance_parts_list_title": "Vehicle Parts",
+  "maintenance_parts_list_totalCost": "Total Cost",
+  "maintenance_parts_list_unitCost": "Unit Cost",
+  "maintenance_parts_title": "Parts",
+  "maintenance_processTypes_FUEL": "Fuel",
+  "maintenance_processTypes_INSU": "Insurance",
+  "maintenance_processTypes_PART": "Parts",
+  "maintenance_processTypes_RETA": "Taller & Repuestos",
+  "maintenance_processTypes_TALL": "Workshop",
+  "maintenance_title": "Maintenance",
+  "maintenance_viewMaintenance": "View Maintenance",
+  "maintenance_view_error": "Error loading maintenance details",
+  "maintenance_view_title": "Maintenance Details",
+  "markAsUnread": "Marcar como no leída",
+  "notifications_accept": "Accept",
+  "notifications_accepted": "Accepted",
+  "notifications_allMarkedRead": "All notifications marked as read",
+  "notifications_categories_maintenance": "Maintenance",
+  "notifications_categories_message": "Message",
+  "notifications_categories_reminder": "Reminder",
+  "notifications_categories_system": "System",
+  "notifications_daysAgo": "{{days}} days ago",
+  "notifications_delete": "Delete",
+  "notifications_deleteConfirm": "Are you sure you want to delete this notification?",
+  "notifications_deleted": "Notification deleted",
+  "notifications_empty_message": "When you have new notifications, they will appear here",
+  "notifications_empty_title": "No notifications",
+  "notifications_hoursAgo": "{{hours}} h ago",
+  "notifications_justNow": "Just now",
+  "notifications_markRead": "Mark as read",
+  "notifications_markUnread": "Mark as unread",
+  "notifications_markedUnread": "Notification marked as unread",
+  "notifications_minutesAgo": "{{minutes}} min ago",
+  "notifications_priorities_high": "High",
+  "notifications_priorities_low": "Low",
+  "notifications_priorities_medium": "Medium",
+  "notifications_priorities_urgent": "Urgent",
+  "notifications_title": "Notifications",
+  "notifications_total": "Total",
+  "notifications_types_error": "Error",
+  "notifications_types_info": "Information",
+  "notifications_types_success": "Success",
+  "notifications_types_warning": "Warning",
+  "notifications_unread": "Unread",
+  "orange": "Orange",
+  "pink": "Pink",
+  "purple": "Purple",
+  "red": "Red",
+  "seeNotification": "Ver Notificación",
+  "settings_account_changePassword_button": "Update Password",
+  "settings_account_changePassword_buttonLoading": "Updating...",
+  "settings_account_changePassword_confirmPassword": "Confirm New Password",
+  "settings_account_changePassword_confirmPasswordPlaceholder": "Confirm your new password",
+  "settings_account_changePassword_currentPassword": "Current Password",
+  "settings_account_changePassword_currentPasswordPlaceholder": "Enter your current password",
+  "settings_account_changePassword_description": "Update your password",
+  "settings_account_changePassword_errors_confirmRequired": "Password confirmation is required",
+  "settings_account_changePassword_errors_currentRequired": "Current password is required",
+  "settings_account_changePassword_errors_minLength": "Password must be at least 8 characters",
+  "settings_account_changePassword_errors_newRequired": "New password is required",
+  "settings_account_changePassword_errors_passwordMismatch": "Passwords do not match",
+  "settings_account_changePassword_header": "Change Password",
+  "settings_account_changePassword_minLength": "Minimum 8 characters",
+  "settings_account_changePassword_newPassword": "New Password",
+  "settings_account_changePassword_newPasswordPlaceholder": "Enter your new password",
+  "settings_account_changePassword_passwordsMatch": "Passwords match",
+  "settings_account_changePassword_requirements": "Password Requirements",
+  "settings_account_changePassword_securityTips": "Security Tips",
+  "settings_account_changePassword_subtitle": "Keep your account secure with a strong password",
+  "settings_account_changePassword_tips": [
+    "Use a combination of letters, numbers and symbols",
+    "Avoid personal information like birth dates",
+    "Don't reuse passwords from other accounts",
+    "Consider using a password manager"
+  ],
+  "settings_account_changePassword_title": "Change password",
+  "settings_account_deleteAccount_alertMessage": "Are you completely sure you want to delete your account? This action cannot be undone.",
+  "settings_account_deleteAccount_alertTitle": "Confirm Deletion",
+  "settings_account_deleteAccount_button": "Delete Account",
+  "settings_account_deleteAccount_buttonLoading": "Deleting...",
+  "settings_account_deleteAccount_confirmTitle": "Confirm Deletion",
+  "settings_account_deleteAccount_confirmation": "Type \"DELETE\" to confirm",
+  "settings_account_deleteAccount_confirmationPlaceholder": "DELETE",
+  "settings_account_deleteAccount_consequences": [
+    "All your data will be permanently deleted",
+    "You will not be able to recover your information",
+    "You will lose access to all services",
+    "All active subscriptions will be cancelled"
+  ],
+  "settings_account_deleteAccount_description": "Permanently delete your account and all associated data",
+  "settings_account_deleteAccount_header": "Delete Account",
+  "settings_account_deleteAccount_reason": "Reason for deletion",
+  "settings_account_deleteAccount_reasonPlaceholder": "Tell us why you want to delete your account",
+  "settings_account_deleteAccount_title": "Delete account and data",
+  "settings_account_deleteAccount_warning": "Warning!",
+  "settings_account_deleteAccount_warningText": "This action is irreversible. By deleting your account:",
+  "settings_account_logout_description": "End current session",
+  "settings_account_logout_title": "Sign out",
+  "settings_account_updateProfile_description": "Edit personal information",
+  "settings_account_updateProfile_title": "Update profile",
+  "settings_activityHistory_at": "at",
+  "settings_activityHistory_description": "View activity history",
+  "settings_activityHistory_empty": "No activity recorded yet.",
+  "settings_activityHistory_error": "Error loading activity history. Please try again.",
+  "settings_activityHistory_header": "Activity History",
+  "settings_activityHistory_loading": "Loading activity history...",
+  "settings_activityHistory_loadingMore": "Loading more activities...",
+  "settings_activityHistory_recentActivity": "Recent Activity",
+  "settings_activityHistory_retry": "Retry",
+  "settings_activityHistory_subtitle": "Here you can see the history of all your activities in the application.",
+  "settings_activityHistory_title": "Activity history",
+  "settings_categories_account": "Account",
+  "settings_categories_history": "History and Activity",
+  "settings_categories_permissions": "Permissions and Security",
+  "settings_categories_privacy": "Privacy and Data",
+  "settings_categories_sessions": "Session and Devices",
+  "settings_permissions_location_description": "Manage location permissions",
+  "settings_permissions_location_title": "Location permissions",
+  "settings_permissions_notifications_description": "Configure notifications",
+  "settings_permissions_notifications_header": "Push Notifications",
+  "settings_permissions_notifications_info": "Configure what types of notifications you want to receive on your device.",
+  "settings_permissions_notifications_title": "Push notifications",
+  "settings_permissions_notifications_typesTitle": "Notification Types",
+  "settings_permissions_twoFactor_description": "Configure 2FA",
+  "settings_permissions_twoFactor_title": "Two-factor authentication",
+  "settings_privacy_consent_description": "Review tracking permissions",
+  "settings_privacy_consent_title": "Consent management",
+  "settings_privacy_exportData_description": "Download all your data",
+  "settings_privacy_exportData_title": "Export my data",
+  "settings_privacy_policy_description": "View privacy policy",
+  "settings_privacy_policy_title": "Privacy policy",
+  "settings_privacy_tracking_description": "Opt-out of statistics",
+  "settings_privacy_tracking_title": "Limit tracking",
+  "settings_sessions_devices_description": "View devices with active sessions",
+  "settings_sessions_devices_title": "Active devices",
+  "settings_sessions_logoutAll_description": "End sessions on other devices",
+  "settings_sessions_logoutAll_title": "Sign out from other devices",
+  "settings_title": "Settings",
   "teal": "Teal",
   "tradeType": "Trade Type",
   "trades": "Businesses",
-  "amount": "Amount",
-  "Taller": "WorksShop",
-  "StorePart": "Store Part",
-  "TallerYStorePart": "Workshop and Store Part",
-  "Pending": "Pending",
-  "InProgress": "In Progress",
-  "Finished": "Finished",
-  "New": "Pending",
-  "dashboard": {
-    "title": "Dashboard",
-    "welcome": {
-      "title": "Welcome, {{userName}}!",
-      "subtitle": "Manage your vehicles and workshops"
-    },
-    "menu": {
-      "header": {
-        "title": "Maintenance",
-        "subtitle": "Vehicle & Workshop Management"
-      },
-      "navigation": {
-        "title": "Main Navigation",
-        "vehicles": "Vehicles",
-        "workshops": "Workshops",
-        "myServices": "My Services",
-        "userPreferences": "User Preferences",
-        "settings": "Settings"
-      },
-      "quickActions": {
-        "title": "Quick Actions",
-        "addVehicle": "Add Vehicle",
-        "addWorkshop": "Add Workshop"
-      },
-      "footer": {
-        "settings": "Settings",
-        "helpSupport": "Help & Support",
-        "logout": "Sign Out"
-      },
-      "stats": {
-        "lastAccess": "Last access:",
-        "totalAccess": "Total access:",
-        "loading": "Loading statistics..."
-      },
-      "notifications": {
-        "title": "Notifications"
-      }
-    },
-    "quickActions": {
-      "vehicles": {
-        "title": "Vehicles",
-        "description": "Manage your vehicle fleet"
-      },
-      "workshops": {
-        "title": "Workshops",
-        "description": "Manage workshops and maintenance"
-      }
-    }
-  },
-  "notifications": {
-    "title": "Notifications",
-    "total": "Total",
-    "unread": "Unread",
-    "accept": "Accept",
-    "accepted": "Accepted",
-    "markRead": "Mark as read",
-    "markUnread": "Mark as unread",
-    "markedUnread": "Notification marked as unread",
-    "delete": "Delete",
-    "deleteConfirm": "Are you sure you want to delete this notification?",
-    "deleted": "Notification deleted",
-    "allMarkedRead": "All notifications marked as read",
-    "justNow": "Just now",
-    "minutesAgo": "{{minutes}} min ago",
-    "hoursAgo": "{{hours}} h ago",
-    "daysAgo": "{{days}} days ago",
-    "empty": {
-      "title": "No notifications",
-      "message": "When you have new notifications, they will appear here"
-    },
-    "categories": {
-      "maintenance": "Maintenance",
-      "reminder": "Reminder",
-      "system": "System",
-      "message": "Message"
-    },
-    "priorities": {
-      "low": "Low",
-      "medium": "Medium",
-      "high": "High",
-      "urgent": "Urgent"
-    },
-    "types": {
-      "success": "Success",
-      "warning": "Warning",
-      "error": "Error",
-      "info": "Information"
-    }
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "Error",
-    "success": "Success",
-    "cancel": "Cancel",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete",
-    "view": "View",
-    "add": "Add",
-    "search": "Search",
-    "filter": "Filter",
-    "sort": "Sort",
-    "refresh": "Refresh",
-    "back": "Back",
-    "next": "Next",
-    "previous": "Previous",
-    "close": "Close",
-    "open": "Open",
-    "exit": "Exit",
-    "yes": "Yes",
-    "no": "No",
-    "confirm": "Confirm",
-    "actions": "Actions",
-    "never": "Never",
-    "lessThanHour": "Less than 1 hour ago",
-    "hourAgo": "{{hours}} hour ago",
-    "hoursAgo": "{{hours}} hours ago",
-    "dayAgo": "{{days}} day ago",
-    "daysAgo": "{{days}} days ago"
-  },
-  "languages": {
-    "en": "English",
-    "es": "Spanish",
-    "pt": "Portuguese",
-    "ru": "Russian"
-  },
-  "vehicles": {
-    "title": "Vehicles",
-    "addVehicle": "Add Vehicle",
-    "editVehicle": "Edit Vehicle",
-    "deleteVehicle": "Delete Vehicle",
-    "viewVehicle": "View Vehicle",
-    "list": {
-      "title": "Your Vehicles ({{count}})",
-      "empty": {
-        "title": "No Vehicles Found",
-        "description": "Get started by adding your first vehicle to track maintenance and services",
-        "button": "Add Your First Vehicle"
-      },
-      "search": {
-        "placeholder": "Search vehicles by name, plate, or brand..."
-      },
-      "loading": "Loading vehicles...",
-      "loadingMore": "Loading more vehicles...",
-      "error": "An error occurred while loading vehicles",
-      "retry": "Retry"
-    },
-    "form": {
-      "name": "Vehicle Name",
-      "plateNumber": "License Plate",
-      "brand": "Brand",
-      "model": "Model",
-      "color": "Color",
-      "year": "Year",
-      "mileage": "Mileage",
-      "vehicleType": "Vehicle Type",
-      "vehicleMotorType": "Motor Type",
-      "selectVehicleMotorType": "Select motor type",
-      "image": "Vehicle Image",
-      "required": "This field is required",
-      "minLength": "{{field}} must be at least {{length}} characters",
-      "invalidPlate": "Invalid license plate format",
-      "invalidYear": "Year must be between 1900 and current year",
-      "invalidMileage": "Mileage must be a positive number",
-      "enterName": "Enter vehicle name",
-      "enterPlate": "Enter plate number",
-      "selectBrand": "Select brand",
-      "selectVehicleType": "Select vehicle type",
-      "enterModel": "Enter model (optional)",
-      "selectColor": "Select color",
-      "enterYear": "Enter year (optional)",
-      "enterMileage": "Enter mileage (optional)",
-      "cancelConfirm": "Are you sure you want to cancel? All changes will be lost.",
-      "exitConfirm": "Are you sure you want to exit? All changes will be lost."
-    },
-    "actions": {
-      "view": "View",
-      "edit": "Edit",
-      "delete": "Delete",
-      "save": "Save Vehicle",
-      "update": "Update Vehicle"
-    },
-    "view": {
-      "error": "Error loading vehicle details"
-    },
-    "edit": {
-      "description": "Update your vehicle information",
-      "error": {
-        "noId": "Vehicle ID not provided",
-        "load": "Error loading vehicle data",
-        "update": "Error updating vehicle"
-      },
-      "success": "Vehicle updated successfully"
-    },
-    "delete": {
-      "confirm": "Delete Vehicle",
-      "message": "Are you sure you want to delete {{vehicleName}}? This action cannot be undone.",
-      "success": "Vehicle deleted successfully",
-      "error": "Failed to delete vehicle. Please try again."
-    },
-    "success": {
-      "created": "Vehicle created successfully",
-      "updated": "Vehicle updated successfully"
-    }
-  },
-  "userPreferences": {
-    "title": "User Preferences",
-    "subtitle": "Customize your application settings",
-    "language": "Language",
-    "selectLanguage": "Select language",
-    "country": "Country",
-    "selectCountry": "Select country",
-    "currency": "Currency",
-    "selectCurrency": "Select currency",
-    "saving": "Saving preferences",
-    "errors": {
-      "languageRequired": "Please select a language",
-      "countryRequired": "Please select a country",
-      "currencyRequired": "Please select a currency"
-    }
-  },
-  "settings": {
-    "title": "Settings",
-    "categories": {
-      "account": "Account",
-      "privacy": "Privacy and Data",
-      "permissions": "Permissions and Security",
-      "sessions": "Session and Devices",
-      "history": "History and Activity"
-    },
-    "account": {
-      "deleteAccount": {
-        "title": "Delete account and data",
-        "description": "Permanently delete your account and all associated data",
-        "header": "Delete Account",
-        "warning": "Warning!",
-        "warningText": "This action is irreversible. By deleting your account:",
-        "consequences": [
-          "All your data will be permanently deleted",
-          "You will not be able to recover your information",
-          "You will lose access to all services",
-          "All active subscriptions will be cancelled"
-        ],
-        "confirmTitle": "Confirm Deletion",
-        "reason": "Reason for deletion",
-        "reasonPlaceholder": "Tell us why you want to delete your account",
-        "confirmation": "Type \"DELETE\" to confirm",
-        "confirmationPlaceholder": "DELETE",
-        "button": "Delete Account",
-        "buttonLoading": "Deleting...",
-        "alertTitle": "Confirm Deletion",
-        "alertMessage": "Are you completely sure you want to delete your account? This action cannot be undone."
-      },
-      "logout": {
-        "title": "Sign out",
-        "description": "End current session"
-      },
-      "changePassword": {
-        "title": "Change password",
-        "description": "Update your password",
-        "header": "Change Password",
-        "subtitle": "Keep your account secure with a strong password",
-        "currentPassword": "Current Password",
-        "currentPasswordPlaceholder": "Enter your current password",
-        "newPassword": "New Password",
-        "newPasswordPlaceholder": "Enter your new password",
-        "confirmPassword": "Confirm New Password",
-        "confirmPasswordPlaceholder": "Confirm your new password",
-        "button": "Update Password",
-        "buttonLoading": "Updating...",
-        "requirements": "Password Requirements",
-        "minLength": "Minimum 8 characters",
-        "passwordsMatch": "Passwords match",
-        "securityTips": "Security Tips",
-        "tips": [
-          "Use a combination of letters, numbers and symbols",
-          "Avoid personal information like birth dates",
-          "Don't reuse passwords from other accounts",
-          "Consider using a password manager"
-        ],
-        "errors": {
-          "currentRequired": "Current password is required",
-          "newRequired": "New password is required",
-          "minLength": "Password must be at least 8 characters",
-          "confirmRequired": "Password confirmation is required",
-          "passwordMismatch": "Passwords do not match"
-        }
-      },
-      "updateProfile": {
-        "title": "Update profile",
-        "description": "Edit personal information"
-      }
-    },
-    "privacy": {
-      "policy": {
-        "title": "Privacy policy",
-        "description": "View privacy policy"
-      },
-      "exportData": {
-        "title": "Export my data",
-        "description": "Download all your data"
-      },
-      "consent": {
-        "title": "Consent management",
-        "description": "Review tracking permissions"
-      },
-      "tracking": {
-        "title": "Limit tracking",
-        "description": "Opt-out of statistics"
-      }
-    },
-    "permissions": {
-      "location": {
-        "title": "Location permissions",
-        "description": "Manage location permissions"
-      },
-      "notifications": {
-        "title": "Push notifications",
-        "description": "Configure notifications",
-        "header": "Push Notifications",
-        "info": "Configure what types of notifications you want to receive on your device.",
-        "typesTitle": "Notification Types"
-      },
-      "twoFactor": {
-        "title": "Two-factor authentication",
-        "description": "Configure 2FA"
-      }
-    },
-    "sessions": {
-      "logoutAll": {
-        "title": "Sign out from other devices",
-        "description": "End sessions on other devices"
-      },
-      "devices": {
-        "title": "Active devices",
-        "description": "View devices with active sessions"
-      }
-    },
-    "activityHistory": {
-      "title": "Activity history",
-      "description": "View activity history",
-      "header": "Activity History",
-      "subtitle": "Here you can see the history of all your activities in the application.",
-      "loading": "Loading activity history...",
-      "loadingMore": "Loading more activities...",
-      "retry": "Retry",
-      "recentActivity": "Recent Activity",
-      "at": "at",
-      "empty": "No activity recorded yet.",
-      "error": "Error loading activity history. Please try again."
-    }
-  },
-  "workshops": {
-    "title": "Workshops",
-    "list": {
-      "title": "Workshops List ({count})",
-      "search": {
-        "placeholder": "Search workshops..."
-      },
-      "loading": "Loading workshops...",
-      "loadingMore": "Loading more workshops...",
-      "retry": "Retry",
-      "error": "Error loading workshops",
-      "empty": {
-        "title": "No workshops",
-        "description": "No workshops found. Add your first workshop to get started.",
-        "button": "Add Workshop"
-      }
-    },
-    "add": {
-      "title": "Add Workshop",
-      "header": {
-        "title": "New Workshop",
-        "subtitle": "Complete the workshop information"
-      },
-      "saving": "Saving workshop...",
-      "success": "Workshop added successfully",
-      "error": "Error adding workshop",
-      "cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
-      "exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost."
-    },
-    "edit": {
-      "title": "Edit Workshop",
-      "header": {
-        "title": "Edit Workshop",
-        "subtitle": "Modify the workshop information"
-      },
-      "saving": "Saving changes...",
-      "success": "Workshop updated successfully",
-      "error": {
-        "load": "Error loading workshop",
-        "update": "Error updating workshop",
-        "invalidId": "Invalid workshop ID"
-      },
-      "cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
-      "exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost."
-    },
-    "view": {
-      "title": "Workshop Details",
-      "error": "Error loading workshop details"
-    },
-    "form": {
-      "name": {
-        "label": "Name",
-        "placeholder": "Enter workshop name"
-      },
-      "address": {
-        "label": "Address",
-        "placeholder": "Enter workshop address"
-      },
-      "phone": {
-        "label": "Phone",
-        "placeholder": "Enter phone number"
-      },
-      "note": {
-        "label": "Notes",
-        "placeholder": "Add additional notes about the workshop"
-      },
-      "workShopType": {
-        "label": "Workshop Type",
-        "placeholder": "Select workshop type"
-      },
-      "tradeType": {
-        "label": "Trade Type",
-        "placeholder": "Select trade type"
-      },
-      "errors": {
-        "required": "The {field} field is required",
-        "minLength": "The {field} field must have at least {min} characters",
-        "maxLength": "The {field} field cannot have more than {max} characters",
-        "pattern": "The {field} field format is not valid",
-        "invalid": "The {field} field is not valid",
-        "invalidForm": "Please correct the errors in the form",
-        "loadTypes": "Error loading workshop types",
-        "loadTradeTypes": "Error loading trade types"
-      }
-    },
-    "actions": {
-      "view": "View",
-      "edit": "Edit",
-      "delete": "Delete"
-    },
-    "delete": {
-      "confirm": "Delete Workshop",
-      "message": "Are you sure you want to delete the workshop {workshopName}? This action cannot be undone.",
-      "success": "Workshop deleted successfully",
-      "error": "Error deleting workshop"
-    }
-  },
-  "maintenance": {
-    "title": "Maintenance",
-    "addMaintenance": "Add Maintenance",
-    "editMaintenance": "Edit Maintenance",
-    "deleteMaintenance": "Delete Maintenance",
-    "viewMaintenance": "View Maintenance",
-    "add": {
-      "title": "New Maintenance",
-      "header": {
-        "title": "Maintenance Registration",
-        "subtitle": "Complete the vehicle maintenance information"
-      },
-      "saving": "Saving maintenance...",
-      "success": "Maintenance created successfully",
-      "error": "Error creating maintenance",
-      "cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
-      "exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost."
-    },
-    "edit": {
-      "title": "Edit Maintenance",
-      "header": {
-        "title": "Edit Maintenance",
-        "subtitle": "Modify the maintenance information"
-      },
-      "saving": "Saving changes...",
-      "loadingData": "Loading maintenance data...",
-      "success": "Maintenance updated successfully",
-      "error": {
-        "load": "Error loading maintenance",
-        "update": "Error updating maintenance",
-        "invalidId": "Invalid maintenance ID"
-      }
-    },
-    "list": {
-      "title": "Maintenance ({{count}})",
-      "empty": {
-        "title": "No maintenance records",
-        "description": "No maintenance records found. Start by adding your first maintenance record.",
-        "button": "Add First Maintenance"
-      },
-      "search": {
-        "placeholder": "Search maintenance..."
-      },
-      "loading": "Loading maintenance...",
-      "loadingMore": "Loading more maintenance...",
-      "error": "Error loading maintenance records",
-      "retry": "Retry",
-      "noResults": {
-        "title": "No results",
-        "description": "No maintenance records found matching your search."
-      }
-    },
-    "view": {
-      "title": "Maintenance Details",
-      "error": "Error loading maintenance details"
-    },
-    "form": {
-      "name": {
-        "label": "Maintenance Name",
-        "placeholder": "e.g.: Oil change, General inspection..."
-      },
-      "vehicle": {
-        "label": "Vehicle",
-        "placeholder": "Select a vehicle"
-      },
-      "workshop": {
-        "label": "Workshop",
-        "placeholder": "Select a workshop"
-      },
-      "processType": {
-        "label": "Process Type",
-        "placeholder": "Select process type",
-        "options": {
-          "FUEL": "Fuel",
-          "PART": "Parts",
-          "TALL": "Workshop",
-          "INSU": "Insurance"
-        }
-      },
-      "startDate": {
-        "label": "Start Date",
-        "placeholder": "Select start date"
-      },
-      "endDate": {
-        "label": "End Date",
-        "placeholder": "Select end date"
-      },
-      "notes": {
-        "label": "Notes",
-        "placeholder": "Additional notes about the maintenance"
-      },
-      "errors": {
-        "required": "This field is required",
-        "minLength": "Must be at least {{min}} characters",
-        "invalidForm": "Please complete all required fields",
-        "loadVehicles": "Error loading vehicles",
-        "loadWorkshops": "Error loading workshops"
-      }
-    },
-    "actions": {
-      "view": "View",
-      "edit": "Edit",
-      "delete": "Delete",
-      "save": "Save",
-      "cancel": "Cancel",
-      "exit": "Exit",
-      "addDetail": "Add Detail"
-    },
-    "delete": {
-      "confirm": "Confirm deletion",
-      "message": "Are you sure you want to delete the maintenance for {{vehicleName}}?",
-      "success": "Maintenance deleted successfully",
-      "error": "Error deleting maintenance"
-    },
-    "processTypes": {
-      "FUEL": "Fuel",
-      "PART": "Parts",
-      "TALL": "Workshop",
-      "INSU": "Insurance"
-    },
-    "detail": {
-      "add": {
-        "title": "Add Maintenance Detail",
-        "form": {
-          "description": "Complete the maintenance detail information",
-          "name": "Name",
-          "name.placeholder": "Enter detail name",
-          "descriptionLabel": "Description",
-          "description.placeholder": "Enter detail description",
-          "diagnosis": "Diagnosis",
-          "diagnosis.placeholder": "Enter problem diagnosis",
-          "mileage": "Mileage",
-          "mileage.placeholder": "Enter mileage",
-          "cost": "Cost",
-          "cost.placeholder": "Enter cost",
-          "technician": "Technician",
-          "technician.placeholder": "Enter technician name",
-          "maintenanceType": "Maintenance Type",
-          "maintenanceType.placeholder": "Select maintenance type",
-          "nextMaintenanceDate": "Next Maintenance Date",
-          "nextMaintenanceDate.placeholder": "Select next date"
-        }
-      },
-      "edit": {
-        "title": "Edit Maintenance Detail",
-        "form": {
-          "description": "Modify the maintenance detail information",
-          "name": "Name",
-          "name.placeholder": "Enter detail name",
-          "descriptionLabel": "Description",
-          "description.placeholder": "Enter detail description",
-          "diagnosis": "Diagnosis",
-          "diagnosis.placeholder": "Enter problem diagnosis",
-          "mileage": "Mileage",
-          "mileage.placeholder": "Enter mileage",
-          "cost": "Cost",
-          "cost.placeholder": "Enter cost",
-          "technician": "Technician",
-          "technician.placeholder": "Enter technician name",
-          "maintenanceType": "Maintenance Type",
-          "maintenanceType.placeholder": "Select maintenance type",
-          "nextMaintenanceDate": "Next Maintenance Date",
-          "nextMaintenanceDate.placeholder": "Select next date"
-        }
-      },
-      "list": {
-        "title": "Maintenance Details",
-        "search": {
-          "placeholder": "Search details..."
-        },
-        "empty": {
-          "title": "No maintenance details",
-          "message": "No maintenance details found for this maintenance.",
-          "action": "Add Detail"
-        },
-        "cost": "Cost",
-        "error": "Error loading maintenance details"
-      },
-      "delete": {
-        "confirm": {
-          "title": "Confirm Deletion",
-          "message": "Are you sure you want to delete this maintenance detail?"
-        },
-        "success": "Maintenance detail deleted successfully",
-        "error": "Error deleting maintenance detail"
-      }
-    },
-    "parts": {
-      "title": "Parts",
-      "empty": "No parts added",
-      "add": {
-        "title": "Add Part",
-        "form": {
-          "name": {
-            "label": "Part Name",
-            "placeholder": "Enter part name"
-          },
-          "quantity": {
-            "label": "Quantity",
-            "placeholder": "Enter quantity"
-          },
-          "cost": {
-            "label": "Unit Cost",
-            "placeholder": "Enter unit cost"
-          },
-          "unitOfMeasure": {
-            "label": "Unit of Measure",
-            "placeholder": "Select unit of measure"
-          },
-          "totalCost": {
-            "label": "Total Cost"
-          }
-        }
-      }
-    }
-  },
-  "fuel": {
-    "title": "Fuel Details",
-    "list": {
-      "title": "Fuel Details",
-      "detailsTitle": "Fuel Details ({{count}})",
-      "empty": {
-        "title": "No fuel details",
-        "description": "No fuel details found for this maintenance. Add the first detail.",
-        "button": "Add First Detail"
-      },
-      "loading": "Loading fuel details...",
-      "loadingMore": "Loading more details...",
-      "error": "Error loading fuel details",
-      "retry": "Retry"
-    },
-    "add": {
-      "title": "Add Fuel Detail",
-      "header": {
-        "title": "New Fuel Detail",
-        "subtitle": "Complete the fuel information used"
-      },
-      "saving": "Saving detail...",
-      "loadingCatalogs": "Loading catalogs...",
-      "success": "Fuel detail added successfully",
-      "error": "Error adding fuel detail",
-      "invalidMaintenanceId": "Invalid maintenance ID"
-    },
-    "form": {
-      "fuelType": {
-        "label": "Fuel Type",
-        "placeholder": "Select fuel type",
-        "options": {
-          "GASOLINE": "Gasoline",
-          "DIESEL": "Diesel",
-          "LPG": "LPG",
-          "ELECTRIC": "Electric"
-        }
-      },
-      "unitOfMeasure": {
-        "label": "Unit of Measure",
-        "placeholder": "Select unit of measure"
-      },
-      "fuelAmount": {
-        "label": "Fuel Amount",
-        "placeholder": "Enter amount"
-      },
-      "fuelPrice": {
-        "label": "Price per Unit (Optional)",
-        "placeholder": "Enter price per unit"
-      },
-      "totalCost": {
-        "label": "Calculated Total Cost"
-      },
-      "notes": {
-        "label": "Notes (Optional)",
-        "placeholder": "Additional notes about the fuel"
-      },
-      "errors": {
-        "required": "This field is required",
-        "minValue": "Minimum value is {{min}}",
-        "invalidForm": "Please complete all required fields",
-        "loadUnitMeasures": "Error loading units of measure"
-      }
-    },
-    "actions": {
-      "view": "View",
-      "edit": "Edit",
-      "delete": "Delete",
-      "save": "Save"
-    },
-    "delete": {
-      "confirm": "Confirm deletion",
-      "message": "Are you sure you want to delete the {{fuelType}} detail?",
-      "success": "Fuel detail deleted successfully",
-      "error": "Error deleting fuel detail"
-    },
-    "error": {
-      "invalidMaintenanceId": "Invalid maintenance ID"
-    }
-  },
-  "insurance": {
-    "title": "Insurance Details",
-    "list": {
-      "title": "Insurance Details",
-      "detailsTitle": "Insurance Details ({{count}})",
-      "empty": {
-        "title": "No insurance details",
-        "description": "No insurance details found for this maintenance. Add the first detail.",
-        "button": "Add First Detail"
-      },
-      "loading": "Loading insurance details...",
-      "loadingMore": "Loading more details...",
-      "error": "Error loading insurance details",
-      "retry": "Retry"
-    },
-    "add": {
-      "title": "Add Insurance Detail",
-      "header": {
-        "title": "New Insurance Detail",
-        "subtitle": "Complete the insurance information used"
-      },
-      "saving": "Saving detail...",
-      "loadingCatalogs": "Loading catalogs...",
-      "success": "Insurance detail added successfully",
-      "error": "Error adding insurance detail",
-      "invalidMaintenanceId": "Invalid maintenance ID"
-    },
-    "form": {
-      "policyNumber": {
-        "label": "Policy Number",
-        "placeholder": "Enter policy number"
-      },
-      "insuranceAmount": {
-        "label": "Insurance Amount",
-        "placeholder": "Enter insurance amount"
-      },
-      "additionalAmount": {
-        "label": "Additional Amount (Optional)",
-        "placeholder": "Enter additional amount if applicable"
-      },
-      "currency": {
-        "label": "Currency",
-        "placeholder": "Select currency"
-      },
-      "coverageStartDate": {
-        "label": "Coverage Start Date",
-        "placeholder": "Select start date"
-      },
-      "coverageEndDate": {
-        "label": "Coverage End Date",
-        "placeholder": "Select end date"
-      },
-      "coverageDuration": {
-        "label": "Coverage Duration",
-        "days": "days"
-      },
-      "totalCoverage": {
-        "label": "Total Coverage"
-      },
-      "errors": {
-        "required": "This field is required",
-        "minValue": "Minimum value is {{min}}",
-        "invalidForm": "Please complete all required fields",
-        "loadCurrencies": "Error loading currencies"
-      }
-    },
-    "actions": {
-      "view": "View",
-      "edit": "Edit",
-      "delete": "Delete",
-      "save": "Save"
-    },
-    "delete": {
-      "confirm": "Confirm deletion",
-      "message": "Are you sure you want to delete the {{policy}} policy detail?",
-      "success": "Insurance detail deleted successfully",
-      "error": "Error deleting insurance detail"
-    },
-    "error": {
-      "invalidMaintenanceId": "Invalid maintenance ID"
-    },
-    "detail": {
-      "add": {
-        "title": "Add Maintenance Detail",
-        "form": {
-          "description": "Complete the maintenance detail information",
-          "name": "Name",
-          "name.placeholder": "Enter detail name",
-          "descriptionLabel": "Description",
-          "description.placeholder": "Enter detail description",
-          "diagnosis": "Diagnosis",
-          "diagnosis.placeholder": "Enter problem diagnosis",
-          "mileage": "Mileage",
-          "mileage.placeholder": "Enter mileage",
-          "cost": "Cost",
-          "cost.placeholder": "Enter cost",
-          "technician": "Technician",
-          "technician.placeholder": "Enter technician name",
-          "maintenanceType": "Maintenance Type",
-          "maintenanceType.placeholder": "Select maintenance type",
-          "nextMaintenanceDate": "Next Maintenance Date",
-          "nextMaintenanceDate.placeholder": "Select next date"
-        }
-      },
-      "edit": {
-        "title": "Edit Maintenance Detail",
-        "form": {
-          "description": "Modify the maintenance detail information",
-          "name": "Name",
-          "name.placeholder": "Enter detail name",
-          "descriptionLabel": "Description",
-          "description.placeholder": "Enter detail description",
-          "diagnosis": "Diagnosis",
-          "diagnosis.placeholder": "Enter problem diagnosis",
-          "mileage": "Mileage",
-          "mileage.placeholder": "Enter mileage",
-          "cost": "Cost",
-          "cost.placeholder": "Enter cost",
-          "technician": "Technician",
-          "technician.placeholder": "Enter technician name",
-          "maintenanceType": "Maintenance Type",
-          "maintenanceType.placeholder": "Select maintenance type",
-          "nextMaintenanceDate": "Next Maintenance Date",
-          "nextMaintenanceDate.placeholder": "Select next date"
-        }
-      },
-      "list": {
-        "title": "Maintenance Details",
-        "search": {
-          "placeholder": "Search details..."
-        },
-        "empty": {
-          "title": "No maintenance details",
-          "message": "No maintenance details found for this maintenance.",
-          "action": "Add Detail"
-        },
-        "cost": "Cost",
-        "error": "Error loading maintenance details"
-      },
-      "delete": {
-        "confirm": {
-          "title": "Confirm Deletion",
-          "message": "Are you sure you want to delete this maintenance detail?"
-        },
-        "success": "Maintenance detail deleted successfully",
-        "error": "Error deleting maintenance detail"
-      }
-    },
-    "parts": {
-      "title": "Parts",
-      "empty": "No parts added",
-      "add": {
-        "title": "Add Part",
-        "form": {
-          "name": {
-            "label": "Part Name",
-            "placeholder": "Enter part name"
-          },
-          "quantity": {
-            "label": "Quantity",
-            "placeholder": "Enter quantity"
-          },
-          "cost": {
-            "label": "Unit Cost",
-            "placeholder": "Enter unit cost"
-          },
-          "unitOfMeasure": {
-            "label": "Unit of Measure",
-            "placeholder": "Select unit of measure"
-          },
-          "totalCost": {
-            "label": "Total Cost"
-          }
-        }
-      }
-    }
-  }
+  "userPreferences_country": "Country",
+  "userPreferences_currency": "Currency",
+  "userPreferences_errors_countryRequired": "Please select a country",
+  "userPreferences_errors_currencyRequired": "Please select a currency",
+  "userPreferences_errors_languageRequired": "Please select a language",
+  "userPreferences_language": "Language",
+  "userPreferences_saving": "Saving preferences",
+  "userPreferences_selectCountry": "Select country",
+  "userPreferences_selectCurrency": "Select currency",
+  "userPreferences_selectLanguage": "Select language",
+  "userPreferences_subtitle": "Customize your application settings",
+  "userPreferences_title": "User Preferences",
+  "userPreferences_notificationSettings": "Notification Settings",
+  "userPreferences_pushEnabled": "Push Notifications",
+  "userPreferences_pushEnabled_description": "Receive push notifications on your device",
+  "userPreferences_emailEnabled": "Email Notifications",
+  "userPreferences_emailEnabled_description": "Receive notifications via email",
+  "userPreferences_notifyBeforeDays": "Notify Before Days",
+  "userPreferences_notifyBeforeDays_description": "Get notified before scheduled maintenance dates",
+  "userPreferences_notifyBeforeKm": "Notify Before Kilometers",
+  "userPreferences_notifyBeforeKm_description": "Get notified before reaching maintenance mileage",
+  "userPreferences_themeColor": "Theme Color",
+  "userPreferences_themeColor_description": "Choose the main color for the menu, header and other app elements",
+  "vehicles_actions_delete": "Delete",
+  "vehicles_actions_edit": "Edit",
+  "vehicles_actions_save": "Save Vehicle",
+  "vehicles_actions_update": "Update Vehicle",
+  "vehicles_actions_view": "View",
+  "vehicles_addVehicle": "Add Vehicle",
+  "vehicles_deleteVehicle": "Delete Vehicle",
+  "vehicles_delete_confirm": "Delete Vehicle",
+  "vehicles_delete_error": "Failed to delete vehicle. Please try again.",
+  "vehicles_delete_message": "Are you sure you want to delete {{vehicleName}}? This action cannot be undone.",
+  "vehicles_delete_success": "Vehicle deleted successfully",
+  "vehicles_editVehicle": "Edit Vehicle",
+  "vehicles_edit_description": "Update your vehicle information",
+  "vehicles_edit_error_load": "Error loading vehicle data",
+  "vehicles_edit_error_noId": "Vehicle ID not provided",
+  "vehicles_edit_error_update": "Error updating vehicle",
+  "vehicles_edit_success": "Vehicle updated successfully",
+  "vehicles_form_brand": "Brand",
+  "vehicles_form_cancelConfirm": "Are you sure you want to cancel? All changes will be lost.",
+  "vehicles_form_color": "Color",
+  "vehicles_form_enterMileage": "Enter mileage (optional)",
+  "vehicles_form_enterModel": "Enter model (optional)",
+  "vehicles_form_enterName": "Enter vehicle name",
+  "vehicles_form_enterPlate": "Enter plate number",
+  "vehicles_form_enterYear": "Enter year (optional)",
+  "vehicles_form_exitConfirm": "Are you sure you want to exit? All changes will be lost.",
+  "vehicles_form_image": "Vehicle Image",
+  "vehicles_form_invalidMileage": "Mileage must be a positive number",
+  "vehicles_form_invalidPlate": "Invalid license plate format",
+  "vehicles_form_invalidYear": "Year must be between 1900 and current year",
+  "vehicles_form_mileage": "Mileage",
+  "vehicles_form_minLength": "{{field}} must be at least {{length}} characters",
+  "vehicles_form_model": "Model",
+  "vehicles_form_name": "Vehicle Name",
+  "vehicles_form_plateNumber": "License Plate",
+  "vehicles_form_required": "This field is required",
+  "vehicles_form_selectBrand": "Select brand",
+  "vehicles_form_selectColor": "Select color",
+  "vehicles_form_selectVehicleMotorType": "Select motor type",
+  "vehicles_form_selectVehicleType": "Select vehicle type",
+  "vehicles_form_vehicleMotorType": "Motor Type",
+  "vehicles_form_vehicleType": "Vehicle Type",
+  "vehicles_form_year": "Year",
+  "vehicles_form_invalidImageType": "Invalid file type. Only images are allowed (JPG, PNG, GIF, WEBP)",
+  "vehicles_form_imageTooLarge": "Image is too large. Maximum size is 5MB",
+  "vehicles_form_imageSelected": "Image selected successfully",
+  "vehicles_list_empty_button": "Add Your First Vehicle",
+  "vehicles_list_empty_description": "Get started by adding your first vehicle to track maintenance and services",
+  "vehicles_list_empty_title": "No Vehicles Found",
+  "vehicles_list_error": "An error occurred while loading vehicles",
+  "vehicles_list_loading": "Loading vehicles...",
+  "vehicles_list_loadingMore": "Loading more vehicles...",
+  "vehicles_list_retry": "Retry",
+  "vehicles_list_search_placeholder": "Search vehicles by name, plate, or brand...",
+  "vehicles_list_title": "Your Vehicles ({{count}})",
+  "vehicles_success_created": "Vehicle created successfully",
+  "vehicles_success_updated": "Vehicle updated successfully",
+  "vehicles_title": "Vehicles",
+  "vehicles_viewVehicle": "View Vehicle",
+  "vehicles_view_error": "Error loading vehicle details",
+  "white": "White",
+  "workshops_actions_delete": "Delete",
+  "workshops_actions_edit": "Edit",
+  "workshops_actions_view": "View",
+  "workshops_add_cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+  "workshops_add_error": "Error adding workshop",
+  "workshops_add_exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost.",
+  "workshops_add_header_subtitle": "Complete the workshop information",
+  "workshops_add_header_title": "New Workshop",
+  "workshops_add_saving": "Saving workshop...",
+  "workshops_add_success": "Workshop added successfully",
+  "workshops_add_title": "Add Workshop",
+  "workshops_delete_confirm": "Delete Workshop",
+  "workshops_delete_error": "Error deleting workshop",
+  "workshops_delete_message": "Are you sure you want to delete the workshop {workshopName}? This action cannot be undone.",
+  "workshops_delete_success": "Workshop deleted successfully",
+  "workshops_edit_cancelConfirm": "Are you sure you want to cancel? Unsaved changes will be lost.",
+  "workshops_edit_error_invalidId": "Invalid workshop ID",
+  "workshops_edit_error_load": "Error loading workshop",
+  "workshops_edit_error_update": "Error updating workshop",
+  "workshops_edit_exitConfirm": "Are you sure you want to exit? Unsaved changes will be lost.",
+  "workshops_edit_header_subtitle": "Modify the workshop information",
+  "workshops_edit_header_title": "Edit Workshop",
+  "workshops_edit_saving": "Saving changes...",
+  "workshops_edit_success": "Workshop updated successfully",
+  "workshops_edit_title": "Edit Workshop",
+  "workshops_form_address_label": "Address",
+  "workshops_form_address_placeholder": "Enter workshop address",
+  "workshops_form_errors_invalid": "The {field} field is not valid",
+  "workshops_form_errors_invalidForm": "Please correct the errors in the form",
+  "workshops_form_errors_loadTradeTypes": "Error loading trade types",
+  "workshops_form_errors_loadTypes": "Error loading workshop types",
+  "workshops_form_errors_maxLength": "The {field} field cannot have more than {max} characters",
+  "workshops_form_errors_minLength": "The {field} field must have at least {min} characters",
+  "workshops_form_errors_pattern": "The {field} field format is not valid",
+  "workshops_form_errors_required": "The {field} field is required",
+  "workshops_form_name_label": "Name",
+  "workshops_form_name_placeholder": "Enter workshop name",
+  "workshops_form_note_label": "Notes",
+  "workshops_form_note_placeholder": "Add additional notes about the workshop",
+  "workshops_form_phone_label": "Phone",
+  "workshops_form_phone_placeholder": "Enter phone number",
+  "workshops_form_tradeType_label": "Trade Type",
+  "workshops_form_tradeType_placeholder": "Select trade type",
+  "workshops_form_workShopType_label": "Workshop Type",
+  "workshops_form_workShopType_placeholder": "Select workshop type",
+  "workshops_list_empty_button": "Add Workshop",
+  "workshops_list_empty_description": "No workshops found. Add your first workshop to get started.",
+  "workshops_list_empty_title": "No workshops",
+  "workshops_list_error": "Error loading workshops",
+  "workshops_list_loading": "Loading workshops...",
+  "workshops_list_loadingMore": "Loading more workshops...",
+  "workshops_list_retry": "Retry",
+  "workshops_list_search_placeholder": "Search workshops...",
+  "workshops_list_title": "Workshops List ({count})",
+  "workshops_title": "Workshops",
+  "workshops_view_error": "Error loading workshop details",
+  "workshops_view_title": "Workshop Details",
+  "workshops_near_me_title": "Workshops Near Me",
+  "workshops_near_me_loading": "Loading your location and nearby workshops...",
+  "workshops_near_me_location_error": "Could not get your location. Using default location.",
+  "workshops_near_me_load_error": "Error loading nearby workshops",
+  "workshops_near_me_retry": "Retry",
+  "workshops_near_me_your_location": "Your Location",
+  "workshops_near_me_mock_map_message": "Map will be displayed here once Google Maps credentials are configured",
+  "workshops_near_me_found": "{{count}} workshops found nearby",
+  "workshops_near_me_list_title": "Nearby Workshops",
+  "workshops_near_me_address": "Address",
+  "workshops_near_me_phone": "Phone",
+  "workshops_near_me_type": "Type",
+  "workshops_near_me_trade_type": "Trade Type",
+  "workshops_near_me_distance": "Distance",
+  "workshops_near_me_call": "Call",
+  "workshops_near_me_directions": "Directions",
+  "workshops_near_me_view": "View",
+  "workshops_near_me_view_full": "View Full Details",
+  "workshops_near_me_empty_title": "No Workshops Found Nearby",
+  "workshops_near_me_empty_description": "We couldn't find any workshops near your current location. Try adjusting your search radius or browse all workshops.",
+  "workshops_near_me_back_to_list": "Back to Workshops List",
+  "workshops_near_me_refresh_success": "Map refreshed successfully",
+  "workshops_near_me_search_placeholder": "Search place, city or address...",
+  "workshops_near_me_search_not_found": "Location not found. Try another search term.",
+  "workshops_near_me_searched_location": "Searched location",
+  "workshops_near_me_search_success": "Workshops updated from new location",
+  "workshops_near_me_found_suffix": "workshops found",
+  "yellow": "Yellow",
+  "menu_home": "Home",
+  "menu_vehicles": "Vehicles",
+  "menu_reminders": "Reminders",
+  "menu_trip_log": "Trip Log",
+  "menu_maps": "Maps",
+  "menu_workshops": "Workshops",
+  "menu_reports": "Reports",
+  "menu_backup": "Backup",
+  "menu_fuel_prices": "Fuel Prices",
+  "menu_settings": "Settings",
+  "menu_help": "Help",
+  "menu_recommend": "Recommend Us",
+  "menu_go_pro": "Go Pro",
+  "menu_pro_title": "CarClinic Premium",
+  "menu_pro_message": "Unlock premium features: cloud sync, advanced reports, priority support, and more.",
+  "menu_learn_more": "Learn More"
 }

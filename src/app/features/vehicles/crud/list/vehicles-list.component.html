@@ -8,7 +8,7 @@
     </ion-buttons>
     <ion-title class="header-title">
       <ion-icon name="car-sport" slot="start" class="header-icon"></ion-icon>
-      {{ 'vehicles.title' | translate }}
+      {{ 'vehicles_title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,7 @@
     <div class="search-container">
       <ion-searchbar
         [(ngModel)]="globalSearch"
-        [placeholder]="'vehicles.list.search.placeholder' | translate"
+        [placeholder]="'vehicles_list_search_placeholder' | translate"
         (ionInput)="onSearch($event)"
         (ionClear)="onClearSearch()"
         class="search-bar">
@@ -40,7 +40,7 @@
         <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
         <div class="loading-text">
           <ion-icon name="hourglass" class="loading-icon"></ion-icon>
-          {{ 'vehicles.list.loading' | translate }}
+          {{ 'vehicles_list_loading' | translate }}
         </div>
       </div>
     }
@@ -50,12 +50,12 @@
       <div class="uniform-alert danger">
         <div class="alert-header">
           <ion-icon name="alert-circle" class="alert-icon"></ion-icon>
-          <h4>{{ 'common.error' | translate }}</h4>
+          <h4>{{ 'common_error' | translate }}</h4>
         </div>
         <div class="alert-message">{{ errorMessage }}</div>
         <ion-button (click)="loadVehicles()" fill="outline" class="retry-button">
           <ion-icon name="refresh" slot="start"></ion-icon>
-          {{ 'vehicles.list.retry' | translate }}
+          {{ 'vehicles_list_retry' | translate }}
         </ion-button>
       </div>
     }
@@ -64,7 +64,7 @@
     @if (!loading && vehicles.length > 0) {
       <div class="vehicles-container">
         <div class="list-header">
-          <h3 class="list-title">{{ 'vehicles.list.title' | translate: { count: totalItems} }}</h3>
+          <h3 class="list-title">{{ 'vehicles_list_title' | translate: { count: totalItems} }}</h3>
         </div>
         
         <div class="uniform-list">
@@ -77,11 +77,11 @@
               
               <!-- Vehicle Image -->
               <ion-avatar slot="start" class="vehicle-image">
-                @if (!vehicle.image || vehicle.image === '') {
+                @if (!vehicle.imageUrl || vehicle.imageUrl === '') {
                   <ion-icon name="car" class="vehicle-icon"></ion-icon>
                 }
-                @if (vehicle.image && vehicle.image !== '') {
-                  <ion-img [src]="vehicle.image" alt="Vehicle image" class="vehicle-img"></ion-img>
+                @if (vehicle.imageUrl && vehicle.imageUrl !== '') {
+                  <img [src]="vehicle.imageUrl" alt="{{ vehicle.name }}" class="vehicle-img" (error)="onImageError($event)">
                 }
               </ion-avatar>
               
@@ -134,19 +134,23 @@
                 <ng-template>
                   <ion-content class="menu-content">
                     <ion-list class="menu-list">
-                      <ion-item button (click)="viewVehicle(vehicle.id); closeMenu()" class="menu-item">
-                        <ion-icon name="eye" slot="start" color="primary"></ion-icon>
-                        <ion-label>{{ 'vehicles.actions.view' | translate }}</ion-label>
-                      </ion-item>
+                        <ion-item button (click)="viewVehicle(vehicle.id); closeMenu()" class="menu-item">
+                          <ion-icon name="eye" slot="start" color="primary"></ion-icon>
+                          <ion-label>{{ 'vehicles_actions_view' | translate }}</ion-label>
+                        </ion-item>
+                        <ion-item button (click)="viewVehicleDashboard(vehicle.id); closeMenu()" class="menu-item">
+                          <ion-icon name="eye" slot="start" color="primary"></ion-icon>
+                          <ion-label>{{ 'vehicles_actions_view_dashboard' | translate }}</ion-label>
+                        </ion-item>
                       
                       <ion-item button (click)="editVehicle(vehicle.id); closeMenu()" class="menu-item">
                         <ion-icon name="create" slot="start" color="warning"></ion-icon>
-                        <ion-label>{{ 'vehicles.actions.edit' | translate }}</ion-label>
+                        <ion-label>{{ 'vehicles_actions_edit' | translate }}</ion-label>
                       </ion-item>
                       
                       <ion-item button (click)="confirmDelete(vehicle); closeMenu()" class="menu-item">
                         <ion-icon name="trash" slot="start" color="danger"></ion-icon>
-                        <ion-label>{{ 'vehicles.actions.delete' | translate }}</ion-label>
+                        <ion-label>{{ 'vehicles_actions_delete' | translate }}</ion-label>
                       </ion-item>
                     </ion-list>
                   </ion-content>
@@ -160,7 +164,7 @@
         <ion-infinite-scroll (ionInfinite)="loadMore($event)" [disabled]="!hasMoreData || loading">
           <ion-infinite-scroll-content
             loadingSpinner="bubbles"
-            [loadingText]="'vehicles.list.loadingMore' | translate">
+            [loadingText]="'vehicles_list_loadingMore' | translate">
           </ion-infinite-scroll-content>
         </ion-infinite-scroll>
       </div>
@@ -172,11 +176,11 @@
         <div class="empty-icon">
           <ion-icon name="car-outline"></ion-icon>
         </div>
-        <h3 class="empty-title">{{ 'vehicles.list.empty.title' | translate }}</h3>
-        <p class="empty-description">{{ 'vehicles.list.empty.description' | translate }}</p>
+        <h3 class="empty-title">{{ 'vehicles_list_empty_title' | translate }}</h3>
+        <p class="empty-description">{{ 'vehicles_list_empty_description' | translate }}</p>
         <ion-button (click)="addVehicle()" class="add-vehicle-btn" fill="solid" size="large">
           <ion-icon name="add-circle" slot="start"></ion-icon>
-          {{ 'vehicles.list.empty.button' | translate }}
+          {{ 'vehicles_list_empty_button' | translate }}
         </ion-button>
       </div>
     }
@@ -185,8 +189,8 @@
         <div class="empty-icon">
           <ion-icon name="car-outline"></ion-icon>
         </div>
-        <h3 class="empty-title">{{ 'vehicles.list.empty.title' | translate }}</h3>
-        <p class="empty-description">{{ 'vehicles.list.empty.description' | translate }}</p>
+        <h3 class="empty-title">{{ 'vehicles_list_empty_title' | translate }}</h3>
+        <p class="empty-description">{{ 'vehicles_list_empty_description' | translate }}</p>
       
       </div>
     }
@@ -196,7 +200,7 @@
         <ion-spinner name="bubbles" class="loading-more-spinner"></ion-spinner>
         <div class="loading-more-text">
           <ion-icon name="sync" class="loading-more-icon"></ion-icon>
-          {{ 'vehicles.list.loadingMore' | translate }}
+          {{ 'vehicles_list_loadingMore' | translate }}
         </div>
       </div>
     }
@@ -213,8 +217,8 @@
 <!-- Delete Confirmation Alert -->
 <ion-alert
   [isOpen]="showDeleteAlert"
-  [header]="'vehicles.delete.confirm' | translate"
-  [message]="'vehicles.delete.message' | translate: { vehicleName: vehicleToDelete?.name || 'this vehicle' }"
+  [header]="'vehicles_delete_confirm' | translate"
+  [message]="'vehicles_delete_message' | translate: { vehicleName: vehicleToDelete?.name || 'this vehicle' }"
   [buttons]="deleteAlertButtons"
   (didDismiss)="onDeleteAlertDismiss()">
 </ion-alert>

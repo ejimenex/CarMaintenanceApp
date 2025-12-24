@@ -18,9 +18,12 @@ import {
   IonSelect, 
   IonSelectOption, 
   IonSpinner, 
-  IonFooter 
+  IonFooter,
+  IonToggle
 } from '@ionic/angular/standalone';
 import { UserPreference, UserPreferenceService } from 'src/app/utils/user-preference.service.';
+import { AppFooterComponent } from 'src/app/shared/components/app-footer/app-footer.component';
+import { ThemeService, ThemeColor } from 'src/app/utils/theme.service';
 
 @Component({
   standalone: true,
@@ -40,7 +43,9 @@ import { UserPreference, UserPreferenceService } from 'src/app/utils/user-prefer
     IonSelect,
     IonSelectOption,
     IonSpinner,
-    IonFooter
+    IonFooter,
+    IonToggle,
+    AppFooterComponent
   ],
   selector: 'app-user-preference',
   templateUrl: './user-preference.component.html',
@@ -54,24 +59,44 @@ export class UserPreferenceComponent implements OnInit {
   isLoading = false;
   showSuccessMessage = false;
 
+  // Paleta de colores para el tema (desde ThemeService)
+  themeColors: ThemeColor[] = [];
+  selectedThemeColor: string = 'navy';
+
   constructor(
     private formBuilder: FormBuilder,
     private catalogService: CatalogService,
     private userPreferenceService: UserPreferenceService,
     private alertService: AlertService,
     private translateService: TranslateService,
-    private router: Router
+    private router: Router,
+    private themeService: ThemeService
   ) {
     this.preferenceForm = this.formBuilder.group({
       languageId: ['', Validators.required],
       countryId: ['', Validators.required],
-      currencyId: ['', Validators.required]
+      currencyId: ['', Validators.required],
+      themeColor: ['navy'],
+      pushEnabled: [false],
+      emailEnabled: [false],
+      notifyBeforeDays: [false],
+      notifyBeforeKm: [false]
     });
   }
 
   ngOnInit(): void {
     this.loadCatalogs();
     this.loadUserPreferences();
+    this.loadThemeColors();
+  }
+
+  private loadThemeColors(): void {
+    // Cargar colores disponibles del ThemeService
+    this.themeColors = this.themeService.getAvailableColors();
+    // Obtener el tema actual (el valor directo, no el Observable)
+    const currentTheme = this.themeService.getCurrentThemeValue();
+    this.selectedThemeColor = currentTheme.id;
+    this.preferenceForm.patchValue({ themeColor: currentTheme.id });
   }
 
   loadCatalogs(): void {
@@ -123,8 +148,14 @@ export class UserPreferenceComponent implements OnInit {
             this.preferenceForm.patchValue({
               languageId: response.data.languageId,
               countryId: response.data.countryId,
-              currencyId: response.data.currencyId
+              currencyId: response.data.currencyId,
+              themeColor: response.data.themeColor || 'navy',
+              pushEnabled: response.data.pushEnabled,
+              emailEnabled: response.data.emailEnabled,
+              notifyBeforeDays: response.data.notifyBeforeDays,
+              notifyBeforeKm: response.data.notifyBeforeKm
             });
+            this.selectedThemeColor = response.data.themeColor || 'navy';
           }
         },
         error: (error: any) => {
@@ -174,7 +205,7 @@ export class UserPreferenceComponent implements OnInit {
   cancelForm(): void {
     if (this.preferenceForm.dirty) {
       this.alertService.showConfirm(
-        this.translateService.instant('common.unsavedChanges')
+        this.translateService.instant('common_unsavedChanges')
       ).then((confirmed) => {
         if (confirmed) {
           this.resetForm();
@@ -189,7 +220,7 @@ export class UserPreferenceComponent implements OnInit {
   exitScreen(): void {
     if (this.preferenceForm.dirty) {
       this.alertService.showConfirm(
-        this.translateService.instant('common.unsavedChanges')
+        this.translateService.instant('common_unsavedChanges')
       ).then((confirmed) => {
         if (confirmed) {
           this.resetForm();
@@ -204,5 +235,18 @@ export class UserPreferenceComponent implements OnInit {
   private resetForm(): void {
     this.preferenceForm.reset();
     this.showSuccessMessage = false;
+  }
+
+  selectThemeColor(colorId: string): void {
+    this.selectedThemeColor = colorId;
+    this.preferenceForm.patchValue({ themeColor: colorId });
+    this.preferenceForm.markAsDirty();
+    
+    // Aplicar el tema inmediatamente para preview
+    this.themeService.setTheme(colorId);
+  }
+
+  isColorSelected(colorId: string): boolean {
+    return this.selectedThemeColor === colorId;
   }
 }

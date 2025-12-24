@@ -37,12 +37,12 @@ export class FuelDetailListComponent implements OnInit, OnDestroy {
   fuelDetailToDelete: ProccessFuelDetail | null = null;
   deleteAlertButtons = [
     {
-      text: this.translateService.instant('common.cancel'),
+      text: this.translateService.instant('common_cancel'),
       role: 'cancel',
       cssClass: 'alert-button-cancel'
     },
     {
-      text: this.translateService.instant('fuel.actions.delete'),
+      text: this.translateService.instant('fuel_actions_delete'),
       role: 'destructive',
       cssClass: 'alert-button-delete',
       handler: () => {
@@ -68,7 +68,7 @@ export class FuelDetailListComponent implements OnInit, OnDestroy {
     this.maintenanceId = this.route.snapshot.paramMap.get('id') || '';
     
     if (!this.maintenanceId) {
-      this.alertService.showError(this.translateService.instant('fuel.error.invalidMaintenanceId'));
+      this.alertService.showError(this.translateService.instant('fuel_error_invalidMaintenanceId'));
       this.router.navigate(['/maintenance']);
       return;
     }
@@ -87,7 +87,7 @@ export class FuelDetailListComponent implements OnInit, OnDestroy {
     this.processFuelDetailService.getByHeader(this.maintenanceId).pipe(
       catchError(error => {
         console.error('❌ Error loading fuel details:', error);
-        this.errorMessage = this.translateService.instant('fuel.list.error');
+        this.errorMessage = this.translateService.instant('fuel_list_error');
         return of(null);
       }),
       finalize(() => {
@@ -109,7 +109,7 @@ export class FuelDetailListComponent implements OnInit, OnDestroy {
           this.fuelDetails = [];
         } else {
           console.error('❌ Respuesta inválida:', response);
-          this.errorMessage = response?.message || this.translateService.instant('fuel.list.error');
+          this.errorMessage = response?.message || this.translateService.instant('fuel_list_error');
           this.fuelDetails = [];
         }
       },
@@ -158,7 +158,7 @@ export class FuelDetailListComponent implements OnInit, OnDestroy {
     this.processFuelDetailService.deleteProcessHeader(this.fuelDetailToDelete.processHeaderId).pipe(
       catchError(error => {
         console.error('Error deleting fuel detail:', error);
-        this.alertService.showError(this.translateService.instant('fuel.delete.error'));
+        this.alertService.showError(this.translateService.instant('fuel_delete_error'));
         return of(null);
       }),
       finalize(() => {
@@ -169,11 +169,11 @@ export class FuelDetailListComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (response: any) => {
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('fuel.delete.success'));
+          this.alertService.showSuccess(this.translateService.instant('fuel_delete_success'));
           // Reload the list after deletion
           this.loadFuelDetails();
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('fuel.delete.error'));
+          this.alertService.showError(response?.message || this.translateService.instant('fuel_delete_error'));
         }
       }
     });

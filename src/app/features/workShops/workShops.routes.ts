@@ -12,6 +12,11 @@ export const WORKSHOPS_ROUTES: Routes = [
       import('./crud/list/work-shops-list.component').then((m) => m.WorkShopsListComponent)
   },
   {
+    path: 'near-me',
+    loadComponent: () =>
+      import('./crud/near-me/workshops-near-me.component').then((m) => m.WorkshopsNearMeComponent)
+  },
+  {
     path: 'add',
     loadComponent: () =>
       import('./crud/add/work-shops-add.component').then((m) => m.WorkShopsAddComponent)

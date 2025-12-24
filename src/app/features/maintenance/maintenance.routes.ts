@@ -35,6 +35,14 @@ export const maintenanceRoutes: Routes = [
     loadComponent: () => import('./insurance/add/insurance-detail-add.component').then(m => m.InsuranceDetailAddComponent)
   },
   {
+    path: 'taxe/list/:id',
+    loadComponent: () => import('./taxe/list/taxe-detail-list.component').then(m => m.TaxeDetailListComponent)
+  },
+  {
+    path: 'taxe/add/:id',
+    loadComponent: () => import('./taxe/add/taxe-detail-add.component').then(m => m.taxeDetailAddComponent)
+  },
+  {
     path: 'detail/list/:id',
     loadComponent: () => import('./detail/list/maintenance-detail-list.component').then(m => m.MaintenanceDetailListComponent)
   },
@@ -45,5 +53,17 @@ export const maintenanceRoutes: Routes = [
   {
     path: 'detail/edit/:id',
     loadComponent: () => import('./detail/edit/maintenance-detail-edit.component').then(m => m.MaintenanceDetailEditComponent)
+  },
+  {
+    path: 'part/list/:id',
+    loadComponent: () => import('./part/list/part-detail-list.component').then(m => m.PartDetailListComponent)
+  },
+  {
+    path: 'part/add/:id',
+    loadComponent: () => import('./part/add/part-add.component').then(m => m.PartAddComponent)
+  },
+  {
+    path: 'part/edit/:id',
+    loadComponent: () => import('./part/edit/part-edit.component').then(m => m.PartEditComponent)
   }
 ];

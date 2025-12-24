@@ -11,19 +11,47 @@ import {
   IonIcon, 
   IonLabel, 
   IonRouterOutlet, 
-  IonSpinner, 
+  IonSpinner,
   MenuController,
   IonHeader,
   IonToolbar,
   IonButtons,
   IonTitle,
   IonMenuButton,
-  IonBadge
+  IonBadge,
+  IonList
 } from '@ionic/angular/standalone';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { addIcons } from 'ionicons';
-import { car, construct, build, settings, helpCircle, addCircle, personCircle, logOut, person, time, logIn, notifications, notificationsOutline } from 'ionicons/icons';
+import { 
+  car, 
+  construct, 
+  build, 
+  settings, 
+  helpCircle, 
+  addCircle, 
+  personCircle, 
+  logOut, 
+  person, 
+  time, 
+  logIn, 
+  notifications, 
+  notificationsOutline, 
+  carSport,
+  home,
+  homeOutline,
+  calendarOutline,
+  navigateOutline,
+  mapOutline,
+  documentTextOutline,
+  cloudUploadOutline,
+  cashOutline,
+  helpCircleOutline,
+  megaphoneOutline,
+  rocketOutline,
+  list
+} from 'ionicons/icons';
 import { AuthService } from './features/auth/services/auth.service';
 import { logUserService, LogUserStats } from './utils/logUser.service';
 import { I18nService } from './i18n/i18n.service';
@@ -31,6 +59,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NotificationService } from './utils/notification.service';
+import { AlertController } from '@ionic/angular';
+import { ThemeService } from './utils/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -46,22 +76,61 @@ import { NotificationService } from './utils/notification.service';
     IonItem, 
     IonIcon, 
     IonLabel, 
-    IonRouterOutlet, 
+    IonRouterOutlet,
+    IonBadge,
     IonSpinner,
-    IonBadge
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonList
   ],
 })
 export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
   
-  public appPages = [
-    { titleKey: 'dashboard.menu.navigation.vehicles', url: '/vehicles', icon: 'car' },
-    { titleKey: 'dashboard.menu.navigation.workshops', url: '/workshops', icon: 'construct' },
-    { titleKey: 'dashboard.menu.navigation.maintenance', url: '/maintenance', icon: 'build' },
-    { titleKey: 'dashboard.menu.navigation.myServices', url: '/workshops', icon: 'construct' },
-    { titleKey: 'notifications.title', url: '/notifications', icon: 'notifications' },
-    { titleKey: 'dashboard.menu.navigation.userPreferences', url: '/user-preference', icon: 'person' },
-    { titleKey: 'dashboard.menu.navigation.settings', url: '/settings', icon: 'settings' },
+  public menuPages = [
+    { 
+      titleKey: 'dashboard_menu_navigation_vehicles', 
+      url: '/vehicles', 
+      icon: 'car'
+    },
+    { 
+      titleKey: 'dashboard_menu_navigation_workshops', 
+      url: '/workshops', 
+      icon: 'construct'
+    },
+    { 
+      titleKey: 'workshops_near_me_title',
+      url: '/workshops/near-me', 
+      icon: 'map-outline'
+    },
+    { 
+      titleKey: 'dashboard_menu_navigation_maintenance', 
+      url: '/maintenance', 
+      icon: 'build'
+    },
+    { 
+      titleKey: 'notifications_title', 
+      url: '/notifications', 
+      icon: 'notifications',
+      badge: true,
+      badgeCount: 0
+    },
+    { 
+      titleKey: 'dashboard_menu_navigation_userPreferences', 
+      url: '/user-preference', 
+      icon: 'person'
+    },
+    { 
+      titleKey: 'dashboard_menu_navigation_settings', 
+      url: '/settings', 
+      icon: 'settings'
+    },
+    { 
+      titleKey: 'dashboard_menu_footer_helpSupport', 
+      url: '/help', 
+      icon: 'help-circle-outline'
+    }
   ];
 
   loginStats: LogUserStats | null = null;
@@ -76,9 +145,38 @@ export class AppComponent implements OnInit {
     private translateService: TranslateService,
     private router: Router,
     private menu: MenuController,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private alertController: AlertController,
+    private themeService: ThemeService // Inicializa el tema al cargar la app
   ) {
-    addIcons({ car, construct, build, settings, helpCircle, addCircle, personCircle, logOut, person, time, logIn, notifications, notificationsOutline });
+    addIcons({ 
+      car, 
+      construct, 
+      build, 
+      settings, 
+      helpCircle, 
+      addCircle, 
+      personCircle, 
+      logOut, 
+      person, 
+      time, 
+      logIn, 
+      notifications, 
+      notificationsOutline, 
+      carSport,
+      home,
+      homeOutline,
+      calendarOutline,
+      navigateOutline,
+      mapOutline,
+      documentTextOutline,
+      cloudUploadOutline,
+      cashOutline,
+      helpCircleOutline,
+      megaphoneOutline,
+      rocketOutline,
+      list
+    });
     this.loadUserName();
   }
 
@@ -101,19 +199,19 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private checkAuthentication(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
+  private async checkAuthentication(): Promise<void> {
+    this.isAuthenticated = await this.authService.isAuthenticated();
   }
 
   formatLastLogin(date: Date): string {
-    if (!date) return this.translateService.instant('common.never');
+    if (!date) return this.translateService.instant('common_never');
 
     const now = new Date();
     const lastLogin = new Date(date);
     const diffInHours = Math.floor((now.getTime() - lastLogin.getTime()) / (1000 * 60 * 60));
 
     if (diffInHours < 1) {
-      return this.translateService.instant('common.lessThanHour');
+      return this.translateService.instant('common_lessThanHour');
     } else if (diffInHours < 24) {
       const hoursKey = diffInHours > 1 ? 'common.hoursAgo' : 'common.hourAgo';
       return this.translateService.instant(hoursKey, { hours: diffInHours });
@@ -186,12 +284,38 @@ export class AppComponent implements OnInit {
   loadNotifications() {
     this.notificationService.getUnreadCount().subscribe(count => {
       this.unreadNotifications = count.data;
-     
+      // Update badge count in menu
+      const reminderItem = this.menuPages.find(p => p.url === '/notifications');
+      if (reminderItem) {
+        reminderItem.badgeCount = this.unreadNotifications;
+      }
     });
   }
 
   navigateToNotifications() {
     this.router.navigate(['/notifications']);
+  }
+
+  async showProFeatures() {
+    const alert = await this.alertController.create({
+      header: this.translateService.instant('menu_pro_title'),
+      message: this.translateService.instant('menu_pro_message'),
+      buttons: [
+        {
+          text: this.translateService.instant('common_cancel'),
+          role: 'cancel'
+        },
+        {
+          text: this.translateService.instant('menu_learn_more'),
+          handler: () => {
+            // Navigate to pro features page or external link
+            console.log('Show PRO features');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async logout() {

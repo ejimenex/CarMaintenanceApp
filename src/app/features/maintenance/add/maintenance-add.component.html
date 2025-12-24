@@ -1,162 +1,219 @@
-<ion-header class="uniform-header">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
       <ion-back-button defaultHref="/maintenance"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'maintenance.add.title' | translate }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="saveMaintenance()" [disabled]="!maintenanceForm.valid || loading" fill="solid" color="primary">
-        <ion-icon name="checkmark" slot="start"></ion-icon>
-        {{ 'maintenance.actions.save' | translate }}
-      </ion-button>
-    </ion-buttons>
+    <ion-title>{{ 'maintenance_add_title' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="modern-form-content">
+<ion-content [fullscreen]="true">
   <div class="form-container">
     <form [formGroup]="maintenanceForm" (ngSubmit)="saveMaintenance()">
       
-      <!-- Header Section -->
+      <!-- ========== HEADER SECCIÓN ========== -->
       <div class="form-header">
-        <ion-icon name="build" class="header-icon"></ion-icon>
-        <h2>{{ 'maintenance.add.header.title' | translate }}</h2>
-        <p>{{ 'maintenance.add.header.subtitle' | translate }}</p>
+        <ion-icon name="build-outline" class="header-icon"></ion-icon>
+        <h2>{{ 'maintenance_add_header_title' | translate }}</h2>
+        <p>{{ 'maintenance_add_header_subtitle' | translate }}</p>
       </div>
 
-      <!-- Form Fields -->
-      <div class="form-fields">
-        
-        <!-- Name Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'maintenance.form.name.label' | translate }} *</label>
-          <ion-input 
-            formControlName="name" 
-            [placeholder]="'maintenance.form.name.placeholder' | translate"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (maintenanceForm.get('name')?.invalid && maintenanceForm.get('name')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('name') }}
-            </div>
-          }
+      <!-- ========== INFORMACIÓN GENERAL ========== -->
+      <div class="form-section">
+        <div class="section-title">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>Información General</span>
         </div>
 
-        <!-- Vehicle Selection -->
-        <div class="field-group">
-          <label class="field-label">{{ 'maintenance.form.vehicle.label' | translate }} *</label>
-          <ion-select 
-            formControlName="vehicleId" 
-            [placeholder]="'maintenance.form.vehicle.placeholder' | translate" 
-            class="modern-select"
-            fill="outline">
-            @for (vehicle of vehicles; track vehicle.value) {
-              <ion-select-option [value]="vehicle.value">
-                {{ vehicle.label }}
-              </ion-select-option>
+        <div class="form-fields">
+                    <!-- Tipo de Proceso -->
+                    <div class="field-group" [class.has-error]="maintenanceForm.get('processType')?.invalid && maintenanceForm.get('processType')?.touched">
+                      <label class="field-label">
+                        <ion-icon name="git-branch-outline"></ion-icon>
+                        {{ 'maintenance_form_processType_label' | translate }} *
+                      </label>
+                      <ion-select 
+                        formControlName="processType" 
+                        [placeholder]="'maintenance_form_processType_placeholder' | translate"
+                        interface="popover">
+                        @for (type of processTypes; track type.value) {
+                          <ion-select-option [value]="type.value">
+                            {{ ('maintenance.form.processType.options.' + type.value) | translate }}
+                          </ion-select-option>
+                        }
+                      </ion-select>
+                      @if (maintenanceForm.get('processType')?.invalid && maintenanceForm.get('processType')?.touched) {
+                        <div class="error-message">
+                          <ion-icon name="alert-circle-outline"></ion-icon>
+                          {{ getFieldError('processType') }}
+                        </div>
+                      }
+                    </div>
+          <!-- Nombre del Mantenimiento -->
+          <div class="field-group" [class.has-error]="maintenanceForm.get('name')?.invalid && maintenanceForm.get('name')?.touched">
+            <label class="field-label">
+              <ion-icon name="text-outline"></ion-icon>
+              {{ 'maintenance_form_name_label' | translate }} *
+            </label>
+            <ion-input 
+              formControlName="name" 
+              [placeholder]="'maintenance_form_name_placeholder' | translate">
+            </ion-input>
+            @if (maintenanceForm.get('name')?.invalid && maintenanceForm.get('name')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('name') }}
+              </div>
             }
-          </ion-select>
-          @if (maintenanceForm.get('vehicleId')?.invalid && maintenanceForm.get('vehicleId')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('vehicleId') }}
-            </div>
-          }
-        </div>
-  <!-- Trade/Workshop Selection -->
-  <div class="field-group">
-   <label class="field-label">{{ 'maintenance.form.workshop.label' | translate }} *</label>
-   <ion-select 
-     formControlName="tradeId" 
-     [placeholder]="'maintenance.form.workshop.placeholder' | translate" 
-     class="modern-select"
-     fill="outline">
-     @for (workshop of workshops; track workshop.value) {
-       <ion-select-option [value]="workshop.value">
-         {{ workshop.label }}
-       </ion-select-option>
-     }
-   </ion-select>
-  @if (maintenanceForm.get('tradeId')?.invalid && maintenanceForm.get('tradeId')?.touched) {
-    <div class="error-message">
-      {{ getFieldError('tradeId') }}
-    </div>
-  }
-</div>
+          </div>
 
-        <!-- Process Type Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'maintenance.form.processType.label' | translate }} *</label>
-          <ion-select 
-            formControlName="processType" 
-            [placeholder]="'maintenance.form.processType.placeholder' | translate" 
-            class="modern-select"
-            fill="outline">
-            @for (type of processTypes; track type.value) {
-              <ion-select-option [value]="type.value">
-                {{ ('maintenance.form.processType.options.' + type.value) | translate }}
-              </ion-select-option>
-            }
-          </ion-select>
-          @if (maintenanceForm.get('processType')?.invalid && maintenanceForm.get('processType')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('processType') }}
+          <!-- Grid de 2 columnas para Vehicle y Workshop -->
+          <div class="form-row">
+            
+            <!-- Selección de Vehículo -->
+            <div class="field-group" [class.has-error]="maintenanceForm.get('vehicleId')?.invalid && maintenanceForm.get('vehicleId')?.touched">
+              <label class="field-label">
+                <ion-icon name="car-sport-outline"></ion-icon>
+                {{ 'maintenance_form_vehicle_label' | translate }} *
+              </label>
+              <ion-select 
+                formControlName="vehicleId" 
+                [placeholder]="'maintenance_form_vehicle_placeholder' | translate"
+                interface="popover">
+                @for (vehicle of vehicles; track vehicle.value) {
+                  <ion-select-option [value]="vehicle.value">
+                    {{ vehicle.label }}
+                  </ion-select-option>
+                }
+              </ion-select>
+              @if (maintenanceForm.get('vehicleId')?.invalid && maintenanceForm.get('vehicleId')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('vehicleId') }}
+                </div>
+              }
             </div>
-          }
-        </div>
 
-        <!-- Start Date Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'maintenance.form.startDate.label' | translate }}</label>
-          <ion-input 
-            formControlName="startDate" 
-            type="date"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (maintenanceForm.get('startDate')?.invalid && maintenanceForm.get('startDate')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('startDate') }}
+            <!-- Selección de Taller -->
+            <div class="field-group" [class.has-error]="maintenanceForm.get('tradeId')?.invalid && maintenanceForm.get('tradeId')?.touched">
+              <label class="field-label">
+                <ion-icon name="construct-outline"></ion-icon>
+                {{ 'maintenance_form_workshop_label' | translate }} *
+              </label>
+              <ion-select 
+                formControlName="tradeId" 
+                [placeholder]="'maintenance_form_workshop_placeholder' | translate"
+                interface="popover">
+                @for (workshop of workshops; track workshop.value) {
+                  <ion-select-option [value]="workshop.value">
+                    {{ workshop.label }}
+                  </ion-select-option>
+                }
+              </ion-select>
+              @if (maintenanceForm.get('tradeId')?.invalid && maintenanceForm.get('tradeId')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('tradeId') }}
+                </div>
+              }
             </div>
-          }
-        </div>
+          </div>
 
-        <!-- End Date Field -->
-        <div class="field-group">
-          <label class="field-label">{{ 'maintenance.form.endDate.label' | translate }}</label>
-          <ion-input 
-            formControlName="endDate" 
-            type="date"
-            class="modern-input"
-            fill="outline">
-          </ion-input>
-          @if (maintenanceForm.get('endDate')?.invalid && maintenanceForm.get('endDate')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('endDate') }}
-            </div>
-          }
+
+
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <hr class="form-divider">
+
+      <!-- ========== FECHAS ========== -->
+      <div class="form-section">
+        <div class="section-title">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <span>Fechas</span>
         </div>
 
-       
+        <div class="form-fields">
+          
+          <!-- Grid de 2 columnas para Start Date y End Date -->
+          <div class="form-row">
+            
+            <!-- Fecha de Inicio -->
+            <div class="field-group" [class.has-error]="maintenanceForm.get('startDate')?.invalid && maintenanceForm.get('startDate')?.touched">
+              <label class="field-label">
+                <ion-icon name="calendar-number-outline"></ion-icon>
+                {{ 'maintenance_form_startDate_label' | translate }}
+              </label>
+              <ion-input 
+                formControlName="startDate" 
+                type="date">
+              </ion-input>
+              @if (maintenanceForm.get('startDate')?.invalid && maintenanceForm.get('startDate')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('startDate') }}
+                </div>
+              }
+            </div>
 
-          <!-- note Field -->
-          <div class="field-group">
-            <label class="field-label">{{ 'maintenance.form.note.label' | translate }}</label>
+            <!-- Fecha de Fin -->
+            <div class="field-group" [class.has-error]="maintenanceForm.get('endDate')?.invalid && maintenanceForm.get('endDate')?.touched">
+              <label class="field-label">
+                <ion-icon name="calendar-number-outline"></ion-icon>
+                {{ 'maintenance_form_endDate_label' | translate }}
+              </label>
+              <ion-input 
+                formControlName="endDate" 
+                type="date">
+              </ion-input>
+              @if (maintenanceForm.get('endDate')?.invalid && maintenanceForm.get('endDate')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('endDate') }}
+                </div>
+              }
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <hr class="form-divider">
+
+      <!-- ========== NOTAS ========== -->
+      <div class="form-section">
+        <div class="section-title">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <span>Notas Adicionales</span>
+        </div>
+
+        <div class="form-fields">
+          
+          <!-- Notas -->
+          <div class="field-group" [class.has-error]="maintenanceForm.get('note')?.invalid && maintenanceForm.get('note')?.touched">
+            <label class="field-label">
+              <ion-icon name="create-outline"></ion-icon>
+              {{ 'maintenance_form_note_label' | translate }}
+            </label>
             <ion-textarea 
               formControlName="note" 
-              [placeholder]="'maintenance.form.note.placeholder' | translate"
-              class="modern-input"
-              fill="outline">
-            </ion-textarea >
-          @if (maintenanceForm.get('note')?.invalid && maintenanceForm.get('note')?.touched) {
-            <div class="error-message">
-              {{ getFieldError('note') }}
+              [placeholder]="'maintenance_form_note_placeholder' | translate">
+            </ion-textarea>
+            <div class="field-hint">
+              Añade cualquier información adicional relevante
             </div>
-          }
-        </div>
+            @if (maintenanceForm.get('note')?.invalid && maintenanceForm.get('note')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('note') }}
+              </div>
+            }
+          </div>
 
-       
+        </div>
       </div>
 
     </form>
@@ -166,44 +223,20 @@
       <div class="loading-overlay">
         <div class="loading-content">
           <ion-spinner name="crescent"></ion-spinner>
-          <p>{{ 'maintenance.add.saving' | translate }}</p>
+          <p>{{ 'maintenance_add_saving' | translate }}</p>
         </div>
       </div>
     }
   </div>
 </ion-content>
 
-<!-- Footer with Action Buttons -->
-<ion-footer class="form-footer">
-  <ion-toolbar>
-    <div class="footer-buttons">
-      <!-- Cancel Button -->
-      <ion-button 
-        (click)="cancelForm()" 
-        fill="solid" 
-        color="medium" 
-        class="footer-btn cancel-btn">
-        <ion-icon name="close" slot="icon-only"></ion-icon>
-      </ion-button>
-
-      <!-- Save Button -->
-      <ion-button 
-        (click)="saveMaintenance()" 
-        [disabled]="!maintenanceForm.valid || loading"
-        fill="solid" 
-        color="primary" 
-        class="footer-btn save-btn">
-        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
-      </ion-button>
-
-      <!-- Exit Button -->
-      <ion-button 
-        (click)="exitScreen()" 
-        fill="solid" 
-        color="danger" 
-        class="footer-btn exit-btn">
-        <ion-icon name="home" slot="icon-only"></ion-icon>
-      </ion-button>
-    </div>
-  </ion-toolbar>
-</ion-footer>
+<!-- ✅ FOOTER CON APP-FOOTER -->
+<app-footer
+  [showSaveButton]="true"
+  [saveButtonText]="'maintenance.actions.save'"
+  [saveButtonDisabled]="!maintenanceForm.valid"
+  [saveButtonLoading]="loading"
+  [customBackRoute]="'/maintenance'"
+  (onSave)="saveMaintenance()"
+  (onBack)="cancelForm()">
+</app-footer>

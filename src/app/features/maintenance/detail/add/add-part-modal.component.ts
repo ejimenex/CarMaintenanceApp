@@ -50,17 +50,17 @@ export class AddPartModalComponent {
         quantity: partData.quantity,
         cost: partData.cost,
         unitOfMeasure: partData.unitOfMeasure,
-        totalCost: partData.quantity * partData.cost
+        totalCost: partData.quantity * partData.cost,
       };
-      debugger
-     // this.partAdded.emit(part);
-      this.dismiss(part);
+      
+      this.partAdded.emit(part);
+      this.dismiss();
     }
   }
 
-dismiss(part?: MaintenancePart) {
-  this.modalController.dismiss(part);
-}
+  dismiss() {
+    this.modalController.dismiss();
+  }
 
   isFieldInvalid(fieldName: string): boolean {
     const field = this.partForm.get(fieldName);

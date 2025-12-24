@@ -20,6 +20,7 @@ export class CatalogService {
   private currencyService: CrudService<Catalog>;
   private unitOfMeasureService: CrudService<Catalog>;
   private vehicleTypeService: CrudService<Catalog>;
+  private basicMaintenanceService: CrudService<Catalog>;
   private colorService: CrudService<Catalog>;
   private brandService: CrudService<Catalog>;
   private maintenanceTypeService: CrudService<Catalog>;
@@ -28,11 +29,14 @@ export class CatalogService {
   private workShopTypeService: CrudService<Catalog>;
   constructor(private apiService: ApiService) {
     // Initialize CRUD services for different entities
-      this.languageService = this.apiService.createCrudService<Catalog>({
-        endpoint: 'language',
-        retryAttempts: 3
-      });
-      
+          this.languageService = this.apiService.createCrudService<Catalog>({
+            endpoint: 'language',
+            retryAttempts: 3
+          });
+    this.basicMaintenanceService = this.apiService.createCrudService<Catalog>({
+      endpoint: 'basicMaintenance',
+      retryAttempts: 3
+    });
     this.maintenanceTypeService = this.apiService.createCrudService<Catalog>({
       endpoint: 'maintenanceType',
       retryAttempts: 3
@@ -82,6 +86,9 @@ export class CatalogService {
   // User CRUD operations
   getworkShopType(): Observable<ApiResponse<Catalog[]>> {
     return this.workShopTypeService.getAllWithoutParams();
+  }
+  getBasicMaintenance(): Observable<ApiResponse<Catalog[]>> {
+    return this.basicMaintenanceService.getAllWithoutParams();
   }
   getTradeType(): Observable<ApiResponse<Catalog[]>> {
     return this.tradeTypeService.getAllWithoutParams();

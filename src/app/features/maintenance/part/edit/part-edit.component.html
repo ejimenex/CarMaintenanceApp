@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="cancelForm()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'maintenance_parts_edit_title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="updatePart()">
+      
+      <!-- ========== HEADER SECCIÓN ========== -->
+      <div class="form-header">
+        <ion-icon name="create-outline" class="header-icon"></ion-icon>
+        <h2>{{ 'maintenance_parts_edit_title' | translate }}</h2>
+        <p>{{ 'maintenance_parts_edit_subtitle' | translate }}</p>
+      </div>
+
+      <!-- ========== INFORMACIÓN DE REPUESTO ========== -->
+      <div class="form-section">
+        <div class="section-title">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ 'maintenance_parts_edit_sectionTitle' | translate }}</span>
+        </div>
+
+        <div class="form-fields">
+          
+          <!-- Nombre del Repuesto -->
+          <div class="field-group" [class.has-error]="form.get('name')?.invalid && form.get('name')?.touched">
+            <label class="field-label">
+              <ion-icon name="construct-outline"></ion-icon>
+              {{ 'maintenance_parts_edit_form_name_label' | translate }} *
+            </label>
+            <ion-input 
+              formControlName="name" 
+              [placeholder]="'maintenance_parts_edit_form_name_placeholder' | translate">
+            </ion-input>
+            @if (form.get('name')?.invalid && form.get('name')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('name') }}
+              </div>
+            }
+          </div>
+
+          <!-- Grid de 2 columnas para Cantidad y Unidad de Medida -->
+          <div class="form-row">
+            
+            <!-- Cantidad -->
+            <div class="field-group" [class.has-error]="form.get('quantity')?.invalid && form.get('quantity')?.touched">
+              <label class="field-label">
+                <ion-icon name="cube-outline"></ion-icon>
+                {{ 'maintenance_parts_edit_form_quantity_label' | translate }} *
+              </label>
+              <ion-input 
+                formControlName="quantity" 
+                type="number"
+                [placeholder]="'maintenance_parts_edit_form_quantity_placeholder' | translate">
+              </ion-input>
+              @if (form.get('quantity')?.invalid && form.get('quantity')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('quantity') }}
+                </div>
+              }
+            </div>
+
+            <!-- Unidad de Medida -->
+            <div class="field-group" [class.has-error]="form.get('unitOfMeasure')?.invalid && form.get('unitOfMeasure')?.touched">
+              <label class="field-label">
+                <ion-icon name="analytics-outline"></ion-icon>
+                {{ 'maintenance_parts_edit_form_unitOfMeasure_label' | translate }} *
+              </label>
+              <ion-select 
+                formControlName="unitOfMeasure" 
+                [placeholder]="'maintenance_parts_edit_form_unitOfMeasure_placeholder' | translate"
+                interface="popover">
+                @for (unit of unitOfMeasures; track unit.id) {
+                  <ion-select-option [value]="unit.id">
+                    {{ unit.name }}
+                  </ion-select-option>
+                }
+              </ion-select>
+              @if (form.get('unitOfMeasure')?.invalid && form.get('unitOfMeasure')?.touched) {
+                <div class="error-message">
+                  <ion-icon name="alert-circle-outline"></ion-icon>
+                  {{ getFieldError('unitOfMeasure') }}
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Costo Unitario -->
+          <div class="field-group" [class.has-error]="form.get('cost')?.invalid && form.get('cost')?.touched">
+            <label class="field-label">
+              <ion-icon name="cash-outline"></ion-icon>
+              {{ 'maintenance_parts_edit_form_cost_label' | translate }} *
+            </label>
+            <ion-input 
+              formControlName="cost" 
+              type="number"
+              [placeholder]="'maintenance_parts_edit_form_cost_placeholder' | translate">
+            </ion-input>
+            @if (form.get('cost')?.invalid && form.get('cost')?.touched) {
+              <div class="error-message">
+                <ion-icon name="alert-circle-outline"></ion-icon>
+                {{ getFieldError('cost') }}
+              </div>
+            }
+          </div>
+
+          <!-- Costo Total (Read-only) -->
+          <div class="field-group">
+            <label class="field-label">
+              <ion-icon name="calculator-outline"></ion-icon>
+              {{ 'maintenance_parts_edit_form_totalCost_label' | translate }}
+            </label>
+            <ion-input 
+              [value]="calculateTotalCost() | number:'1.2-2'" 
+              readonly="true"
+              disabled="true">
+            </ion-input>
+            <div class="field-hint">
+              {{ 'maintenance_parts_edit_form_totalCost_hint' | translate }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Loading Spinner -->
+    @if (loading || loadingCatalogs) {
+      <div class="loading-overlay">
+        <div class="loading-content">
+          <ion-spinner name="crescent"></ion-spinner>
+          <p>{{ loading ? ('maintenance_parts_edit_saving' | translate) : ('maintenance_parts_edit_loadingData' | translate) }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</ion-content>
+
+<!-- ✅ FOOTER PROFESIONAL -->
+<app-footer
+  [showSaveButton]="true"
+  [saveButtonText]="'common.save'"
+  [saveButtonDisabled]="!form.valid || loading"
+  [saveButtonLoading]="loading"
+  [customBackRoute]="maintenanceHeaderId ? '/maintenance/part/list/' + maintenanceHeaderId : '/maintenance/list'"
+  (onSave)="updatePart()"
+  (onBack)="cancelForm()">
+</app-footer>
+

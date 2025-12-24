@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { WorkShopsService } from '../../services/work-shops.service';
+import { WorkshopService } from '../../../../utils/worksShop.service';
 import { AlertService } from '../../../../utils/alert.service';
 import { WorkShop } from '../../interfaces/work-shop.interface';
 
@@ -42,7 +42,7 @@ import { WorkShop } from '../../interfaces/work-shop.interface';
               <ion-card-title>{{ workShop.name }}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <p *ngIf="workShop.note">{{ workShop.note }}</p>
+              <!-- Notes section removed as WorkshopGetRequest interface doesn't include note property -->
             </ion-card-content>
           </ion-card>
 
@@ -112,6 +112,10 @@ import { WorkShop } from '../../interfaces/work-shop.interface';
     IonicModule,
     TranslateModule
   ],
+  providers: [
+    WorkshopService,
+    AlertService
+  ],
   standalone: true
 })
 export class WorkShopsDetailComponent implements OnInit {
@@ -121,7 +125,7 @@ export class WorkShopsDetailComponent implements OnInit {
   workShopId: string = '';
 
   constructor(
-    private workShopsService: WorkShopsService,
+    private workshopService: WorkshopService,
     private alertService: AlertService,
     private router: Router,
     private route: ActivatedRoute
@@ -136,8 +140,8 @@ export class WorkShopsDetailComponent implements OnInit {
     this.loading = true;
     this.errorMessage = '';
 
-    this.workShopsService.getWorkShopById(this.workShopId).subscribe({
-      next: (response) => {
+    this.workshopService.getByIdWorksShop(this.workShopId).subscribe({
+      next: (response: any) => {
         this.loading = false;
         if (response.success) {
           this.workShop = response.data;
@@ -145,7 +149,7 @@ export class WorkShopsDetailComponent implements OnInit {
           this.errorMessage = response.message || 'Failed to load workshop';
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         this.loading = false;
         this.errorMessage = 'An error occurred while loading the workshop';
         console.error('Error loading workshop:', error);
@@ -167,8 +171,8 @@ export class WorkShopsDetailComponent implements OnInit {
 
     if (confirmed) {
       this.loading = true;
-      this.workShopsService.deleteWorkShop(this.workShopId).subscribe({
-        next: async (response) => {
+      this.workshopService.deleteWorksShop(this.workShopId).subscribe({
+        next: async (response: any) => {
           this.loading = false;
           if (response.success) {
             await this.alertService.showSuccess('Workshop deleted successfully!');
@@ -177,7 +181,7 @@ export class WorkShopsDetailComponent implements OnInit {
             await this.alertService.showError(response.message || 'Failed to delete workshop');
           }
         },
-        error: async (error) => {
+        error: async (error: any) => {
           this.loading = false;
           await this.alertService.showError('An error occurred while deleting the workshop');
           console.error('Error deleting workshop:', error);

@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="header-title">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <span>{{ 'dashboardStats_header_title' | translate }}</span>
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refreshDashboard()">
+        <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="dashboard-container">
+
+    <!-- ========== ENCABEZADO ========== -->
+    <div class="dashboard-header">
+      <div class="welcome-section">
+        <h1>{{ 'dashboardStats_welcome_title' | translate }}</h1>
+        <p class="subtitle">{{ 'dashboardStats_welcome_subtitle' | translate }}</p>
+      </div>
+    </div>
+
+    <!-- ========== TARJETAS DE RESUMEN ========== -->
+    <div class="summary-cards">
+      
+      <!-- Card 1: Total de Mantenimientos -->
+      <div class="summary-card">
+        <div class="card-icon maintenance-icon">
+          <ion-icon name="construct-outline"></ion-icon>
+        </div>
+        <div class="card-content">
+          <div class="card-value">{{ formatNumber(totalMaintenances) }}</div>
+          <div class="card-label">{{ 'dashboardStats_summary_totalMaintenances' | translate }}</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Costo Total -->
+      <div class="summary-card">
+        <div class="card-icon cost-icon">
+          <ion-icon name="cash-outline"></ion-icon>
+        </div>
+        <div class="card-content">
+          <div class="card-value">${{ formatNumber(totalCost) }}</div>
+          <div class="card-label">{{ 'dashboardStats_summary_totalCost' | translate }}</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Última Actualización -->
+      <div class="summary-card">
+        <div class="card-icon update-icon">
+          <ion-icon name="time-outline"></ion-icon>
+        </div>
+        <div class="card-content">
+          <div class="card-value">{{ lastUpdate | date:'short' }}</div>
+          <div class="card-label">{{ 'dashboardStats_summary_lastUpdate' | translate }}</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========== GRÁFICAS ========== -->
+    <div class="charts-container">
+
+      <!-- Gráfica 1: Tipos de Mantenimiento -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            <h3>{{ 'dashboardStats_charts_maintenanceTypes_title' | translate }}</h3>
+          </div>
+          <div class="chart-subtitle">{{ 'dashboardStats_charts_maintenanceTypes_subtitle' | translate }}</div>
+        </div>
+        <div class="chart-body">
+          @if (maintenanceChartData && maintenanceChartData.datasets) {
+            <canvas
+              baseChart
+              [data]="maintenanceChartData"
+              [type]="maintenanceChartType"
+              [options]="maintenanceChartOptions">
+            </canvas>
+          } @else {
+            <div class="chart-loading">
+              <ion-spinner name="crescent"></ion-spinner>
+              <p>{{ 'dashboardStats_loading' | translate }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Gráfica 2: Costos por Categoría -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">
+            <ion-icon name="bar-chart-outline"></ion-icon>
+            <h3>{{ 'dashboardStats_charts_costsByCategory_title' | translate }}</h3>
+          </div>
+          <div class="chart-subtitle">{{ 'dashboardStats_charts_costsByCategory_subtitle' | translate }}</div>
+        </div>
+        <div class="chart-body">
+          @if (costChartData && costChartData.datasets) {
+            <canvas
+              baseChart
+              [data]="costChartData"
+              [type]="costChartType"
+              [options]="costChartOptions">
+            </canvas>
+          } @else {
+            <div class="chart-loading">
+              <ion-spinner name="crescent"></ion-spinner>
+              <p>{{ 'dashboardStats_loading' | translate }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========== INFORMACIÓN ADICIONAL ========== -->
+    <div class="info-section">
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="information-circle-outline"></ion-icon>
+            {{ 'dashboardStats_info_title' | translate }}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="info-text">
+            <ion-icon name="bulb-outline"></ion-icon>
+            {{ 'dashboardStats_info_realTimeData' | translate }}
+          </p>
+          <p class="info-text">
+            <ion-icon name="refresh-outline"></ion-icon>
+            {{ 'dashboardStats_info_refreshData' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  </div>
+</ion-content>
+
+

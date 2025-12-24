@@ -79,92 +79,92 @@ export class SettingsComponent {
   private initializeSettingsCategories() {
     this.settingsCategories = [
       {
-        titleKey: 'settings.categories.account',
+        titleKey: 'settings_categories_account',
         icon: 'personCircle',
         items: [
           { 
-            titleKey: 'settings.account.deleteAccount.title', 
+            titleKey: 'settings_account_deleteAccount_title', 
             icon: 'trash', 
             route: '/settings/account/delete', 
-            descriptionKey: 'settings.account.deleteAccount.description' 
+            descriptionKey: 'settings_account_deleteAccount_description' 
           },
           { 
-            titleKey: 'settings.account.logout.title', 
+            titleKey: 'settings_account_logout_title', 
             icon: 'logOut', 
             route: '/settings/account/logout', 
-            descriptionKey: 'settings.account.logout.description' 
+            descriptionKey: 'settings_account_logout_description' 
           },
           { 
-            titleKey: 'settings.account.changePassword.title', 
+            titleKey: 'settings_account_changePassword_title', 
             icon: 'key', 
             route: '/settings/account/password', 
-            descriptionKey: 'settings.account.changePassword.description' 
+            descriptionKey: 'settings_account_changePassword_description' 
           },
           { 
-            titleKey: 'settings.account.updateProfile.title', 
+            titleKey: 'settings_account_updateProfile_title', 
             icon: 'mail', 
             route: '/settings/account/profile', 
-            descriptionKey: 'settings.account.updateProfile.description' 
+            descriptionKey: 'settings_account_updateProfile_description' 
           }
         ]
       },
       {
-        titleKey: 'settings.categories.privacy',
+        titleKey: 'settings_categories_privacy',
         icon: 'shieldCheckmark',
         items: [
           { 
-            titleKey: 'settings.privacy.policy.title', 
+            titleKey: 'settings_privacy_policy_title', 
             icon: 'documentText', 
             route: '/settings/privacy/policy', 
-            descriptionKey: 'settings.privacy.policy.description' 
+            descriptionKey: 'settings_privacy_policy_description' 
           },
           { 
-            titleKey: 'settings.privacy.consent.title', 
+            titleKey: 'settings_privacy_consent_title', 
             icon: 'eyeOff', 
             route: '/settings/privacy/consent', 
-            descriptionKey: 'settings.privacy.consent.description' 
+            descriptionKey: 'settings_privacy_consent_description' 
           },
           { 
-            titleKey: 'settings.privacy.tracking.title', 
+            titleKey: 'settings_privacy_tracking_title', 
             icon: 'analytics', 
             route: '/settings/privacy/tracking', 
-            descriptionKey: 'settings.privacy.tracking.description' 
+            descriptionKey: 'settings_privacy_tracking_description' 
           }
         ]
       },
       {
-        titleKey: 'settings.categories.permissions',
+        titleKey: 'settings_categories_permissions',
         icon: 'location',
         items: [
           { 
-            titleKey: 'settings.permissions.location.title', 
+            titleKey: 'settings_permissions_location_title', 
             icon: 'location', 
             route: '/settings/permissions/location', 
-            descriptionKey: 'settings.permissions.location.description' 
+            descriptionKey: 'settings_permissions_location_description' 
           },
           { 
-            titleKey: 'settings.permissions.notifications.title', 
+            titleKey: 'settings_permissions_notifications_title', 
             icon: 'notifications', 
             route: '/settings/permissions/notifications', 
-            descriptionKey: 'settings.permissions.notifications.description' 
+            descriptionKey: 'settings_permissions_notifications_description' 
           },
           { 
-            titleKey: 'settings.permissions.twoFactor.title', 
+            titleKey: 'settings_permissions_twoFactor_title', 
             icon: 'lockClosed', 
             route: '/settings/permissions/2fa', 
-            descriptionKey: 'settings.permissions.twoFactor.description' 
+            descriptionKey: 'settings_permissions_twoFactor_description' 
           }
         ]
       },
       {
-        titleKey: 'settings.categories.history',
+        titleKey: 'settings_categories_history',
         icon: 'time',
         items: [
           { 
-            titleKey: 'settings.activityHistory.title', 
+            titleKey: 'settings_activityHistory_title', 
             icon: 'list', 
             route: '/settings/history/activity', 
-            descriptionKey: 'settings.activityHistory.description' 
+            descriptionKey: 'settings_activityHistory_description' 
           }
         ]
       }

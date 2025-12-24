@@ -1,0 +1,557 @@
+// Workshops Near Me Component Styles
+
+// Map Container
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+// Map Search Container
+.map-search-container {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: calc(100% - 32px);
+  max-width: 500px;
+  
+  .search-box {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 8px;
+    transition: box-shadow 0.3s ease;
+    
+    &:focus-within {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    .search-icon {
+      font-size: 20px;
+      color: #666;
+      min-width: 20px;
+    }
+    
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      padding: 8px 4px;
+      background: transparent;
+      color: #333;
+      
+      &::placeholder {
+        color: #999;
+      }
+      
+      &:focus {
+        outline: none;
+      }
+    }
+    
+    .clear-search-btn {
+      --padding-start: 4px;
+      --padding-end: 4px;
+      margin: 0;
+      height: 32px;
+      
+      ion-icon {
+        font-size: 20px;
+        color: #999;
+      }
+      
+      &:hover ion-icon {
+        color: #666;
+      }
+    }
+  }
+}
+
+// Google Places Autocomplete Styling
+.pac-container {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-top: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  .pac-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-top: 1px solid #e0e0e0;
+    
+    &:first-child {
+      border-top: none;
+    }
+    
+    &:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .pac-icon {
+      margin-right: 12px;
+    }
+    
+    .pac-item-query {
+      font-size: 15px;
+      color: #333;
+      font-weight: 500;
+    }
+  }
+}
+
+// Mock Map Styles
+.mock-map {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  
+  .mock-map-center {
+    text-align: center;
+    color: white;
+    
+    .location-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    
+    p {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0 20px;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+// Info Panel
+.info-panel {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  
+  .info-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--ion-color-primary);
+    
+    .info-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+// Workshops List Container
+.workshops-list-container {
+  padding: 16px;
+  
+  .list-header {
+    margin-bottom: 16px;
+    
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ion-color-dark);
+      margin: 0;
+      
+      ion-icon {
+        font-size: 24px;
+        color: var(--ion-color-primary);
+      }
+    }
+  }
+  
+  .workshops-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+// Workshop Card
+.workshop-card {
+  margin: 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  ion-card-header {
+    padding-bottom: 8px;
+    
+    .card-header-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      
+      .workshop-icon {
+        font-size: 32px;
+        color: var(--ion-color-primary);
+      }
+      
+      .header-text {
+        flex: 1;
+        
+        ion-card-title {
+          font-size: 18px;
+          font-weight: 700;
+          margin-bottom: 4px;
+        }
+        
+        ion-card-subtitle {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 14px;
+          color: var(--ion-color-medium);
+          
+          ion-icon {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  
+  ion-card-content {
+    padding-top: 8px;
+  }
+}
+
+// Workshop Info
+.workshop-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    ion-icon {
+      font-size: 20px;
+      min-width: 20px;
+    }
+    
+    span {
+      font-size: 14px;
+      color: var(--ion-color-dark);
+    }
+  }
+}
+
+// Action Buttons
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  
+  ion-button {
+    flex: 1;
+    min-width: 120px;
+    --border-radius: 8px;
+    
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+// Workshop Details Modal
+.workshop-details-modal {
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ion-color-light);
+    
+    .modal-icon {
+      font-size: 48px;
+      color: var(--ion-color-primary);
+    }
+    
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ion-color-dark);
+      margin: 0;
+    }
+  }
+  
+  .details-list {
+    margin-bottom: 24px;
+    
+    ion-item {
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      
+      ion-icon {
+        font-size: 24px;
+        margin-right: 16px;
+      }
+      
+      ion-label {
+        h3 {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--ion-color-medium);
+          margin-bottom: 4px;
+        }
+        
+        p {
+          font-size: 16px;
+          color: var(--ion-color-dark);
+        }
+      }
+    }
+  }
+  
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+    ion-button {
+      --border-radius: 12px;
+      font-weight: 600;
+      
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+// Loading Styles
+.uniform-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    color: var(--ion-color-primary);
+  }
+  
+  .loading-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ion-color-medium);
+    
+    .loading-icon {
+      font-size: 24px;
+      animation: spin 2s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Alert Styles
+.uniform-alert {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  
+  &.danger {
+    border-left: 4px solid var(--ion-color-danger);
+  }
+  
+  .alert-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    
+    .alert-icon {
+      font-size: 28px;
+      color: var(--ion-color-danger);
+    }
+    
+    h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ion-color-danger);
+      margin: 0;
+    }
+  }
+  
+  .alert-message {
+    font-size: 14px;
+    color: var(--ion-color-dark);
+    margin-bottom: 16px;
+  }
+  
+  .retry-button {
+    --border-radius: 8px;
+  }
+}
+
+// Empty State
+.uniform-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  
+  .empty-icon {
+    ion-icon {
+      font-size: 100px;
+      color: var(--ion-color-medium);
+      opacity: 0.5;
+    }
+  }
+  
+  .empty-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ion-color-dark);
+    margin: 20px 0 12px;
+  }
+  
+  .empty-description {
+    font-size: 16px;
+    color: var(--ion-color-medium);
+    margin-bottom: 24px;
+    max-width: 400px;
+  }
+  
+  ion-button {
+    --border-radius: 12px;
+  }
+}
+
+// Header Styles
+.uniform-header {
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: white;
+    
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
+      .header-icon {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (min-width: 768px) {
+  .map-wrapper {
+    height: 500px;
+  }
+  
+  .workshops-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .map-wrapper {
+    height: 600px;
+  }
+  
+  .workshops-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Google Maps Info Window Styles
+.workshop-info-window {
+  padding: 8px;
+  min-width: 200px;
+  
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--ion-color-primary, #3880ff);
+  }
+  
+  p {
+    font-size: 13px;
+    margin: 4px 0;
+    color: #333;
+    
+    strong {
+      font-weight: 600;
+      color: #666;
+    }
+  }
+}
+

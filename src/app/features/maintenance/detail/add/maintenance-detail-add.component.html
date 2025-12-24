@@ -3,11 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="onCancel()"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'maintenance.detail.add.title' | translate }}</ion-title>
+    <ion-title>{{ 'maintenance_detail_add_title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onSubmit()" [disabled]="!maintenanceDetailForm.valid || loading" fill="solid" color="primary">
         <ion-icon name="checkmark" slot="start"></ion-icon>
-        {{ 'common.save' | translate }}
+        {{ 'common_save' | translate }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -20,14 +20,14 @@
       <!-- Header Section -->
       <div class="form-header">
         <ion-icon name="construct" class="header-icon"></ion-icon>
-        <h2>{{ 'maintenance.detail.add.title' | translate }}</h2>
-        <p>{{ 'maintenance.detail.add.form.description' | translate }}</p>
+        <h2>{{ 'maintenance_detail_add_title' | translate }}</h2>
+        <p>{{ 'maintenance_detail_add_form_description' | translate }}</p>
       </div>
 
       <!-- Loading Spinner -->
       <div *ngIf="loading" class="loading-container">
         <ion-spinner name="crescent"></ion-spinner>
-        <p>{{ 'common.loading' | translate }}</p>
+        <p>{{ 'common_loading' | translate }}</p>
       </div>
 
       <!-- Error Message -->
@@ -41,10 +41,10 @@
         
         <!-- Name Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.add.form.name' | translate }} *</label>
+          <label class="field-label">{{ 'maintenance_detail_add_form_name' | translate }} *</label>
           <ion-input 
             formControlName="name" 
-            [placeholder]="'maintenance.detail.add.form.name.placeholder' | translate"
+            [placeholder]="'maintenance_detail_add_form_name_placeholder' | translate"
             class="modern-input"
             fill="outline">
           </ion-input>
@@ -57,10 +57,10 @@
 
         <!-- Description Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.add.form.descriptionLabel' | translate }}</label>
+          <label class="field-label">{{ 'maintenance_detail_add_form_descriptionLabel' | translate }}</label>
           <ion-textarea 
             formControlName="description" 
-            [placeholder]="'maintenance.detail.add.form.description.placeholder' | translate"
+            [placeholder]="'maintenance_detail_add_form_description_placeholder' | translate"
             class="modern-textarea"
             fill="outline"
             rows="3">
@@ -69,10 +69,10 @@
 
         <!-- Diagnosis Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.add.form.diagnosis' | translate }} *</label>
+          <label class="field-label">{{ 'maintenance_detail_add_form_diagnosis' | translate }} *</label>
           <ion-textarea 
             formControlName="diagnosis" 
-            [placeholder]="'maintenance.detail.add.form.diagnosis.placeholder' | translate"
+            [placeholder]="'maintenance_detail_add_form_diagnosis_placeholder' | translate"
             class="modern-textarea"
             fill="outline"
             rows="3">
@@ -88,11 +88,11 @@
         <div class="row">
           <div class="col-6">
             <div class="field-group">
-              <label class="field-label">{{ 'maintenance.detail.add.form.mileage' | translate }} *</label>
+              <label class="field-label">{{ 'maintenance_detail_add_form_mileage' | translate }} *</label>
               <ion-input 
                 formControlName="mileage" 
                 type="number"
-                [placeholder]="'maintenance.detail.add.form.mileage.placeholder' | translate"
+                [placeholder]="'maintenance_detail_add_form_mileage_placeholder' | translate"
                 class="modern-input"
                 fill="outline">
               </ion-input>
@@ -105,12 +105,12 @@
           </div>
           <div class="col-6">
             <div class="field-group">
-              <label class="field-label">{{ 'maintenance.detail.add.form.cost' | translate }} *</label>
+              <label class="field-label">{{ 'maintenance_detail_add_form_cost' | translate }} *</label>
               <ion-input 
                 formControlName="cost" 
                 type="number"
                 step="0.01"
-                [placeholder]="'maintenance.detail.add.form.cost.placeholder' | translate"
+                [placeholder]="'maintenance_detail_add_form_cost_placeholder' | translate"
                 class="modern-input"
                 fill="outline">
               </ion-input>
@@ -125,10 +125,10 @@
 
         <!-- Technician Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.add.form.technician' | translate }}</label>
+          <label class="field-label">{{ 'maintenance_detail_add_form_technician' | translate }}</label>
           <ion-input 
             formControlName="Technician" 
-            [placeholder]="'maintenance.detail.add.form.technician.placeholder' | translate"
+            [placeholder]="'maintenance_detail_add_form_technician_placeholder' | translate"
             class="modern-input"
             fill="outline">
           </ion-input>
@@ -136,10 +136,10 @@
 
         <!-- Maintenance Type Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.add.form.maintenanceType' | translate }} *</label>
+          <label class="field-label">{{ 'maintenance_detail_add_form_maintenanceType' | translate }} *</label>
           <ion-select 
             formControlName="maintenanceTypeId"
-            [placeholder]="'maintenance.detail.add.form.maintenanceType.placeholder' | translate"
+            [placeholder]="'maintenance_detail_add_form_maintenanceType_placeholder' | translate"
             class="modern-select"
             fill="outline">
             @for (type of maintenanceTypes; track type.code) {
@@ -157,7 +157,7 @@
 
         <!-- Next Maintenance Date Field -->
         <div class="field-group">
-          <label class="field-label">{{ 'maintenance.detail.add.form.nextMaintenanceDate' | translate }}</label>
+          <label class="field-label">{{ 'maintenance_detail_add_form_nextMaintenanceDate' | translate }}</label>
           <ion-input 
             formControlName="nextMaintenanceDate" 
             type="date"
@@ -166,34 +166,87 @@
           </ion-input>
         </div>
 
-        <!-- Maintenance Parts Section -->
-        <div class="field-group">
+        <!-- Maintenance Parts & Services Section -->
+        <div class="section-card">
           <div class="section-header">
             <label class="field-label">
-              <ion-icon name="construct" class="field-icon"></ion-icon>
-              {{ 'maintenance.parts.title' | translate }}
+              <ion-icon name="build" class="field-icon"></ion-icon>
+              {{ 'maintenance_parts_title' | translate }}
             </label>
-            <ion-button 
-              (click)="toggleAddPartForm()" 
-              fill="solid" 
-              color="primary" 
-              size="small"
-              class="add-part-btn">
-              <ion-icon name="add" slot="icon-only"></ion-icon>
-            </ion-button>
+            <div class="header-actions">
+              <ion-button 
+                (click)="toggleAddPartForm()" 
+                fill="solid" 
+                color="primary" 
+                size="small"
+                class="add-part-btn">
+                <ion-icon name="add" slot="start"></ion-icon>
+                Agregar
+              </ion-button>
+              <ion-button 
+                (click)="openBasicMaintenanceModal()" 
+                fill="solid" 
+                color="secondary" 
+                size="small"
+                class="add-basic-maintenance-btn">
+                <ion-icon name="checkbox-outline" slot="start"></ion-icon>
+                Servicios básicos
+              </ion-button>
+            </div>
           </div>
+
+          <!-- Basic Maintenances List -->
+          @if (basicMaintenancesSelected.length > 0) {
+            <div class="basic-maintenances-list">
+              <label class="field-label">
+                <ion-icon name="checkmark-done-circle" class="label-icon"></ion-icon>
+                Servicios seleccionados ({{ basicMaintenancesSelected.length }})
+              </label>
+              <div class="maintenance-items-grid">
+                @for (m of basicMaintenancesSelected; let i = $index; track m.id) {
+                  <div class="basic-maintenance-item">
+                    <div class="item-content">
+                      <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+                      <span class="item-name">{{ m.name | translate }}</span>
+                    </div>
+                    <ion-button 
+                      fill="clear" 
+                      color="danger" 
+                      size="small" 
+                      class="remove-btn"
+                      (click)="removeBasicMaintenance(i)">
+                      <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+                    </ion-button>
+                  </div>
+                }
+              </div>
+            </div>
+          }
 
           <!-- Parts List -->
           @if (maintenanceParts.length > 0) {
             <div class="parts-list">
+              <label class="field-label parts-label">
+                <ion-icon name="cube" class="label-icon"></ion-icon>
+                Repuestos agregados ({{ maintenanceParts.length }})
+              </label>
               @for (part of maintenanceParts; track part.id; let i = $index) {
                 <div class="part-item">
                   <div class="part-info">
                     <div class="part-name">{{ part.name }}</div>
                     <div class="part-details">
-                      <span class="part-quantity">{{ part.quantity }} {{ getUnitOfMeasureName(part.unitOfMeasure) }}</span>
-                      <span class="part-cost">{{ part.cost | currency:'USD':'symbol':'1.2-2' }} c/u</span>
-                      <span class="part-total">{{ part.totalCost | currency:'USD':'symbol':'1.2-2' }}</span>
+                      <span class="part-quantity">
+                        <ion-icon name="layers-outline"></ion-icon>
+                        {{ part.quantity }} {{ getUnitOfMeasureName(part.unitOfMeasure) }}
+                      </span>
+                      <span class="part-cost">
+                        <ion-icon name="pricetag-outline"></ion-icon>
+                        {{ part.cost | currency:'USD':'symbol':'1.2-2' }} c/u
+                      </span>
+                      <span class="part-total">
+                        <ion-icon name="wallet-outline"></ion-icon>
+                        {{ part.totalCost | currency:'USD':'symbol':'1.2-2' }}
+                      </span>
                     </div>
                   </div>
                   <ion-button 
@@ -202,15 +255,19 @@
                     color="danger" 
                     size="small"
                     class="remove-part-btn">
-                    <ion-icon name="trash" slot="icon-only"></ion-icon>
+                    <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
                   </ion-button>
                 </div>
               }
             </div>
-          } @else {
+          }
+
+          <!-- Empty State -->
+          @if (maintenanceParts.length === 0 && basicMaintenancesSelected.length === 0) {
             <div class="empty-parts">
               <ion-icon name="construct-outline" class="empty-icon"></ion-icon>
-              <p>{{ 'maintenance.parts.empty' | translate }}</p>
+              <p class="empty-title">{{ 'maintenance_parts_empty' | translate }}</p>
+              <p class="empty-subtitle">Agrega repuestos o selecciona servicios básicos</p>
             </div>
           }
         </div>
@@ -224,39 +281,19 @@
       <div class="loading-overlay">
         <div class="loading-content">
           <ion-spinner name="crescent"></ion-spinner>
-          <p>{{ 'common.loading' | translate }}</p>
+          <p>{{ 'common_loading' | translate }}</p>
         </div>
       </div>
     }
   </div>
 </ion-content>
 
-    <!-- Form Footer -->
-    <ion-footer class="form-footer">
-      <ion-toolbar>
-        <div class="footer-buttons">
-          <ion-button 
-            fill="solid" 
-            class="footer-btn cancel-btn"
-            (click)="onCancel()">
-            <ion-icon name="close" slot="icon-only"></ion-icon>
-          </ion-button>
-          
-          <ion-button 
-            type="submit"
-            fill="solid" 
-            class="footer-btn save-btn"
-            [disabled]="maintenanceDetailForm.invalid || loading"
-            (click)="onSubmit()">
-            <ion-icon name="checkmark" slot="icon-only"></ion-icon>
-          </ion-button>
-          
-          <ion-button 
-            fill="solid" 
-            class="footer-btn exit-btn"
-            (click)="onCancel()">
-            <ion-icon name="exit" slot="icon-only"></ion-icon>
-          </ion-button>
-        </div>
-      </ion-toolbar>
-    </ion-footer>
+<!-- ✅ FOOTER CON APP-FOOTER -->
+<app-footer
+  [showSaveButton]="true"
+  [saveButtonText]="'common.save'"
+  [saveButtonDisabled]="maintenanceDetailForm.invalid"
+  [saveButtonLoading]="loading"
+  (onSave)="onSubmit()"
+  (onBack)="onCancel()">
+</app-footer>

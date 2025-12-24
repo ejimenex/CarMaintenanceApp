@@ -1,130 +1,104 @@
 <ion-app>
-  <!-- Header Principal con Botón del Menú -->
+  <ion-menu id="main-menu" menuId="main-menu" contentId="main-content" type="overlay" class="simple-menu">
+    <ion-header class="menu-header-bar">
+      <ion-toolbar color="primary">
+        <ion-title>CarClinic</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-
-  <ion-menu id="main-menu" menuId="main-menu" contentId="main-content" type="overlay" class="modern-menu">
     <ion-content class="menu-content">
-      
-      <!-- Menu Header -->
-      <div class="menu-header">
-        <div class="app-logo">
-          <ion-icon name="settings" class="logo-icon"></ion-icon>
-          <h2>{{ 'dashboard.menu.header.title' | translate }}</h2>
+      <!-- User Info Section -->
+      <div class="user-section">
+        <div class="user-avatar">
+          <ion-icon name="person-circle"></ion-icon>
         </div>
-        <p class="app-subtitle">{{ 'dashboard.menu.header.subtitle' | translate }}</p>
-        <div class="user-info">
-          <ion-icon name="person-circle" class="user-icon"></ion-icon>
-          <span class="user-name">{{ userName }}</span>
+        <div class="user-details">
+          <h3 class="user-name">{{ userName }}</h3>
+          <p class="user-subtitle">{{ 'dashboard_menu_header_subtitle' | translate }}</p>
         </div>
-        
-        <!-- Notification Indicator -->
-        <div *ngIf="unreadNotifications > 0" class="notification-section">
-          <ion-item 
-            lines="none" 
-            class="notification-item" 
-            (click)="navigateToNotifications()">
-            <ion-icon 
-              [name]="unreadNotifications > 0 ? 'notifications' : 'notifications-outline'" 
-              slot="start" 
-              class="notification-icon">
-            </ion-icon>
-            <ion-label class="notification-label">
-              {{ 'dashboard.menu.notifications.title' | translate }}
-            </ion-label>
-            @if (unreadNotifications > 0) {
-              <ion-badge color="danger" class="notification-badge">
-                {{ unreadNotifications }}
-              </ion-badge>
-            }
-          </ion-item>
-        </div>
-        
-        <!-- Login Stats -->
-        @if (loginStats) {
-          <div class="login-stats">
-            <div class="stat-item">
-              <ion-icon name="time" class="stat-icon"></ion-icon>
-              <span class="stat-label">{{ 'dashboard.menu.stats.lastAccess' | translate }}</span>
-              <span class="stat-value">{{ formatLastLogin(loginStats.lastLogin) }}</span>
-            </div>
-            <div class="stat-item">
-              <ion-icon name="log-in" class="stat-icon"></ion-icon>
-              <span class="stat-label">{{ 'dashboard.menu.stats.totalAccess' | translate }}</span>
-              <span class="stat-value">{{ loginStats.quantity }}</span>
-            </div>
-          </div>
-        }
-        
-        @if (isLoadingStats) {
-          <div class="loading-stats">
-            <ion-spinner name="crescent" class="stats-spinner"></ion-spinner>
-            <span>{{ 'dashboard.menu.stats.loading' | translate }}</span>
-          </div>
-        }
       </div>
 
-      <!-- Navigation Menu -->
-      <div class="menu-navigation">
-        <h3 class="menu-section-title">{{ 'dashboard.menu.navigation.title' | translate }}</h3>
-        
-        @for (p of appPages; track p; let i = $index) {
+      <!-- Notifications Badge -->
+      @if (unreadNotifications > 0) {
+        <div class="notification-alert" (click)="navigateToNotifications()">
+          <ion-icon name="notifications" class="notif-icon"></ion-icon>
+          <span class="notif-text">{{ 'dashboard_menu_notifications_title' | translate }}</span>
+          <ion-badge color="danger">{{ unreadNotifications }}</ion-badge>
+        </div>
+      }
+
+      <!-- Login Stats -->
+      @if (loginStats && !isLoadingStats) {
+        <div class="stats-section">
+          <div class="stat-row">
+            <ion-icon name="time"></ion-icon>
+            <span class="stat-label">{{ 'dashboard_menu_stats_lastAccess' | translate }}:</span>
+            <span class="stat-value">{{ formatLastLogin(loginStats.lastLogin) }}</span>
+          </div>
+          <div class="stat-row">
+            <ion-icon name="log-in"></ion-icon>
+            <span class="stat-label">{{ 'dashboard_menu_stats_totalAccess' | translate }}:</span>
+            <span class="stat-value">{{ loginStats.quantity }}</span>
+          </div>
+        </div>
+      }
+
+      @if (isLoadingStats) {
+        <div class="stats-loading">
+          <ion-spinner name="dots"></ion-spinner>
+          <span>{{ 'dashboard_menu_stats_loading' | translate }}</span>
+        </div>
+      }
+
+      <!-- Divider -->
+      <div class="menu-divider"></div>
+
+      <!-- Main Navigation List -->
+      <ion-list class="menu-list">
+        @for (page of menuPages; track page.url) {
           <ion-menu-toggle auto-hide="false">
             <ion-item 
-              (click)="navigateTo(p.url)"
+              (click)="navigateTo(page.url)"
               lines="none" 
               detail="false" 
-              class="menu-item">
+              class="menu-item"
+              button>
               <ion-icon 
-                aria-hidden="true" 
                 slot="start" 
-                [name]="p.icon"
+                [name]="page.icon"
                 class="menu-icon">
               </ion-icon>
-              <ion-label class="menu-label">{{ p.titleKey | translate }}</ion-label>
+              <ion-label>{{ page.titleKey | translate }}</ion-label>
+              @if (page.badge && page.badgeCount && page.badgeCount > 0) {
+                <ion-badge color="danger" slot="end">{{ page.badgeCount }}</ion-badge>
+              }
             </ion-item>
           </ion-menu-toggle>
         }
+
+        <!-- Logout Option -->
+        <ion-menu-toggle auto-hide="false">
+          <ion-item 
+            (click)="logout()"
+            lines="none" 
+            detail="false" 
+            class="menu-item logout-item"
+            button>
+            <ion-icon 
+              slot="start" 
+              name="log-out"
+              class="menu-icon">
+            </ion-icon>
+            <ion-label>{{ 'dashboard_menu_footer_logout' | translate }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <!-- PRO Banner -->
+      <div class="pro-banner" (click)="showProFeatures()">
+        <div class="pro-badge">PRO</div>
+        <div class="pro-text">{{ 'menu_go_pro' | translate }}</div>
       </div>
-
-      <!-- Quick Actions -->
-      <div class="menu-actions">
-        <h3 class="menu-section-title">{{ 'dashboard.menu.quickActions.title' | translate }}</h3>
-        
-        <ion-item lines="none" class="menu-item action-item" (click)="navigateTo('/vehicles/add')">
-          <ion-icon name="add-circle" slot="start" class="menu-icon"></ion-icon>
-          <ion-label class="menu-label">{{ 'dashboard.menu.quickActions.addVehicle' | translate }}</ion-label>
-        </ion-item>
-        
-        <ion-item lines="none" class="menu-item action-item" (click)="navigateTo('/workshops/add')">
-          <ion-icon name="construct" slot="start" class="menu-icon"></ion-icon>
-          <ion-label class="menu-label">{{ 'dashboard.menu.quickActions.addWorkshop' | translate }}</ion-label>
-        </ion-item>
-        
-        <ion-item lines="none" class="menu-item action-item" (click)="navigateTo('/maintenance/add')">
-          <ion-icon name="build" slot="start" class="menu-icon"></ion-icon>
-          <ion-label class="menu-label">{{ 'dashboard.menu.quickActions.addMaintenance' | translate }}</ion-label>
-        </ion-item>
-      </div>
-
-      <!-- Menu Footer -->
-      <div class="menu-footer">
-        <ion-item lines="none" class="menu-item footer-item" (click)="navigateTo('/settings')">
-          <ion-icon name="settings" slot="start" class="menu-icon"></ion-icon>
-          <ion-label class="menu-label">{{ 'dashboard.menu.footer.settings' | translate }}</ion-label>
-        </ion-item>
-        
-        <ion-item lines="none" class="menu-item footer-item" (click)="navigateTo('/help')">
-          <ion-icon name="help-circle" slot="start" class="menu-icon"></ion-icon>
-          <ion-label class="menu-label">{{ 'dashboard.menu.footer.helpSupport' | translate }}</ion-label>
-        </ion-item>
-
-        <!-- Logout Button -->
-        <ion-item lines="none" class="menu-item footer-item logout-item" (click)="logout()">
-          <ion-icon name="log-out" slot="start" class="menu-icon logout-icon"></ion-icon>
-          <ion-label class="menu-label">{{ 'dashboard.menu.footer.logout' | translate }}</ion-label>
-        </ion-item>
-      </div>
-
     </ion-content>
   </ion-menu>
   

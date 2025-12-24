@@ -102,7 +102,7 @@ export class WorkShopsListComponent implements OnInit, OnDestroy {
     this.workshopService.getWorksShopPaged(this.currentPage, this.globalSearch).pipe(
       catchError(error => {
         console.error('Error loading workshops:', error);
-        this.errorMessage = this.translateService.instant('workshops.list.error');
+        this.errorMessage = this.translateService.instant('workshops_list_error');
         return of(null);
       }),
       finalize(() => {
@@ -124,7 +124,7 @@ export class WorkShopsListComponent implements OnInit, OnDestroy {
           this.totalPages = response?.datatotalPages || 1;
           this.hasMoreData = this.currentPage < this.totalPages;
         } else {
-          this.errorMessage = response?.message || this.translateService.instant('workshops.list.error');
+          this.errorMessage = response?.message || this.translateService.instant('workshops_list_error');
         }
       }
     });
@@ -172,6 +172,10 @@ export class WorkShopsListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/workshops/add']);
   }
 
+  navigateToNearMe() {
+    this.router.navigate(['/workshops/near-me']);
+  }
+
   async viewWorkshop(id: string) {
     this.closeMenuWithDelay(); // Close the dropdown menu before opening modal
     console.log('viewWorkshop called with id:', id);
@@ -180,7 +184,7 @@ export class WorkShopsListComponent implements OnInit, OnDestroy {
     // Find the workshop data
     const workshop = this.workshops.find(w => w.id === id);
     if (!workshop) {
-      this.alertService.showError(this.translateService.instant('workshops.view.error'));
+      this.alertService.showError(this.translateService.instant('workshops_view_error'));
       return;
     }
 
@@ -236,7 +240,7 @@ export class WorkShopsListComponent implements OnInit, OnDestroy {
     this.workshopService.deleteWorksShop(this.workshopToDelete.id).pipe(
       catchError(error => {
         console.error('Error deleting workshop:', error);
-        this.alertService.showError(this.translateService.instant('workshops.delete.error'));
+        this.alertService.showError(this.translateService.instant('workshops_delete_error'));
         return of(null);
       }),
       finalize(() => {
@@ -247,12 +251,12 @@ export class WorkShopsListComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (response: any) => {
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('workshops.delete.success'));
+          this.alertService.showSuccess(this.translateService.instant('workshops_delete_success'));
           // Remove the deleted workshop from the list
           this.workshops = this.workshops.filter(w => w.id !== this.workshopToDelete?.id);
           this.totalItems--;
         } else {
-          this.alertService.showError(response.message || this.translateService.instant('workshops.delete.error'));
+          this.alertService.showError(response.message || this.translateService.instant('workshops_delete_error'));
         }
       }
     });

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ 'workshops.view.title' | translate }}</ion-title>
+    <ion-title>{{ 'workshops_view_title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon name="close"></ion-icon>
@@ -28,7 +28,7 @@
               <div class="info-item">
                 <ion-icon name="location" class="info-icon"></ion-icon>
                 <div class="info-content">
-                  <h3>{{ 'workshops.form.address.label' | translate }}</h3>
+                  <h3>{{ 'workshops_form_address_label' | translate }}</h3>
                   <p>{{ workshop.address }}</p>
                 </div>
               </div>
@@ -36,7 +36,7 @@
               <div class="info-item">
                 <ion-icon name="call" class="info-icon"></ion-icon>
                 <div class="info-content">
-                  <h3>{{ 'workshops.form.phone.label' | translate }}</h3>
+                  <h3>{{ 'workshops_form_phone_label' | translate }}</h3>
                   <p>{{ workshop.phone }}</p>
                 </div>
               </div>
@@ -55,7 +55,7 @@
           class="action-btn edit-btn"
           (click)="editWorkshop()">
           <ion-icon name="create" slot="start"></ion-icon>
-          {{ 'workshops.actions.edit' | translate }}
+          {{ 'workshops_actions_edit' | translate }}
         </ion-button>
 
         <ion-button 
@@ -65,7 +65,7 @@
           class="action-btn delete-btn"
           (click)="deleteWorkshop()">
           <ion-icon name="trash" slot="start"></ion-icon>
-          {{ 'workshops.actions.delete' | translate }}
+          {{ 'workshops_actions_delete' | translate }}
         </ion-button>
       </div>
     </div>

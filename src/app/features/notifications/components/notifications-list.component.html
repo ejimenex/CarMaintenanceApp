@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'notifications.title' | translate }}</ion-title>
+    <ion-title>{{ 'notifications_title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button 
         fill="clear" 
@@ -27,14 +27,14 @@
         <ion-icon name="notifications" class="stat-icon"></ion-icon>
         <div class="stat-content">
           <h3>{{ notifications.length }}</h3>
-          <p>{{ 'notifications.total' | translate }}</p>
+          <p>{{ 'notifications_total' | translate }}</p>
         </div>
       </div>
       <div class="stat-item">
         <ion-icon name="checkmark-circle" class="stat-icon unread"></ion-icon>
         <div class="stat-content">
           <h3>{{ unreadCount }}</h3>
-          <p>{{ 'notifications.unread' | translate }}</p>
+          <p>{{ 'notifications_unread' | translate }}</p>
         </div>
       </div>
     </div>
@@ -60,8 +60,8 @@
   <!-- Empty State -->
   <div *ngIf="!loading && notifications.length === 0" class="empty-state">
     <ion-icon name="notifications" class="empty-icon"></ion-icon>
-    <h2>{{ 'notifications.empty.title' | translate }}</h2>
-    <p>{{ 'notifications.empty.message' | translate }}</p>
+    <h2>{{ 'notifications_empty_title' | translate }}</h2>
+    <p>{{ 'notifications_empty_message' | translate }}</p>
   </div>
 
   <!-- Notifications List -->
@@ -130,7 +130,7 @@
             class="read-button"
             (click)="acceptNotification(notification); $event.stopPropagation()">
             <ion-icon name="checkmark-circle" slot="start"></ion-icon>
-            {{ 'notifications.markRead' | translate }}
+            {{ 'notifications_markRead' | translate }}
           </ion-button>
           
           <ion-button 
@@ -141,7 +141,7 @@
             class="unread-button"
             (click)="markAsUnread(notification); $event.stopPropagation()">
             <ion-icon name="mail" slot="start"></ion-icon>
-            {{ 'notifications.markUnread' | translate }}
+            {{ 'notifications_markUnread' | translate }}
           </ion-button>
 
           <!-- Delete button -->

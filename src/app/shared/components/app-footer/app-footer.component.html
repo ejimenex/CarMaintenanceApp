@@ -1,0 +1,39 @@
+<ion-footer class="app-footer">
+  <ion-toolbar class="footer-toolbar">
+    <div class="footer-content">
+      <!-- Botón Volver Atrás -->
+      <ion-button
+        *ngIf="showBackButton"
+        class="footer-button back-button"
+        fill="clear"
+        (click)="handleBack()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        <span class="button-text">{{ backButtonText | translate }}</span>
+      </ion-button>
+
+      <!-- Espacio flexible para centrar -->
+      <div class="footer-spacer"></div>
+
+      <!-- Botón Dashboard -->
+      <ion-button
+        *ngIf="showHomeButton"
+        class="footer-button home-button"
+        fill="clear"
+        (click)="handleHome()">
+        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+      </ion-button>
+
+      <!-- Botón Guardar -->
+      <ion-button
+        *ngIf="showSaveButton"
+        class="footer-button save-button"
+        [disabled]="saveButtonDisabled"
+        (click)="handleSave()">
+        <ion-spinner *ngIf="saveButtonLoading" name="crescent"></ion-spinner>
+        <ion-icon *ngIf="!saveButtonLoading" slot="start" name="checkmark-circle-outline"></ion-icon>
+        <span *ngIf="!saveButtonLoading" class="button-text">{{ saveButtonText | translate }}</span>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+

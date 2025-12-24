@@ -37,12 +37,12 @@ export class InsuranceDetailListComponent implements OnInit, OnDestroy {
   insuranceDetailToDelete: ProccessInsuranceDetail | null = null;
   deleteAlertButtons = [
     {
-      text: this.translateService.instant('common.cancel'),
+      text: this.translateService.instant('common_cancel'),
       role: 'cancel',
       cssClass: 'alert-button-cancel'
     },
     {
-      text: this.translateService.instant('insurance.actions.delete'),
+      text: this.translateService.instant('insurance_actions_delete'),
       role: 'destructive',
       cssClass: 'alert-button-delete',
       handler: () => {
@@ -68,7 +68,7 @@ export class InsuranceDetailListComponent implements OnInit, OnDestroy {
     this.maintenanceId = this.route.snapshot.paramMap.get('id') || '';
     
     if (!this.maintenanceId) {
-      this.alertService.showError(this.translateService.instant('insurance.error.invalidMaintenanceId'));
+      this.alertService.showError(this.translateService.instant('insurance_error_invalidMaintenanceId'));
       this.router.navigate(['/maintenance']);
       return;
     }
@@ -87,7 +87,7 @@ export class InsuranceDetailListComponent implements OnInit, OnDestroy {
     this.processInsuranceDetailService.getByHeader(this.maintenanceId).pipe(
       catchError(error => {
         console.error('❌ Error loading insurance details:', error);
-        this.errorMessage = this.translateService.instant('insurance.list.error');
+        this.errorMessage = this.translateService.instant('insurance_list_error');
         return of(null);
       }),
       finalize(() => {
@@ -109,7 +109,7 @@ export class InsuranceDetailListComponent implements OnInit, OnDestroy {
           this.insuranceDetails = [];
         } else {
           console.error('❌ Respuesta inválida:', response);
-          this.errorMessage = response?.message || this.translateService.instant('insurance.list.error');
+          this.errorMessage = response?.message || this.translateService.instant('insurance_list_error');
           this.insuranceDetails = [];
         }
       },
@@ -155,10 +155,11 @@ export class InsuranceDetailListComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.processInsuranceDetailService.deleteProcessHeader(this.insuranceDetailToDelete.processHeaderId).pipe(
+  
+    this.processInsuranceDetailService.deleteProcessHeader(this.insuranceDetailToDelete.id || '').pipe(
       catchError(error => {
         console.error('Error deleting insurance detail:', error);
-        this.alertService.showError(this.translateService.instant('insurance.delete.error'));
+        this.alertService.showError(this.translateService.instant('insurance_delete_error'));
         return of(null);
       }),
       finalize(() => {
@@ -169,11 +170,12 @@ export class InsuranceDetailListComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (response: any) => {
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('insurance.delete.success'));
+          this.alertService.showSuccess(this.translateService.instant('insurance_delete_success'));
           // Reload the list after deletion
+          this.loading = false;
           this.loadInsuranceDetails();
         } else {
-          this.alertService.showError(response?.message || this.translateService.instant('insurance.delete.error'));
+          this.alertService.showError(response?.message || this.translateService.instant('insurance_delete_error'));
         }
       }
     });

@@ -80,18 +80,18 @@ export class DeleteAccountComponent {
   }
 
   private loadConsequences() {
-    this.consequences = this.translateService.instant('settings.account.deleteAccount.consequences');
+    this.consequences = this.translateService.instant('settings_account_deleteAccount_consequences');
   }
 
   private setupAlertButtons() {
     this.alertButtons = [
       {
-        text: this.translateService.instant('common.cancel'),
+        text: this.translateService.instant('common_cancel'),
         role: 'cancel',
         handler: () => this.cancelDelete()
       },
       {
-        text: this.translateService.instant('settings.account.deleteAccount.button'),
+        text: this.translateService.instant('settings_account_deleteAccount_button'),
         role: 'destructive',
         handler: () => this.deleteAccount()
       }

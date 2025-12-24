@@ -1,163 +1,549 @@
-// Modern form styles consistent with other forms
-.modern-form-content {
-  --background: var(--ion-color-light);
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  padding-bottom: 100px; /* Space for footer */
+// ==========================================
+// Maintenance Detail Add Component Styles
+// ==========================================
+
+// Variables
+$primary-color: #3880ff;
+$secondary-color: #5260ff;
+$success-color: #2dd36f;
+$danger-color: #eb445a;
+$warning-color: #ffc409;
+$dark-color: #222428;
+$medium-color: #92949c;
+$light-color: #f4f5f8;
+
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+
+$transition-fast: 0.15s ease;
+$transition-normal: 0.25s ease;
+
+// ==========================================
+// Section Card Styles
+// ==========================================
+.section-card {
+  background: #ffffff;
+  border-radius: $border-radius-lg;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: $shadow-sm;
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.form-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba($primary-color, 0.1);
+  flex-wrap: wrap;
+
+  .field-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    color: $dark-color;
+    margin: 0;
+
+    .field-icon {
+      font-size: 24px;
+      color: $primary-color;
+      background: rgba($primary-color, 0.1);
+      padding: 8px;
+      border-radius: $border-radius-sm;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .add-part-btn,
+  .add-basic-maintenance-btn {
+    --border-radius: #{$border-radius-md};
+    --padding-start: 16px;
+    --padding-end: 16px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.3px;
+    transition: all $transition-normal;
+    box-shadow: $shadow-sm;
+
+    ion-icon {
+      font-size: 18px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: $shadow-sm;
+    }
+  }
+
+  .add-basic-maintenance-btn {
+    --background: linear-gradient(135deg, #{$secondary-color} 0%, #{darken($secondary-color, 8%)} 100%);
+  }
 }
 
-.form-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
-  border-radius: 16px;
-  color: white;
-  margin-top: 1rem;
-  box-shadow: 0 8px 24px rgba(var(--ion-color-primary-rgb), 0.3);
+// ==========================================
+// Basic Maintenances List
+// ==========================================
+.basic-maintenances-list {
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba($secondary-color, 0.03) 0%, rgba($primary-color, 0.03) 100%);
+  border-radius: $border-radius-md;
+  border: 1px solid rgba($secondary-color, 0.1);
+
+  .field-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: $secondary-color;
+    margin-bottom: 16px;
+
+    .label-icon {
+      font-size: 20px;
+    }
+  }
+
+  .maintenance-items-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.basic-maintenance-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid rgba($secondary-color, 0.12);
+  border-radius: $border-radius-md;
+  padding: 14px 16px;
+  transition: all $transition-normal;
   position: relative;
   overflow: hidden;
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
     left: 0;
-    right: 0;
+    top: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
-    pointer-events: none;
+    width: 4px;
+    background: linear-gradient(180deg, $secondary-color, $primary-color);
+    border-radius: 2px 0 0 2px;
   }
 
-  .header-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: white;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: $shadow-md;
+    border-color: rgba($secondary-color, 0.25);
+    background: linear-gradient(135deg, #ffffff 0%, rgba($secondary-color, 0.02) 100%);
+
+    .remove-btn {
+      opacity: 1;
+    }
   }
 
-  h2 {
-    margin: 0.5rem 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  .item-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    padding-left: 8px;
+
+    .check-icon {
+      font-size: 22px;
+      color: $success-color;
+      flex-shrink: 0;
+    }
+
+    .item-name {
+      font-weight: 500;
+      font-size: 14px;
+      color: $dark-color;
+      line-height: 1.4;
+    }
   }
 
-  p {
+  .remove-btn {
+    --padding-start: 6px;
+    --padding-end: 6px;
+    --border-radius: 50%;
     margin: 0;
-    opacity: 0.9;
-    font-size: 0.9rem;
+    opacity: 0.5;
+    transition: all $transition-fast;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.15);
+      --background: rgba($danger-color, 0.1);
+    }
+
+    ion-icon {
+      font-size: 22px;
+    }
   }
 }
 
-.form-fields {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+// ==========================================
+// Parts List Styles
+// ==========================================
+.parts-list {
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba($success-color, 0.03) 0%, rgba($primary-color, 0.03) 100%);
+  border-radius: $border-radius-md;
+  border: 1px solid rgba($success-color, 0.1);
+
+  .parts-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: darken($success-color, 10%);
+    margin-bottom: 16px;
+
+    .label-icon {
+      font-size: 20px;
+    }
+  }
 }
 
-.field-group {
-  margin-bottom: 1.5rem;
+.part-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid rgba($success-color, 0.12);
+  border-radius: $border-radius-md;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  transition: all $transition-normal;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $success-color, darken($success-color, 10%));
+    border-radius: 2px 0 0 2px;
+  }
+
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: $shadow-md;
+    border-color: rgba($success-color, 0.25);
+    background: linear-gradient(135deg, #ffffff 0%, rgba($success-color, 0.02) 100%);
+
+    .remove-part-btn {
+      opacity: 1;
+    }
+  }
 
   &:last-child {
     margin-bottom: 0;
   }
+
+  .part-info {
+    flex: 1;
+    padding-left: 8px;
+
+    .part-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: $dark-color;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: $success-color;
+        border-radius: 50%;
+      }
+    }
+
+    .part-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+
+      .part-quantity,
+      .part-cost,
+      .part-total {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 500;
+
+        ion-icon {
+          font-size: 16px;
+        }
+      }
+
+      .part-quantity {
+        color: $primary-color;
+        background: rgba($primary-color, 0.08);
+
+        ion-icon {
+          color: $primary-color;
+        }
+      }
+
+      .part-cost {
+        color: $medium-color;
+        background: $light-color;
+
+        ion-icon {
+          color: $medium-color;
+        }
+      }
+
+      .part-total {
+        font-weight: 700;
+        color: $success-color;
+        background: rgba($success-color, 0.12);
+
+        ion-icon {
+          color: $success-color;
+        }
+      }
+    }
+  }
+
+  .remove-part-btn {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --border-radius: 50%;
+    margin: 0;
+    opacity: 0.5;
+    transition: all $transition-fast;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.15);
+      --background: rgba($danger-color, 0.1);
+    }
+
+    ion-icon {
+      font-size: 22px;
+    }
+  }
 }
 
-.field-label {
-  display: block;
-  font-weight: 600;
-  color: var(--ion-color-primary);
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+// ==========================================
+// Empty State Styles
+// ==========================================
+.empty-parts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: linear-gradient(135deg, $light-color 0%, #eef1f5 100%);
+  border-radius: $border-radius-lg;
+  border: 2px dashed rgba($medium-color, 0.25);
+  margin-top: 20px;
+  text-align: center;
   position: relative;
-  
-  &::after {
+  overflow: hidden;
+
+  &::before {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 30px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--ion-color-primary), var(--ion-color-secondary));
-    border-radius: 1px;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba($primary-color, 0.03) 0%, transparent 70%);
+    animation: pulse-bg 4s ease-in-out infinite;
+  }
+
+  .empty-icon {
+    font-size: 56px;
+    color: rgba($primary-color, 0.3);
+    margin-bottom: 16px;
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+  }
+
+  .empty-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: $dark-color;
+    margin: 0 0 8px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .empty-subtitle {
+    font-size: 14px;
+    color: $medium-color;
+    margin: 0;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
   }
 }
 
-.modern-input,
-.modern-textarea,
-.modern-select {
-  --border-radius: 12px;
-  --border-width: 2px;
-  --border-color: var(--ion-color-light-shade);
-  --background: linear-gradient(135deg, #f8f9fa, #ffffff);
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --padding-top: 14px;
-  --padding-bottom: 14px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-
-  &:focus-within {
-    --border-color: var(--ion-color-primary);
-    --border-width: 2px;
-    box-shadow: 0 0 0 4px rgba(var(--ion-color-primary-rgb), 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-
-  &:hover {
-    --border-color: var(--ion-color-primary-tint);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  50% {
+    transform: translateY(-10px);
   }
 }
 
-.modern-textarea {
-  min-height: 80px;
+@keyframes pulse-bg {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }
 
-.modern-select {
-  --padding-start: 12px;
-  --padding-end: 12px;
+// ==========================================
+// Form Styles (General)
+// ==========================================
+.form-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-// Row layout for side-by-side fields
-.row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.form-header {
+  text-align: center;
+  padding: 24px 16px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba($primary-color, 0.05) 0%, rgba($secondary-color, 0.05) 100%);
+  border-radius: $border-radius-lg;
 
-  .col-6 {
-    flex: 1;
+  .header-icon {
+    font-size: 48px;
+    color: $primary-color;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $dark-color;
+    margin: 0 0 8px 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: $medium-color;
+    margin: 0;
+  }
+}
+
+.field-group {
+  margin-bottom: 20px;
+
+  .field-label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    color: $dark-color;
+    margin-bottom: 8px;
   }
 }
 
 .error-message {
-  color: var(--ion-color-danger);
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
+  color: $danger-color;
+  font-size: 12px;
+  margin-top: 4px;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background: linear-gradient(135deg, rgba(var(--ion-color-danger-rgb), 0.1), rgba(var(--ion-color-danger-rgb), 0.05));
-  border-radius: 8px;
-  border-left: 3px solid var(--ion-color-danger);
-  font-weight: 500;
+  gap: 4px;
 
   &::before {
-    content: "⚠";
-    font-size: 0.8rem;
-    color: var(--ion-color-danger);
+    content: '⚠️';
+    font-size: 12px;
+  }
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  .col-6 {
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+// ==========================================
+// Loading Overlay
+// ==========================================
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+
+  .loading-content {
+    text-align: center;
+
+    ion-spinner {
+      width: 48px;
+      height: 48px;
+      color: $primary-color;
+    }
+
+    p {
+      margin-top: 12px;
+      color: $medium-color;
+      font-weight: 500;
+    }
   }
 }
 
@@ -166,67 +552,158 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
-  text-align: center;
-  background: white;
-  border-radius: 12px;
-  margin: 1rem 0;
-
+  padding: 60px 20px;
+  
   ion-spinner {
-    margin-bottom: 1rem;
+    width: 40px;
+    height: 40px;
+    color: $primary-color;
   }
 
   p {
-    color: var(--ion-color-medium);
-    font-size: 0.9rem;
+    margin-top: 12px;
+    color: $medium-color;
   }
 }
 
 .error-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  text-align: center;
-  background: white;
-  border-radius: 12px;
-  margin: 1rem 0;
-  border: 1px solid var(--ion-color-danger);
+  gap: 12px;
+  padding: 16px;
+  background: rgba($danger-color, 0.1);
+  border-radius: $border-radius-md;
+  margin-bottom: 20px;
 
   ion-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--ion-color-danger);
+    font-size: 24px;
   }
 
   p {
-    color: var(--ion-color-danger);
+    margin: 0;
+    color: $danger-color;
     font-weight: 500;
   }
 }
 
-// Responsive design
-@media (max-width: 768px) {
-  .form-container {
-    padding: 0.5rem;
+// ==========================================
+// Responsive Adjustments
+// ==========================================
+@media (max-width: 576px) {
+  .section-card {
+    padding: 16px;
+    margin-bottom: 16px;
   }
 
-  .form-header {
-    padding: 1rem;
-    margin-top: 0.5rem;
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 14px;
 
-    .header-icon {
-      font-size: 2.5rem;
+    .field-label {
+      width: 100%;
+      font-size: 15px;
+
+      .field-icon {
+        font-size: 20px;
+        padding: 6px;
+      }
     }
 
-    h2 {
-      font-size: 1.25rem;
+    .header-actions {
+      width: 100%;
+      justify-content: stretch;
+
+      .add-part-btn,
+      .add-basic-maintenance-btn {
+        flex: 1;
+        --padding-start: 12px;
+        --padding-end: 12px;
+        font-size: 12px;
+      }
     }
   }
 
-  .form-fields {
-    padding: 1rem;
+  .basic-maintenances-list,
+  .parts-list {
+    padding: 14px;
+    margin-top: 16px;
+  }
+
+  .basic-maintenance-item {
+    padding: 12px 14px;
+
+    .item-content {
+      gap: 10px;
+      padding-left: 6px;
+
+      .check-icon {
+        font-size: 18px;
+      }
+
+      .item-name {
+        font-size: 13px;
+      }
+    }
+
+    .remove-btn ion-icon {
+      font-size: 20px;
+    }
+  }
+
+  .part-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px;
+
+    .part-info {
+      width: 100%;
+      padding-left: 6px;
+
+      .part-name {
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+
+      .part-details {
+        gap: 8px;
+
+        .part-quantity,
+        .part-cost,
+        .part-total {
+          padding: 5px 10px;
+          font-size: 12px;
+
+          ion-icon {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .remove-part-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+  }
+
+  .empty-parts {
+    padding: 36px 20px;
+
+    .empty-icon {
+      font-size: 44px;
+    }
+
+    .empty-title {
+      font-size: 15px;
+    }
+
+    .empty-subtitle {
+      font-size: 13px;
+    }
   }
 
   .row {
@@ -234,288 +711,129 @@
     gap: 0;
 
     .col-6 {
-      margin-bottom: 1.5rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+      width: 100%;
     }
   }
 }
 
-// Focus states
-.modern-input:focus-within,
-.modern-textarea:focus-within,
-.modern-select:focus-within {
-  transform: translateY(-1px);
-}
-
-// Animation for form appearance
-.form-fields {
-  animation: slideInUp 0.3s ease-out;
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== FORM FOOTER ===== */
-.form-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid #e5e7eb;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
-.form-footer ion-toolbar {
-  --background: transparent;
-  --padding-start: 24px;
-  --padding-end: 24px;
-  --padding-top: 16px;
-  --padding-bottom: 16px;
-}
-
-.footer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.footer-btn {
-  --border-radius: 50%;
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --padding-top: 16px;
-  --padding-bottom: 16px;
-  width: 56px;
-  height: 56px;
-  font-size: 20px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.footer-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.cancel-btn {
-  --background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  --color: white;
-}
-
-.cancel-btn:hover {
-  --background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-}
-
-.save-btn {
-  --background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --color: white;
-}
-
-.save-btn:hover {
-  --background: linear-gradient(135deg, #059669 0%, #047857 100%);
-}
-
-.exit-btn {
-  --background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-  --color: white;
-}
-
-.exit-btn:hover {
-  --background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-  .footer-buttons {
-    gap: 12px;
-    padding: 0 16px;
-  }
-  
-  .footer-btn {
-    width: 52px;
-    height: 52px;
-    font-size: 18px;
-  }
-  
-  .form-footer ion-toolbar {
-    --padding-start: 16px;
-    --padding-end: 16px;
-    --padding-top: 12px;
-    --padding-bottom: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-buttons {
-    gap: 8px;
-  }
-  
-  .footer-btn {
-    width: 48px;
-    height: 48px;
-    font-size: 16px;
-  }
-}
-
-/* ===== MAINTENANCE PARTS SECTION ===== */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.add-part-btn {
-  --border-radius: 50%;
-  --padding-start: 12px;
-  --padding-end: 12px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  width: 40px;
-  height: 40px;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-}
-
-.parts-list {
-  background: white;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.part-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  border-bottom: 1px solid #f3f4f6;
-  transition: background-color 0.2s ease;
-}
-
-.part-item:last-child {
-  border-bottom: none;
-}
-
-.part-item:hover {
-  background-color: #f9fafb;
-}
-
-.part-info {
-  flex: 1;
-}
-
-.part-name {
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 4px;
-  font-size: 14px;
-}
-
-.part-details {
-  display: flex;
-  gap: 12px;
-  font-size: 12px;
-  color: #6b7280;
-}
-
-.part-quantity {
-  background: #dbeafe;
-  color: #1e40af;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.part-cost {
-  background: #f0fdf4;
-  color: #166534;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.part-total {
-  background: #fef3c7;
-  color: #92400e;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-weight: 600;
-}
-
-.remove-part-btn {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --padding-top: 8px;
-  --padding-bottom: 8px;
-  width: 32px;
-  height: 32px;
-  margin-left: 12px;
-}
-
-.empty-parts {
-  text-align: center;
-  padding: 32px 16px;
-  color: #9ca3af;
-}
-
-.empty-icon {
-  font-size: 48px;
-  margin-bottom: 12px;
-  opacity: 0.5;
-}
-
-.empty-parts p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* ===== DARK MODE SUPPORT ===== */
+// ==========================================
+// Dark Mode Support
+// ==========================================
 @media (prefers-color-scheme: dark) {
-  .modern-form-content {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  .section-card {
+    background: #1e1e1e;
+    border-color: rgba(255, 255, 255, 0.1);
+
+    .section-header {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+
+      .field-label {
+        color: #ffffff;
+
+        .field-icon {
+          background: rgba($primary-color, 0.2);
+        }
+      }
+    }
   }
-  
-  .form-footer {
-    background: #1f2937;
-    border-top-color: #374151;
+
+  .basic-maintenances-list {
+    background: linear-gradient(135deg, rgba($secondary-color, 0.1) 0%, rgba($primary-color, 0.05) 100%);
+    border-color: rgba($secondary-color, 0.2);
+
+    .field-label {
+      color: rgba($secondary-color, 0.9);
+    }
+  }
+
+  .basic-maintenance-item {
+    background: #252538;
+    border-color: rgba($secondary-color, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #252538 0%, rgba($secondary-color, 0.1) 100%);
+    }
+
+    .item-content .item-name {
+      color: #ffffff;
+    }
   }
 
   .parts-list {
-    background: #374151;
-    border-color: #4b5563;
+    background: linear-gradient(135deg, rgba($success-color, 0.08) 0%, rgba($primary-color, 0.05) 100%);
+    border-color: rgba($success-color, 0.2);
+
+    .parts-label {
+      color: rgba($success-color, 0.9);
+    }
   }
 
   .part-item {
-    border-bottom-color: #4b5563;
+    background: #252538;
+    border-color: rgba($success-color, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, #252538 0%, rgba($success-color, 0.08) 100%);
+    }
+
+    .part-info {
+      .part-name {
+        color: #ffffff;
+      }
+
+      .part-details {
+        .part-quantity {
+          background: rgba($primary-color, 0.15);
+          color: rgba($primary-color, 0.9);
+        }
+
+        .part-cost {
+          background: rgba(255, 255, 255, 0.08);
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        .part-total {
+          background: rgba($success-color, 0.2);
+        }
+      }
+    }
   }
 
-  .part-item:hover {
-    background-color: #4b5563;
+  .empty-parts {
+    background: linear-gradient(135deg, #1e1e1e 0%, #252538 100%);
+    border-color: rgba(255, 255, 255, 0.15);
+
+    &::before {
+      background: radial-gradient(circle, rgba($primary-color, 0.08) 0%, transparent 70%);
+    }
+
+    .empty-icon {
+      color: rgba($primary-color, 0.4);
+    }
+
+    .empty-title {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .empty-subtitle {
+      color: rgba(255, 255, 255, 0.5);
+    }
   }
 
-  .part-name {
-    color: #f9fafb;
+  .form-header {
+    background: linear-gradient(135deg, rgba($primary-color, 0.15) 0%, rgba($secondary-color, 0.15) 100%);
+
+    h2 {
+      color: #ffffff;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.6);
+    }
   }
 
-  .part-details {
-    color: #d1d5db;
+  .field-group .field-label {
+    color: rgba(255, 255, 255, 0.9);
   }
 }
+

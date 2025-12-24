@@ -107,7 +107,7 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
     this.vehicleService.getVehiclePaged(this.currentPage, this.globalSearch).pipe(
       catchError(error => {
         console.error('Error loading vehicles:', error);
-        this.errorMessage = this.translateService.instant('vehicles.list.error');
+        this.errorMessage = this.translateService.instant('vehicles_list_error');
         return of(null);
       }),
       finalize(() => {
@@ -129,7 +129,7 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
           this.totalPages = responseData?.totalPages || 1;
           this.hasMoreData = this.currentPage < this.totalPages;
         } else {
-          this.errorMessage = response.message || this.translateService.instant('vehicles.list.error');
+          this.errorMessage = response.message || this.translateService.instant('vehicles_list_error');
         }
       }
     });
@@ -178,14 +178,11 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
   }
 
   async viewVehicle(id: string) {
-    this.closeMenuWithDelay(); // Close the dropdown menu before opening modal
-    console.log('viewVehicle called with id:', id);
-    console.log('Available vehicles:', this.vehicles);
-    
+    this.closeMenuWithDelay(); 
     // Find the vehicle data
     const vehicle = this.vehicles.find(v => v.id === id);
     if (!vehicle) {
-      this.alertService.showError(this.translateService.instant('vehicles.view.error'));
+      this.alertService.showError(this.translateService.instant('vehicles_view_error'));
       return;
     }
 
@@ -220,7 +217,12 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
       this.router.navigate(['/vehicles/edit', id]);
     }, 150);
   }
-
+  viewVehicleDashboard(id: string) {
+    this.closeMenuWithDelay(); // Close the dropdown menu before navigating
+    setTimeout(() => {
+      this.router.navigate(['/vehicles/dashboard', id]);
+    }, 150);
+  }
   confirmDelete(vehicle: VehicleGetRequest) {
     this.closeMenu(); // Close the dropdown menu before showing delete confirmation
     this.vehicleToDelete = vehicle;
@@ -241,7 +243,7 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
     this.vehicleService.deleteVehicle(this.vehicleToDelete.id).pipe(
       catchError(error => {
         console.error('Error deleting vehicle:', error);
-        this.alertService.showError(this.translateService.instant('vehicles.delete.error'));
+        this.alertService.showError(this.translateService.instant('vehicles_delete_error'));
         return of(null);
       }),
       finalize(() => {
@@ -252,12 +254,12 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (response: any) => {
         if (response && response.success) {
-          this.alertService.showSuccess(this.translateService.instant('vehicles.delete.success'));
+          this.alertService.showSuccess(this.translateService.instant('vehicles_delete_success'));
           // Remove the deleted vehicle from the list
           this.vehicles = this.vehicles.filter(v => v.id !== this.vehicleToDelete?.id);
           this.totalItems--;
         } else {
-          this.alertService.showError(response.message || this.translateService.instant('vehicles.delete.error'));
+          this.alertService.showError(response.message || this.translateService.instant('vehicles_delete_error'));
         }
       }
     });
@@ -282,6 +284,17 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.closeMenu();
     }, 100);
+  }
+
+  /**
+   * Handle image loading errors
+   * Replace with placeholder icon if image fails to load
+   */
+  onImageError(event: any) {
+    // Hide the broken image
+    event.target.style.display = 'none';
+    // You could also replace with a placeholder image:
+    // event.target.src = 'assets/images/vehicle-placeholder.png';
   }
 
   ngOnDestroy() {

@@ -5,7 +5,7 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MaintenanceDetailService, MaintenanceDetail } from '../../../../utils/maintenanceDetail.service';
-
+import { AppFooterComponent } from '../../../../shared/components/app-footer/app-footer.component';
 import { AlertService } from '../../../../utils/alert.service';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -21,7 +21,8 @@ import { Catalog, CatalogService } from 'src/app/utils/catalog.service';
     RouterModule,
     TranslateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppFooterComponent
   ],
   providers: [
     MaintenanceDetailService,
@@ -91,7 +92,7 @@ export class MaintenanceDetailEditComponent implements OnInit {
     this.maintenanceDetailService.getByIdMaintenanceDetail(this.maintenanceDetailId).pipe(
       catchError(error => {
         console.error('❌ Error loading maintenance detail:', error);
-        this.errorMessage = this.translateService.instant('maintenance.detail.edit.load.error');
+        this.errorMessage = this.translateService.instant('maintenance_detail_edit_load_error');
         return of(null);
       }),
       finalize(() => {
@@ -106,12 +107,12 @@ export class MaintenanceDetailEditComponent implements OnInit {
           this.populateForm(this.maintenanceDetail as MaintenanceDetail);
           console.log('✅ Maintenance detail loaded:', this.maintenanceDetail);
         } else {
-          this.errorMessage = response?.message || this.translateService.instant('maintenance.detail.edit.load.error');
+          this.errorMessage = response?.message || this.translateService.instant('maintenance_detail_edit_load_error');
         }
       },
       error: (error) => {
         console.error('❌ Error in subscribe:', error);
-        this.errorMessage = this.translateService.instant('maintenance.detail.edit.load.error');
+        this.errorMessage = this.translateService.instant('maintenance_detail_edit_load_error');
       }
     });
   }
@@ -163,7 +164,7 @@ export class MaintenanceDetailEditComponent implements OnInit {
       this.maintenanceDetailService.editMaintenanceDetail(this.maintenanceDetailId, updatedMaintenanceDetail).pipe(
         catchError(error => {
           console.error('❌ Error updating maintenance detail:', error);
-          this.errorMessage = this.translateService.instant('maintenance.detail.edit.error');
+          this.errorMessage = this.translateService.instant('maintenance_detail_edit_error');
           return of(null);
         }),
         finalize(() => {
@@ -174,20 +175,20 @@ export class MaintenanceDetailEditComponent implements OnInit {
           console.log('📦 Server response:', response);
           
           if (response && response.success) {
-            this.alertService.showSuccess(this.translateService.instant('maintenance.detail.edit.success'));
+            this.alertService.showSuccess(this.translateService.instant('maintenance_detail_edit_success'));
             this.router.navigate(['/maintenance/detail/list', this.maintenanceDetail?.MaintenanceDetailId]);
           } else {
-            this.errorMessage = response?.message || this.translateService.instant('maintenance.detail.edit.error');
+            this.errorMessage = response?.message || this.translateService.instant('maintenance_detail_edit_error');
           }
         },
         error: (error) => {
           console.error('❌ Error in subscribe:', error);
-          this.errorMessage = this.translateService.instant('maintenance.detail.edit.error');
+          this.errorMessage = this.translateService.instant('maintenance_detail_edit_error');
         }
       });
     } else {
       this.markFormGroupTouched();
-      this.alertService.showError(this.translateService.instant('maintenance.detail.edit.form.invalid'));
+      this.alertService.showError(this.translateService.instant('maintenance_detail_edit_form_invalid'));
     }
   }
 
@@ -217,7 +218,7 @@ export class MaintenanceDetailEditComponent implements OnInit {
     const field = this.maintenanceDetailForm.get(fieldName);
     if (field && field.errors) {
       if (field.errors['required']) {
-        return this.translateService.instant('maintenance.detail.edit.form.errors.required');
+        return this.translateService.instant('maintenance_detail_edit_form_errors_required');
       }
       if (field.errors['minlength']) {
         return this.translateService.instant('maintenance.detail.edit.form.errors.minlength', { 
@@ -225,7 +226,7 @@ export class MaintenanceDetailEditComponent implements OnInit {
         });
       }
       if (field.errors['pattern']) {
-        return this.translateService.instant('maintenance.detail.edit.form.errors.pattern');
+        return this.translateService.instant('maintenance_detail_edit_form_errors_pattern');
       }
       if (field.errors['min']) {
         return this.translateService.instant('maintenance.detail.edit.form.errors.min', { 

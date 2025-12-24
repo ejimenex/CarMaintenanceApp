@@ -11,6 +11,7 @@ export interface MaintenancePart
   cost: number;
   unitOfMeasure: string;//select field from catalog.service getUnitOfMeasure()
   totalCost: number;
+  processHeaderId?:string;
 }
 
 
